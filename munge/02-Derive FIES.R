@@ -17,7 +17,7 @@ fies_cty <- fies_raw %>%
   summarize(fies.mod = weighted.mean(Prob_Mod_Sev > 0.5, w = wt, na.rm=T),
             fies.sev = weighted.mean(Prob_sev > 0.5, w = wt, na.rm=T)) %>%
   mutate(fies.mod.3yr = rollapply(fies.mod, width=3, FUN=mean, na.pad=T),
-         fies.mod.3yr = rollapply(fies.sev, width=3, FUN=mean, na.pad=T)) %>%
+         fies.sev.3yr = rollapply(fies.sev, width=3, FUN=mean, na.pad=T)) %>%
   merge(compare, all.x=T, all.y=F)
 
 #Disaggregate by urban-rural
