@@ -2,7 +2,7 @@
 
 This is the repository for the World Data Lab's analysis of the Food Insecurity Experience Scale.
 
-This repo is organized using the ProjectTemplate package.  (Read more about it)[http://projecttemplate.net/] if you are unfamiliar.
+This repo is organized using the ProjectTemplate package.  [Read more about it](http://projecttemplate.net/) if you are unfamiliar.
 
 Raw data is stored in the `data` folder, and is processed using the scripts in the `munge` folder.  The results of munging are then saved in the `cache` folder.  Then, drawing on those intermediate cached files, model scripts are stored in the `models` folder and scripts for visualization are stored in the `viz` folder, with graphic outputs stored in the `figures` folder.  Utility function are stored in the `lib` folder and documentation is stored in the `docs` folder.
 
