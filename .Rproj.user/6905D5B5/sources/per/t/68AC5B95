@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590503083015.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2660948816",
+    "id" : "68AC5B95",
+    "lastKnownWriteTime" : 1590503307,
+    "last_content_update" : 1590503307061,
+    "path" : "C:/Users/bmuel/Desktop/WDL/GitHub/wdl-fies/load.project.R",
+    "project_path" : "load.project.R",
+    "properties" : {
+        "cursorPosition" : "1,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
