@@ -8,7 +8,7 @@ munging: FALSE
 logging: FALSE
 logging_level: INFO
 load_libraries: TRUE
-libraries: tidyverse, countrycode, rnaturalearth, sf, zoo, broom
+libraries: tidyverse, countrycode, rnaturalearth, sf, zoo, broom, reshape2, lubridate
 as_factors: FALSE
 tables_type: data_frame
 attach_internal_libraries: FALSE

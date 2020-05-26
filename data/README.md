@@ -6,7 +6,8 @@ This folder should be synced with the folder "DATA_WDL/Hunger/FIES/ProjectTempla
  FAOSTAT_data_4-14-2020.csv  'GDL Shapefiles V4 0.005'/   regions.csv
 
 ./covars:
-SSP2_Vars_Historic.csv
+GDL_extract_2020_04_22.csv   GDL_livestock_2020_04_29.csv GDL_malaria_2020_04_29.csv 
+GDL_spei_2020_04_29.csv      SSP2_Vars_Future.csv         SSP2_Vars_Past.csv 
 
 ./fies_surveys:
 AFG_2014_FIES_v01_EN_M_v01_A_OCS.RData  KAZ_2017_FIES_v01_EN_M_v01_A_OCS.RData
