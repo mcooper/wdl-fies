@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590580333806.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F8DC01F2",
+    "lastKnownWriteTime" : 7287422520962202146,
+    "last_content_update" : 1590580333806,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "398924ED",
+        "caption" : "covar_trend",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=covar_trend&cache_key=398924ED",
+        "displayedObservations" : 5226,
+        "environment" : "",
+        "expression" : "covar_trend",
+        "object" : "covar_trend",
+        "preview" : 0,
+        "totalObservations" : 5226,
+        "variables" : 9
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
