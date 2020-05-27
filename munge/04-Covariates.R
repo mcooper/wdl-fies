@@ -2,28 +2,72 @@
 ###-----------------------------------------------------------------------------------------------------------------
 ## SSP data
 
+#########################
 #past
+###########################
 ssp_past <- read.csv('data/covars/SSP2_Vars_Past.csv') 
 
 ssp_past <- ssp_past %>%
-  select(year=Year, iso3=iso3c, GDLCODE=GDLcode, elevation, mean_annual_precip, roughness, grid_gdp, 
+  select(year=Year, iso3=iso3c, GDLCODE=GDLcode, grid_gdp, 
          edu_year = EdYears, rural = Rural, urban = Urban) %>%
   mutate(grid_gdp = log(grid_gdp),
          urban_perc = urban/(urban + rural)) %>%
   filter(GDLCODE %in% gdl$GDLCODE, 
          !is.na(iso3), !is.na(GDLCODE))
 
+#Deal with missing data
+#For areas where urban percentage is NaN, set to country mean
+ssp_past$urban_perc[ssp_past$iso3 == 'VUT' & is.na(ssp_past$urban_perc)] <- mean(ssp_past$urban_perc[ssp_past$iso3 == 'VUT'], na.rm=T) 
+ssp_past$urban_perc[ssp_past$iso3 == 'FSM' & is.na(ssp_past$urban_perc)] <- mean(ssp_past$urban_perc[ssp_past$iso3 == 'FSM'], na.rm=T) 
 
+#Edu Year is missing at random, looks like it there for some years for almost all countries
+ssp_past <- ssp_past %>% 
+		#Make NANs NA
+		mutate(edu_year=ifelse(is.nan(edu_year), NA, edu_year)) %>%
+		#Fill in missing years with nearest chronological year
+		arrange(GDLCODE, year) %>%
+		group_by(GDLCODE) %>%
+		mutate(edu_year=na.locf(na.locf(edu_year, na.rm=F), na.rm=F, fromLast=T))
+
+#Grid_GDP currently missing for countries >50 degrees north
+#So fill them in with a proxy country
+rich_north <- c("BEL", "CAN", "DEU", "DNK", "EST", "FIN", "FRA", "GBR", "IRL", "ISL", "NLD", "NOR", "SWE", "USA")
+poor_north <- c("BLR", "LTU", "LVA", "POL", "RUS")
+
+#Set rich countries GDP equal to rural Germany
+for (code in unique(ssp_past$GDLCODE[ssp_past$iso3 %in% rich_north & is.na(ssp_past$grid_gdp)])){
+	ssp_past$grid_gdp[ssp_past$GDLCODE == code] <- ssp_past$grid_gdp[ssp_past$GDLCODE == "DEUr101"]
+}
+
+#Set poor countries GDP equal to rural Hungary
+for (code in unique(ssp_past$GDLCODE[ssp_past$iso3 %in% poor_north & is.na(ssp_past$grid_gdp)])){
+	ssp_past$grid_gdp[ssp_past$GDLCODE == code] <- ssp_past$grid_gdp[ssp_past$GDLCODE == "HUNr101"]
+}
+
+#For all other missing GDP data (in small islands), use national mean
+ssp_past <- ssp_past %>%
+	group_by(iso3) %>%
+	mutate(grid_gdp=replace(grid_gdp, which(is.na(grid_gdp)), mean(grid_gdp, na.rm=TRUE)))
+
+######################################
 #future SSP data
+#######################################
 ssp_future <- read.csv('data/covars/SSP2_Vars_Future.csv') 
 
 ssp_future <- ssp_future %>%
-  select(year=Year, iso3=iso3c, GDLCODE=GDLcode, gdp_capita = GDP_PerCap, edu_year = mean_years_ed, 
+  select(year=Year, iso3=iso3c, GDLCODE=GDLcode, grid_gdp = GDP_PerCap, edu_year = mean_years_ed, 
          rural = rur_pop, urban = urb_pop) %>%
-  mutate(grid_gdp = log(gdp_capita*100),
+  mutate(grid_gdp = log(grid_gdp*100),
          urban_perc = urban/(urban + rural)) %>%
   filter(GDLCODE %in% gdl$GDLCODE, 
          !is.na(iso3), !is.na(GDLCODE))
+
+#Missing data in Carribbean islands, Liechtenstein, and South Sudan
+#For new, set South Sudan equal to CAR for gdp and ed
+ssp_future <- ssp_future %>%
+	group_by(year) %>%
+	mutate(grid_gdp = replace(grid_gdp, which(iso3=='SSD'), mean(grid_gdp[iso3=='CAF'])),
+				 edu_year = replace(edu_year, which(iso3=='SSD'), mean(edu_year[iso3=='CAF'])))
 
 
 ###-----------------------------------------------------------------------------------------------------------------
@@ -35,7 +79,7 @@ covar_ext <- read.csv('data/covars/GDL_extract_2020_04_22.csv')
 #additional covar extracted on the 29.04.2020
 livestock <- read.csv('data/covars/GDL_livestock_2020_04_29.csv')
 malaria <- read.csv('data/covars/GDL_malaria_2020_04_29.csv')
-spei <- read.csv('data/covars/GDL_spei_2020_04_29.csv')
+#spei <- read.csv('data/covars/GDL_spei_2020_04_29.csv')
 
 
 #manipulation
@@ -45,22 +89,41 @@ covar_ext <- covar_ext %>% dplyr::select(-c(bodycount, nutritiondiversity))
 
 #livestock
 colnames(livestock) <- c("GDLCode", "buffaloes", "cattle", "chickens", "ducks", "horses", "pigs", "sheep")
-covar_ext <- merge(covar_ext, livestock, by = "GDLCode")
+covar_ext <- merge(covar_ext, livestock, by = "GDLCode", all.x=T, all.y=F)
 
 #malaria
 malaria <- malaria %>% rename(mal_falciparum = "falciparum", mal_vivax = "vivax")
-covar_ext <- merge(covar_ext, malaria, by = c("GDLCode", "year"))
+covar_ext <- merge(covar_ext, malaria, by = c("GDLCode", "year"), all.x=T, all.y=F)
 
-#spei
-spei$year <- year(ymd(gsub('X', '', spei$date)))
-spei$month <- month(ymd(gsub('X', '', spei$date)))
-spei <- spei %>% select(-c(date))
+# #Dont deal with SPEI right now
+# #spei
+# spei$year <- year(ymd(gsub('X', '', spei$date)))
+# spei$month <- month(ymd(gsub('X', '', spei$date)))
+# spei <- spei %>% select(-c(date))
+# 
+# covar_ext <- data.frame(covar_ext[rep(1:nrow(covar_ext), 12), ], month = rep(1:12, each = nrow(covar_ext)))
+# covar_ext <- merge(covar_ext, spei, by = c("GDLCode", "year", "month"), all.x=T, all.y=F)
 
-covar_ext <- data.frame(covar_ext[rep(1:nrow(covar_ext), 12), ], month = rep(1:12, each = nrow(covar_ext)))
-covar_ext <- merge(covar_ext, spei, by = c("GDLCode", "year", "month"))
+covar_ext <- covar_ext %>% 
+	rename(GDLCODE = "GDLCode") %>%
+	mutate(iso3 = substr(GDLCODE, 1, 3))
 
-covar_ext <- covar_ext %>% rename(GDLCODE = "GDLCode")
+#Places with missing malaria data just have no malaria
+covar_ext$mal_falciparum[is.na(covar_ext$mal_falciparum)] <- 0
+covar_ext$mal_vivax[is.na(covar_ext$mal_vivax)] <- 0
 
+#For missing data first pad NAs with most recent available year
+covar_ext <- covar_ext %>% 
+		#Make NANs NA
+		#Fill in missing years with nearest chronological year
+		arrange(GDLCODE, year) %>%
+		group_by(GDLCODE) %>%
+		mutate_each(funs(na.locf(na.locf(., na.rm=F), na.rm=F, fromLast=T))) %>%
+		group_by(iso3, year) %>%
+		mutate_each(funs(replace(., which(is.na(.)), mean(., na.rm=TRUE))))
+
+#countrycode(covar_ext$iso3[apply(covar_ext, MARGIN=1, FUN=function(x){any(is.na(x))})] %>% unique, 'iso3c', 'country.name')
+#All other missing data is islands or North Latitudes
 
 ###-----------------------------------------------------------------------------------------------------------------
 ## predict some of the extracted covariates with simple model
