@@ -71,9 +71,13 @@ ggsave('figures/Pred2020_LASSO.png', width=7, height=5)
 
 # Assess residuals
 mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
+r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
 ggplot(moddat) + 
 	geom_point(aes(x=fies.mod, y=fies.mod.pred)) + 
-	labs(caption=paste0('MAE: ',  mae)) 
+	labs(caption=paste0('Mean Absolute Error: ',  round(mae, 4), 
+											'\nR-squared: ', round(r2, 4)),
+			 x='Observed Rates of Food Insecurity',
+			 y='Modeled Rate of Food Insecurity') 
 ggsave('figures/Pred2020_Residuals.png', width=5, height=5)
 
 # Plot scaled covariates
@@ -90,7 +94,9 @@ df$term <- factor(df$term, levels=df$term[order(df$scaled)], ordered=TRUE)
 ggplot(df %>% filter(term != '(Intercept)')) + 
 	  geom_bar(aes(x=term, y=scaled), stat='identity') + 
 		coord_flip() + 
-		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Variable\nFor 2020 LASSO Regression Model') + 
+		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Variable\nFor 2020 LASSO Regression Model', 
+				 x="", 
+				 y="") + 
 		theme_minimal()
 
 ggsave('figures/Pred2020_Coefs.png', width=5, height=5)
