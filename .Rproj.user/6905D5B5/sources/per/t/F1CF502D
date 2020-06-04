@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591040640484.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "27|17|41|0|\n57|17|70|0|\n",
+    "hash" : "348922051",
+    "id" : "F1CF502D",
+    "lastKnownWriteTime" : 1591051020,
+    "last_content_update" : 1591051020363,
+    "path" : "C:/Users/bmuel/Desktop/WDL/GitHub/wdl-fies/models/model_allcovars_BMS.R",
+    "project_path" : "models/model_allcovars_BMS.R",
+    "properties" : {
+        "cursorPosition" : "116,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
