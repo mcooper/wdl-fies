@@ -16,9 +16,13 @@ preddat <- covar_ext %>%
 	data.frame
 
 # Set up Model
-vars <- names(moddat)[!names(moddat) %in% c('iso3', 'GDLCODE', 'fies.mod.rur', 'fies.sev.rur', 
-																						'fies.mod.urb', 'fies.sev.urb', 'Urban', 'Rural', 'fies.mod', 
-																						'fies.sev', 'rural', 'urban', 'year')]
+vars <- names(moddat)[!names(moddat) %in% c('iso3', 'GDLCODE', 'fies.mod.rur', 
+																						'fies.sev.rur', 'fies.mod.urb', 'fies.sev.urb', 
+																						'Urban', 'Rural', 'fies.mod', 
+																						'fies.sev', 'rural', 'urban', 'year',
+																						#Exclue a few more that are collinear
+																						'nutritiondiversity_s', 'nutritiondiversity_h',
+																						'irrig_aei', 'high_settle', 'low_settle')]
 
 x <- model.matrix(as.formula(paste0('fies.mod ~ ', paste0(vars, collapse=' + '))), data=moddat)
 
