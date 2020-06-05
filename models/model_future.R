@@ -1,34 +1,31 @@
 #######################################################
-# Use LASSO regression with a large number of covariates
-# to estimate current food insecurity, based on data for
-# as close to 2020 as possible
+# Use LASSO regression with SSP covariates
+# to estimate food insecurity, based on data for
+# modeled for 2020, 2025, and 2030
 #######################################################
+
+covar_future <- covar_future %>% select(year, iso3, GDLCODE, grid_gdp, edu_year, rural, urban, urban_perc, gini, hdi, livestock, builtup, forest, cropland, crops_prod)
 
 # Read in data
 moddat <- merge(fies_subnat, 
-								covar_ext, 
+								covar_future, 
 								all.x=T, all.y=F) %>%
 	na.omit %>%
 	data.frame
 
-preddat <- covar_ext %>%
-	filter(year==2020) %>%
+preddat <- covar_future %>%
+	filter(year %in% c(2020, 2025, 2030)) %>%
 	data.frame
 
 # Set up Model
-vars <- names(moddat)[!names(moddat) %in% c('iso3', 'GDLCODE', 'fies.mod.rur', 
-																						'fies.sev.rur', 'fies.mod.urb', 'fies.sev.urb', 
-																						'Urban', 'Rural', 'fies.mod', 
-																						'fies.sev', 'rural', 'urban', 'year',
-																						#Exclue a few more that are collinear
-																						'nutritiondiversity_s', 'nutritiondiversity_h',
-																						'irrig_aei', 'high_settle', 'low_settle')]
+vars <- names(moddat)[!names(moddat) %in% c('iso3', 'GDLCODE', 'fies.mod.rur', 'fies.sev.rur', 
+																						'fies.mod.urb', 'fies.sev.urb', 'Urban', 'Rural', 'fies.mod', 
+																						'fies.sev', 'rural', 'urban', 'year')]
 
 x <- model.matrix(as.formula(paste0('fies.mod ~ ', paste0(vars, collapse=' + '))), data=moddat)
 
 mod <- cv.glmnet(x, moddat$fies.mod, alpha=1)
 mod$lambda.min
-
 
 tmp_coeffs <- coef(mod, s = "lambda.min")
 df <- data.frame(term = tmp_coeffs@Dimnames[[1]][tmp_coeffs@i + 1], estimate = tmp_coeffs@x,
@@ -46,14 +43,15 @@ preddat$fies.mod.pred[preddat$fies.mod.pred > 1] <- 1
 
 #Get totals by year
 totals <- preddat %>%
-	merge(ssp_future %>%
-					filter(year==2020) %>%
-				  select(GDLCODE, urban, rural)) %>%
 	group_by(year) %>%
 	summarize(total=prettyNum(sum(fies.mod.pred * (rural + urban), na.rm=T), big.mark=',', scientific=F))
 
 # Make Map
-mapdat <- merge(gdl, preddat %>% select(GDLCODE, fies.mod.pred), all.x=T, all.y=F)
+mapdat <- merge(gdl, preddat %>% select(GDLCODE, year, fies.mod.pred), all.x=T, all.y=F) %>%
+	filter(!is.na(year)) %>%
+	merge(totals) %>%
+	mutate(year = paste0(year, ':\n', total, '\nFood Insecure'))
+
 countries <- ne_countries(returnclass='sf')
 ggplot(mapdat) + 
 	  geom_sf(aes(fill=fies.mod.pred), color=NA) + 
@@ -63,23 +61,22 @@ ggplot(mapdat) +
 	coord_sf(crs='+proj=robin') + 
 	theme_void() + 
 	theme(legend.position = 'bottom',
-				plot.title = element_text(hjust = 0.5),
-				plot.subtitle = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Moderate to Severe Food Insecurity in 2020',
-			 subtitle=paste0(totals$total, ' People'),
-			 fill='')
-ggsave('figures/Pred2020_LASSO.png', width=7, height=5)
+				plot.title = element_text(hjust = 0.5)) + 
+  labs(title='Rate of Moderate to Severe Food Insecurity Under SSP2',
+			 fill='') + 
+	facet_grid(year ~ .)
+#ggsave('figures/SSP2_LASSO.png', width=7, height=12)
 
 # Assess residuals
 mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
 r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
 ggplot(moddat) + 
 	geom_point(aes(x=fies.mod, y=fies.mod.pred)) + 
-	labs(caption=paste0('Mean Absolute Error: ',  round(mae, 4), 
+	labs(caption=paste0('Mean Absolute Error: ',  round(mae, 4),
 											'\nR-squared: ', round(r2, 4)),
-			 x='Observed Rates of Food Insecurity',
-			 y='Modeled Rate of Food Insecurity') 
-ggsave('figures/Pred2020_Residuals.png', width=5, height=5)
+			x='Observed Rates of Food Insecurity',
+			y='Modeled Rate of Food Insecurity')	
+#ggsave('figures/SSP2_Residuals.png', width=5, height=5)
 
 # Plot scaled covariates
 for (v in vars){
@@ -95,12 +92,11 @@ df$term <- factor(df$term, levels=df$term[order(df$scaled)], ordered=TRUE)
 ggplot(df %>% filter(term != '(Intercept)')) + 
 	  geom_bar(aes(x=term, y=scaled), stat='identity') + 
 		coord_flip() + 
-		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Variable\nFor 2020 LASSO Regression Model', 
-				 x="", 
-				 y="") + 
+		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model',
+				 x="", y="") + 
 		theme_minimal()
 
-ggsave('figures/Pred2020_Coefs.png', width=5, height=5)
+#ggsave('figures/SSP2_Coefs.png', width=5, height=5)
 
 
 

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591394505844.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3409629811",
+    "id" : "BE5E9F3F",
+    "lastKnownWriteTime" : 1591394975,
+    "last_content_update" : 1591394975296,
+    "path" : "C:/Users/bmuel/Desktop/WDL/GitHub/wdl-fies/models/model_future.R",
+    "project_path" : "models/model_future.R",
+    "properties" : {
+        "cursorPosition" : "98,0",
+        "scrollLine" : "66"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 15,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

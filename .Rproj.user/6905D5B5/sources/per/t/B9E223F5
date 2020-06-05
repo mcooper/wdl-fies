@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591394044359.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B9E223F5",
+    "lastKnownWriteTime" : 1755394265184,
+    "last_content_update" : 1591394044359,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "9CFB774",
+        "caption" : "ssp_future",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=ssp_future&cache_key=9CFB774",
+        "displayedObservations" : "5226",
+        "environment" : "",
+        "expression" : "ssp_future",
+        "object" : "ssp_future",
+        "preview" : "0",
+        "totalObservations" : "5226",
+        "variables" : "8"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

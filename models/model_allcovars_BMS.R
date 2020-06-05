@@ -5,7 +5,7 @@
 #######################################################
 
 # if 1, interaction terms included
-action <- 1
+action <- 0 #keep "0" for now
 
 
 # Read in data
@@ -49,6 +49,8 @@ if(action == 1) {
   } else {mod <- bms(m_sel, burn = 100000, iter = 200000, mprior = "random", mcmc = "bd"); summary(mod)}
 
 coef(mod, std.coefs = T, order.by.pip = T, include.constant = F)
+
+what <- fullmodel.ssq(mod)
 
 
 p_sel <- preddat %>% select(year, GDLCODE, vars)
