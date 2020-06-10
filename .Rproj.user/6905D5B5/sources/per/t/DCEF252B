@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591791948219.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "700833931",
+    "id" : "DCEF252B",
+    "lastKnownWriteTime" : 1587158189,
+    "last_content_update" : 1587158189,
+    "path" : "C:/Users/bmuel/Desktop/WDL/Projects/Hunger/R/Code/6_matt_raster.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "9,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

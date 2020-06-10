@@ -1,0 +1,70 @@
+
+p_load(rgdal)
+p_load(raster)
+p_load(tidyverse)
+p_load(sf)
+
+rasts <- list.files(file.path(data_path,"covariates/matt"), pattern='tif$', recursive = T, full.names = T)
+
+rast_list <- list()
+i <- 1
+for (rast in rasts){
+  print(i)
+  print(rast)
+  r <- as.matrix(crop(raster(rast), extent(c(-180, 180, -50, 50))))
+  rast_list[[i]] <- r
+  i <- i + 1
+}
+
+ix <- raster(matrix(seq(1:(2000*7200)), nrow=2000), xmn=-180, xmx=180, ymn=-50, ymx=50)
+ix_pts <- rasterToPoints(ix) %>%
+  as.data.frame
+
+dat <- sf::read_sf(file.path(data_path,"subnational/shapefiles/"), 'GDL Shapefiles V4')
+
+resdf <- data.frame()
+for (d in 1:nrow(dat)){
+  print(d/nrow(dat))
+  
+  s <- dat[d, ]
+  
+  e <- as.vector(extent(s))
+  
+  if (e[4] < -50 | e[3] > 50){
+    next
+  }
+  
+  crop <- ix_pts %>%
+    filter(x > e[1], x < e[2], y > e[3], y < e[4]) %>%
+    st_as_sf(coords = c(1,2), crs=4326, remove=F)
+  
+  if (nrow(crop) > 0){
+    res <- crop$layer[st_within(crop, s, sparse=F)]
+    
+    if (length(res) > 250){
+      res <- sample(res, size = 250, replace=F)
+    }
+  }
+  else{
+    c <- st_centroid(s)
+    
+    res <- crop$layer[st_nearest_feature(c, crop)]
+  }
+  
+  m <- as.matrix(ix %in% res)
+  
+  summry <- lapply(rast_list, function(x){mean(x[m], na.rm=T)}) %>%
+    unlist
+  
+  tmp <- data.frame(GDLcode = dat$GDLcode[d], 
+                    raster = rasts,
+                    values = summry)
+  
+  write.csv(tmp, file.path(data_path,"extract", paste0(dat$GDLcode[d], ".csv")), row.names=F)
+  
+  resdf <- bind_rows(resdf, tmp)
+}
+
+write.csv(resdf, file.path(data_path,"extract/gdl_geo.csv"), row.names=F)
+
+system('~telegram.sh "Done"')

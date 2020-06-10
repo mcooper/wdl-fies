@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591792156583.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "455162616",
+    "id" : "6D0040D7",
+    "lastKnownWriteTime" : 1591792171,
+    "last_content_update" : 1591792171488,
+    "path" : "C:/Users/bmuel/Desktop/WDL/Projects/Hunger/R/Code/0_init.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "13,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

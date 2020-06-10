@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591797629167.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2097917360",
+    "id" : "44A8CD80",
+    "lastKnownWriteTime" : 1591777955,
+    "last_content_update" : 1591777955,
+    "path" : "C:/Users/bmuel/Desktop/WDL/GitHub/wdl-fies/models/model_allcovars.R",
+    "project_path" : "models/model_allcovars.R",
+    "properties" : {
+        "cursorPosition" : "14,23",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

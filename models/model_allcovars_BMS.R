@@ -10,12 +10,12 @@ action <- 0 #keep "0" for now
 
 # Read in data
 moddat <- merge(fies_subnat, 
-								covar_ext, 
+								covar_now, 
 								all.x=T, all.y=F) %>%
 	na.omit %>%
 	data.frame
 
-preddat <- covar_ext %>%
+preddat <- covar_now %>%
 	filter(year==2020) %>%
 	data.frame
 

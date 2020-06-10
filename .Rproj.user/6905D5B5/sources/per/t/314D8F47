@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591797548941.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2693975594",
+    "id" : "314D8F47",
+    "lastKnownWriteTime" : 1591797585,
+    "last_content_update" : 1591797585836,
+    "path" : "C:/Users/bmuel/Desktop/WDL/GitHub/wdl-fies/munge/05-Covariates_forecast.R",
+    "project_path" : "munge/05-Covariates_forecast.R",
+    "properties" : {
+        "cursorPosition" : "269,0",
+        "scrollLine" : "246"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

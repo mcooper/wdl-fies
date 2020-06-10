@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1591792131464.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1287781663",
+    "id" : "592D940D",
+    "lastKnownWriteTime" : 1587397785,
+    "last_content_update" : 1587397785,
+    "path" : "C:/Users/bmuel/Desktop/WDL/Projects/Hunger/R/Code/7_GDL_shape.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "2,44",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
