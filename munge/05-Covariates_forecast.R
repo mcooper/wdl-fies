@@ -183,10 +183,11 @@ gdp <- gdp %>% filter(year %in% c(2010:2020, 2025, 2030))
 #poverty headcount
 pc <- read.csv('data/covars_forecast/pc2020-04-28.csv') %>% filter(daily_spending == "1.9") %>% as.data.table
 
-pc[, hc := sum(hc), by = c("id", "year")]
+pc[, hci := sum(hc)/sum(pop), by = c("id", "year")]
+
 pc <- pc %>% 
   filter(age_group == "[00,05)", gender == "male") %>% 
-  select(id, year, hc) %>% 
+  select(id, year, hci) %>% 
   rename(iso3 = "id")
 
 pc <- pc %>% filter(year %in% c(2010:2020, 2025, 2030))
