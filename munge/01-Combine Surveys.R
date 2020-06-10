@@ -1,3 +1,4 @@
+
 fs <- list.files('data/fies_surveys', full.names = T)
 
 fies_raw <- data.frame()
@@ -6,7 +7,7 @@ for (f in fs){
   data$iso3 <- substr(f, 19, 21)
   data$year <- as.numeric(substr(f, 23, 26))
 
-  fies_raw <- bind_rows(fies_raw, data)  
+  fies_raw <- rbind(fies_raw, data)  
 }
 
 fies_raw <- fies_raw %>%

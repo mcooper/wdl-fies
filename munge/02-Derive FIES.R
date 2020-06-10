@@ -1,3 +1,4 @@
+
 #Load comparison data from FAO
 compare <- FAOSTAT.data.4.14.2020 %>%
   select(Area, Year, Value, Item) %>%
@@ -40,3 +41,4 @@ fies_ur <- fies_raw %>%
 cache('fies_cty')
 cache('fies_ur')
 cache('regions')
+

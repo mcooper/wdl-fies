@@ -1,10 +1,11 @@
+
 #Read in GDL Code
 gdl <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4') %>%
   rename(GDLCODE=GDLcode)
 
 #Read in Pop data from Covariates
 #Subset to areas we have GDL codes for
-pop <- read.csv('data/covars/SSP2_Vars_Past.csv') %>%
+pop <- read.csv('data/covars_forecast/SSP2_Vars_Past.csv') %>%
   select(year=Year, iso3=iso3c, Rural, Urban, GDLCODE=GDLcode) %>%
   filter(GDLCODE %in% gdl$GDLCODE, 
          !is.na(iso3), !is.na(GDLCODE))
@@ -33,3 +34,4 @@ fies_subnat <- merge(fies_ur_pop_cty %>%
 
 cache('fies_subnat')
 cache('gdl')
+

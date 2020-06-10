@@ -4,7 +4,7 @@
 # modeled for 2020, 2025, and 2030
 #######################################################
 
-covar_fore <- covar_fore %>% select(year, iso3, GDLCODE, grid_gdp, edu_year, rural, urban, urban_perc, gini, hdi, livestock, builtup, forest, cropland, crops_prod)
+covar_fore <- covar_fore %>% select(-hdi)
 
 # Read in data
 moddat <- merge(fies_subnat, 
