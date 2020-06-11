@@ -1,11 +1,11 @@
 library(tidyverse)
 library(countrycode)
 
-ref <- read.csv('~/wdl-fies/data/nowcast/results/gdl_vars.csv') %>%
+ref <- read.csv('data/nowcast/results/gdl_vars.csv') %>%
   group_by(iso3c, YEAR) %>%
   summarize(population=sum(population, na.rm=T))
 
-dat <- read.csv('~/wdl-fies/data/nowcast/rawdata/imports/API_NE.IMP.GNFS.CD_DS2_en_csv_v2_1120983.csv', skip=4) %>%
+dat <- read.csv('data/nowcast/rawdata/imports/API_NE.IMP.GNFS.CD_DS2_en_csv_v2_1120983.csv', skip=4) %>%
   mutate(iso3c = countrycode(Country.Name, 'country.name', 'iso3c')) %>%
   select(-Country.Code, -Indicator.Name, -Indicator.Code, -Country.Name) %>%
   gather(YEAR, imports, -iso3c) %>%
@@ -36,6 +36,6 @@ dat$imports[dat$iso3c=='YEM'] <- dat$imports[dat$iso3c=='SOM']
 dat <- dat %>%
   merge(ref, all.x=F, all.y=F) %>%
   mutate(imports_percap=imports/population) %>%
-  select(-imports, -imports_percap)
+  select(-imports, -population)
 
-write.csv(dat, '~/wdl-fies/data/nowcast/results/imports_percap.csv')
+write.csv(dat, 'data/nowcast/results/imports_percap.csv')
