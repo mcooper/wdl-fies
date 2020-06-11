@@ -62,21 +62,22 @@ ggplot(mapdat) +
 	theme_void() + 
 	theme(legend.position = 'bottom',
 				plot.title = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Moderate to Severe Food Insecurity Under SSP2',
+  labs(title='Rate of Moderate to Severe Food Insecurity (Forecast Model)',
 			 fill='') + 
 	facet_grid(year ~ .)
-#ggsave('figures/SSP2_LASSO.png', width=7, height=12)
+ggsave('figures/Forecast_LASSO.png', width=7, height=12)
 
 # Assess residuals
 mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
 r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
 ggplot(moddat) + 
 	geom_point(aes(x=fies.mod, y=fies.mod.pred)) + 
-	labs(caption=paste0('Mean Absolute Error: ',  round(mae, 4),
+	labs(title='Forecast Model',
+	     caption=paste0('Mean Absolute Error: ',  round(mae, 4),
 											'\nR-squared: ', round(r2, 4)),
 			x='Observed Rates of Food Insecurity',
 			y='Modeled Rate of Food Insecurity')	
-#ggsave('figures/SSP2_Residuals.png', width=5, height=5)
+ggsave('figures/Forecast_Residuals.png', width=5, height=5)
 
 # Plot scaled covariates
 for (v in vars){
@@ -92,11 +93,10 @@ df$term <- factor(df$term, levels=df$term[order(df$scaled)], ordered=TRUE)
 ggplot(df %>% filter(term != '(Intercept)')) + 
 	  geom_bar(aes(x=term, y=scaled), stat='identity') + 
 		coord_flip() + 
-		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model',
+		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Var\nFor LASSO Regression Model \n(Forecast Model)',
 				 x="", y="") + 
 		theme_minimal()
-
-#ggsave('figures/SSP2_Coefs.png', width=5, height=5)
+ggsave('figures/Forecast_Coefs.png', width=5, height=5)
 
 
 

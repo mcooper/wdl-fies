@@ -11,7 +11,7 @@
 library(openxlsx)
 
 #gini
-gini <- read.xlsx("data/covars_forecast/Gini_projections_SSPs.xlsx", sheet = "projected_ginis_full-set")
+gini <- read.xlsx("data/covars_forecast/SSP/Gini_projections_SSPs.xlsx", sheet = "projected_ginis_full-set")
 
 gini <- gini %>% 
   filter(scenario == "SSP2", year %in% 2011:2032) %>% 
@@ -27,7 +27,7 @@ gini <- gini %>%
 gini <- gini %>% filter(year %in% c(2010:2020, 2025, 2030))
 
 #hdi
-hdi <- read.xlsx("data/covars_forecast/HDI-SSPs.xlsx", sheet = "Tabelle1")
+hdi <- read.xlsx("data/covars_forecast/HDI/HDI-SSPs.xlsx", sheet = "Tabelle1")
 
 hdi$iso3 <- countrycode(gsub(' - \\d+','', hdi$obs), origin = "country.name", destination = "iso3c")
 hdi$year <- as.numeric(paste0("20", gsub('\\D','', hdi$obs)))
@@ -48,7 +48,7 @@ hdi <- hdi %>% filter(year %in% c(2010:2020, 2025, 2030))
 
 # #also include data from here for past years
 # #http://hdr.undp.org/en/content/table-2-human-development-index-trends-1990%E2%80%932018
-# hdi_un <- read.csv('data/covars_forecast/HDI_UNDP.csv', skip = 1, sep = ",") %>%
+# hdi_un <- read.csv('data/covars_forecast/HDI/HDI_UNDP.csv', skip = 1, sep = ",") %>%
 #   mutate(iso3 = countrycode(Country, origin = "country.name", destination = "iso3c")) %>%
 #   select(-c(HDI.Rank..2018., Country)) %>%
 #   filter(!is.na(iso3))
@@ -64,7 +64,7 @@ hdi <- hdi %>% filter(year %in% c(2010:2020, 2025, 2030))
 ###-----------------------------------------------------------------------------------------------------------------
 ## IAM (Integrated assessment modelling), use Agriculture and Land Cover variables
 
-iam <- read.csv('data/covars_forecast/SSP_IAM_V2_201811.csv') %>%
+iam <- read.csv('data/covars_forecast/SSP/SSP_IAM_V2_201811.csv') %>%
   filter(MODEL == "AIM/CGE", SCENARIO == "SSP2-Baseline", REGION != "World",
          VARIABLE %in% c("Agricultural Production|Livestock", "Agricultural Production|Crops|Non-Energy", "Agricultural Production|Crops|Energy",
                          "Land Cover|Forest", "Land Cover|Cropland", "Land Cover|Built-up Area")) %>%
@@ -72,7 +72,7 @@ iam <- read.csv('data/covars_forecast/SSP_IAM_V2_201811.csv') %>%
   select(-c(MODEL, SCENARIO, paste0("X", seq(2050, 2100, 10))))
 
 
-region <- read.xlsx("data/covars_forecast/cmip6_iam_model_region_mapping.xlsx", sheet = "default_mapping") %>%
+region <- read.xlsx("data/covars_forecast/SSP/cmip6_iam_model_region_mapping.xlsx", sheet = "default_mapping") %>%
   select(ISO, R5_region) %>%
   rename(REGION = "R5_region")
 
@@ -118,7 +118,7 @@ iam <- iam %>% filter(year %in% c(2010:2020, 2025, 2030))
 ###-----------------------------------------------------------------------------------------------------------------
 ## GDP and education
 
-edu <- read.csv('data/covars_forecast/SspDb_country_data_2013-06-12.csv')
+edu <- read.csv('data/covars_forecast/SSP/SspDb_country_data_2013-06-12.csv')
 
 pop <- edu %>% 
   filter(MODEL == "IIASA-WiC POP", SCENARIO == "SSP2_v9_130115", VARIABLE == "Population") %>%
@@ -171,17 +171,17 @@ edu[,3:6] <- apply(edu[,3:6], 2, FUN = function(x) {x/edu$pop})
 edu <- edu %>% select(iso3, year, no_edu, pri_edu, sec_edu, ter_edu)
 edu <- edu %>% filter(year %in% c(2010:2020, 2025, 2030))
 
-gdp <- readRDS("data/covars_forecast/X8_PC_nat_2020-04-28.RDS")$macro.data %>%
+gdp <- readRDS("data/covars_forecast/PC/X8_PC_nat_2020-04-28.RDS")$macro.data %>%
   select(ccode, year, GDP.PC.PPP) %>%
-  rename(iso3 = "ccode", gdp.pc = "GDP.PC.PPP")
+  rename(iso3 = "ccode", gdp_pc = "GDP.PC.PPP")
 
-gdp <- gdp %>% filter(year %in% c(2010:2020, 2025, 2030))  
+#gdp <- gdp %>% filter(year %in% c(2010:2020, 2025, 2030))  
 
 ###-----------------------------------------------------------------------------------------------------------------
 ## poverty clock and water scarcity clock
 
 #poverty headcount
-pc <- read.csv('data/covars_forecast/pc2020-04-28.csv') %>% filter(daily_spending == "1.9") %>% as.data.table
+pc <- read.csv('data/covars_forecast/PC/pc2020-04-28.csv') %>% filter(daily_spending == "1.9") %>% as.data.table
 
 pc[, hci := sum(hc)/sum(pop), by = c("id", "year")]
 
@@ -193,13 +193,65 @@ pc <- pc %>%
 pc <- pc %>% filter(year %in% c(2010:2020, 2025, 2030))
 
 #water scarcity
+fs <- list.files('data/covars_forecast/WC', pattern='csv$', recursive = T, full.names = T)
+wc_list <- list()
+i <- 1
+
+for (f in fs){
+  n <- gsub('data/covars_forecast/WC/','', f)
+  n <- gsub('.csv','', n)
+  f <- read.csv(f) %>% select(GDLcode, Mean)
+  colnames(f) <- c("GDLCODE", n)
+  wc_list[[i]] <- f
+  i <- i + 1
+}
+
+wc <- Reduce(merge, wc_list)
+
+#2010
+wc$popwci500_2010spst <- wc$popwci500_2010spst/wc$totalpop_2010spst
+wc$popwci1000_2010spst <- wc$popwci1000_2010spst/wc$totalpop_2010spst
+wc$popwci1700_2010spst <- wc$popwci1700_2010spst/wc$totalpop_2010spst
+
+#2020
+wc$popwci500_2020spst <- wc$popwci500_2020spst/wc$totalpop_2020spst
+wc$popwci1000_2020spst <- wc$popwci1000_2020spst/wc$totalpop_2020spst
+wc$popwci1700_2020spst <- wc$popwci1700_2020spst/wc$totalpop_2020spst
+
+#2030
+wc$popwci500_2030spst <- wc$popwci500_2030spst/wc$totalpop_2030spst
+wc$popwci1000_2030spst <- wc$popwci1000_2030spst/wc$totalpop_2030spst
+wc$popwci1700_2030spst <- wc$popwci1700_2030spst/wc$totalpop_2030spst
+
+wc <- wc %>% select(!starts_with("totalpop"))
+
+wc <- reshape2::melt(wc, id.vars = "GDLCODE", variable.name = "var")
+wc$var <- as.character(wc$var)
+wc$year[grepl("2010", wc$var, fixed = TRUE) == T] <- 2010
+wc$year[grepl("2020", wc$var, fixed = TRUE) == T] <- 2020
+wc$year[grepl("2030", wc$var, fixed = TRUE) == T] <- 2030
+
+wc$var <- gsub("pop", "", wc$var)
+wc$var <- gsub("_\\d\\d\\d\\dspst", "", wc$var)
+
+wc <- reshape2::dcast(wc, GDLCODE + year ~ var)
+wc <- data.table(wc)
+wc <- rbind(wc, wc[, .(year = setdiff(2010:2030, c(2010, 2020, 2030)), 
+                       wci1000 = NA, wci1700 = NA, wci500 = NA), by = .(GDLCODE)])
+
+wc <- wc[order(year), .SD, by = GDLCODE]
+
+wc[, wci500 := na.approx(wci500)]
+wc[, wci1000 := na.approx(wci1000)]
+wc[, wci1700 := na.approx(wci1700)]
 
 
+wc <- wc %>% select(GDLCODE, year, wci500, wci1000, wci1700) %>% filter(year %in% c(2010:2020, 2025, 2030))
 
 ###-----------------------------------------------------------------------------------------------------------------
 ## historic SSP data
 
-ssp_past <- read.csv('data/covars_forecast/SSP2_Vars_Past.csv')
+ssp_past <- read.csv('data/covars_forecast/SSP/SSP2_Vars_Past.csv')
 
 ssp_past <- ssp_past %>%
   select(year=Year, iso3=iso3c, GDLCODE=GDLcode, grid_gdp,
@@ -248,7 +300,7 @@ ssp_past <- ssp_past %>%
 ###-----------------------------------------------------------------------------------------------------------------
 ## future SSP data
 
-ssp_future <- read.csv('data/covars_forecast/SSP2_Vars_Future.csv')
+ssp_future <- read.csv('data/covars_forecast/SSP/SSP2_Vars_Future.csv')
 
 ssp_future <- ssp_future %>%
   select(year=Year, iso3=iso3c, GDLCODE=GDLcode, grid_gdp = GDP_PerCap, edu_year = mean_years_ed,
@@ -270,75 +322,95 @@ rur_urb <- rbind(ssp_past %>% select(iso3, GDLCODE, year, rural, urban, urban_pe
 
 rur_urb <- rur_urb %>% filter(year %in% c(2010:2020, 2025, 2030))
 
-# ###-----------------------------------------------------------------------------------------------------------------
-# ## predict some of the extracted covariates with simple model
-# 
+###-----------------------------------------------------------------------------------------------------------------
+## predict some of the extracted covariates with simple model
+
+ag_pct_gdp <- read.csv('data/nowcast/results/ag_pct_gdp.csv') %>%
+  select(iso3c, YEAR, ag_pct_gdp) %>%
+  rename(iso3 = "iso3c", year = "YEAR")
+
+imports_percap <- read.csv('data/nowcast/results/imports_percap.csv') %>%
+  select(iso3c, YEAR, imports_percap) %>%
+  rename(iso3 = "iso3c", year = "YEAR")
+
+
 # v <- c("mal_falciparum", "mal_vivax", "market_dist", "assistance", "ag_pct_gdp", "imports_percap")
-# data <- merge(covar_now %>% select(year, iso3, GDLCODE, v), ssp_past, by = c("year", "GDLCODE", "iso3"), all.x = T)
-# 
-# summary(data)
-# 
-# 
-# 
-# log.data <- data %>%
-#   mutate_at(vars(v), funs(log(.)))
-# summary(log.data)
-# 
-# elast <- data.frame(var = v, int = NA, e = NA)
-# elast$var <- as.character(elast$var)
-# 
+
+data <- Reduce(function(x, y){left_join(x, y)}, list(ag_pct_gdp, imports_percap, gdp))
+
+data <- data %>% filter(!is.na(gdp_pc))
+
+summary(data)
+
+log.data <- data %>%
+  mutate_at(vars("gdp_pc", "ag_pct_gdp", "imports_percap"), funs(log(.)))
+summary(log.data)
+
+elast <- data.frame(var = c("ag_pct_gdp", "imports_percap"), int = NA, e = NA)
+elast$var <- as.character(elast$var)
+
 # #mal_falciparum
 # m_mal_falciparum <- lm(mal_falciparum ~ grid_gdp, subset(log.data, mal_falciparum != is.na(mal_falciparum) & mal_falciparum > -Inf), na.action = na.omit); summary(m_mal_falciparum)
 # elast$int[elast$var == "mal_falciparum"] <- m_mal_falciparum$coefficients[["(Intercept)"]]
 # elast$e[elast$var == "mal_falciparum"] <- m_mal_falciparum$coefficients[["grid_gdp"]]
-# 
+
 # #mal_vivax
 # m_mal_vivax <- lm(mal_vivax ~ grid_gdp, subset(log.data, mal_vivax != is.na(mal_vivax) & mal_vivax > -Inf), na.action = na.omit); summary(m_mal_vivax)
 # elast$int[elast$var == "mal_vivax"] <- m_mal_vivax$coefficients[["(Intercept)"]]
 # elast$e[elast$var == "mal_vivax"] <- m_mal_vivax$coefficients[["grid_gdp"]]
-# 
+
 # #market_dist
 # m_market_dist <- lm(market_dist ~ grid_gdp, subset(log.data, market_dist != is.na(market_dist) & market_dist > -Inf), na.action = na.omit); summary(m_market_dist)
 # elast$int[elast$var == "market_dist"] <- m_market_dist$coefficients[["(Intercept)"]]
 # elast$e[elast$var == "market_dist"] <- m_market_dist$coefficients[["grid_gdp"]]
-# 
+
 # #assistance
 # m_assistance <- lm(assistance ~ grid_gdp, subset(log.data, assistance != is.na(assistance) & assistance > -Inf), na.action = na.omit); summary(m_assistance)
 # elast$int[elast$var == "assistance"] <- m_assistance$coefficients[["(Intercept)"]]
 # elast$e[elast$var == "assistance"] <- m_assistance$coefficients[["grid_gdp"]]
-# 
-# #ag_pct_gdp
-# m_ag_pct_gdp <- lm(ag_pct_gdp ~ grid_gdp, subset(log.data, ag_pct_gdp != is.na(ag_pct_gdp) & ag_pct_gdp > -Inf), na.action = na.omit); summary(m_ag_pct_gdp)
-# elast$int[elast$var == "ag_pct_gdp"] <- m_ag_pct_gdp$coefficients[["(Intercept)"]]
-# elast$e[elast$var == "ag_pct_gdp"] <- m_ag_pct_gdp$coefficients[["grid_gdp"]]
-# 
-# #imports_percap
-# m_imports_percap <- lm(imports_percap ~ grid_gdp, subset(log.data, imports_percap != is.na(imports_percap) & imports_percap > -Inf), na.action = na.omit); summary(m_imports_percap)
-# elast$int[elast$var == "imports_percap"] <- m_imports_percap$coefficients[["(Intercept)"]]
-# elast$e[elast$var == "imports_percap"] <- m_imports_percap$coefficients[["grid_gdp"]]
-# 
-# covar_trend <- ssp_future %>%
-#   select(year, iso3, GDLCODE, grid_gdp)
-# 
-# covar_trend <- data.frame(covar_trend, matrix(nrow = nrow(covar_trend), ncol = 6))
-# names(covar_trend)[5:10] <- v
-# 
-# covar_trend$mal_falciparum <- elast$int[elast$var == "mal_falciparum"] + elast$e[elast$var == "mal_falciparum"]*covar_trend$grid_gdp
-# covar_trend$mal_vivax <- elast$int[elast$var == "mal_vivax"] + elast$e[elast$var == "mal_vivax"]*covar_trend$grid_gdp
-# covar_trend$market_dist <- elast$int[elast$var == "market_dist"] + elast$e[elast$var == "market_dist"]*covar_trend$grid_gdp
-# covar_trend$assistance <- elast$int[elast$var == "assistance"] + elast$e[elast$var == "assistance"]*covar_trend$grid_gdp
-# covar_trend$ag_pct_gdp <- elast$int[elast$var == "ag_pct_gdp"] + elast$e[elast$var == "ag_pct_gdp"]*covar_trend$grid_gdp
-# covar_trend$imports_percap <- elast$int[elast$var == "imports_percap"] + elast$e[elast$var == "imports_percap"]*covar_trend$grid_gdp
-# 
-# covar_trend[,4:10] <- exp(covar_trend[,4:10])
-# covar_trend <- covar_trend %>% select(year, iso3, GDLCODE, v)
-# covar_trend <- rbind(covar_trend, covar_now %>% select(year, iso3, GDLCODE, v))
 
+#ag_pct_gdp
+m_ag_pct_gdp <- lm(ag_pct_gdp ~ gdp_pc, subset(log.data, ag_pct_gdp != is.na(ag_pct_gdp) & ag_pct_gdp > -Inf), na.action = na.omit); summary(m_ag_pct_gdp)
+elast$int[elast$var == "ag_pct_gdp"] <- m_ag_pct_gdp$coefficients[["(Intercept)"]]
+elast$e[elast$var == "ag_pct_gdp"] <- m_ag_pct_gdp$coefficients[["gdp_pc"]]
+
+#imports_percap
+m_imports_percap <- lm(imports_percap ~ gdp_pc, subset(log.data, imports_percap != is.na(imports_percap) & imports_percap > -Inf), na.action = na.omit); summary(m_imports_percap)
+elast$int[elast$var == "imports_percap"] <- m_imports_percap$coefficients[["(Intercept)"]]
+elast$e[elast$var == "imports_percap"] <- m_imports_percap$coefficients[["gdp_pc"]]
+
+covar_trend <- gdp %>%
+  select(year, iso3, gdp_pc) %>%
+  mutate(gdp_pc = log(gdp_pc)) %>%
+  filter(year %in% c(2020:2030))
+
+covar_trend <- data.frame(covar_trend, matrix(nrow = nrow(covar_trend), ncol = 2))
+names(covar_trend)[4:5] <- c("ag_pct_gdp", "imports_percap")
+
+# covar_trend$mal_falciparum <- elast$int[elast$var == "mal_falciparum"] + elast$e[elast$var == "mal_falciparum"]*covar_trend$gdp_pc
+# covar_trend$mal_vivax <- elast$int[elast$var == "mal_vivax"] + elast$e[elast$var == "mal_vivax"]*covar_trend$gdp_pc
+# covar_trend$market_dist <- elast$int[elast$var == "market_dist"] + elast$e[elast$var == "market_dist"]*covar_trend$gdp_pc
+# covar_trend$assistance <- elast$int[elast$var == "assistance"] + elast$e[elast$var == "assistance"]*covar_trend$gdp_pc
+covar_trend$ag_pct_gdp <- elast$int[elast$var == "ag_pct_gdp"] + elast$e[elast$var == "ag_pct_gdp"]*covar_trend$gdp_pc
+covar_trend$imports_percap <- elast$int[elast$var == "imports_percap"] + elast$e[elast$var == "imports_percap"]*covar_trend$gdp_pc
+
+covar_trend[,3:5] <- exp(covar_trend[,3:5])
+# covar_trend <- covar_trend %>% select(year, iso3, GDLCODE, v)
+
+
+covar_trend <- rbind(data, covar_trend) %>% 
+  select(iso3, year, ag_pct_gdp, imports_percap) %>%
+  as.data.table
+
+covar_trend <- covar_trend[order(year), .SD, by = iso3]
+
+covar_trend <- covar_trend %>% filter(year %in% c(2010:2020, 2025, 2030)) 
+gdp <- gdp %>% filter(year %in% c(2010:2020, 2025, 2030)) 
 
 ###-----------------------------------------------------------------------------------------------------------------
 ## merge everything and put into cache
 
-covar_fore <- Reduce(function(x, y){left_join(x, y)}, list(rur_urb, gdp, hdi, gini, pc, iam, edu)) 
+covar_fore <- Reduce(function(x, y){left_join(x, y)}, list(rur_urb, wc, gdp, hdi, gini, pc, iam, edu, covar_trend)) 
 
 cache('covar_fore')
 
