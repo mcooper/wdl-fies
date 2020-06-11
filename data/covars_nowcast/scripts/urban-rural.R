@@ -35,4 +35,6 @@ r <- merge(res, ref, all.x=T, all.y=F) %>%
 				 Total=Urban + Rural) %>%
 	select(GDLCODE, YEAR, Rural, Urban)
 
+r <- r[!is.na(r$GDLCODE), ]
+
 write.csv(r, '~/wdl-fies/data/nowcast/results/urban-rural.csv', row.names=F)

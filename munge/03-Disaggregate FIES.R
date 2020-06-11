@@ -1,17 +1,14 @@
-
 #Read in GDL Code
 gdl <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4') %>%
   rename(GDLCODE=GDLcode)
 
 #Read in Pop data from Covariates
 #Subset to areas we have GDL codes for
-pop <- read.csv('data/covars_forecast/SSP2_Vars_Past.csv') %>%
-  select(year=Year, iso3=iso3c, Rural, Urban, GDLCODE=GDLcode) %>%
-  filter(GDLCODE %in% gdl$GDLCODE, 
-         !is.na(iso3), !is.na(GDLCODE))
+pop <- read.csv('data/nowcast/results/urban-rural.csv') %>%
+  mutate(iso3=substr(GDLCODE, 1, 3))
 
 pop_cty <- pop %>%
-  group_by(iso3, year) %>%
+  group_by(iso3, YEAR) %>%
   summarize(Rural.Pop = sum(Rural),
             Urban.Pop = sum(Urban),
             Total.Pop = Rural.Pop + Urban.Pop)
@@ -26,7 +23,7 @@ fies_ur_pop_cty <- Reduce(function(x, y){merge(x, y, all.x=T, all.y=F)},
 
 fies_subnat <- merge(fies_ur_pop_cty %>%
                        select(fies.mod.rur, fies.mod.urb, fies.sev.rur, fies.sev.urb,
-                              iso3, year),
+                              iso3, YEAR),
                      pop, 
                      all.x=T, all.y=F) %>%
   mutate(fies.mod = (fies.mod.rur*Rural + fies.mod.urb*Urban)/(Rural + Urban),

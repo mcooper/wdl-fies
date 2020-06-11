@@ -1,3 +1,16 @@
+fs <- list.files('data/nowcast/results/', full.names=T)
+
+start <- 'data/nowcast/results/gdl_vars.csv'
+
+fs <- fs[fs != start]
+
+covar_now <- read.csv(start)
+
+
+
+
+
+
 
 
 ##############################

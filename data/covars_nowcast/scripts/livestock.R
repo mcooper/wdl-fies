@@ -19,8 +19,7 @@ e <- raster::extract(s, sp, method='simple', df=TRUE, sp=TRUE, fun=mean, na.rm=T
 
 res <- e@data %>%
 	select(GDLCODE=GDLcode, matches('X6')) %>%
-	mutate_if(is.numeric, function(x){x/area}) %>%
-  gather(animal, rate_per_km, -Group.1) %>%
+  gather(animal, rate_per_km, -GDLCODE) %>%
   mutate(animal = case_when(grepl("Bf", animal) ~ "Buffaloes",
                             grepl("Ch", animal) ~ "Chickens",
                             grepl("Ct", animal) ~ "Cattle",
@@ -28,6 +27,6 @@ res <- e@data %>%
                             grepl("Ho", animal) ~ "Horses",
                             grepl("Pg", animal) ~ "Pigs",
                             grepl("Sh", animal) ~ "Sheep")) %>%
-  rename(GDLCode=Group.1) %>%
   spread(animal, rate_per_km)
 
+write.csv(res, 'results/livestock.csv', row.names=F)
