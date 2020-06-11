@@ -171,6 +171,8 @@ edu[,3:6] <- apply(edu[,3:6], 2, FUN = function(x) {x/edu$pop})
 edu <- edu %>% select(iso3, year, no_edu, pri_edu, sec_edu, ter_edu)
 edu <- edu %>% filter(year %in% c(2010:2020, 2025, 2030))
 
+edu$edu_index <- 1*edu$no_edu + 2*edu$pri_edu + 3*edu$sec_edu + 4*edu$ter_edu
+
 gdp <- readRDS("data/covars_forecast/PC/X8_PC_nat_2020-04-28.RDS")$macro.data %>%
   select(ccode, year, GDP.PC.PPP) %>%
   rename(iso3 = "ccode", gdp_pc = "GDP.PC.PPP")
@@ -245,8 +247,10 @@ wc[, wci500 := na.approx(wci500)]
 wc[, wci1000 := na.approx(wci1000)]
 wc[, wci1700 := na.approx(wci1700)]
 
+wc$wci_index <- 1*wc$wci500 + 2*wc$wci1000 + 3*wc$wci1700
 
-wc <- wc %>% select(GDLCODE, year, wci500, wci1000, wci1700) %>% filter(year %in% c(2010:2020, 2025, 2030))
+
+wc <- wc %>% select(GDLCODE, year, wci500, wci1000, wci1700, wci_index) %>% filter(year %in% c(2010:2020, 2025, 2030))
 
 ###-----------------------------------------------------------------------------------------------------------------
 ## historic SSP data

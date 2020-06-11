@@ -4,7 +4,7 @@
 # modeled for 2020, 2025, and 2030
 #######################################################
 
-covar_fore <- covar_fore %>% select(-hdi)
+covar_fore <- covar_fore %>% select(-c(hdi, no_edu, pri_edu, sec_edu, ter_edu, wci500, wci1000, wci1700))
 
 # Read in data
 moddat <- merge(fies_subnat, 
