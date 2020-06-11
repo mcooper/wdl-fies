@@ -1,4 +1,9 @@
 data/*
+!data/nowcast/
+
+data/nowcast/*
+!data/nowcast/scripts/
+
 cache/*
 !data/README.md
 .Rhistory
