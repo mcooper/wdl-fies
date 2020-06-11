@@ -3,13 +3,13 @@ library(rgdal)
 library(tidyverse)
 library(imputeTS)
 
-sp <- readOGR('~/wdl-fies/data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
 
-ref <- read.csv('~/wdl-fies/data/nowcast/results/gdl_vars.csv') %>%
+ref <- read.csv('data/covars_nowcast/results/gdl_vars.csv') %>%
 	select(GDLCODE, YEAR, population)
 
 #FROM https://www.worldclim.org/data/worldclim21.html
-ur <- stack(list.files('~/wdl-fies/data/nowcast/rawdata/urban-rural', full.names=T))
+ur <- stack(list.files('data/covars_nowcast/rawdata/urban-rural', full.names=T))
 
 e <- raster::extract(ur, sp, method='simple', fun=mean, na.rm=T,
              sp=TRUE, df=TRUE)
@@ -30,11 +30,19 @@ res <- e@data %>%
 
 r <- merge(res, ref, all.x=T, all.y=F) %>%
 	mutate(Frac = Urban/(Urban + Rural),
-				 Urban=population*Frac,
-				 Rural=population*(1 - Frac),
-				 Total=Urban + Rural) %>%
-	select(GDLCODE, YEAR, Rural, Urban)
+				 urban=population*Frac,
+				 rural=population*(1 - Frac),
+				 total=urban + rural) %>%
+	select(GDLCODE, YEAR, rural, urban)
 
-r <- r[!is.na(r$GDLCODE), ]
+#For missing values in Vanuatu, use country means
+r <- r %>%
+  group_by(YEAR) %>%
+  mutate(urban = ifelse(is.na(urban) & grepl('VUT', GDLCODE), 
+                        mean(urban[grepl('VUT', GDLCODE)], na.rm=T),
+                        urban),
+         rural = ifelse(is.na(rural) & grepl('VUT', GDLCODE),
+                        mean(rural[grepl('VUT', GDLCODE)], na.rm=T),
+                        rural))
 
-write.csv(r, '~/wdl-fies/data/nowcast/results/urban-rural.csv', row.names=F)
+write.csv(r, 'data/covars_nowcast/results/urban-rural.csv', row.names=F)

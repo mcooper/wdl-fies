@@ -2,12 +2,10 @@ library(raster)
 library(rgdal)
 library(tidyverse)
 
-setwd('~/wdl-fies/data/nowcast/')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
 
-sp <- readOGR('~/wdl-fies/data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
-
-stunting <- stack(list.files('rawdata/stunting', full.names=T))
-wasting <- stack(list.files('rawdata/wasting', full.names=T))
+stunting <- stack(list.files('data/covars_nowcast/rawdata/stunting', full.names=T))
+wasting <- stack(list.files('data/covars_nowcast/rawdata/wasting', full.names=T))
       
 es <- raster::extract(stunting, sp, method='simple', fun=mean, na.rm=T,
              sp=TRUE, df=TRUE)
@@ -23,4 +21,14 @@ em <- merge(es@data, ew@data) %>%
          var = ifelse(grepl('STUNT', var), 'stunting', 'wasting')) %>%
   spread(var, val)
 
-write.csv(em, 'results/anthro_vars.csv', row.names=F)
+#Set developing countries to 0
+em$stunting[is.na(em$stunting)] <- 0
+em$wasting[is.na(em$wasting)] <- 0
+
+#Add 2018 using 2017 values
+e4 <- bind_rows(em,
+                em %>%
+                  filter(YEAR==2017) %>%
+                  mutate(YEAR=2018))
+
+write.csv(e4, 'data/covars_nowcast/results/anthro_vars.csv', row.names=F)

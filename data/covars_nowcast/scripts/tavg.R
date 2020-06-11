@@ -2,10 +2,10 @@ library(raster)
 library(rgdal)
 library(tidyverse)
 
-sp <- readOGR('~/wdl-fies/data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
 
 #FROM https://www.worldclim.org/data/worldclim21.html
-t <- stack(list.files('~/wdl-fies/data/nowcast/rawdata/tavg', 
+t <- stack(list.files('data/covars_nowcast/rawdata/tavg', 
                       pattern='tif$',
                       full.names=T))
 
@@ -20,4 +20,4 @@ res <- e@data %>%
 #One NA In Malaysia, use country average
 res$tavg[res$GDLCODE=='MYSr115'] <- mean(res$tavg[grepl('MYS', res$GDLCODE)], na.rm=T)
 
-write.csv(res, '~/wdl-fies/data/nowcast/results/tavg.csv', row.names=F)
+write.csv(res, 'data/covars_nowcast/results/tavg.csv', row.names=F)

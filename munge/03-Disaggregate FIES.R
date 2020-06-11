@@ -1,10 +1,11 @@
 #Read in GDL Code
 gdl <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4') %>%
-  rename(GDLCODE=GDLcode)
+  rename(GDLCODE=GDLcode) %>%
+  filter(!GDLCODE %in% c("COLr128", "GMBr101", "GMBr107", "INDr135", "NA"))
 
 #Read in Pop data from Covariates
 #Subset to areas we have GDL codes for
-pop <- read.csv('data/nowcast/results/urban-rural.csv') %>%
+pop <- read.csv('data/covars_nowcast/results/urban-rural.csv') %>%
   mutate(iso3=substr(GDLCODE, 1, 3))
 
 pop_cty <- pop %>%

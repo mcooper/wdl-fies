@@ -3,11 +3,9 @@ library(raster)
 library(lubridate)
 library(rgdal)
 
-setwd('~/wdl-fies/data/nowcast/')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
 
-sp <- readOGR('~/wdl-fies/data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
-
-d <- read.csv('rawdata/conflict_deaths/ged191.csv') %>%
+d <- read.csv('data/covars_nowcast/rawdata/conflict_deaths/ged191.csv') %>%
   dplyr::select(date_start, date_end, best, latitude, longitude) 
 
 dsp <- SpatialPointsDataFrame(d, coords=d[ , c('longitude', 'latitude')], 
@@ -29,7 +27,13 @@ for (y in 2014:2018){
 all <- all %>%
   rename(GDLCODE=GDLcode)
 
-ref <- read.csv('results/gdl_vars.csv') %>%
+all <- merge(expand.grid(list(GDLCODE=unique(sp$GDLcode),
+                         YEAR=2014:2018)),
+             all, all.x=T, all.y=T)
+
+all$conflict_deaths[is.na(all$conflict_deaths)] <- 0
+
+ref <- read.csv('data/covars_nowcast/results/gdl_vars.csv') %>%
   dplyr::select(GDLCODE, YEAR, population)
 
 all <- merge(all, ref, all.x=T, all.y=F)
@@ -39,4 +43,4 @@ all <- all %>%
   dplyr::select(GDLCODE, YEAR, conflict_deaths_percap) %>%
   na.omit
 
-write.csv(all, 'results/conflict_deaths.csv', row.names=F)
+write.csv(all, 'data/covars_nowcast/results/conflict_deaths.csv', row.names=F)

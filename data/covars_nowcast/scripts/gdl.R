@@ -3,11 +3,11 @@ library(sf)
 
 options(stringsAsFactors=F)
 
-sf <- read_sf('~/wdl-fies/data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sf <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
 
 #https://globaldatalab.org/shdi/download_files/
 #https://globaldatalab.org/assets/2020/03/SHDI%20Complete%204.0%20%281%29.csv
-dat <- read.csv('~/wdl-fies/data/nowcast/rawdata/SHDI Complete 4.0.csv') %>%
+dat <- read.csv('data/covars_nowcast/rawdata/SHDI Complete 4.0.csv') %>%
   filter(GDLCODE %in% sf$GDLcode) %>%
   mutate(gni_percap_2011=gnic*1000,
          population=pop*1000000) %>%
@@ -24,6 +24,6 @@ all <- expand.grid(list(GDLCODE=unique(dat$GDLCODE), YEAR=1990:2018)) %>%
   arrange(desc(YEAR)) %>%
   fill(value) %>%
   spread(var, value) %>%
-  mutate(iso3c=substr(GDLCODE, 1, 3))
+  mutate(ISO3=substr(GDLCODE, 1, 3))
 
-write.csv(all, '~/wdl-fies/data/nowcast/results/gdl_vars.csv', row.names=F)
+write.csv(all, 'data/covars_nowcast/results/gdl_vars.csv', row.names=F)

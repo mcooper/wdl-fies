@@ -1,8 +1,8 @@
 library(readxl)
 library(lubridate)
 
-ref <- read.csv('~/wdl-fies/data/nowcast/results/gdl_vars.csv') %>%
-  group_by(iso3c, YEAR) %>%
+ref <- read.csv('data/covars_nowcast/results/gdl_vars.csv') %>%
+  group_by(ISO3, YEAR) %>%
   summarize(population=sum(population, na.rm=T))
 
 sheets <- c("Political StabilityNoViolence",
@@ -20,17 +20,17 @@ read_wgi <- function(sheet){
     select(matches("Co|Estimate"))
   names(dat) <- c('country', 'code', paste0("X", c(1996, 1998, 2000, 2002:2018)))
   dat <- dat %>%
-    mutate(iso3c=countrycode(country, 'country.name', 'iso3c')) %>%
-    filter(iso3c %in% ref$iso3c,
+    mutate(ISO3=countrycode(country, 'country.name', 'iso3c')) %>%
+    filter(ISO3 %in% ref$ISO3,
            country != c("Korea, Dem. Rep.")) %>%
     select(-country, -code) %>%
-    gather(YEAR, value, -iso3c) %>%
+    gather(YEAR, value, -ISO3) %>%
     mutate(YEAR=as.numeric(substr(YEAR, 2, 5))) %>%
     arrange(desc(YEAR)) %>%
-    group_by(iso3c) %>%
+    group_by(ISO3) %>%
     fill(value) %>%
     arrange(YEAR) %>%
-    group_by(iso3c) %>%
+    group_by(ISO3) %>%
     fill(value)                  
   
  dat$var <- sheet
@@ -53,4 +53,4 @@ all <- all %>%
                          var == "ControlofCorruption" ~ "control_corruption")) %>%
   spread(var, value)
 
-write.csv(all, '~/wdl-fies/data/nowcast/results/wgi_vars.csv', row.names=F)
+write.csv(all, 'data/covars_nowcast/results/wgi_vars.csv', row.names=F)
