@@ -325,13 +325,11 @@ rur_urb <- rur_urb %>% filter(year %in% c(2010:2020, 2025, 2030))
 ###-----------------------------------------------------------------------------------------------------------------
 ## predict some of the extracted covariates with simple model
 
-ag_pct_gdp <- read.csv('data/nowcast/results/ag_pct_gdp.csv') %>%
-  select(iso3c, YEAR, ag_pct_gdp) %>%
-  rename(iso3 = "iso3c", year = "YEAR")
+ag_pct_gdp <- read.csv('data/covars_nowcast/results/ag_pct_gdp.csv') %>%
+  select(iso3=ISO3, year=YEAR, ag_pct_gdp)
 
-imports_percap <- read.csv('data/nowcast/results/imports_percap.csv') %>%
-  select(iso3c, YEAR, imports_percap) %>%
-  rename(iso3 = "iso3c", year = "YEAR")
+imports_percap <- read.csv('data/covars_nowcast/results/imports_percap.csv') %>%
+  select(iso3=ISO3, year=YEAR, imports_percap) 
 
 
 # v <- c("mal_falciparum", "mal_vivax", "market_dist", "assistance", "ag_pct_gdp", "imports_percap")
