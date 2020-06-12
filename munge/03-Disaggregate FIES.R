@@ -7,6 +7,7 @@ gdl <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4') %>%
 #Subset to areas we have GDL codes for
 pop <- read.csv('data/covars_nowcast/results/urban-rural.csv') %>%
   mutate(iso3=substr(GDLCODE, 1, 3))
+  rename(Rural = "rural", Urban = "urban")
 
 pop_cty <- pop %>%
   group_by(iso3, YEAR) %>%

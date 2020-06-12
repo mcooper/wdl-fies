@@ -5,11 +5,15 @@
 #######################################################
 
 #covar_fore_sel <- covar_fore %>% select(-c(hdi, edu_years, wci_index))
-covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index))
+#covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index))
 #covar_fore_sel <- covar_fore %>% select(-c(hdi, pri_edu, sec_edu, ter_edu, wci_index))
+#covar_fore_sel <- covar_fore %>% select(-c(hdi))
+covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index, mal_falciparum, elevation, ruggedness))
+
+#covar_fore_sel <- covar_fore_sel %>% rename(YEAR = "year")
 
 # Read in data
-moddat <- merge(fies_subnat, 
+moddat <- merge(fies_subnat %>% rename(year = "YEAR"), 
 								covar_fore_sel, 
 								all.x=T, all.y=F) %>%
 	na.omit %>%
@@ -20,9 +24,15 @@ preddat <- covar_fore_sel %>%
 	data.frame
 
 # Set up Model
-vars <- names(moddat)[!names(moddat) %in% c('iso3', 'GDLCODE', 'fies.mod.rur', 'fies.sev.rur', 
-																						'fies.mod.urb', 'fies.sev.urb', 'Urban', 'Rural', 'fies.mod', 
-																						'fies.sev', 'rural', 'urban', 'year')]
+# vars <- names(moddat)[!names(moddat) %in% c('iso3', 'GDLCODE', 'fies.mod.rur', 'fies.sev.rur', 
+#                                             'fies.mod.urb', 'fies.sev.urb', 'Urban', 'Rural', 'fies.mod', 
+#                                             'fies.sev', 'rural', 'urban', 'year')]
+
+vars <- names(moddat)[!names(moddat) %in% c('iso3', 'GDLCODE', 'fies.mod.rur', 
+                                            'fies.sev.rur', 'fies.mod.urb', 
+                                            'fies.sev.urb', 'fies.mod', 
+                                            'fies.sev', 'rural', 'urban', 'year',
+                                            'population', 'Rural', 'Urban')]
 
 x <- model.matrix(as.formula(paste0('fies.mod ~ ', paste0(vars, collapse=' + '))), data=moddat)
 
@@ -31,22 +41,25 @@ mod$lambda.min
 
 tmp_coeffs <- coef(mod, s = "lambda.min")
 df <- data.frame(term = tmp_coeffs@Dimnames[[1]][tmp_coeffs@i + 1], estimate = tmp_coeffs@x,
-								                  stringsAsFactors=F)
+                 stringsAsFactors=F)
 
 # Get model predictions
 preddat$fies.mod.pred <- df$estimate[df$term == '(Intercept)']
 moddat$fies.mod.pred <- df$estimate[df$term == '(Intercept)']
 for (i in 2:nrow(df)){
-	preddat$fies.mod.pred <- preddat$fies.mod.pred + preddat[ , df$term[i]]*df$estimate[i]
-	moddat$fies.mod.pred <- moddat$fies.mod.pred + moddat[ , df$term[i]]*df$estimate[i]
+  preddat$fies.mod.pred <- preddat$fies.mod.pred + preddat[ , df$term[i]]*df$estimate[i]
+  moddat$fies.mod.pred <- moddat$fies.mod.pred + moddat[ , df$term[i]]*df$estimate[i]
 }
 preddat$fies.mod.pred[preddat$fies.mod.pred < 0] <- 0
 preddat$fies.mod.pred[preddat$fies.mod.pred > 1] <- 1
 
-#Get totals by year
+#Sibira same rate of FIES with area next so it
+preddat$fies.mod.pred[preddat$GDLCODE == "RUSr108"] <- preddat$fies.mod.pred[preddat$GDLCODE == "RUSr107"]
+
+#Get totals
 totals <- preddat %>%
-	group_by(year) %>%
-	summarize(total=prettyNum(sum(fies.mod.pred * (rural + urban), na.rm=T), big.mark=',', scientific=F))
+  group_by(year) %>%
+  summarize(total=prettyNum(sum(fies.mod.pred * population, na.rm=T), big.mark=',', scientific=F))
 
 # Make Map
 mapdat <- merge(gdl, preddat %>% select(GDLCODE, year, fies.mod.pred), all.x=T, all.y=F) %>%
@@ -67,7 +80,7 @@ ggplot(mapdat) +
   labs(title='Rate of Moderate to Severe Food Insecurity (Forecast Model)',
 			 fill='') + 
 	facet_grid(year ~ .)
-#ggsave('figures/Forecast_LASSO.png', width=7, height=12)
+ggsave('figures/Forecast_LASSO.png', width=7, height=12)
 
 # Assess residuals
 mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
@@ -79,7 +92,7 @@ ggplot(moddat) +
 											'\nR-squared: ', round(r2, 4)),
 			x='Observed Rates of Food Insecurity',
 			y='Modeled Rate of Food Insecurity')	
-#ggsave('figures/Forecast_Residuals.png', width=5, height=5)
+ggsave('figures/Forecast_Residuals.png', width=5, height=5)
 
 # Plot scaled covariates
 for (v in vars){
@@ -98,7 +111,7 @@ ggplot(df %>% filter(term != '(Intercept)')) +
 		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Var\nFor LASSO Regression Model \n(Forecast Model)',
 				 x="", y="") + 
 		theme_minimal()
-#ggsave('figures/Forecast_Coefs.png', width=5, height=5)
+ggsave('figures/Forecast_Coefs.png', width=5, height=5)
 
 
 

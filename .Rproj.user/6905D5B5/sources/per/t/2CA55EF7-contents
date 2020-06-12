@@ -501,11 +501,10 @@ ele_rug <- read.csv('data/covars_nowcast/results/elevation_ruggedness.csv')
 
 covar_fore <- Reduce(function(x, y){left_join(x, y)}, list(rur_urb, wc, gdp, hdi, gini, pc, iam, edu, edu_share, covar_trend, ele_rug)) 
 
-#some problem with Sibira
-covar_fore$wci500[covar_fore$GDLCODE == "RUSr108"] <- NA
-covar_fore$wci1000[covar_fore$GDLCODE == "RUSr108"] <- NA
-covar_fore$wci1700[covar_fore$GDLCODE == "RUSr108"] <- NA
-covar_fore$wci_index[covar_fore$GDLCODE == "RUSr108"] <- NA
+covar_fore$wci500[covar_fore$GDLCODE == "RUSr108"] <- covar_fore$wci500[covar_fore$GDLCODE == "RUSr107"]
+covar_fore$wci1000[covar_fore$GDLCODE == "RUSr108"] <- covar_fore$wci1000[covar_fore$GDLCODE == "RUSr107"]
+covar_fore$wci1700[covar_fore$GDLCODE == "RUSr108"] <- covar_fore$wci1700[covar_fore$GDLCODE == "RUSr107"]
+covar_fore$wci_index[covar_fore$GDLCODE == "RUSr108"] <- covar_fore$wci_index[covar_fore$GDLCODE == "RUSr107"]
 
 cache('covar_fore')
 
