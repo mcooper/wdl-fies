@@ -4,16 +4,18 @@
 # modeled for 2020, 2025, and 2030
 #######################################################
 
-covar_fore <- covar_fore %>% select(-c(hdi, no_edu, pri_edu, sec_edu, ter_edu, wci500, wci1000, wci1700))
+#covar_fore_sel <- covar_fore %>% select(-c(hdi, edu_years, wci_index))
+covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index))
+#covar_fore_sel <- covar_fore %>% select(-c(hdi, pri_edu, sec_edu, ter_edu, wci_index))
 
 # Read in data
 moddat <- merge(fies_subnat, 
-								covar_fore, 
+								covar_fore_sel, 
 								all.x=T, all.y=F) %>%
 	na.omit %>%
 	data.frame
 
-preddat <- covar_fore %>%
+preddat <- covar_fore_sel %>%
 	filter(year %in% c(2020, 2025, 2030)) %>%
 	data.frame
 
@@ -65,7 +67,7 @@ ggplot(mapdat) +
   labs(title='Rate of Moderate to Severe Food Insecurity (Forecast Model)',
 			 fill='') + 
 	facet_grid(year ~ .)
-ggsave('figures/Forecast_LASSO.png', width=7, height=12)
+#ggsave('figures/Forecast_LASSO.png', width=7, height=12)
 
 # Assess residuals
 mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
@@ -77,7 +79,7 @@ ggplot(moddat) +
 											'\nR-squared: ', round(r2, 4)),
 			x='Observed Rates of Food Insecurity',
 			y='Modeled Rate of Food Insecurity')	
-ggsave('figures/Forecast_Residuals.png', width=5, height=5)
+#ggsave('figures/Forecast_Residuals.png', width=5, height=5)
 
 # Plot scaled covariates
 for (v in vars){
@@ -96,7 +98,7 @@ ggplot(df %>% filter(term != '(Intercept)')) +
 		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Var\nFor LASSO Regression Model \n(Forecast Model)',
 				 x="", y="") + 
 		theme_minimal()
-ggsave('figures/Forecast_Coefs.png', width=5, height=5)
+#ggsave('figures/Forecast_Coefs.png', width=5, height=5)
 
 
 

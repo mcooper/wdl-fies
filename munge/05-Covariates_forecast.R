@@ -121,14 +121,43 @@ iam <- iam %>% filter(year %in% c(2010:2020, 2025, 2030))
 edu <- read.csv('data/covars_forecast/SSP/SspDb_country_data_2013-06-12.csv')
 
 pop <- edu %>% 
-  filter(MODEL == "IIASA-WiC POP", SCENARIO == "SSP2_v9_130115", VARIABLE == "Population") %>%
-  select(REGION, paste0("X", seq(2010, 2040, 5)))
+  filter(MODEL == "IIASA-WiC POP", SCENARIO == "SSP2_v9_130115") %>%
+  filter(!str_detect(VARIABLE, "Education")) %>%
+  select(REGION,VARIABLE, paste0("X", seq(2010, 2040, 5)))
 
-colnames(pop) <- c("iso3", c(2010, 2015, 2020, 2025, 2030, 2035, 2040))
+colnames(pop) <- c("iso3", "var", c(2010, 2015, 2020, 2025, 2030, 2035, 2040))
 
-pop <- reshape2::melt(pop, id.vars = c("iso3"), variable.name = "year")
-pop <- pop %>% rename(pop = "value") %>% mutate(pop = round(pop*1000000, digits = 0))
-  
+pop$var[grepl("Aged95-99", pop$var, fixed = TRUE) == T] <- "95-99"
+pop$var[grepl("Aged100+", pop$var, fixed = TRUE) == T] <- "100+"
+
+pop$var[pop$var == "Population"] <- NA
+pop$var[grepl("Aged0-4", pop$var, fixed = TRUE) == T] <- NA
+pop$var[grepl("Aged5-9", pop$var, fixed = TRUE) == T] <- NA
+pop$var[grepl("Aged10-14", pop$var, fixed = TRUE) == T] <- NA
+pop$var[pop$var == "Population|Male"] <- NA
+pop$var[pop$var == "Population|Female"] <- NA
+
+pop <- pop %>% filter(!is.na(var))
+
+pop$var <- gsub("Population|Male|Aged", "", fixed = T, pop$var)
+pop$var <- gsub("Population|Female|Aged", "", fixed = T, pop$var)
+
+pop <- reshape2::melt(pop, id.vars = c("iso3", "var"), variable.name = "year")
+pop <- pop %>% rename(age = "var", pop = "value") %>% mutate(pop = pop*1000000)
+pop <- reshape2::dcast(pop, iso3 + year ~ age, value.var = "pop", fun.aggregate = sum)
+
+pop$pop_15plus <- apply(pop[,3:20], 1, FUN = sum)
+
+# pop_share <- pop
+# pop <- reshape2::melt(pop, id.vars = c("iso3", "year"), variable.name = "age", value.name = "pop")
+# 
+# pop_share[,3:20] <- apply(pop_share[,3:20], 2, function(x) {x/pop_share$pop_15plus})
+# pop_share <- pop_share %>% select(-pop_15plus)
+# pop_share <- reshape2::melt(pop_share, id.vars = c("iso3", "year"), variable.name = "age", value.name = "pop_share")
+
+pop <- pop %>% select(iso3, year, pop_15plus)
+
+
 
 edu <- edu %>% 
   filter(MODEL == "IIASA-WiC POP", SCENARIO == "SSP2_v9_130115")%>%
@@ -138,7 +167,13 @@ edu <- edu %>%
 
 colnames(edu) <- c("iso3", "var", c(2010, 2015, 2020, 2025, 2030, 2035, 2040))
 
-edu$var[grepl("No Education", edu$var, fixed = TRUE) == T] <- "no_edu"
+edu$var[grepl("Aged0-4", edu$var, fixed = TRUE) == T] <- NA
+edu$var[grepl("Aged5-9", edu$var, fixed = TRUE) == T] <- NA
+edu$var[grepl("Aged10-14", edu$var, fixed = TRUE) == T] <- NA
+edu$var[grepl("No Education", edu$var, fixed = TRUE) == T] <- NA
+
+edu <- edu %>% filter(!is.na(var))
+
 edu$var[grepl("Primary Education", edu$var, fixed = TRUE) == T] <- "pri_edu"
 edu$var[grepl("Secondary Education", edu$var, fixed = TRUE) == T] <- "sec_edu"
 edu$var[grepl("Tertiary Education", edu$var, fixed = TRUE) == T] <- "ter_edu"
@@ -152,26 +187,40 @@ edu <- merge(edu, pop, by = c("iso3", "year"))
 edu <- data.table(edu)
 
 edu <- rbind(edu, edu[, .(year = setdiff(2010:2040, c(2010, 2015, 2020, 2025, 2030, 2035, 2040)), 
-                          no_edu = NA, pri_edu = NA, sec_edu = NA, ter_edu = NA, pop = NA), by = .(iso3)])
+                          pri_edu = NA, sec_edu = NA, ter_edu = NA, pop_15plus = NA), by = .(iso3)])
 
 edu$year <- as.numeric(as.character(edu$year))
 
 edu <- edu[order(year), .SD, by = iso3]
 
-edu[, no_edu := round(na.approx(no_edu), digits = 0) , by = iso3]
 edu[, pri_edu := round(na.approx(pri_edu), digits = 0) , by = iso3]
 edu[, sec_edu := round(na.approx(sec_edu), digits = 0) , by = iso3]
 edu[, ter_edu := round(na.approx(ter_edu), digits = 0) , by = iso3]
-edu[, pop := round(na.approx(pop), digits = 0) , by = iso3]
+edu[, pop_15plus := round(na.approx(pop_15plus), digits = 0) , by = iso3]
 
 edu <- data.frame(edu)
 
-edu[,3:6] <- apply(edu[,3:6], 2, FUN = function(x) {x/edu$pop})
+edu[,3:5] <- apply(edu[,3:5], 2, FUN = function(x) {x/edu$pop_15plus})
 
-edu <- edu %>% select(iso3, year, no_edu, pri_edu, sec_edu, ter_edu)
+edu_share <- edu %>% 
+  select(iso3, year, pri_edu, sec_edu, ter_edu) %>% 
+  filter(year %in% c(2010:2020, 2025, 2030))
+
+edu <- edu %>% select(-pop_15plus)
+edu <- reshape2::melt(edu, id.vars = c("iso3", "year"), variable.name = "class", value.name = "share")
+
+#http://uis.unesco.org/sites/default/files/documents/international-standard-classification-of-education-isced-2011-en.pdf
+edu$duration <- NA
+edu$duration[edu$class == "pri_edu"] <- 9
+edu$duration[edu$class == "sec_edu"] <- 12
+edu$duration[edu$class == "ter_edu"] <- 16
+
+edu$edu_years <- edu$share*edu$duration
+edu <- data.table(edu)
+
+edu <- edu[, .(edu_years = sum(edu_years)), by = .(iso3, year)]
 edu <- edu %>% filter(year %in% c(2010:2020, 2025, 2030))
 
-edu$edu_index <- 1*edu$no_edu + 2*edu$pri_edu + 3*edu$sec_edu + 4*edu$ter_edu
 
 gdp <- readRDS("data/covars_forecast/PC/X8_PC_nat_2020-04-28.RDS")$macro.data %>%
   select(ccode, year, GDP.PC.PPP) %>%
@@ -237,6 +286,7 @@ wc$var <- gsub("pop", "", wc$var)
 wc$var <- gsub("_\\d\\d\\d\\dspst", "", wc$var)
 
 wc <- reshape2::dcast(wc, GDLCODE + year ~ var)
+
 wc <- data.table(wc)
 wc <- rbind(wc, wc[, .(year = setdiff(2010:2030, c(2010, 2020, 2030)), 
                        wci1000 = NA, wci1700 = NA, wci500 = NA), by = .(GDLCODE)])
@@ -247,8 +297,21 @@ wc[, wci500 := na.approx(wci500)]
 wc[, wci1000 := na.approx(wci1000)]
 wc[, wci1700 := na.approx(wci1700)]
 
-wc$wci_index <- 1*wc$wci500 + 2*wc$wci1000 + 3*wc$wci1700
+#norm to 1 and create index
+# wc$wci_index <- (1/(wc$wci500+wc$wci1000+wc$wci1700))*(3*wc$wci500 + 2*wc$wci1000 + 1*wc$wci1700)
+wc$wci_index <- (3*wc$wci500 + 2*wc$wci1000 + 1*wc$wci1700)
+wc$wci_index[(wc$wci500+wc$wci1000+wc$wci1700) == 0] <- 0
 
+# mapdat <- merge(gdl, wc %>% select(GDLCODE, year, wci_index), all.x=T, all.y=F)	%>% 
+#   filter(year == 2020)
+# 
+# 
+# countries <- ne_countries(returnclass='sf')
+# ggplot(mapdat) + 
+#   geom_sf(aes(fill=wci_index), color=NA) + 
+#   geom_sf(data=countries, color='#000000', fill=NA) + 
+#   coord_sf(crs='+proj=robin') + 
+#   theme_void()
 
 wc <- wc %>% select(GDLCODE, year, wci500, wci1000, wci1700, wci_index) %>% filter(year %in% c(2010:2020, 2025, 2030))
 
@@ -414,7 +477,7 @@ gdp <- gdp %>% filter(year %in% c(2010:2020, 2025, 2030))
 ###-----------------------------------------------------------------------------------------------------------------
 ## merge everything and put into cache
 
-covar_fore <- Reduce(function(x, y){left_join(x, y)}, list(rur_urb, wc, gdp, hdi, gini, pc, iam, edu, covar_trend)) 
+covar_fore <- Reduce(function(x, y){left_join(x, y)}, list(rur_urb, wc, gdp, hdi, gini, pc, iam, edu, edu_share, covar_trend)) 
 
 cache('covar_fore')
 
