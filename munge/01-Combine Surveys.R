@@ -5,7 +5,7 @@ fies_raw <- data.frame()
 for (f in fs){
   load(f)
   data$iso3 <- substr(f, 19, 21)
-  data$year <- as.numeric(substr(f, 23, 26))
+  data$YEAR <- as.numeric(substr(f, 23, 26))
 
   fies_raw <- rbind(fies_raw, data)  
 }

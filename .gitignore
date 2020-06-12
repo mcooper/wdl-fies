@@ -1,8 +1,8 @@
 data/*
-!data/nowcast/
+!data/covars_nowcast/
 
-data/nowcast/*
-!data/nowcast/scripts/
+data/covars_nowcast/*
+!data/covars_nowcast/scripts/
 
 cache/*
 !data/README.md
