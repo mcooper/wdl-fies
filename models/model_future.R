@@ -8,7 +8,8 @@
 #covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index))
 #covar_fore_sel <- covar_fore %>% select(-c(hdi, pri_edu, sec_edu, ter_edu, wci_index))
 #covar_fore_sel <- covar_fore %>% select(-c(hdi))
-covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index, mal_falciparum, elevation, ruggedness))
+#covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index, mal_falciparum, elevation, ruggedness))
+covar_fore_sel <- covar_fore %>% select(-c(hdi, edu_years, ter_edu, wci_index, wci500, wci1700, mal_falciparum, elevation, ruggedness))
 
 #covar_fore_sel <- covar_fore_sel %>% rename(YEAR = "year")
 
@@ -53,7 +54,7 @@ for (i in 2:nrow(df)){
 preddat$fies.mod.pred[preddat$fies.mod.pred < 0] <- 0
 preddat$fies.mod.pred[preddat$fies.mod.pred > 1] <- 1
 
-#Sibira same rate of FIES with area next so it
+#Sibira same rate of FIES then area next to it
 preddat$fies.mod.pred[preddat$GDLCODE == "RUSr108"] <- preddat$fies.mod.pred[preddat$GDLCODE == "RUSr107"]
 
 #Get totals
@@ -65,7 +66,7 @@ totals <- preddat %>%
 mapdat <- merge(gdl, preddat %>% select(GDLCODE, year, fies.mod.pred), all.x=T, all.y=F) %>%
 	filter(!is.na(year)) %>%
 	merge(totals) %>%
-	mutate(year = paste0(year, ':\n', total, '\nFood Insecure'))
+	mutate(year = paste0(year, ':\n', total, ' People \nExperience Moderate \nor Severe Food Insecurity'))
 
 countries <- ne_countries(returnclass='sf')
 ggplot(mapdat) + 
@@ -77,17 +78,17 @@ ggplot(mapdat) +
 	theme_void() + 
 	theme(legend.position = 'bottom',
 				plot.title = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Moderate to Severe Food Insecurity (Forecast Model)',
+  labs(title='Rate of Moderate or Severe Food Insecurity (LASSO, Forecast Model)',
 			 fill='') + 
 	facet_grid(year ~ .)
-ggsave('figures/Forecast_LASSO.png', width=7, height=12)
+ggsave('figures/Forecast_LASSO.png', width=9, height=12)
 
 # Assess residuals
 mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
 r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
 ggplot(moddat) + 
-	geom_point(aes(x=fies.mod, y=fies.mod.pred)) + 
-	labs(title='Forecast Model',
+	geom_point(aes(x=fies.mod, y=fies.mod.pred), alpha = 1/4) + 
+	labs(title='LASSO, Forecast Model',
 	     caption=paste0('Mean Absolute Error: ',  round(mae, 4),
 											'\nR-squared: ', round(r2, 4)),
 			x='Observed Rates of Food Insecurity',
@@ -108,14 +109,68 @@ df$term <- factor(df$term, levels=df$term[order(df$scaled)], ordered=TRUE)
 ggplot(df %>% filter(term != '(Intercept)')) + 
 	  geom_bar(aes(x=term, y=scaled), stat='identity') + 
 		coord_flip() + 
-		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Var\nFor LASSO Regression Model \n(Forecast Model)',
+		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Var\nFor LASSO, Forecast Model',
 				 x="", y="") + 
 		theme_minimal()
 ggsave('figures/Forecast_Coefs.png', width=5, height=5)
 
 
+#2020, 2025 and 2030
+mapdat20 <- merge(gdl, preddat %>% select(GDLCODE, year, fies.mod.pred), all.x=T, all.y=F) %>%
+  filter(!is.na(year), year == 2020) %>%
+  merge(totals) %>%
+  mutate(year = paste0(total, ' People \nExperience Moderate \nor Severe Food Insecurity'))
+
+ggplot(mapdat20) + 
+  geom_sf(aes(fill=fies.mod.pred), color=NA) + 
+  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
+  geom_sf(data=countries, color='#000000', fill=NA) + 
+  coord_sf(crs='+proj=robin') + 
+  theme_void() + 
+  theme(legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) + 
+  labs(title='Rate of Moderate or Severe Food Insecurity in 2020 (LASSO, Forecast Model)',
+       fill='') + 
+  facet_grid(year ~ .)
+ggsave('figures/Forecast_LASSO_2020.png', width=8, height=4)
 
 
+mapdat25 <- merge(gdl, preddat %>% select(GDLCODE, year, fies.mod.pred), all.x=T, all.y=F) %>%
+  filter(!is.na(year), year == 2025) %>%
+  merge(totals) %>%
+  mutate(year = paste0(total, ' People \nExperience Moderate \nor Severe Food Insecurity'))
+
+ggplot(mapdat25) + 
+  geom_sf(aes(fill=fies.mod.pred), color=NA) + 
+  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
+  geom_sf(data=countries, color='#000000', fill=NA) + 
+  coord_sf(crs='+proj=robin') + 
+  theme_void() + 
+  theme(legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) + 
+  labs(title='Rate of Moderate or Severe Food Insecurity in 2025 (LASSO, Forecast Model)',
+       fill='') + 
+  facet_grid(year ~ .)
+ggsave('figures/Forecast_LASSO_2025.png', width=8, height=4)
 
 
+mapdat30 <- merge(gdl, preddat %>% select(GDLCODE, year, fies.mod.pred), all.x=T, all.y=F) %>%
+  filter(!is.na(year), year == 2030) %>%
+  merge(totals) %>%
+  mutate(year = paste0(total, ' People \nExperience Moderate \nor Severe Food Insecurity'))
 
+ggplot(mapdat30) + 
+  geom_sf(aes(fill=fies.mod.pred), color=NA) + 
+  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
+  geom_sf(data=countries, color='#000000', fill=NA) + 
+  coord_sf(crs='+proj=robin') + 
+  theme_void() + 
+  theme(legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) + 
+  labs(title='Rate of Moderate or Severe Food Insecurity in 2030 (LASSO, Forecast Model)',
+       fill='') + 
+  facet_grid(year ~ .)
+ggsave('figures/Forecast_LASSO_2030.png', width=8, height=4)

@@ -1,0 +1,186 @@
+library(tidyverse)
+library(readxl)
+library(lubridate)
+library(glmnet)
+library(broom)
+
+#data_path <- 'G://My Drive/WHC Data'
+data_path <- c("C:/Users/Benjamin/Google Drive/WDL_Data/Hunger")
+
+###-----------------------------------------------------------------------------------------------------------------
+## load files
+
+data <- read.csv(file.path(data_path,"subnational/all_anth_gdlcode.csv"))
+
+#Need to update to use latest GDL code matching (from Ben)
+map <- read_xlsx(file.path(data_path,"subnational/Geocode_Map_Workbook_GDL_03-2020.xlsx"), sheet = "GDL Codes")
+
+#Historic SSP data
+covar <- read.csv(file.path(data_path, "model/SSP2_Vars_Historic.csv")) %>% 
+  rename(GDLCode=GDLcode)
+
+#Future SSP data
+pred <- read.csv(file.path(data_path, "model/SSP2_Vars.csv"))
+
+
+###-----------------------------------------------------------------------------------------------------------------
+## aggregagte and merge
+
+map_agg <- map %>%
+  dplyr::filter(!is.na(AggCode)) %>%
+  dplyr::select(GDLCode, AggCode) %>%
+  bind_rows(map %>%
+              dplyr::filter(!is.na(AggCode2)) %>%
+              dplyr::select(GDLCode, AggCode=AggCode2)) %>%
+  rename(GDLCode = "GDLCode") %>%
+  unique
+
+v <- names(covar[,-which(names(covar) %in% c("GDLCode", "Year", "month", "population"))])
+covar_agg <- merge(covar, map_agg) %>%
+  group_by(Year, AggCode) %>%
+  summarize_at(vars(v), funs(weighted.mean(., w = Rural+Urban)))  %>%
+  rename(GDLCode=AggCode)
+covar <- bind_rows(covar, covar_agg)
+
+
+#Combine all based on GDL code & dates
+data$Year <- year(ymd(gsub('X', '', data$InterviewDate)))
+
+all <- Reduce(function(x, y){merge(x, y, all.x = T, all.y = F)}, list(data, covar))
+
+all <- all %>%
+  select(GDLCode, Year, haz, grid_gdp, EdYears, Gini, Rural, Urban) %>%
+  #Drop Gini for now - hopefully WDL has this data
+  select(-Gini) %>% 
+  mutate(Urban_Perc = Urban/(Urban + Rural),
+         grid_gdp = log(grid_gdp)) %>%
+  filter(haz > -6 & haz < 6) %>%
+  na.omit
+
+###-----------------------------------------------------------------------------------------------------------------
+## models
+
+#LASSO Model
+# 
+# x <- model.matrix(haz ~ grid_gdp + EdYears + Urban_Perc + Year,
+#                   data=all)
+# 
+# mod <- cv.glmnet(x, all$haz, alpha=1)
+# mod$lambda.min
+# 
+# tmp_coeffs <- coef(mod, s = "lambda.min")
+# df <- data.frame(term = tmp_coeffs@Dimnames[[1]][tmp_coeffs@i + 1], estimate = tmp_coeffs@x,
+#                  stringsAsFactors=F)
+
+#Linear Model
+mod <- lm(haz ~ grid_gdp + EdYears + Urban_Perc + Year, data=all)
+
+df <- tidy(mod)
+
+
+##-------------------------------------------------------------------------------
+## Predictions
+
+pred <- pred %>%
+  mutate(grid_gdp = log(GDP_PerCap*100),
+         EdYears = mean_years_ed,
+         Urban_Perc = urb_pop/(urb_pop + rur_pop))
+
+pred$haz_pred <- df$estimate[df$term == '(Intercept)']
+for (i in 2:nrow(df)){
+  var <- df$term[i]
+  pred$haz_pred <- pred$haz_pred + pred[ , var]*df$estimate[df$term == var]
+}
+
+pred$Perc_Stunted <- dnorm(-2, mean=pred$haz_pred, sd = 1)
+
+##--------------------------------------------
+## Make Maps
+
+library(sf)
+library(rnaturalearth)
+
+countries <- ne_countries(returnclass='sf') %>%
+  filter(name != 'Antarctica')
+
+map <- read_sf(file.path(data_path,"subnational/shapefiles/"), 'GDL Shapefiles V4 0.005') %>%
+  #rename(GDLCode = "GDLcode") %>%
+  dplyr::select(GDLcode, geometry) 
+
+# map_poli <- read_sf(file.path(data_path,"subnational/shapefiles/"), 'shdi2018_World') %>%
+#   #rename(GDLCode = "GDLcode") %>%
+#   dplyr::select(GDLcode, geometry) 
+
+sel <- pred %>%
+  mutate(Num_Stunted = Population_Under5*Perc_Stunted) %>%
+  select(GDLcode, Num_Stunted, Perc_Stunted, Year) %>%
+  gather(Key, Val, -Year, -GDLcode) %>%
+  mutate(Key = paste0(Key, Year)) %>%
+  select(-Year) %>%
+  na.omit %>%
+  spread(Key, Val)
+
+
+map <- merge(map, sel, all.x=T, all.y=F)
+# map_poli <- merge(map_poli, sel, all.x=T, all.y=F)
+
+
+#percent of stunting 2025
+ggplot() + 
+  geom_sf(data=map, aes(fill=Perc_Stunted2025), color=NA) + 
+  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0",
+                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) +
+  geom_sf(data=countries, color='#000000', fill=NA) + 
+  coord_sf(crs='+proj=robin') + 
+  theme_void() + 
+  theme(legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) + 
+  labs(title='Percent of Children Stunted in 2025')
+ggsave(file.path(plot_path, "Perc_Stunted2025.png"), width=12, height=6)
+
+
+#absolute nubmers people stunted 2025
+ggplot() + 
+  geom_sf(data=map, aes(fill=Num_Stunted2025), color=NA) + 
+  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0",
+                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) +
+  geom_sf(data=countries, color='#000000', fill=NA) + 
+  coord_sf(crs='+proj=robin') + 
+  theme_void() + 
+  theme(legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) + 
+  labs(title='Number of Children Stunted in 2025')
+ggsave(file.path(plot_path, "Num_Stunted2025.png"), width=12, height=6)
+
+
+#percent of stunting 2030
+ggplot() + 
+  geom_sf(data=map, aes(fill=Perc_Stunted2030), color=NA) + 
+  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0",
+                                   "#fce08a", "#faae61", "#f36c44", "#a01c44")) +
+  geom_sf(data=countries, color='#000000', fill=NA) + 
+  coord_sf(crs='+proj=robin') + 
+  theme_void() + 
+  theme(legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) + 
+  labs(title='Percent of Children Stunted in 2030')
+ggsave(file.path(plot_path, "Perc_Stunted2030.png"), width=12, height=6)
+
+
+#absolute nubmers people stunted 2030
+ggplot() + 
+  geom_sf(data=map, aes(fill=Num_Stunted2030), color=NA) + 
+  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0",
+                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) +
+  geom_sf(data=countries, color='#000000', fill=NA) + 
+  coord_sf(crs='+proj=robin') + 
+  theme_void() + 
+  theme(legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5)) + 
+  labs(title='Number of Children Stunted in 2030')
+ggsave(file.path(plot_path, "Num_Stunted2030.png"), width=12, height=6)
+
+
+
+
+
