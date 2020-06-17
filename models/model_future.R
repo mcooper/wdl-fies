@@ -4,12 +4,15 @@
 # modeled for 2020, 2025, and 2030
 #######################################################
 
+save <- 0 #if 1 ggplot gets saved 
+
 #covar_fore_sel <- covar_fore %>% select(-c(hdi, edu_years, wci_index))
 #covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index))
 #covar_fore_sel <- covar_fore %>% select(-c(hdi, pri_edu, sec_edu, ter_edu, wci_index))
 #covar_fore_sel <- covar_fore %>% select(-c(hdi))
 #covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index, mal_falciparum, elevation, ruggedness))
-covar_fore_sel <- covar_fore %>% select(-c(hdi, edu_years, ter_edu, wci_index, wci500, wci1700, mal_falciparum, elevation, ruggedness))
+#covar_fore_sel <- covar_fore %>% select(-c(hdi, edu_years, ter_edu, wci_index, wci500, wci1700, mal_falciparum, elevation, ruggedness))
+covar_fore_sel <- covar_fore %>% select(-c(hdi, wci_index, wci500, wci1700, mal_falciparum, elevation, ruggedness, livestock, crops_prod, builtup, cropland))
 
 #covar_fore_sel <- covar_fore_sel %>% rename(YEAR = "year")
 
@@ -81,7 +84,7 @@ ggplot(mapdat) +
   labs(title='Rate of Moderate or Severe Food Insecurity (LASSO, Forecast Model)',
 			 fill='') + 
 	facet_grid(year ~ .)
-ggsave('figures/Forecast_LASSO.png', width=9, height=12)
+if(save == 1) {ggsave('figures/Forecast_LASSO.png', width=9, height=12)}
 
 # Assess residuals
 mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
@@ -93,7 +96,7 @@ ggplot(moddat) +
 											'\nR-squared: ', round(r2, 4)),
 			x='Observed Rates of Food Insecurity',
 			y='Modeled Rate of Food Insecurity')	
-ggsave('figures/Forecast_Residuals.png', width=5, height=5)
+if(save == 1) {ggsave('figures/Forecast_Residuals.png', width=5, height=5)}
 
 # Plot scaled covariates
 for (v in vars){
@@ -112,7 +115,7 @@ ggplot(df %>% filter(term != '(Intercept)')) +
 		labs(title='Change in Rate of Food Insecurity\nWith increase of 1 SD in Var\nFor LASSO, Forecast Model',
 				 x="", y="") + 
 		theme_minimal()
-ggsave('figures/Forecast_Coefs.png', width=5, height=5)
+if(save == 1) {ggsave('figures/Forecast_Coefs.png', width=5, height=5)}
 
 
 #2020, 2025 and 2030
@@ -133,7 +136,7 @@ ggplot(mapdat20) +
   labs(title='Rate of Moderate or Severe Food Insecurity in 2020 (LASSO, Forecast Model)',
        fill='') + 
   facet_grid(year ~ .)
-ggsave('figures/Forecast_LASSO_2020.png', width=8, height=4)
+if(save == 1) {ggsave('figures/Forecast_LASSO_2020.png', width=8, height=4)}
 
 
 mapdat25 <- merge(gdl, preddat %>% select(GDLCODE, year, fies.mod.pred), all.x=T, all.y=F) %>%
@@ -153,7 +156,7 @@ ggplot(mapdat25) +
   labs(title='Rate of Moderate or Severe Food Insecurity in 2025 (LASSO, Forecast Model)',
        fill='') + 
   facet_grid(year ~ .)
-ggsave('figures/Forecast_LASSO_2025.png', width=8, height=4)
+if(save == 1) {ggsave('figures/Forecast_LASSO_2025.png', width=8, height=4)}
 
 
 mapdat30 <- merge(gdl, preddat %>% select(GDLCODE, year, fies.mod.pred), all.x=T, all.y=F) %>%
@@ -173,4 +176,5 @@ ggplot(mapdat30) +
   labs(title='Rate of Moderate or Severe Food Insecurity in 2030 (LASSO, Forecast Model)',
        fill='') + 
   facet_grid(year ~ .)
-ggsave('figures/Forecast_LASSO_2030.png', width=8, height=4)
+if(save == 1) {ggsave('figures/Forecast_LASSO_2030.png', width=8, height=4)}
+
