@@ -1,9 +1,10 @@
-data/*
-!data/covars_nowcast/
-
-data/covars_nowcast/*
-!data/covars_nowcast/scripts/
-
+data/covars/rawdata
+data/covars/results
+data/fies_surveys
+data/FAOSTAT*
+data/GDL*
+data/regions*
 cache/*
-!data/README.md
 .Rhistory
+*.swp
+*.swo
