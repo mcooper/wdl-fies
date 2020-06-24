@@ -1,4 +1,3 @@
-
 #Load comparison data from FAO
 compare <- FAOSTAT.data.4.14.2020 %>%
   select(Area, Year, Value, Item) %>%
@@ -15,8 +14,8 @@ compare <- FAOSTAT.data.4.14.2020 %>%
 #Aggregate raw data to country level 
 fies_cty <- fies_raw %>% 
   group_by(ISO3, YEAR) %>% 
-  summarize(fies.mod = weighted.mean(Prob_Mod_Sev > 0.5, w = wt, na.rm=T),
-            fies.sev = weighted.mean(Prob_sev > 0.5, w = wt, na.rm=T)) %>%
+  summarize(fies.mod = weighted.mean(Prob_Mod_Sev, w = wt, na.rm=T),
+            fies.sev = weighted.mean(Prob_sev, w = wt, na.rm=T)) %>%
   mutate(fies.mod.3yr = rollapply(fies.mod, width=3, FUN=mean, na.pad=T),
          fies.sev.3yr = rollapply(fies.sev, width=3, FUN=mean, na.pad=T)) %>%
   merge(compare, all.x=T, all.y=F)
@@ -27,8 +26,8 @@ fies_ur <- fies_raw %>%
   filter(!Area %in% c('(Refused)', 'Dont_know'),
          !is.na(Area)) %>%
   group_by(region, Area) %>% 
-  summarize(fies.reg.mod = weighted.mean(Prob_Mod_Sev > 0.5, w = wt, na.rm=T),
-            fies.reg.sev = weighted.mean(Prob_sev > 0.5, w = wt, na.rm=T)) %>%
+  summarize(fies.reg.mod = weighted.mean(Prob_Mod_Sev, w = wt, na.rm=T),
+            fies.reg.sev = weighted.mean(Prob_sev, w = wt, na.rm=T)) %>%
   mutate(Area = case_when(grepl('Urban', Area) ~ '.urb',
                           TRUE ~ '.rur')) %>%
   gather(key, value, -region, -Area) %>%

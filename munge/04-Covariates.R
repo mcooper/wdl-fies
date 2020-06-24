@@ -13,7 +13,9 @@ covars <- covars %>%
   select(YEAR, ISO3, GDLCODE, stunting, wasting, school_mean, ruggedness,
          gdp_percap, gini, mal_falciparum, mal_vivax, mean_annual_precip, hci, tavg, 
          population, rural_perc, urban_perc, wci_index, builtup, cropland, crops_prod,
-         forest, livestock, pasture)
+         forest, livestock, pasture) %>%
+  merge(regions %>%
+          select(ISO3, region))
 
 cache('covars')
 

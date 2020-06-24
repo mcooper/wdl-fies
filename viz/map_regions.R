@@ -1,8 +1,11 @@
-cty <- ne_countries(scale = 50, returnclass = 'sf')
+cty <- ne_countries(returnclass = 'sf') %>%
+  select(iso_a3)
 
-regions$iso_a3 <- regions$iso3
+reg <- read.csv('regions3.csv')
 
-cty <- merge(cty, regions, all.x=T)
+reg$iso_a3 <- as.character(reg$ISO3)
+
+cty <- merge(cty, reg, on='iso_a3')
 
 plt <- ggplot(cty) + 
   geom_sf(aes(fill=region)) + 
