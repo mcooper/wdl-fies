@@ -8,13 +8,13 @@ compare <- FAOSTAT.data.4.14.2020 %>%
             item = case_when(grepl('moderate', Item) ~ 'fies.mod.3yr.fao',
                              TRUE ~ 'fies.sev.3yr.fao')) %>%
   spread(item, value) %>%
-  mutate(iso3 = countrycode(country, 'country.name', 'iso3c')) %>%
+  mutate(ISO3 = countrycode(country, 'country.name', 'iso3c')) %>%
   select(-country) %>%
   na.omit
 
 #Aggregate raw data to country level 
 fies_cty <- fies_raw %>% 
-  group_by(iso3, YEAR) %>% 
+  group_by(ISO3, YEAR) %>% 
   summarize(fies.mod = weighted.mean(Prob_Mod_Sev > 0.5, w = wt, na.rm=T),
             fies.sev = weighted.mean(Prob_sev > 0.5, w = wt, na.rm=T)) %>%
   mutate(fies.mod.3yr = rollapply(fies.mod, width=3, FUN=mean, na.pad=T),

@@ -4,23 +4,32 @@
 # modeled for 2020, 2025, and 2030
 #######################################################
 
+#Just to fix Siberia
+covars$wci_index[covars$GDLCODE=='RUSr108'] <- 1
+
 # Read in data
 moddat <- merge(fies_subnat, 
-								ssp_past, 
+								covars, 
 								all.x=T, all.y=F) %>%
 	na.omit %>%
 	data.frame
 
-preddat <- ssp_future %>%
-	filter(!is.na(year)) %>%
+preddat <- covars %>%
 	data.frame
 
 # Set up Model
-vars <- names(moddat)[!names(moddat) %in% c('iso3', 'GDLCODE', 'fies.mod.rur', 'fies.sev.rur', 
-																						'fies.mod.urb', 'fies.sev.urb', 'Urban', 'Rural', 'fies.mod', 
-																						'fies.sev', 'rural', 'urban', 'year')]
+vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur', 
+                                            'fies.sev.rur', 'fies.mod.urb', 'fies.sev.urb',                                             'Urban', 'Rural', 'fies.mod', 'fies.sev', 
+                                            'population', 'YEAR', 'rural_perc',
+                                            'crops_prod', 'forest', 'builtup', 'livestock',
+                                            'pasture', 'crops_prod', 'cropland', 
+                                            'mal_vivax', 'stunting')]
 
-x <- model.matrix(as.formula(paste0('fies.mod ~ ', paste0(vars, collapse=' + '))), data=moddat)
+####################################
+# Model moderate food insecurity
+##################################
+x <- model.matrix(as.formula(paste0('fies.mod ~ ', paste0(vars, collapse=' + '))), 
+                  data=moddat)
 
 mod <- cv.glmnet(x, moddat$fies.mod, alpha=1)
 mod$lambda.min
@@ -39,16 +48,57 @@ for (i in 2:nrow(df)){
 preddat$fies.mod.pred[preddat$fies.mod.pred < 0] <- 0
 preddat$fies.mod.pred[preddat$fies.mod.pred > 1] <- 1
 
+###################################
+# Model severe food insecurity
+########################################
+x <- model.matrix(as.formula(paste0('fies.sev ~ ', paste0(vars, collapse=' + '))), 
+                  data=moddat)
+
+mod <- cv.glmnet(x, moddat$fies.sev, alpha=1)
+mod$lambda.min
+
+tmp_coeffs <- coef(mod, s = "lambda.min")
+df <- data.frame(term = tmp_coeffs@Dimnames[[1]][tmp_coeffs@i + 1], estimate = tmp_coeffs@x,
+								                  stringsAsFactors=F)
+
+# Get model predictions
+preddat$fies.sev.pred <- df$estimate[df$term == '(Intercept)']
+moddat$fies.sev.pred <- df$estimate[df$term == '(Intercept)']
+for (i in 2:nrow(df)){
+	preddat$fies.sev.pred <- preddat$fies.sev.pred + preddat[ , df$term[i]]*df$estimate[i]
+	moddat$fies.sev.pred <- moddat$fies.sev.pred + moddat[ , df$term[i]]*df$estimate[i]
+}
+preddat$fies.sev.pred[preddat$fies.sev.pred < 0] <- 0
+preddat$fies.sev.pred[preddat$fies.sev.pred > 1] <- 1
+
+
+
+##########################################
+# Visualize Results
+############################
+
 #Get totals by year
 totals <- preddat %>%
-	group_by(year) %>%
-	summarize(total=prettyNum(sum(fies.mod.pred * (rural + urban), na.rm=T), big.mark=',', scientific=F))
+  filter(YEAR > 2010) %>%
+	group_by(YEAR) %>%
+	summarize(mod.total=sum(fies.mod.pred * (population), na.rm=T),
+            sev.total=sum(fies.sev.pred * (population), na.rm=T)) %>%
+  gather(var, value, -YEAR) %>%
+  mutate(value_clean = prettyNum(value, big.mark=',', scientific=F))
 
+ggplot(totals) + 
+  geom_line(aes(x=YEAR, y=value, color=var))
+
+############################
 # Make Map
-mapdat <- merge(gdl, preddat %>% select(GDLCODE, year, fies.mod.pred), all.x=T, all.y=F) %>%
-	filter(!is.na(year)) %>%
-	merge(totals) %>%
-	mutate(year = paste0(year, ':\n', total, '\nFood Insecure'))
+##############################
+mapdat <- merge(gdl, preddat %>% select(GDLCODE, YEAR, fies.mod.pred, fies.sev.pred), all.x=T, all.y=F) %>%
+	merge(totals %>%
+          filter(YEAR %in% c(2020, 2025, 2030)) %>%
+          select(-value) %>%
+          spread(var, value_clean)) %>%
+	mutate(mod.YEAR = paste0(YEAR, ':\n', mod.total, '\nIn Moderate or Severe Food Insecurity'),
+         sev.YEAR = paste0(YEAR, ':\n', sev.total, '\nIn Severe Food Insecurity'))
 
 countries <- ne_countries(returnclass='sf')
 ggplot(mapdat) + 
@@ -62,10 +112,26 @@ ggplot(mapdat) +
 				plot.title = element_text(hjust = 0.5)) + 
   labs(title='Rate of Moderate to Severe Food Insecurity Under SSP2',
 			 fill='') + 
-	facet_grid(year ~ .)
-ggsave('figures/SSP2_LASSO.png', width=7, height=12)
+	facet_wrap(mod.YEAR ~ .)
+ggsave('figures/SSP2_LASSO_Moderate.png', width=20, height=8)
 
+ggplot(mapdat) + 
+	  geom_sf(aes(fill=fies.sev.pred), color=NA) + 
+		scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+																	 "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
+  geom_sf(data=countries, color='#000000', fill=NA) + 
+	coord_sf(crs='+proj=robin') + 
+	theme_void() + 
+	theme(legend.position = 'bottom',
+				plot.title = element_text(hjust = 0.5)) + 
+  labs(title='Rate of Severe Food Insecurity Under SSP2',
+			 fill='') + 
+	facet_wrap(sev.YEAR ~ .)
+ggsave('figures/SSP2_LASSO_Severe.png', width=20, height=8)
+
+##################################
 # Assess residuals
+##################################
 mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
 r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
 ggplot(moddat) + 

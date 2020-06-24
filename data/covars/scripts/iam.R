@@ -41,8 +41,8 @@ iamc <- merge(region, iam, all.y = T, by = "REGION") %>%
          livestock = livestock/population,
          crops_prod = crops_prod/population) %>%
   #approax the years in between
-  merge(expand.grid(list(ISO=unique(region$ISO), YEAR=seq(2005,2030))), all.y=T) %>%
   group_by(ISO) %>%
+  complete(YEAR=2005:2030) %>%
   arrange(YEAR) %>%
   mutate(builtup=na.approx(builtup, na.rm=F),
          cropland=na.approx(cropland, na.rm=F),
@@ -50,8 +50,9 @@ iamc <- merge(region, iam, all.y = T, by = "REGION") %>%
          forest=na.approx(forest, na.rm=F),
          livestock=na.approx(livestock, na.rm=F),
          pasture=na.approx(pasture, na.rm=F)) %>%
-  na.omit %>%
-  select(-population)
+  select(-population) %>%
+  rename(ISO3=ISO)
+
 
 write.csv(iamc, 'data/covars/results/iam.csv', row.names=F)
 

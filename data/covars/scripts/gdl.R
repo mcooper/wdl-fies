@@ -26,4 +26,5 @@ all <- expand.grid(list(GDLCODE=unique(dat$GDLCODE), YEAR=1990:2018)) %>%
   spread(var, value) %>%
   mutate(ISO3=substr(GDLCODE, 1, 3))
 
-write.csv(all, 'data/covars/results/gdl_vars.csv', row.names=F)
+#Now we are doing most of the GDL vars separately
+#write.csv(all, 'data/covars/results/gdl_vars.csv', row.names=F)

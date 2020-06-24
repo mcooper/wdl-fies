@@ -72,4 +72,11 @@ wc$wci_index[(wc$wci500+wc$wci1000+wc$wci1700) == 0] <- 0
 wc <- wc %>% 
   select(GDLCODE, YEAR=year, wci_index)
 
+wc <- wc %>%
+  group_by(GDLCODE) %>%
+  arrange(YEAR) %>%
+  complete(YEAR=2010:2030) %>%
+  mutate(wci_index=na.approx(wci_index)) %>%
+  na.omit
+
 write.csv(wc, 'data/covars/results/water_clock.csv', row.names=F)

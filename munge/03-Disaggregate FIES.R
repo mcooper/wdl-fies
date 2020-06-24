@@ -5,12 +5,12 @@ gdl <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4') %>%
 
 #Read in Pop data from Covariates
 #Subset to areas we have GDL codes for
-pop <- read.csv('data/covars_nowcast/results/urban-rural.csv') %>%
-  mutate(iso3=substr(GDLCODE, 1, 3))
-  rename(Rural = "rural", Urban = "urban")
+pop <- read.csv('data/covars/results/urban-rural.csv')
 
 pop_cty <- pop %>%
-  group_by(iso3, YEAR) %>%
+  mutate(Rural = population*rural_perc,
+         Urban = population*urban_perc) %>%
+  group_by(ISO3, YEAR) %>%
   summarize(Rural.Pop = sum(Rural),
             Urban.Pop = sum(Urban),
             Total.Pop = Rural.Pop + Urban.Pop)
@@ -25,8 +25,10 @@ fies_ur_pop_cty <- Reduce(function(x, y){merge(x, y, all.x=T, all.y=F)},
 
 fies_subnat <- merge(fies_ur_pop_cty %>%
                        select(fies.mod.rur, fies.mod.urb, fies.sev.rur, fies.sev.urb,
-                              iso3, YEAR),
-                     pop, 
+                              ISO3, YEAR),
+                     pop %>%
+                      mutate(Rural = population*rural_perc,
+                             Urban = population*urban_perc),
                      all.x=T, all.y=F) %>%
   mutate(fies.mod = (fies.mod.rur*Rural + fies.mod.urb*Urban)/(Rural + Urban),
          fies.sev = (fies.sev.rur*Rural + fies.sev.urb*Urban)/(Rural + Urban))
