@@ -86,6 +86,28 @@ moddat$fies.sev.pred <- inv.logit(moddat$fies.sev.pred)
 # Visualize Results
 ############################
 
+######################
+# Save output for Poli
+########################
+
+sel <- preddat %>%
+  select(ISO3, YEAR, GDLCODE, stunting, urban_perc, fies.mod.pred, population) %>%
+  filter(YEAR %in% c(2020, 2030)) %>%
+  mutate(stunting.urban = stunting*urban_perc*population,
+         stunting.rural = stunting*(1 - urban_perc)*population,
+         fies.urban = fies.mod.pred*urban_perc*population,
+         fies.rural = fies.mod.pred*(1 - urban_perc)*population,
+         population.urban = population*urban_perc,
+         population.rural = population*(1 - urban_perc)) %>%
+  select(-stunting, -urban_perc, -fies.mod.pred, -population) %>%
+  gather(var, value, -ISO3, -YEAR, -GDLCODE) %>%
+  mutate(GEO_AREA=ifelse(grepl('urban', var), 'urban', 'rural'),
+         var=gsub('.rural|.urban', '', var),
+         value = round(value)) %>%
+  spread(var, value)
+  
+write.csv(sel, 'figures/fies.mod.results.csv', row.names=F)
+
 #####################
 # Time Series
 ###############
