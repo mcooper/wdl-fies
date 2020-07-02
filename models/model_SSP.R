@@ -92,7 +92,7 @@ moddat$fies.sev.pred <- inv.logit(moddat$fies.sev.pred)
 
 sel <- preddat %>%
   select(ISO3, YEAR, GDLCODE, stunting, urban_perc, fies.mod.pred, population) %>%
-  filter(YEAR %in% c(2020, 2030)) %>%
+  filter(YEAR %in% c(2020, 2025, 2030)) %>%
   mutate(stunting.urban = stunting*urban_perc*population,
          stunting.rural = stunting*(1 - urban_perc)*population,
          fies.urban = fies.mod.pred*urban_perc*population,
