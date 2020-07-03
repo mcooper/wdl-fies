@@ -1,0 +1,19 @@
+US State Crime Rates 1960 Data + Variable Description Taken from the MASS package
+The variables except the dummy are in logs.
+
+M 	percentage of males aged 14–24.
+So 	indicator variable for a Southern state.
+Ed 	mean years of schooling.
+Po1 	police expenditure in 1960.
+Po2 	police expenditure in 1959.
+LF 	labour force participation rate.
+M.F 	number of males per 1000 females.
+Pop 	state population.
+NW 	number of non-whites per 1000 people.
+U1 	unemployment rate of urban males 14–24.
+U2 	unemployment rate of urban males 35–39.
+GDP 	gross domestic product per head.
+Ineq 	income inequality.
+Prob 	probability of imprisonment.
+Time 	average time served in state prisons.
+y 	rate of crimes in a particular category per head of population.

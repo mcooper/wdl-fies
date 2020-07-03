@@ -1,5 +1,5 @@
 #######################################################
-# Use LASSO regression with SSP covariates
+# Use BMA with SSP covariates
 # to estimate food insecurity, based on data for
 # modeled for 2020, 2025, and 2030
 #######################################################
@@ -27,59 +27,58 @@ moddat <- merge(fies_subnat,
 preddat <- covars %>%
   data.frame
 
+exc <- c('crops_prod', 'forest', 'builtup', 'livestock',
+         'pasture', 'crops_prod', 'cropland',
+         'mal_vivax', 'wasting')
+#exc <- c()
+
 # Set up Model
 vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur', 
-                                            'fies.sev.rur', 'fies.mod.urb', 'fies.sev.urb',                                             'Urban', 'Rural', 'fies.mod', 'fies.sev', 
-                                            'population', 'YEAR', 'rural_perc',
-                                            'crops_prod', 'forest', 'builtup', 'livestock',
-                                            'pasture', 'crops_prod', 'cropland', 
-                                            'mal_vivax', 'stunting', 'region',
-                                            names(moddat)[grepl('region', names(moddat))])]
+                                            'fies.sev.rur', 'fies.mod.urb', 'fies.sev.urb',
+                                            'Urban', 'Rural', 'fies.sev', 'fies.mod',
+                                            'population', 'YEAR', 'rural_perc', 'region',
+                                            names(moddat)[grepl('region', names(moddat))],
+                                            exc)]
+
+
+#preddat <- preddat %>% select('ISO3', 'GDLCODE', 'YEAR', 'region', 'population', 'rural_perc', vars)
+
+
 ####################################
 # Model moderate food insecurity
 ##################################
-x <- model.matrix(as.formula(paste0('fies.mod ~ ', paste0(vars, collapse=' + '))), 
-                  data=moddat)
 
-mod <- cv.glmnet(x, logit(moddat$fies.mod), alpha=1)
-mod$lambda.min
+x <- moddat %>% 
+  select(fies.mod, vars) %>%
+  mutate(fies.mod = logit(fies.mod))
 
-tmp_coeffs <- coef(mod, s = "lambda.min")
-mdf <- data.frame(term = tmp_coeffs@Dimnames[[1]][tmp_coeffs@i + 1], estimate =tmp_coeffs@x,
-                  stringsAsFactors=F)
+bma <- bms(x, burn = 10000, iter = 10000, mprior = "random", mcmc = "bd"); summary(bma)
+coef(bma, std.coefs = T, order.by.pip = T, include.constant = F)
 
-# Get model predictions
-preddat$fies.mod.pred <- mdf$estimate[mdf$term == '(Intercept)']
-moddat$fies.mod.pred <- mdf$estimate[mdf$term == '(Intercept)']
-for (i in 2:nrow(mdf)){
-  preddat$fies.mod.pred <- preddat$fies.mod.pred + preddat[ , mdf$term[i]]*mdf$estimate[i]
-  moddat$fies.mod.pred <- moddat$fies.mod.pred + moddat[ , mdf$term[i]]*mdf$estimate[i]
-}
-preddat$fies.mod.pred <- inv.logit(preddat$fies.mod.pred)
-moddat$fies.mod.pred <- inv.logit(moddat$fies.mod.pred)
+R2 <- fullmodel.ssq(bma); R2$R2
 
-###################################
-# Model severe food insecurity
-########################################
-x <- model.matrix(as.formula(paste0('fies.sev ~ ', paste0(vars, collapse=' + '))), 
-                  data=moddat)
+preddat$fies.mod.pred <- inv.logit(predict(bma, newdata = preddat %>% select(vars), exact = FALSE, topmodels = NULL))
+summary(preddat) #logit, already between 0 and 1
 
-mod <- cv.glmnet(x, logit(moddat$fies.sev), alpha=1)
-mod$lambda.min
+moddat$fies.mod.pred <- inv.logit(predict(bma, newdata = moddat %>% select(vars), exact = FALSE, topmodels = NULL))
 
-tmp_coeffs <- coef(mod, s = "lambda.min")
-sdf <- data.frame(term = tmp_coeffs@Dimnames[[1]][tmp_coeffs@i + 1], estimate = tmp_coeffs@x,
-                  stringsAsFactors=F)
+####################################
+# Model moderate food insecurity
+##################################
 
-# Get model predictions
-preddat$fies.sev.pred <- sdf$estimate[sdf$term == '(Intercept)']
-moddat$fies.sev.pred <- sdf$estimate[sdf$term == '(Intercept)']
-for (i in 2:nrow(sdf)){
-  preddat$fies.sev.pred <- preddat$fies.sev.pred + preddat[ , sdf$term[i]]*sdf$estimate[i]
-  moddat$fies.sev.pred <- moddat$fies.sev.pred + moddat[ , sdf$term[i]]*sdf$estimate[i]
-}
-preddat$fies.sev.pred <- inv.logit(preddat$fies.sev.pred)
-moddat$fies.sev.pred <- inv.logit(moddat$fies.sev.pred)
+x <- moddat %>% 
+  select(fies.sev, vars) %>%
+  mutate(fies.sev = logit(fies.sev))
+
+bma <- bms(x, burn = 10000, iter = 10000, mprior = "random", mcmc = "bd"); summary(bma)
+coef(bma, std.coefs = T, order.by.pip = T, include.constant = F)
+
+R2 <- fullmodel.ssq(bma); R2$R2
+
+preddat$fies.sev.pred <- inv.logit(predict(bma, newdata = preddat %>% select(vars), exact = FALSE, topmodels = NULL))
+summary(preddat) #logit, already between 0 and 1
+
+moddat$fies.sev.pred <- inv.logit(predict(bma, newdata = moddat %>% select(vars), exact = FALSE, topmodels = NULL))
 
 
 ##########################################
@@ -106,7 +105,7 @@ sel <- preddat %>%
          value = round(value)) %>%
   spread(var, value)
 
-write.csv(sel, 'figures/fies.mod.results.csv', row.names=F)
+#write.csv(sel, 'figures/fies.mod.results.csv', row.names=F)
 
 #####################
 # Time Series
@@ -127,7 +126,7 @@ ggplot(totals %>% filter(var=='mod.total')) +
   labs(x='Year', y="Number Food Insecure",
        title="Number With Moderate or Severe Food Insecurity, By Continent, Stacked") + 
   theme_bw()
-ggsave('figures/Time.Mod.Stack.png', width=7, height=5)
+#ggsave('figures/Time.Mod.Stack.png', width=7, height=5)
 
 ggplot(totals %>% filter(var=='mod.total')) + 
   geom_line(aes(x=YEAR, y=value, color=region), size=1) + 
@@ -136,25 +135,25 @@ ggplot(totals %>% filter(var=='mod.total')) +
   labs(x='Year', y="Number Food Insecure",
        title="Number With Moderate or Severe Food Insecurity, By Continent") + 
   theme_bw()
-ggsave('figures/Time.Mod.Lines.png', width=7, height=5)
+#ggsave('figures/Time.Mod.Lines.png', width=7, height=5)
 
-ggplot(totals %>% filter(var=='sev.total')) + 
-  geom_area(aes(x=YEAR, y=value, fill=region), position='stack') + 
-  scale_x_continuous(expand=c(0,0)) + 
-  scale_y_continuous(expand=c(0,0)) + 
+ggplot(totals %>% filter(var=='sev.total')) +
+  geom_area(aes(x=YEAR, y=value, fill=region), position='stack') +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0)) +
   labs(x='Year', y="Number Food Insecure",
-       title="Number With Severe Food Insecurity, By Continent, Stacked") + 
+       title="Number With Severe Food Insecurity, By Continent, Stacked") +
   theme_bw()
-ggsave('figures/Time.Sev.Stack.png', width=7, height=5)
+#ggsave('figures/Time.Sev.Stack.png', width=7, height=5)
 
-ggplot(totals %>% filter(var=='sev.total')) + 
-  geom_line(aes(x=YEAR, y=value, color=region), size=1) + 
-  scale_x_continuous(expand=c(0,0)) + 
-  scale_y_continuous(expand=c(0,0)) + 
+ggplot(totals %>% filter(var=='sev.total')) +
+  geom_line(aes(x=YEAR, y=value, color=region), size=1) +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0)) +
   labs(x='Year', y="Number Food Insecure",
-       title="Number With Severe Food Insecurity, By Continent") + 
+       title="Number With Severe Food Insecurity, By Continent") +
   theme_bw()
-ggsave('figures/Time.Sev.Lines.png', width=7, height=5)
+#ggsave('figures/Time.Sev.Lines.png', width=7, height=5)
 
 
 ############################
@@ -189,7 +188,7 @@ ggplot(mapdat) +
   labs(title='Rate of Moderate to Severe Food Insecurity Under SSP2',
        fill='') + 
   facet_wrap(mod.YEAR ~ .)
-ggsave('figures/SSP2_LASSO_Moderate.png', width=20, height=8)
+#ggsave('figures/SSP2_LASSO_Moderate.png', width=20, height=8)
 
 ggplot(mapdat) + 
   geom_sf(aes(fill=fies.sev.pred), color=NA) + 
@@ -203,7 +202,7 @@ ggplot(mapdat) +
   labs(title='Rate of Severe Food Insecurity Under SSP2',
        fill='') + 
   facet_wrap(sev.YEAR ~ .)
-ggsave('figures/SSP2_LASSO_Severe.png', width=20, height=8)
+#ggsave('figures/SSP2_LASSO_Severe.png', width=20, height=8)
 
 ##################################
 # Assess residuals
@@ -216,7 +215,7 @@ ggplot(moddat) +
                       '\nR-squared: ', round(r2, 4)),
        x='Observed Rates of Mod+Sev Food Insecurity',
        y='Modeled Rate of Mod+Sev Food Insecurity')	
-ggsave('figures/SSP2_Mod_Residuals.png', width=5, height=5)
+#ggsave('figures/SSP2_Mod_Residuals.png', width=5, height=5)
 
 mae <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred))
 r2 <- cor(moddat$fies.sev, moddat$fies.sev.pred)
@@ -226,47 +225,49 @@ ggplot(moddat) +
                       '\nR-squared: ', round(r2, 4)),
        x='Observed Rates of Sev Food Insecurity',
        y='Modeled Rate of Sev Food Insecurity')	
-ggsave('figures/SSP2_Sev_Residuals.png', width=5, height=5)
+#ggsave('figures/SSP2_Sev_Residuals.png', width=5, height=5)
 
-##################################
-# Plot scaled covariates
-#####################################
-for (v in vars){
-  if (v %in% mdf$term){
-    mdf$scaled[mdf$term==v] <- mdf$estimate[mdf$term==v]*sd(moddat[ , v])
-  } else{
-    mdf <- bind_rows(mdf, data.frame(term=v, estimate=0, scaled=0))
-  }
-}
+# ##################################
+# # Plot scaled covariates
+# #####################################
+# for (v in vars){
+#   if (v %in% mdf$term){
+#     mdf$scaled[mdf$term==v] <- mdf$estimate[mdf$term==v]*sd(moddat[ , v])
+#   } else{
+#     mdf <- bind_rows(mdf, data.frame(term=v, estimate=0, scaled=0))
+#   }
+# }
+# 
+# mdf$term <- factor(mdf$term, levels=mdf$term[order(mdf$scaled)], ordered=TRUE)
+# 
+# ggplot(mdf %>% filter(term != '(Intercept)')) + 
+#   geom_bar(aes(x=term, y=scaled), stat='identity') + 
+#   coord_flip() + 
+#   labs(title='Change in Rate of Mod+Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model',
+#        x="", y="") + 
+#   theme_minimal()
+# 
+# #ggsave('figures/SSP2_Mod_Coefs.png', width=5, height=5)
+# 
+# 
+# 
+# for (v in vars){
+#   if (v %in% sdf$term){
+#     sdf$scaled[sdf$term==v] <- sdf$estimate[sdf$term==v]*sd(moddat[ , v])
+#   } else{
+#     sdf <- bind_rows(sdf, data.frame(term=v, estimate=0, scaled=0))
+#   }
+# }
+# 
+# sdf$term <- factor(sdf$term, levels=sdf$term[order(sdf$scaled)], ordered=TRUE)
+# 
+# ggplot(sdf %>% filter(term != '(Intercept)')) + 
+#   geom_bar(aes(x=term, y=scaled), stat='identity') + 
+#   coord_flip() + 
+#   labs(title='Change in Rate of Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model',
+#        x="", y="") + 
+#   theme_minimal()
+# 
+# #ggsave('figures/SSP2_Sev_Coefs.png', width=5, height=5)
 
-mdf$term <- factor(mdf$term, levels=mdf$term[order(mdf$scaled)], ordered=TRUE)
 
-ggplot(mdf %>% filter(term != '(Intercept)')) + 
-  geom_bar(aes(x=term, y=scaled), stat='identity') + 
-  coord_flip() + 
-  labs(title='Change in Rate of Mod+Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model',
-       x="", y="") + 
-  theme_minimal()
-
-ggsave('figures/SSP2_Mod_Coefs.png', width=5, height=5)
-
-
-
-for (v in vars){
-  if (v %in% sdf$term){
-    sdf$scaled[sdf$term==v] <- sdf$estimate[sdf$term==v]*sd(moddat[ , v])
-  } else{
-    sdf <- bind_rows(sdf, data.frame(term=v, estimate=0, scaled=0))
-  }
-}
-
-sdf$term <- factor(sdf$term, levels=sdf$term[order(sdf$scaled)], ordered=TRUE)
-
-ggplot(sdf %>% filter(term != '(Intercept)')) + 
-  geom_bar(aes(x=term, y=scaled), stat='identity') + 
-  coord_flip() + 
-  labs(title='Change in Rate of Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model',
-       x="", y="") + 
-  theme_minimal()
-
-ggsave('figures/SSP2_Sev_Coefs.png', width=5, height=5)
