@@ -27,7 +27,8 @@ moddat <- merge(fies_subnat,
 preddat <- covars %>%
   data.frame
 
-
+exc <- c()
+#exc <- c('mal_falciparum', 'mal_vivax', 'wasting', 'crop_prod')
 exc <- c('crops_prod', 'forest', 'builtup', 'livestock',
          'pasture', 'crops_prod', 'cropland',
          'mal_vivax', 'stunting')
@@ -54,7 +55,24 @@ vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
 ## bayesian from different tutorials, combination of "BaysianOLS.R" and "SSVS.R"
 ## OLS for normal OLS and SSVS for model selection (shrinkage, like LASSO)
 
-fun.bayesmagic <- function(y, bigX, nburn, nsave) {
+bayes.ssvs <- function(y, bigX, nburn, nsave, ssvs, fig) {
+  
+  # ssvs <- 1 #scale the distributions of the spike and slab prior, something between 1-10 maybe, 1 is standard (from course) 
+  # 
+  # # bring data into corrrect format
+  # data <- moddat %>% 
+  #   select(fies.mod, fies.sev, vars) %>%
+  #   mutate(fies.mod = logit(fies.mod), fies.sev = logit(fies.sev))
+  # summary(data)
+  # 
+  # # model moderate food insecurity
+  # y <- as.matrix(data %>% select(fies.mod))
+  # bigX <- cbind(matrix(1, nrow = nrow(data), ncol = 1), as.matrix(data %>% select(vars)))
+  # colnames(bigX) <- c("(Intercept)", vars)
+  # nburn <- 10000         #number of burn ins
+  # nsave <- 10000         #number of saved draws
+  # 
+  # fig <- T
   
   y <- y
   X <- bigX
@@ -96,16 +114,19 @@ fun.bayesmagic <- function(y, bigX, nburn, nsave) {
   
   # ssvs prior on coefficients
   
-  sig2h <- 10         #ssvs slab  (high) variance
-  sig2l <- .01        #ssvs spike (low)  variance
+  sig2h <- 10*ssvs         #ssvs slab  (high) variance
+  sig2l <- .01/ssvs        #ssvs spike (low)  variance
   
   b0    <- matrix(0, nrow=P)   #prior mean of beta
   B0    <- diag(sig2h,  P)     #prior var-cov of beta
   B0inv <- diag(1/sig2h, P)    #inverse of prior var-cov of beta
   
   # how does our normal - normal spike and slab prior look like?
+  #par(mfrow=c(1,1),mar=c(1,1,1,1))
+  if(fig == T) {png("figures/bayes_ssvs/spike_slab_prior_bayes_ssvs.png")}
   plot(density(rnorm(10000, 0, sqrt(sig2h))),ylim=c(0,2)) #slab
   lines(density(rnorm(10000, 0, sqrt(sig2l))), col="red")   #spike
+  if(fig == T) {dev.off()}
   
   # inverse gamma prior on the variance
   
@@ -113,7 +134,9 @@ fun.bayesmagic <- function(y, bigX, nburn, nsave) {
   C0 <- 1 #prior rate  of sigma2
   
   # how does this prior distribution look like?
+  #png("figures/bayes_ssvs/variance_prior_bayes_ssvs.png")
   plot(density(1/rgamma(20000, c0, C0)))
+  #dev.off()
   
   
   # note that we implicitly set prior inclusion probability for all variables to 0.5
@@ -232,7 +255,7 @@ fun.bayesmagic <- function(y, bigX, nburn, nsave) {
     
     # STEP 4: PROGRESS
     # (in case you want to know how many iterations we already did)
-    if(irep%%500==0){  
+    if(irep%%(ntot/100)==0){  
       #Sys.sleep(0.0001)
       # update progress bar
       setTxtProgressBar(pb, irep)}
@@ -278,6 +301,28 @@ fun.bayesmagic <- function(y, bigX, nburn, nsave) {
   # usually, the reader is not interested in you plotting full posterior distributions
   # we can use a few statistics to summarize the posterior distribution of any given parameter:
   
+  # ... plot all posterior distributions
+  
+  if(fig == T) {png("figures/bayes_ssvs/posterior_bayes_ssvs.png")}
+  par(mfrow=c(P%/%2,2),mar=c(2,2,2,2))
+  for(i in 1:P) {
+    #i <- 1
+    plot(density(beta.store[,i]), main = colnames(X)[i], 
+         xlim = c(median(beta.store[,i])-3*sd(beta.store[,i]),median(beta.store[,i])+3*sd(beta.store[,i])))
+    abline(v=mean(beta.store[,i]), col="red")
+    abline(v=median(beta.store[,i]), col="green")
+    abline(v=quantile(beta.store[,i], prob = 0.05), col="blue", lty=2)
+    abline(v=quantile(beta.store[,i], prob = 0.95), col="blue", lty=2)
+  }
+  if(fig == T) {dev.off()}
+  
+  if(fig == T) {png("figures/bayes_ssvs/covar_box_bayes_ssvs.png")}
+  par(mfrow=c(P%/%2,2),mar=c(2,2,2,2))
+  for(i in 1:P) {
+    boxplot(beta.store[,i], main = colnames(X)[i], horizontal = T)
+  }
+  if(fig == T) {dev.off()}
+  
   # ... posterior means
   
   apply(beta.store, 2, mean) #how does that compare to ols estimates?
@@ -294,7 +339,6 @@ fun.bayesmagic <- function(y, bigX, nburn, nsave) {
   
   apply(beta.store, 2, quantile, prob = c(0.05,0.95))
   
-  
   # summerize output
   
   df <- data.frame(
@@ -303,11 +347,26 @@ fun.bayesmagic <- function(y, bigX, nburn, nsave) {
     pip = apply(delta.store,2, mean), #posterior inclusion probability
     median = apply(beta.store, 2, median), #beta median
     sd = apply(beta.store, 2, sd), #standard deviation
+    
     conf0.05 = apply(beta.store, 2, quantile, prob = 0.05), #posterior density intervals, 0.05 and 0.95
     conf0.95 = apply(beta.store, 2, quantile, prob = 0.95),
     conf0.01 = apply(beta.store, 2, quantile, prob = 0.01), #posterior density intervals, 0.01 and 0.99
     conf0.99 = apply(beta.store, 2, quantile, prob = 0.99)
+    
+    # conf0.05 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.05,length(x)-1)*sd(x)/sqrt(length(x)))}), #assume that they come from a normal?
+    # conf0.95 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.95,length(x)-1)*sd(x)/sqrt(length(x)))}),
+    # conf0.1 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.1,length(x)-1)*sd(x)/sqrt(length(x)))}),
+    # conf0.9 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.9,length(x)-1)*sd(x)/sqrt(length(x)))})
   )
+  
+  # for(i in 1:P) {
+  #   if(mean(beta.store[,i]) < 0.001) {
+  #     df$conf0.05[i] <- 0
+  #     df$conf0.95[i] <- 0
+  #     df$conf0.01[i] <- 0
+  #     df$conf0.99[i] <- 0
+  #   }
+  # }
   
   # df <- df[order(-df$pip),]
   
@@ -315,6 +374,8 @@ fun.bayesmagic <- function(y, bigX, nburn, nsave) {
 }
 
 ##--------------------------------------------------------------------------------------------------------------------------------------
+
+ssvs <- 1 #scale the distributions of the spike and slab prior, something between 1-10 maybe, 1 is standard (from course) 
 
 # bring data into corrrect format
 data <- moddat %>% 
@@ -326,23 +387,25 @@ summary(data)
 y <- as.matrix(data %>% select(fies.mod))
 bigX <- cbind(matrix(1, nrow = nrow(data), ncol = 1), as.matrix(data %>% select(vars)))
 colnames(bigX) <- c("(Intercept)", vars)
-nburn <- 10000         #number of burn ins
-nsave <- 40000         #number of saved draws
+nburn <- 50000         #number of burn ins
+nsave <- 450000         #number of saved draws
 
-mdf <- fun.bayesmagic(y, bigX, nburn, nsave)
+fig <- T
+mdf <- bayes.ssvs(y, bigX, nburn, nsave, ssvs, fig)
 
 # model severe food insecurity
 y <- as.matrix(data %>% select(fies.sev))
 bigX <- cbind(matrix(1, nrow = nrow(data), ncol = 1), as.matrix(data %>% select(vars)))
 colnames(bigX) <- c("(Intercept)", vars)
-nburn <- 10000         #number of burn ins
-nsave <- 40000         #number of saved draws
+nburn <- 50000         #number of burn ins
+nsave <- 450000         #number of saved draws
 
-sdf <- fun.bayesmagic(y, bigX, nburn, nsave)
+fig <- F
+sdf <- bayes.ssvs(y, bigX, nburn, nsave, ssvs, fig)
 
 
 # Get model predictions
-for(x in c("mean", "conf0.05", "conf0.95")) {
+for(x in c("median", "conf0.05", "conf0.95")) {
   preddat[[paste0("fies.mod.pred_",x)]] <- mdf[[x]][mdf$term == '(Intercept)']
   moddat[[paste0("fies.mod.pred_",x)]] <- mdf[[x]][mdf$term == '(Intercept)']
   preddat[[paste0("fies.sev.pred_",x)]] <- sdf[[x]][sdf$term == '(Intercept)']
@@ -376,63 +439,52 @@ totals <- preddat %>%
   filter(YEAR > 2010) %>%
   #group_by(YEAR) %>%
   group_by(YEAR, region) %>%
-  summarize(mod.total_mean=sum(fies.mod.pred_mean * (population), na.rm=T),
+  summarize(mod.total_median=sum(fies.mod.pred_median * (population), na.rm=T),
             mod.total_conf0.05=sum(fies.mod.pred_conf0.05 * (population), na.rm=T),
             mod.total_conf0.95=sum(fies.mod.pred_conf0.95 * (population), na.rm=T),
             
-            sev.total_mean=sum(fies.sev.pred_mean * (population), na.rm=T),
+            sev.total_median=sum(fies.sev.pred_median * (population), na.rm=T),
             sev.total_conf0.05=sum(fies.sev.pred_conf0.05 * (population), na.rm=T),
             sev.total_conf0.95=sum(fies.sev.pred_conf0.95 * (population), na.rm=T)
-            )  %>%
+  )  %>%
   gather(var, value, -YEAR, -region) #uncommant if coef int
 
 
-ggplot(totals) +
-  geom_line(aes(x=YEAR, y=mod.total_mean), size = 1) +
-  geom_line(aes(x=YEAR, y=mod.total_conf0.05), size = 0.8, linetype = "dashed") +
-  geom_line(aes(x=YEAR, y=mod.total_conf0.95), size = 0.8, linetype = "dashed") +
+ggplot(totals %>% filter(var=='mod.total_median')) +
+  geom_area(aes(x=YEAR, y=value, fill=region), position='stack') +
   scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0), limits=c(0*10^9, 5*10^9)) +
+  scale_y_continuous(expand=c(0,0)) +
   labs(x='Year', y="Number Food Insecure",
-       title="Number With Moderate or Severe Food Insecurity with 0.05/0.95 Confidence Intervals") +
+       title="Number With Moderate or Severe Food Insecurity, By Continent, Stacked\n(Bayes SVSS)") +
   theme_bw()
+ggsave('figures/bayes_ssvs/Time.Mod.Stack_bayes_ssvs.png', width=7, height=5)
 
+ggplot(totals %>% filter(var=='mod.total_median')) +
+  geom_line(aes(x=YEAR, y=value, color=region), size=1) +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0)) +
+  labs(x='Year', y="Number Food Insecure",
+       title="Number With Moderate or Severe Food Insecurity, By Continent\n(Bayes SVSS)") +
+  theme_bw()
+ggsave('figures/bayes_ssvs/Time.Mod.Lines_bayes_ssvs.png', width=7, height=5)
 
-# ggplot(totals %>% filter(var=='mod.total')) +
-#   geom_area(aes(x=YEAR, y=value, fill=region), position='stack') +
-#   scale_x_continuous(expand=c(0,0)) +
-#   scale_y_continuous(expand=c(0,0)) +
-#   labs(x='Year', y="Number Food Insecure",
-#        title="Number With Moderate or Severe Food Insecurity, By Continent, Stacked") +
-#   theme_bw()
-# # ggsave('figures/Time.Mod.Stack.png', width=7, height=5)
-# 
-# ggplot(totals %>% filter(var=='mod.total')) +
-#   geom_line(aes(x=YEAR, y=value, color=region), size=1) +
-#   scale_x_continuous(expand=c(0,0)) +
-#   scale_y_continuous(expand=c(0,0)) +
-#   labs(x='Year', y="Number Food Insecure",
-#        title="Number With Moderate or Severe Food Insecurity, By Continent") +
-#   theme_bw()
-# # ggsave('figures/Time.Mod.Lines.png', width=7, height=5)
-# 
-# ggplot(totals %>% filter(var=='sev.total')) +
-#   geom_area(aes(x=YEAR, y=value, fill=region), position='stack') +
-#   scale_x_continuous(expand=c(0,0)) +
-#   scale_y_continuous(expand=c(0,0)) +
-#   labs(x='Year', y="Number Food Insecure",
-#        title="Number With Severe Food Insecurity, By Continent, Stacked") +
-#   theme_bw()
-# # ggsave('figures/Time.Sev.Stack.png', width=7, height=5)
-# 
-# ggplot(totals %>% filter(var=='sev.total')) +
-#   geom_line(aes(x=YEAR, y=value, color=region), size=1) +
-#   scale_x_continuous(expand=c(0,0)) +
-#   scale_y_continuous(expand=c(0,0)) +
-#   labs(x='Year', y="Number Food Insecure",
-#        title="Number With Severe Food Insecurity, By Continent") +
-#   theme_bw()
-# # ggsave('figures/Time.Sev.Lines.png', width=7, height=5)
+ggplot(totals %>% filter(var=='sev.total_median')) +
+  geom_area(aes(x=YEAR, y=value, fill=region), position='stack') +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0)) +
+  labs(x='Year', y="Number Food Insecure",
+       title="Number With Severe Food Insecurity, By Continent, Stacked\n(Bayes SVSS)") +
+  theme_bw()
+ggsave('figures/bayes_ssvs/Time.Sev.Stack_bayes_ssvs.png', width=7, height=5)
+
+ggplot(totals %>% filter(var=='sev.total_median')) +
+  geom_line(aes(x=YEAR, y=value, color=region), size=1) +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0)) +
+  labs(x='Year', y="Number Food Insecure",
+       title="Number With Severe Food Insecurity, By Continent\n(Bayes SVSS)") +
+  theme_bw()
+ggsave('figures/bayes_ssvs/Time.Sev.Lines_bayes_ssvs.png', width=7, height=5)
 
 
 ############################
@@ -442,21 +494,21 @@ mapdat <- merge(gdl %>%
                   select(-region), 
                 preddat %>% 
                   filter(YEAR %in% c(2020, 2025, 2030)) %>%
-                  select(GDLCODE, YEAR, fies.mod.pred_mean, fies.sev.pred_mean), 
+                  select(GDLCODE, YEAR, fies.mod.pred_median, fies.sev.pred_median), 
                 all.x=T, all.y=F) %>%
   merge(totals %>%
           filter(YEAR %in% c(2020, 2025, 2030)) %>%
           group_by(YEAR, var) %>%
           summarize(value=prettyNum(sum(value), scientific=F, big.mark=',')) %>%
           spread(var, value) %>%
-          mutate(mod.YEAR = paste0(YEAR, ':\n', mod.total_mean, 
+          mutate(mod.YEAR = paste0(YEAR, ':\n', mod.total_median, 
                                    '\nIn Moderate or Severe Food Insecurity'),
-                 sev.YEAR = paste0(YEAR, ':\n', sev.total_mean, 
+                 sev.YEAR = paste0(YEAR, ':\n', sev.total_median, 
                                    '\nIn Severe Food Insecurity')))
 
 countries <- ne_countries(returnclass='sf')
 ggplot(mapdat) + 
-  geom_sf(aes(fill=fies.mod.pred_mean), color=NA) + 
+  geom_sf(aes(fill=fies.mod.pred_median), color=NA) + 
   scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
                                  "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
   geom_sf(data=countries, color='#000000', fill=NA) + 
@@ -464,23 +516,131 @@ ggplot(mapdat) +
   theme_void() + 
   theme(legend.position = 'bottom',
         plot.title = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Moderate to Severe Food Insecurity Under SSP2',
+  labs(title='Rate of Moderate to Severe Food Insecurity Under SSP2 (Bayes SVSS)',
        fill='') + 
-  facet_wrap(mod.YEAR ~ .)
-# ggsave('figures/SSP2_LASSO_Moderate.png', width=20, height=8)
+  facet_grid(mod.YEAR ~ .)
+ggsave('figures/bayes_ssvs/SSP2_LASSO_Moderate_bayes_ssvs.png', width=10, height=12)
 
-ggplot(mapdat) + 
-  geom_sf(aes(fill=fies.sev.pred), color=NA) + 
-  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
-                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
-  geom_sf(data=countries, color='#000000', fill=NA) + 
-  coord_sf(crs='+proj=robin') + 
-  theme_void() + 
+ggplot(mapdat) +
+  geom_sf(aes(fill=fies.sev.pred_median), color=NA) +
+  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0",
+                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) +
+  geom_sf(data=countries, color='#000000', fill=NA) +
+  coord_sf(crs='+proj=robin') +
+  theme_void() +
   theme(legend.position = 'bottom',
-        plot.title = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Severe Food Insecurity Under SSP2',
-       fill='') + 
-  facet_wrap(sev.YEAR ~ .)
-# ggsave('figures/SSP2_LASSO_Severe.png', width=20, height=8)
+        plot.title = element_text(hjust = 0.5)) +
+  labs(title='Rate of Severe Food Insecurity Under SSP2 (Bayes SVSS)',
+       fill='') +
+  facet_grid(sev.YEAR ~ .)
+ggsave('figures/bayes_ssvs/SSP2_LASSO_Severe_bayes_ssvs.png', width=10, height=12)
+
+
+##################################
+# Assess residuals
+##################################
+mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred_median))
+r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred_median)
+ggplot(moddat) + 
+  geom_point(aes(x=fies.mod, y=fies.mod.pred_median)) + 
+  labs(title='Model Performance (Bayes SVSS)',
+       caption=paste0('Mean Absolute Error: ',  round(mae, 4),
+                      '\nR-squared: ', round(r2, 4)),
+       x='Observed Rates of Mod+Sev Food Insecurity',
+       y='Modeled Rate of Mod+Sev Food Insecurity')	
+ggsave('figures/bayes_ssvs/SSP2_Mod_Residuals_bayes_ssvs.png', width=5, height=5)
+
+mae <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred_median))
+r2 <- cor(moddat$fies.sev, moddat$fies.sev.pred_median)
+ggplot(moddat) + 
+  geom_point(aes(x=fies.sev, y=fies.sev.pred_median)) + 
+  labs(title='Model Performance (Bayes SVSS)',
+       caption=paste0('Mean Absolute Error: ',  round(mae, 4),
+                      '\nR-squared: ', round(r2, 4)),
+       x='Observed Rates of Sev Food Insecurity',
+       y='Modeled Rate of Sev Food Insecurity')	
+ggsave('figures/bayes_ssvs/SSP2_Sev_Residuals_LASSO.png', width=5, height=5)
+
+
+##################################
+# Plot scaled covariates
+#####################################
+
+for (v in vars){
+  if (v %in% mdf$term){
+    mdf$scaled[mdf$term==v] <- mdf$median[mdf$term==v]*sd(moddat[ , v])
+  } else{
+    mdf <- bind_rows(mdf, data.frame(term=v, median=0, scaled=0))
+  }
+}
+
+mdf$term <- factor(mdf$term, levels=mdf$term[order(mdf$scaled)], ordered=TRUE)
+
+ggplot(mdf %>% filter(term != '(Intercept)')) + 
+  geom_bar(aes(x=term, y=scaled), stat='identity') + 
+  coord_flip() + 
+  labs(title='Change in Rate of Mod+Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model\n(Bayes SSVS)',
+       x="", y="") + 
+  theme_minimal()
+
+ggsave('figures/bayes_ssvs/SSP2_Mod_Coefs_bayes_ssvs.png', width=5, height=5)
+
+
+
+for (v in vars){
+  if (v %in% sdf$term){
+    sdf$scaled[sdf$term==v] <- sdf$median[sdf$term==v]*sd(moddat[ , v])
+  } else{
+    sdf <- bind_rows(sdf, data.frame(term=v, median=0, scaled=0))
+  }
+}
+
+sdf$term <- factor(sdf$term, levels=sdf$term[order(sdf$scaled)], ordered=TRUE)
+
+ggplot(sdf %>% filter(term != '(Intercept)')) + 
+  geom_bar(aes(x=term, y=scaled), stat='identity') + 
+  coord_flip() + 
+  labs(title='Change in Rate of Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model\n(Bayes SSVS)',
+       x="", y="") + 
+  theme_minimal()
+
+ggsave('figures/bayes_SSVS/SSP2_Sev_Coefs_bayes_ssvs.png', width=5, height=5)
+
+
+##################################
+# Additional Bayes stuff
+#####################################
+
+#Get totals by year
+totals <- preddat %>%
+  filter(YEAR > 2010) %>%
+  #group_by(YEAR) %>%
+  group_by(YEAR) %>%
+  summarize(mod.total_median=sum(fies.mod.pred_median * (population), na.rm=T),
+            mod.total_conf0.05=sum(fies.mod.pred_conf0.05 * (population), na.rm=T),
+            mod.total_conf0.95=sum(fies.mod.pred_conf0.95 * (population), na.rm=T),
+            
+            sev.total_median=sum(fies.sev.pred_median * (population), na.rm=T),
+            sev.total_conf0.05=sum(fies.sev.pred_conf0.05 * (population), na.rm=T),
+            sev.total_conf0.95=sum(fies.sev.pred_conf0.95 * (population), na.rm=T)
+  ) 
+
+#credible interval
+ggplot(totals) +
+  geom_line(aes(x=YEAR, y=mod.total_median), size = 1) +
+  geom_line(aes(x=YEAR, y=mod.total_conf0.05), size = 0.8, linetype = "dashed") +
+  geom_line(aes(x=YEAR, y=mod.total_conf0.95), size = 0.8, linetype = "dashed") +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0), limits=c(0*10^9, 6*10^9)) +
+  labs(x='Year', y="Number Food Insecure",
+       title="Number With Moderate or Severe Food Insecurity with 0.05/0.95 Credible Intervals\n(Bayes SVSS)") +
+  theme_bw()
+ggsave('figures/bayes_ssvs/Time.Mod.Conf_bayes_ssvs.png', width=7, height=5)
+
+
+
+
+
+
 
 

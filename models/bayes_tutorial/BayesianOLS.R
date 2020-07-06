@@ -240,6 +240,19 @@ abline(v=sig2.ols, col="green")
 
 # we can use a few statistics to summarize the posterior distribution of any given parameter:
 
+# ... plot all posterior distributions
+
+par(mfrow=c(P%/%2,2),mar=c(2,2,2,2))
+for(i in 1:P){
+  #i <- 1
+  plot(density(beta.store[,i]), main = colnames(X)[i+1], 
+       xlim = c(median(beta.store[,i])-3*sd(beta.store[,i]),median(beta.store[,i])+3*sd(beta.store[,i])))
+  abline(v=mean(beta.store[,i]), col="red")
+  abline(v=median(beta.store[,i]), col="green")
+  abline(v=quantile(beta.store[,i], prob = 0.05), col="blue", lty=2)
+  abline(v=quantile(beta.store[,i], prob = 0.95), col="blue", lty=2)
+}
+
 # ... posterior means
 
 apply(beta.store, 2, mean) #how does that compare to ols estimates?

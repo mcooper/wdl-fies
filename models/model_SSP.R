@@ -125,36 +125,36 @@ ggplot(totals %>% filter(var=='mod.total')) +
   scale_x_continuous(expand=c(0,0)) + 
   scale_y_continuous(expand=c(0,0)) + 
   labs(x='Year', y="Number Food Insecure",
-       title="Number With Moderate or Severe Food Insecurity, By Continent, Stacked") + 
+       title="Number With Moderate or Severe Food Insecurity, By Continent, Stacked\n(LASSO)") + 
   theme_bw()
-ggsave('figures/Time.Mod.Stack.png', width=7, height=5)
+ggsave('figures/LASSO/Time.Mod.Stack_LASSO.png', width=7, height=5)
 
 ggplot(totals %>% filter(var=='mod.total')) + 
   geom_line(aes(x=YEAR, y=value, color=region), size=1) + 
   scale_x_continuous(expand=c(0,0)) + 
   scale_y_continuous(expand=c(0,0)) + 
   labs(x='Year', y="Number Food Insecure",
-       title="Number With Moderate or Severe Food Insecurity, By Continent") + 
+       title="Number With Moderate or Severe Food Insecurity, By Continent\n(LASSO)") + 
   theme_bw()
-ggsave('figures/Time.Mod.Lines.png', width=7, height=5)
+ggsave('figures/LASSO/Time.Mod.Lines_LASSO.png', width=7, height=5)
 
 ggplot(totals %>% filter(var=='sev.total')) + 
   geom_area(aes(x=YEAR, y=value, fill=region), position='stack') + 
   scale_x_continuous(expand=c(0,0)) + 
   scale_y_continuous(expand=c(0,0)) + 
   labs(x='Year', y="Number Food Insecure",
-       title="Number With Severe Food Insecurity, By Continent, Stacked") + 
+       title="Number With Severe Food Insecurity, By Continent, Stacked\n(LASSO)") + 
   theme_bw()
-ggsave('figures/Time.Sev.Stack.png', width=7, height=5)
+ggsave('figures/LASSO/Time.Sev.Stack_LASSO.png', width=7, height=5)
 
 ggplot(totals %>% filter(var=='sev.total')) + 
   geom_line(aes(x=YEAR, y=value, color=region), size=1) + 
   scale_x_continuous(expand=c(0,0)) + 
   scale_y_continuous(expand=c(0,0)) + 
   labs(x='Year', y="Number Food Insecure",
-       title="Number With Severe Food Insecurity, By Continent") + 
+       title="Number With Severe Food Insecurity, By Continent\n(LASSO)") + 
   theme_bw()
-ggsave('figures/Time.Sev.Lines.png', width=7, height=5)
+ggsave('figures/LASSO/Time.Sev.Lines_LASSO.png', width=7, height=5)
 
 
 ############################
@@ -186,10 +186,10 @@ ggplot(mapdat) +
   theme_void() + 
   theme(legend.position = 'bottom',
         plot.title = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Moderate to Severe Food Insecurity Under SSP2',
+  labs(title='Rate of Moderate to Severe Food Insecurity Under SSP2 (LASSO)',
        fill='') + 
-  facet_wrap(mod.YEAR ~ .)
-ggsave('figures/SSP2_LASSO_Moderate.png', width=20, height=8)
+  facet_grid(mod.YEAR ~ .)
+ggsave('figures/LASSO/SSP2_LASSO_Moderate_LASSO.png', width=10, height=12)
 
 ggplot(mapdat) + 
   geom_sf(aes(fill=fies.sev.pred), color=NA) + 
@@ -200,10 +200,10 @@ ggplot(mapdat) +
   theme_void() + 
   theme(legend.position = 'bottom',
         plot.title = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Severe Food Insecurity Under SSP2',
+  labs(title='Rate of Severe Food Insecurity Under SSP2 (LASSO)',
        fill='') + 
-  facet_wrap(sev.YEAR ~ .)
-ggsave('figures/SSP2_LASSO_Severe.png', width=20, height=8)
+  facet_grid(sev.YEAR ~ .)
+ggsave('figures/LASSO/SSP2_LASSO_Severe_LASSO.png', width=10, height=12)
 
 ##################################
 # Assess residuals
@@ -212,21 +212,23 @@ mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
 r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
 ggplot(moddat) + 
   geom_point(aes(x=fies.mod, y=fies.mod.pred)) + 
-  labs(caption=paste0('Mean Absolute Error: ',  round(mae, 4),
+  labs(title='Model Performance (LASSO)',
+       caption=paste0('Mean Absolute Error: ',  round(mae, 4),
                       '\nR-squared: ', round(r2, 4)),
        x='Observed Rates of Mod+Sev Food Insecurity',
        y='Modeled Rate of Mod+Sev Food Insecurity')	
-ggsave('figures/SSP2_Mod_Residuals.png', width=5, height=5)
+ggsave('figures/LASSO/SSP2_Mod_Residuals_LASSO.png', width=5, height=5)
 
 mae <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred))
 r2 <- cor(moddat$fies.sev, moddat$fies.sev.pred)
 ggplot(moddat) + 
   geom_point(aes(x=fies.sev, y=fies.sev.pred)) + 
-  labs(caption=paste0('Mean Absolute Error: ',  round(mae, 4),
+  labs(title='Model Performance (LASSO)',
+       caption=paste0('Mean Absolute Error: ',  round(mae, 4),
                       '\nR-squared: ', round(r2, 4)),
        x='Observed Rates of Sev Food Insecurity',
        y='Modeled Rate of Sev Food Insecurity')	
-ggsave('figures/SSP2_Sev_Residuals.png', width=5, height=5)
+ggsave('figures/LASSO/SSP2_Sev_Residuals_LASSO.png', width=5, height=5)
 
 ##################################
 # Plot scaled covariates
@@ -244,11 +246,11 @@ mdf$term <- factor(mdf$term, levels=mdf$term[order(mdf$scaled)], ordered=TRUE)
 ggplot(mdf %>% filter(term != '(Intercept)')) + 
   geom_bar(aes(x=term, y=scaled), stat='identity') + 
   coord_flip() + 
-  labs(title='Change in Rate of Mod+Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model',
+  labs(title='Change in Rate of Mod+Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model\n(LASSO)',
        x="", y="") + 
   theme_minimal()
 
-ggsave('figures/SSP2_Mod_Coefs.png', width=5, height=5)
+ggsave('figures/LASSO/SSP2_Mod_Coefs_LASSO.png', width=5, height=5)
 
 
 
@@ -265,8 +267,8 @@ sdf$term <- factor(sdf$term, levels=sdf$term[order(sdf$scaled)], ordered=TRUE)
 ggplot(sdf %>% filter(term != '(Intercept)')) + 
   geom_bar(aes(x=term, y=scaled), stat='identity') + 
   coord_flip() + 
-  labs(title='Change in Rate of Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model',
+  labs(title='Change in Rate of Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model\n(LASSO)',
        x="", y="") + 
   theme_minimal()
 
-ggsave('figures/SSP2_Sev_Coefs.png', width=5, height=5)
+ggsave('figures/LASSO/SSP2_Sev_Coefs_LASSO.png', width=5, height=5)
