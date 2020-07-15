@@ -348,23 +348,23 @@ bayes.ssvs <- function(y, bigX, nburn, nsave, ssvs, fig) {
     median = apply(beta.store, 2, median), #beta median
     sd = apply(beta.store, 2, sd), #standard deviation
     
-    conf0.05 = apply(beta.store, 2, quantile, prob = 0.05), #posterior density intervals, 0.05 and 0.95
-    conf0.95 = apply(beta.store, 2, quantile, prob = 0.95),
-    conf0.01 = apply(beta.store, 2, quantile, prob = 0.01), #posterior density intervals, 0.01 and 0.99
-    conf0.99 = apply(beta.store, 2, quantile, prob = 0.99)
+    cred0.05 = apply(beta.store, 2, quantile, prob = 0.05), #posterior density intervals, 0.05 and 0.95
+    cred0.95 = apply(beta.store, 2, quantile, prob = 0.95),
+    cred0.01 = apply(beta.store, 2, quantile, prob = 0.01), #posterior density intervals, 0.01 and 0.99
+    cred0.99 = apply(beta.store, 2, quantile, prob = 0.99)
     
-    # conf0.05 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.05,length(x)-1)*sd(x)/sqrt(length(x)))}), #assume that they come from a normal?
-    # conf0.95 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.95,length(x)-1)*sd(x)/sqrt(length(x)))}),
-    # conf0.1 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.1,length(x)-1)*sd(x)/sqrt(length(x)))}),
-    # conf0.9 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.9,length(x)-1)*sd(x)/sqrt(length(x)))})
+    # cred0.05 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.05,length(x)-1)*sd(x)/sqrt(length(x)))}), #assume that they come from a normal?
+    # cred0.95 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.95,length(x)-1)*sd(x)/sqrt(length(x)))}),
+    # cred0.1 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.1,length(x)-1)*sd(x)/sqrt(length(x)))}),
+    # cred0.9 = apply(beta.store, 2, FUN = function(x) {mean(x)-(qt(.9,length(x)-1)*sd(x)/sqrt(length(x)))})
   )
   
   # for(i in 1:P) {
   #   if(mean(beta.store[,i]) < 0.001) {
-  #     df$conf0.05[i] <- 0
-  #     df$conf0.95[i] <- 0
-  #     df$conf0.01[i] <- 0
-  #     df$conf0.99[i] <- 0
+  #     df$cred0.05[i] <- 0
+  #     df$cred0.95[i] <- 0
+  #     df$cred0.01[i] <- 0
+  #     df$cred0.99[i] <- 0
   #   }
   # }
   
@@ -405,7 +405,7 @@ sdf <- bayes.ssvs(y, bigX, nburn, nsave, ssvs, fig)
 
 
 # Get model predictions
-for(x in c("median", "conf0.05", "conf0.95")) {
+for(x in c("median", "cred0.05", "cred0.95")) {
   preddat[[paste0("fies.mod.pred_",x)]] <- mdf[[x]][mdf$term == '(Intercept)']
   moddat[[paste0("fies.mod.pred_",x)]] <- mdf[[x]][mdf$term == '(Intercept)']
   preddat[[paste0("fies.sev.pred_",x)]] <- sdf[[x]][sdf$term == '(Intercept)']
@@ -440,12 +440,12 @@ totals <- preddat %>%
   #group_by(YEAR) %>%
   group_by(YEAR, region) %>%
   summarize(mod.total_median=sum(fies.mod.pred_median * (population), na.rm=T),
-            mod.total_conf0.05=sum(fies.mod.pred_conf0.05 * (population), na.rm=T),
-            mod.total_conf0.95=sum(fies.mod.pred_conf0.95 * (population), na.rm=T),
+            mod.total_cred0.05=sum(fies.mod.pred_cred0.05 * (population), na.rm=T),
+            mod.total_cred0.95=sum(fies.mod.pred_cred0.95 * (population), na.rm=T),
             
             sev.total_median=sum(fies.sev.pred_median * (population), na.rm=T),
-            sev.total_conf0.05=sum(fies.sev.pred_conf0.05 * (population), na.rm=T),
-            sev.total_conf0.95=sum(fies.sev.pred_conf0.95 * (population), na.rm=T)
+            sev.total_cred0.05=sum(fies.sev.pred_cred0.05 * (population), na.rm=T),
+            sev.total_cred0.95=sum(fies.sev.pred_cred0.95 * (population), na.rm=T)
   )  %>%
   gather(var, value, -YEAR, -region) #uncommant if coef int
 
@@ -617,25 +617,25 @@ totals <- preddat %>%
   #group_by(YEAR) %>%
   group_by(YEAR) %>%
   summarize(mod.total_median=sum(fies.mod.pred_median * (population), na.rm=T),
-            mod.total_conf0.05=sum(fies.mod.pred_conf0.05 * (population), na.rm=T),
-            mod.total_conf0.95=sum(fies.mod.pred_conf0.95 * (population), na.rm=T),
+            mod.total_cred0.05=sum(fies.mod.pred_cred0.05 * (population), na.rm=T),
+            mod.total_cred0.95=sum(fies.mod.pred_cred0.95 * (population), na.rm=T),
             
             sev.total_median=sum(fies.sev.pred_median * (population), na.rm=T),
-            sev.total_conf0.05=sum(fies.sev.pred_conf0.05 * (population), na.rm=T),
-            sev.total_conf0.95=sum(fies.sev.pred_conf0.95 * (population), na.rm=T)
+            sev.total_cred0.05=sum(fies.sev.pred_cred0.05 * (population), na.rm=T),
+            sev.total_cred0.95=sum(fies.sev.pred_cred0.95 * (population), na.rm=T)
   ) 
 
 #credible interval
 ggplot(totals) +
   geom_line(aes(x=YEAR, y=mod.total_median), size = 1) +
-  geom_line(aes(x=YEAR, y=mod.total_conf0.05), size = 0.8, linetype = "dashed") +
-  geom_line(aes(x=YEAR, y=mod.total_conf0.95), size = 0.8, linetype = "dashed") +
+  geom_line(aes(x=YEAR, y=mod.total_cred0.05), size = 0.8, linetype = "dashed") +
+  geom_line(aes(x=YEAR, y=mod.total_cred0.95), size = 0.8, linetype = "dashed") +
   scale_x_continuous(expand=c(0,0)) +
   scale_y_continuous(expand=c(0,0), limits=c(0*10^9, 6*10^9)) +
   labs(x='Year', y="Number Food Insecure",
        title="Number With Moderate or Severe Food Insecurity with 0.05/0.95 Credible Intervals\n(Bayes SVSS)") +
   theme_bw()
-ggsave('figures/bayes_ssvs/Time.Mod.Conf_bayes_ssvs.png', width=7, height=5)
+ggsave('figures/bayes_ssvs/Time.Mod.Cred_bayes_ssvs.png', width=7, height=5)
 
 
 
