@@ -5,7 +5,7 @@ dat <- fies_ur %>%
 
 ggplot(dat) +
 	geom_bar(aes(x=region, y=val, fill=key), stat='identity', position='dodge') + 
-	labs(y='Rate of Food Insecurity',
+	labs(y='Prevalence of Moderate + Severe Food Insecurity',
 			 x='',
 			 fill='') + 
 	coord_flip() + 

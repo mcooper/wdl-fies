@@ -92,14 +92,17 @@ moddat$fies.sev.pred <- inv.logit(moddat$fies.sev.pred)
 
 sel <- preddat %>%
   select(ISO3, YEAR, GDLCODE, stunting, urban_perc, fies.mod.pred, population) %>%
+  merge(u5) %>%
   filter(YEAR %in% c(2020, 2025, 2030)) %>%
-  mutate(stunting.urban = stunting*urban_perc*population,
-         stunting.rural = stunting*(1 - urban_perc)*population,
-         fies.urban = fies.mod.pred*urban_perc*population,
-         fies.rural = fies.mod.pred*(1 - urban_perc)*population,
+  mutate(u5pop.urban = urban_perc*u5pop,
+         u5pop.rural = (1 - urban_perc)*u5pop,
+         stunting.urban = stunting*u5pop.urban,
+         stunting.rural = stunting*u5pop.rural,
          population.urban = population*urban_perc,
-         population.rural = population*(1 - urban_perc)) %>%
-  select(-stunting, -urban_perc, -fies.mod.pred, -population) %>%
+         population.rural = population*(1 - urban_perc),
+         fies.urban = fies.mod.pred*population.urban,
+         fies.rural = fies.mod.pred*population.rural) %>%
+  select(-stunting, -urban_perc, -fies.mod.pred, -population, -u5pop) %>%
   gather(var, value, -ISO3, -YEAR, -GDLCODE) %>%
   mutate(GEO_AREA=ifelse(grepl('urban', var), 'urban', 'rural'),
          var=gsub('.rural|.urban', '', var),
