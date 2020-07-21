@@ -244,16 +244,30 @@ for (v in vars){
   }
 }
 
+mdf$term[2:length(mdf$term)] <- c("Percent Urban Population",
+                                  "Topographic Ruggedness Index",
+                                  "GDP Per Capita",
+                                  "Gini Coefficient",
+                                  "Prevalence of Malaria",
+                                  "Mean Annual Precipitation",
+                                  "Poverty Headcount Index",
+                                  "Average Temperature",
+                                  "Water Scarcity Index",
+                                  "Prevalence of Wasting",
+                                  "Mean Years of Schooling")
+
 mdf$term <- factor(mdf$term, levels=mdf$term[order(mdf$scaled)], ordered=TRUE)
 
 ggplot(mdf %>% filter(term != '(Intercept)')) + 
   geom_bar(aes(x=term, y=scaled), stat='identity') + 
   coord_flip() + 
-  labs(title='Change in Rate of Mod+Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model\n(LASSO)',
+  labs(title='Change in Rate of Mod+Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 LASSO Regression Model',
        x="", y="") + 
+  scale_y_continuous(breaks = seq(from = -1, to = 1, by = 0.25)) +
   theme_minimal()
 
-ggsave('figures/LASSO/SSP2_Mod_Coefs_LASSO.png', width=5, height=5)
+# ggsave('figures/LASSO/SSP2_Mod_Coefs_LASSO.png', width=5, height=5)
+ggsave('figures/IFAD/SSP2_Mod_Coefs_LASSO.png', width=6, height=6)
 
 
 
