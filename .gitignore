@@ -10,3 +10,4 @@ cache/*
 .Rhistory
 *.swp
 *.swo
+.Rproj.user
