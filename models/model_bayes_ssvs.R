@@ -430,6 +430,45 @@ for(x in c("median", "cred0.05", "cred0.95", "cred0.25", "cred0.75")) {
 # Visualize Results
 ############################
 
+######################
+# Save output for Poli
+########################
+
+sel <- preddat %>%
+  select(ISO3, YEAR, GDLCODE, stunting, urban_perc, fies.mod.pred_median, population) %>%
+  rename(fies.mod.pred = "fies.mod.pred_median") %>%
+  merge(u5.population) %>%
+  filter(YEAR %in% c(2020, 2025, 2030)) %>%
+  mutate(u5pop.urban = urban_perc*u5pop,
+         u5pop.rural = (1 - urban_perc)*u5pop,
+         stunting.urban = stunting*u5pop.urban,
+         stunting.rural = stunting*u5pop.rural,
+         population.urban = population*urban_perc,
+         population.rural = population*(1 - urban_perc),
+         fies.urban = fies.mod.pred*population.urban,
+         fies.rural = fies.mod.pred*population.rural) %>%
+  select(-stunting, -urban_perc, -fies.mod.pred, -population, -u5pop) %>%
+  gather(var, value, -ISO3, -YEAR, -GDLCODE) %>%
+  mutate(GEO_AREA=ifelse(grepl('urban', var), 'urban', 'rural'),
+         var=gsub('.rural|.urban', '', var),
+         value = round(value)) %>%
+  spread(var, value)
+
+write.csv(sel, 'figures/fies.mod.results_bayes_ssvs.csv', row.names=F)
+
+#growth rate
+growth <- preddat %>%
+  filter(YEAR > 2010) %>%
+  group_by(YEAR) %>%
+  summarize(fies_total = sum(fies.mod.pred_median * (population), na.rm=T)) %>%
+  mutate(rate = ((fies_total-lag(fies_total))/lag(fies_total))*100,
+         abs = fies_total-lag(fies_total),
+         persec = abs/31536000) #31536000 second per 365 days/1 year
+
+#we need only 2020, 2025 and 2030
+#should we do some sort of splining between these years? or do you have some more ideas?
+#your call
+
 #####################
 # Time Series
 ###############
