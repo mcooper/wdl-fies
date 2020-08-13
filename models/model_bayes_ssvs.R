@@ -469,6 +469,14 @@ growth <- preddat %>%
 #should we do some sort of splining between these years? or do you have some more ideas?
 #your call
 
+#growth rate
+growth <- preddat %>%
+  filter(YEAR %in% c(2020, 2025, 2030)) %>%
+  group_by(YEAR) %>%
+  summarize(fies_total = sum(fies.mod.pred_median * (population), na.rm=T)) %>%
+  mutate(abs = (fies_total-lag(fies_total))/5,
+         persec = abs/(31536000)) #31536000 second per 365 days/1 year
+
 #####################
 # Time Series
 ###############
