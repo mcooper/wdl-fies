@@ -1,5 +1,5 @@
 gdl_fies <- merge(gdl,
-                  fies_subnat %>%
+                  fies_subnat_wt %>%
                     group_by(GDLCODE) %>%
                     summarize_if(is.numeric, mean))
 
@@ -13,7 +13,7 @@ ggplot() +
         plot.title = element_text(hjust = 0.5)) + 
   labs(fill='',
        title='Percent of Population Living in Urban Areas in 2018')
-ggsave('figures/subnational-Urban.png', width=12, height=7)
+ggsave('figures/subnational-Urban-wt.png', width=12, height=7)
 
 ggplot() + 
   geom_sf(data=gdl, fill = '#999999', size=0.1) + 
@@ -26,7 +26,7 @@ ggplot() +
         plot.title = element_text(hjust = 0.5)) + 
   labs(fill='',
        title='Subnational Rate of Moderate Food Insecurity\n(Averaged over all years)')
-ggsave('figures/subnational-moderate.png', width=12, height=7)
+ggsave('figures/subnational-moderate-wt.png', width=12, height=7)
 
 ggplot() + 
   geom_sf(data=gdl, fill = '#999999', size=0.1) + 
@@ -39,4 +39,4 @@ ggplot() +
         plot.title = element_text(hjust = 0.5)) + 
   labs(fill='',
        title='Subnational Rate of Severe Food Insecurity\n(Averaged over all years)')
-ggsave('figures/subnational-severe.png', width=12, height=7)
+ggsave('figures/subnational-severe-wt.png', width=12, height=7)
