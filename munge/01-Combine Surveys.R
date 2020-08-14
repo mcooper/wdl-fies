@@ -1,3 +1,8 @@
+# #To Re-create munging environment
+# setwd('~/wdl-fies')
+# library(ProjectTemplate)
+# load.project(list(cache_loading=F, data_loading=T, munging=F))
+# #Then run files in munge/ in order
 
 fs <- list.files('data/fies_surveys', full.names = T)
 

@@ -5,7 +5,7 @@ library(ProjectTemplate)
 load.project()
 
 sp <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
-d <- read.csv('data/covars/rawdata/age_gender_missing.csv')
+d <- read.csv('data/disag_vars/rawdata/age_gender_missing.csv')
 
 #Get polygons that ARE in FIES but NOT in results so far
 need <- sp$GDLcode[!sp$GDLcode %in% d$GDLcode & substr(sp$GDLcode, 1, 3) %in% fies_raw$ISO3]

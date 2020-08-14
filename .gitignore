@@ -2,6 +2,8 @@ data/covars_nowcast
 data/covars_forecast
 data/covars/rawdata
 data/covars/results
+data/disag_vars/rawdata
+data/disag_vars/results
 data/gridded_gdlpolys
 data/fies_surveys
 data/gridded_gdlpolys
