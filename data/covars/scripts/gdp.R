@@ -72,6 +72,7 @@ dat <- read.csv('data/covars/rawdata/SHDI Complete 4.0.csv') %>%
          YEAR=year, life_expectancy=lifexp, gni_percap_2011, years_school_expected=esch,
          years_school_mean=msch, population, hdi=shdi)
 
+
 all <- expand.grid(list(GDLCODE=unique(dat$GDLCODE), YEAR=1990:2018)) %>%
   merge(dat, all.x=T, all.y=F) %>%
   gather(var, value, -GDLCODE, -YEAR) %>%
@@ -129,6 +130,22 @@ wb_comb <- merge(gdp, gni) %>%
   group_by(ISO3) %>%
   fill(gdp_gni_ratio)
 
+#####################################################################
+# Adjust SSP projections to match observed WB trajectories of GDP
+####################################################################
+compare <- merge(gdp %>%
+                   rename(wb_gdp=gdp), 
+                 ssp %>%
+                   rename(ssp_gdp=GDP)) %>%
+  mutate(ratio=wb_gdp/ssp_gdp) %>%
+  merge(expand.grid(list(YEAR=2010:2030, ISO3=unique(ssp$ISO3))), all.y=T) %>%
+  group_by(ISO3) %>%
+  fill(ratio)
+
+ssp <- ssp %>%
+  merge(compare %>% select(ISO3, YEAR, ratio)) %>%
+  mutate(GDP=GDP*ratio) %>%
+  select(-ratio)
 
 ####################################################################################
 # Combine Subnational GNI with National GDP/GNI Ratio to Proxy Subnational GDP

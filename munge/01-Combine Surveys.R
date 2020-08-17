@@ -1,7 +1,5 @@
 # #To Re-create munging environment
-# setwd('~/wdl-fies')
-# library(ProjectTemplate)
-# load.project(list(cache_loading=F, data_loading=T, munging=F))
+# setwd('~/wdl-fies');library(ProjectTemplate);load.project(list(cache_loading=F, data_loading=T, munging=F))
 # #Then run files in munge/ in order
 
 fs <- list.files('data/fies_surveys', full.names = T)
@@ -27,6 +25,13 @@ fies_raw <- fies_raw %>%
          WHLDAY = as.numeric(WHLDAY),
          #Looks like cambodia was mis-coded?
          ISO3 = case_when(ISO3=='KMH' ~ 'KHM',
-                             TRUE ~ ISO3))
+                             TRUE ~ ISO3)) %>%
+  select(-year)
+
+#Read in GDL Code
+gdl <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4') %>%
+  rename(GDLCODE=GDLcode) %>%
+  filter(!GDLCODE %in% c("COLr128", "GMBr101", "GMBr107", "INDr135", "NA"))
 
 cache('fies_raw')
+cache('gdl')

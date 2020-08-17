@@ -3,6 +3,7 @@ library(raster)
 library(rgdal)
 library(tidyverse)
 library(imputeTS)
+library(countrycode)
 
 ######################################
 # Define Functions
@@ -63,7 +64,6 @@ modelFuture <- function(var){
 
 sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
 
-
 #Historic Population by admin area
 ref_past <- read.csv('data/covars/rawdata/SHDI Complete 4.0.csv') %>%
   filter(GDLCODE %in% sp$GDLcode, year >= 2010) %>%
@@ -81,6 +81,29 @@ ref_fut <- read.csv('data/covars/rawdata/ssp/SspDb_country_data_2013-06-12.csv')
   group_by(ISO3) %>%
   complete(YEAR=2010:2030) %>%
   mutate(population = na.approx(population)*1000000)
+
+#Get actual trends from 2010-2019
+actual <- read.csv('data/covars/rawdata/API_SP.POP.TOTL_DS2_en_csv_v2_1308146.csv', skip=4) %>%
+  select(-Country.Name, -Indicator.Name, -Indicator.Code) %>%
+  gather(YEAR, pop_actual, -Country.Code) %>%
+  mutate(ISO3 = countrycode(Country.Code, 'wb', 'iso3c'),
+         YEAR = as.numeric(substr(YEAR, 2, 5))) %>%
+  filter(!is.na(ISO3), YEAR > 2009) %>%
+  select(-Country.Code)
+
+#Get country-level ratio of actual trends to predicted (from 2010) trends
+compare <- merge(actual, ref_fut, all.x=T, all.y=F) %>%
+  na.omit %>%
+  mutate(off = pop_actual/population) %>%
+  #Add space for years to 2030
+  merge(expand.grid(list(YEAR=2010:2030, ISO3=unique(ref_fut$ISO3))), all.y=T) %>%
+  group_by(ISO3) %>%
+  fill(off)
+
+ref_fut <- merge(ref_fut, compare, all.x=T, all.y=F) %>%
+  mutate(off = ifelse(is.na(off), 1, off),
+         population = population*off) %>%
+  select(-off, -pop_actual)
 
 ######################################################
 #Get each admin areas share of national tot, and model how that share has changed over time
@@ -110,12 +133,14 @@ fut <-merge(rates, ref_fut) %>%
 
 #IF extacting from raw rastere
 #FROM https://www.worldclim.org/data/worldclim21.html
-ur <- stack(list.files('data/covars/rawdata/urban-rural', full.names=T))
+ur <- stack(list.files('data/covars/rawdata/urban-rural', full.names=T, pattern='tif$'))
 
 e <- raster::extract(ur, sp, method='simple', fun=sum, na.rm=T,
                                     sp=TRUE, df=TRUE)
 
-res <- e@data %>%
+e <- e@data
+
+res <- e %>%
   dplyr::select(GDLCODE=GDLcode, matches('ssp2')) %>%
   gather(Var, Pop, -GDLCODE) %>%
   mutate(ISO3=substr(GDLCODE, 1, 3),

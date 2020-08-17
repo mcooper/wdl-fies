@@ -4,9 +4,9 @@ ur <- read.csv('data/covars/results/urban-rural.csv') %>%
   select(GDLCODE, YEAR, rural_perc, urban_perc)
 
 #Read in WorldPop Demographic data
-dem <- read.csv('data/disag_vars/results/age_gender_all1415.csv') %>%
+dem <- read.csv('data/disag_vars/results/age_gender_all1418_rescale.csv') %>%
   #determine percentages for every group over 15 & get total
-  select(GDLCODE=GDLcode, YEAR=year, matches(paste0(seq(15, 80, by=5), collapse='|'))) %>%
+  select(GDLCODE, YEAR, matches(paste0(seq(15, 80, by=5), collapse='|'))) %>%
   mutate(total = rowSums(select(., matches(paste0(seq(15, 80, by=5), collapse='|'))))) %>%
   mutate_at(vars(matches(paste0(seq(15, 80, by=5), collapse='|'))), function(x){x/.$total}) %>%
   select(-total)
@@ -32,15 +32,14 @@ fies_raw <- fies_raw %>%
   filter(!is.na(dem), !is.na(dhs), !is.na(urb),
          !is.na(Prob_Mod_Sev), !is.na(Prob_sev))
 
-
-fies_subnat_wt <- data.frame()
-for (year in c(2014, 2015)){
-  for (gdlcode in unique(ur$GDLCODE)){
+fies_subnat <- data.frame()
+for (gdlcode in unique(ur$GDLCODE)){
+  for (year in 2014:2018){
     print(paste(year, gdlcode))
     
     fies_sel <- fies_raw %>%
-      filter(ISO3 == substr(gdlcode, 1, 3), 
-             YEAR == year)
+      filter(ISO3 == substr(gdlcode, 1, 3)) %>%
+      filter(YEAR == year)
     
     if (nrow(fies_sel) == 0){
       next
@@ -112,8 +111,9 @@ for (year in c(2014, 2015)){
                       fies.mod=weighted.mean(fies_sel_probs$Prob_Mod_Sev, w=fies_sel_probs$samp_wt),
                       fies.sev=weighted.mean(fies_sel_probs$Prob_sev, w=fies_sel_probs$samp_wt))
     
-    fies_subnat_wt <- bind_rows(fies_subnat_wt, new)
+    fies_subnat <- bind_rows(fies_subnat, new)
   }
 }
 
-cache('fies_subnat_wt')
+
+cache('fies_subnat')
