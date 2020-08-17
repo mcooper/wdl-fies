@@ -4,9 +4,9 @@ ur <- read.csv('data/covars/results/urban-rural.csv') %>%
   select(GDLCODE, YEAR, rural_perc, urban_perc)
 
 #Read in WorldPop Demographic data
-dem <- read.csv('data/disag_vars/results/age_gender_all1415.csv') %>%
+dem <- read.csv('data/disag_vars/results/age_gender_all1418_rescale.csv') %>%
   #determine percentages for every group over 15 & get total
-  select(GDLCODE=GDLcode, YEAR=year, matches(paste0(seq(15, 80, by=5), collapse='|'))) %>%
+  select(GDLCODE, YEAR, matches(paste0(seq(15, 80, by=5), collapse='|'))) %>%
   mutate(total = rowSums(select(., matches(paste0(seq(15, 80, by=5), collapse='|'))))) %>%
   mutate_at(vars(matches(paste0(seq(15, 80, by=5), collapse='|'))), function(x){x/.$total}) %>%
   select(-total)
@@ -34,7 +34,7 @@ fies_raw <- fies_raw %>%
 
 
 fies_subnat_wt <- data.frame()
-for (year in c(2014, 2015)){
+for (year in 2014:2018){
   for (gdlcode in unique(ur$GDLCODE)){
     print(paste(year, gdlcode))
     
