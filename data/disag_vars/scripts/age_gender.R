@@ -43,7 +43,7 @@ nytnyt <- function (periods = c(1,2)){
 library(readxl)
 library(dplyr)
 #read in list of mullvad servers for random IP adress switching
-mullvad <- read_xlsx("data/covars/rawdata/age_gender/mullvad_countries.xlsx") %>%
+mullvad <- read_xlsx("data/disag_vars/rawdata/age_gender/mullvad_countries.xlsx") %>%
   filter(! code %in% c("sg","jp"))
 
 system(paste("mullvad relay set location",sample(mullvad$code,1), sep=" "))
@@ -128,23 +128,23 @@ age_gender <- age_gender %>%
   group_by(GDLcode, constant, iso_code, country, region, shdi, year) %>%
   summarise_at(.funs = sum, .vars = ag_vars)
 
-#write.csv(age_gender, 'data/covars/results/age_gender_missing.csv', row.names=F)
-#write.csv(age_gender, 'data/covars/results/age_gender_toolarge.csv', row.names=F)
+#write.csv(age_gender, 'data/disag_vars/results/age_gender_missing.csv', row.names=F)
+#write.csv(age_gender, 'data/disag_vars/results/age_gender_toolarge.csv', row.names=F)
 
-age_gender1 <- read.csv('data/covars/results/age_gender_missing.csv')
-age_gender2 <- read.csv('data/covars/results/age_gender_toolarge.csv')
+age_gender1 <- read.csv('data/disag_vars/results/age_gender_missing.csv')
+age_gender2 <- read.csv('data/disag_vars/results/age_gender_toolarge.csv')
 
 age_gender <- rbind(age_gender1, age_gender2)
 age_gender <- age_gender[order(age_gender$GDLcode),]
 #age_gender_fail <- age_gender_fail[order(age_gender_fail$GDLcode),]
-#write.csv(age_gender, 'data/covars/results/age_gender_withoutsubdivi.csv', row.names=F)
+#write.csv(age_gender, 'data/disag_vars/results/age_gender_withoutsubdivi.csv', row.names=F)
 
 ##------------------------------------------------------------------------------------------------------------------------------------
 
 library(wpCPR)
 library(sf)
 
-age_gender <- read.csv('data/covars/results/age_gender_withoutsubdivi.csv')
+age_gender <- read.csv('data/disag_vars/results/age_gender_withoutsubdivi.csv')
 
 #plot map of countries that are not working
 #gdl <- sf_fies
@@ -210,13 +210,13 @@ age_gender_fail <- age_gender_fail %>%
   summarise_at(.funs = sum, .vars = ag_vars_fail) %>%
   rename(constant = "constnt", iso_code = "iso_cod")
 
-#write.csv(age_gender_fail, 'data/covars/results/age_gender_subdivi1415.csv', row.names=F)
-#write.csv(age_gender_fail, 'data/covars/results/age_gender_subdivi1418.csv', row.names=F)
+#write.csv(age_gender_fail, 'data/disag_vars/results/age_gender_subdivi1415.csv', row.names=F)
+#write.csv(age_gender_fail, 'data/disag_vars/results/age_gender_subdivi1418.csv', row.names=F)
 
 #rus <- age_gender_fail
 
-age_gender <- read.csv('data/covars/results/age_gender_withoutsubdivi.csv')
-age_gender_fail <- read.csv('data/covars/results/age_gender_subdivi1418.csv')
+age_gender <- read.csv('data/disag_vars/results/age_gender_withoutsubdivi.csv')
+age_gender_fail <- read.csv('data/disag_vars/results/age_gender_subdivi1418.csv')
 
 #plot map
 mapdat <- gdl %>% 
@@ -260,8 +260,8 @@ for(y in 2014:2018) {
 # #using the global age gender 1km res maps implies that we need to process 3.05gb files for both m/f and all age groups and all years
 # #not possible on my computer and i think also quite a demanding exercise for a cloud based approach
 
-age_gender <- read.csv('data/covars/results/age_gender_withoutsubdivi.csv')
-age_gender_fail <- read.csv('data/covars/results/age_gender_subdivi1418.csv')
+age_gender <- read.csv('data/disag_vars/results/age_gender_withoutsubdivi.csv')
+age_gender_fail <- read.csv('data/disag_vars/results/age_gender_subdivi1418.csv')
 
 
 age_gender_fail <- age_gender_fail %>%
@@ -271,12 +271,12 @@ age_gender_fail <- age_gender_fail %>%
 age_gender <- rbind(age_gender, age_gender_fail)
 age_gender <- age_gender[order(age_gender$GDLcode),]
 age_gender <- age_gender[order(age_gender$year),]
-#write.csv(age_gender, "data/covars/results/age_gender_all1418.csv", row.names=F)
+#write.csv(age_gender, "data/disag_vars/results/age_gender_all1418.csv", row.names=F)
 
 
 ##------------------------------------------------------------------------------------------------------------------------------------
 
-age_gender <- read.csv('data/covars/results/age_gender_all1418.csv')
+age_gender <- read.csv('data/disag_vars/results/age_gender_all1418.csv')
 
 age_gender.list <- split(age_gender, f = age_gender$GDLcode)
 age_gender.list <- lapply(age_gender.list, function(x) {
@@ -320,7 +320,7 @@ age_gender <- merge(age_gender, covars %>% select(GDLCODE, YEAR, population), by
 age_gender[,8:43] <- (age_gender[,8:43]/age_gender$wptot)*age_gender$ssptot
 age_gender <- age_gender %>% select(-c("wptot", "ssptot"))
 
-write.csv(age_gender, "data/covars/results/age_gender_all1418_rescale.csv", row.names=F)
+write.csv(age_gender, "data/disag_vars/results/age_gender_all1418_rescale.csv", row.names=F)
 
 
 # gdl_total <- age_gender %>% select(GDLcode, year, total) %>% rename(GDLCODE = "GDLcode", YEAR = "year")
