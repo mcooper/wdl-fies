@@ -18,7 +18,7 @@ for (i in unique(covars$region)){
 
 
 # Read in data
-moddat <- merge(fies_subnat, 
+moddat <- merge(fies_subnat_wt, 
                 covars, 
                 all.x=T, all.y=F) %>%
   na.omit %>%
@@ -123,7 +123,7 @@ bayes.ssvs <- function(y, bigX, nburn, nsave, ssvs, fig) {
   
   # how does our normal - normal spike and slab prior look like?
   #par(mfrow=c(1,1),mar=c(1,1,1,1))
-  if(fig == T) {png("figures/bayes_ssvs/spike_slab_prior_bayes_ssvs.png")}
+  if(fig == T) {png("figures/bayes_ssvs/spike_slab_prior_bayes_ssvs_wt.png")}
   plot(density(rnorm(10000, 0, sqrt(sig2h))),ylim=c(0,2)) #slab
   lines(density(rnorm(10000, 0, sqrt(sig2l))), col="red")   #spike
   if(fig == T) {dev.off()}
@@ -134,7 +134,7 @@ bayes.ssvs <- function(y, bigX, nburn, nsave, ssvs, fig) {
   C0 <- 1 #prior rate  of sigma2
   
   # how does this prior distribution look like?
-  #png("figures/bayes_ssvs/variance_prior_bayes_ssvs.png")
+  #png("figures/bayes_ssvs/variance_prior_bayes_ssvs_wt.png")
   plot(density(1/rgamma(20000, c0, C0)))
   #dev.off()
   
@@ -303,7 +303,7 @@ bayes.ssvs <- function(y, bigX, nburn, nsave, ssvs, fig) {
   
   # ... plot all posterior distributions
   
-  if(fig == T) {png("figures/bayes_ssvs/posterior_bayes_ssvs.png")}
+  if(fig == T) {png("figures/bayes_ssvs/posterior_bayes_ssvs_wt.png")}
   par(mfrow=c(P%/%2,2),mar=c(2,2,2,2))
   for(i in 1:P) {
     #i <- 1
@@ -316,7 +316,7 @@ bayes.ssvs <- function(y, bigX, nburn, nsave, ssvs, fig) {
   }
   if(fig == T) {dev.off()}
   
-  if(fig == T) {png("figures/bayes_ssvs/covar_box_bayes_ssvs.png")}
+  if(fig == T) {png("figures/bayes_ssvs/covar_box_bayes_ssvs_wt.png")}
   par(mfrow=c(P%/%2,2),mar=c(2,2,2,2))
   for(i in 1:P) {
     boxplot(beta.store[,i], main = colnames(X)[i], horizontal = T)
@@ -498,7 +498,7 @@ ggplot(totals %>% filter(var=='mod.total_median')) +
   labs(x='Year', y="Number Food Insecure",
        title="Number With Moderate or Severe Food Insecurity, By Continent, Stacked\n(Bayes SVSS)") +
   theme_bw()
-ggsave('figures/bayes_ssvs/Time.Mod.Stack_bayes_ssvs.png', width=7, height=5)
+ggsave('figures/bayes_ssvs/Time.Mod.Stack_bayes_ssvs_wt.png', width=7, height=5)
 
 ggplot(totals %>% filter(var=='mod.total_median')) +
   geom_line(aes(x=YEAR, y=value, color=region), size=1) +
@@ -507,7 +507,7 @@ ggplot(totals %>% filter(var=='mod.total_median')) +
   labs(x='Year', y="Number Food Insecure",
        title="Number With Moderate or Severe Food Insecurity, By Continent\n(Bayes SVSS)") +
   theme_bw()
-ggsave('figures/bayes_ssvs/Time.Mod.Lines_bayes_ssvs.png', width=7, height=5)
+ggsave('figures/bayes_ssvs/Time.Mod.Lines_bayes_ssvs_wt.png', width=7, height=5)
 
 ggplot(totals %>% filter(var=='sev.total_median')) +
   geom_area(aes(x=YEAR, y=value, fill=region), position='stack') +
@@ -516,7 +516,7 @@ ggplot(totals %>% filter(var=='sev.total_median')) +
   labs(x='Year', y="Number Food Insecure",
        title="Number With Severe Food Insecurity, By Continent, Stacked\n(Bayes SVSS)") +
   theme_bw()
-ggsave('figures/bayes_ssvs/Time.Sev.Stack_bayes_ssvs.png', width=7, height=5)
+ggsave('figures/bayes_ssvs/Time.Sev.Stack_bayes_ssvs_wt.png', width=7, height=5)
 
 ggplot(totals %>% filter(var=='sev.total_median')) +
   geom_line(aes(x=YEAR, y=value, color=region), size=1) +
@@ -525,7 +525,7 @@ ggplot(totals %>% filter(var=='sev.total_median')) +
   labs(x='Year', y="Number Food Insecure",
        title="Number With Severe Food Insecurity, By Continent\n(Bayes SVSS)") +
   theme_bw()
-ggsave('figures/bayes_ssvs/Time.Sev.Lines_bayes_ssvs.png', width=7, height=5)
+ggsave('figures/bayes_ssvs/Time.Sev.Lines_bayes_ssvs_wt.png', width=7, height=5)
 
 
 ############################
@@ -560,7 +560,7 @@ ggplot(mapdat) +
   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 (Bayes SVSS)',
        fill='') + 
   facet_grid(mod.YEAR ~ .)
-ggsave('figures/bayes_ssvs/SSP2_LASSO_Moderate_bayes_ssvs.png', width=10, height=12)
+ggsave('figures/bayes_ssvs/SSP2_LASSO_Moderate_bayes_ssvs_wt.png', width=10, height=12)
 
 ggplot(mapdat) +
   geom_sf(aes(fill=fies.sev.pred_median), color=NA) +
@@ -574,7 +574,7 @@ ggplot(mapdat) +
   labs(title='Rate of Severe Food Insecurity Under SSP2 (Bayes SVSS)',
        fill='') +
   facet_grid(sev.YEAR ~ .)
-ggsave('figures/bayes_ssvs/SSP2_LASSO_Severe_bayes_ssvs.png', width=10, height=12)
+ggsave('figures/bayes_ssvs/SSP2_LASSO_Severe_bayes_ssvs_wt.png', width=10, height=12)
 
 
 ##################################
@@ -589,7 +589,7 @@ ggplot(moddat) +
                       '\nR-squared: ', round(r2, 4)),
        x='Observed Rates of Mod+Sev Food Insecurity',
        y='Modeled Rate of Mod+Sev Food Insecurity')	
-ggsave('figures/bayes_ssvs/SSP2_Mod_Residuals_bayes_ssvs.png', width=5, height=5)
+ggsave('figures/bayes_ssvs/SSP2_Mod_Residuals_bayes_ssvs_wt.png', width=5, height=5)
 
 mae <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred_median))
 r2 <- cor(moddat$fies.sev, moddat$fies.sev.pred_median)
@@ -600,7 +600,7 @@ ggplot(moddat) +
                       '\nR-squared: ', round(r2, 4)),
        x='Observed Rates of Sev Food Insecurity',
        y='Modeled Rate of Sev Food Insecurity')	
-ggsave('figures/bayes_ssvs/SSP2_Sev_Residuals_LASSO.png', width=5, height=5)
+ggsave('figures/bayes_ssvs/SSP2_Sev_Residuals_LASSO_wt.png', width=5, height=5)
 
 
 ##################################
@@ -626,7 +626,7 @@ ggplot(mdf %>% filter(term != '(Intercept)')) +
        x="", y="") + 
   theme_minimal()
 
-ggsave('figures/bayes_ssvs/SSP2_Mod_Coefs_bayes_ssvs.png', width=5, height=5)
+ggsave('figures/bayes_ssvs/SSP2_Mod_Coefs_bayes_ssvs_wt.png', width=5, height=5)
 
 
 for (v in vars){
@@ -646,7 +646,7 @@ ggplot(sdf %>% filter(term != '(Intercept)')) +
        x="", y="") + 
   theme_minimal()
 
-ggsave('figures/bayes_SSVS/SSP2_Sev_Coefs_bayes_ssvs.png', width=5, height=5)
+ggsave('figures/bayes_SSVS/SSP2_Sev_Coefs_bayes_ssvs_wt.png', width=5, height=5)
 
 
 ############################
@@ -685,7 +685,7 @@ ggplot(mdf %>% filter(term != '(Intercept)')) +
        x="", y="") + 
   scale_y_continuous(breaks = seq(from = -1, to = 1, by = 0.25)) +
   theme_minimal()
-ggsave('figures/IFAD/SSP2_Mod_Coefs_bayes_ssvs.png', width=6, height=6)
+ggsave('figures/IFAD/SSP2_Mod_Coefs_bayes_ssvs_wt.png', width=6, height=6)
 
 
 #graphs
@@ -698,7 +698,7 @@ ggplot(totals %>% filter(var=='mod.total_median')) +
        title="Number With Moderate or Severe Food Insecurity, By Continent") + 
   theme_bw() +
   theme(legend.title=element_blank())
-ggsave('figures/IFAD/Time.Mod.Lines_bayes_ssvs.png', width=8, height=5)
+ggsave('figures/IFAD/Time.Mod.Lines_bayes_ssvs_wt.png', width=8, height=5)
 
 
 #rural/urban
@@ -719,7 +719,7 @@ ggplot(totals) +
        title="Number With Moderate or Severe Food Insecurity, By Rural/Urban") +
   theme_bw() +
   theme(legend.title=element_blank())
-ggsave('figures/IFAD/Time.Mod.Lines.RurUrb_bayes_ssvs.png', width=8, height=5)
+ggsave('figures/IFAD/Time.Mod.Lines.RurUrb_bayes_ssvs_wt.png', width=8, height=5)
 
 
 #credible interval
@@ -741,7 +741,7 @@ ggplot(totals) +
        title="Number With Moderate or Severe Food Insecurity\nwith 0.25/0.75 Credible Intervals") +
   theme_bw() +
   theme(legend.title=element_blank())
-ggsave('figures/IFAD/Time.Mod.Cred_bayes_ssvs.png', width=8, height=5)
+ggsave('figures/IFAD/Time.Mod.Cred_bayes_ssvs_wt.png', width=8, height=5)
 
 
 #map
@@ -757,7 +757,7 @@ ggplot(mapdat %>% filter(YEAR == 2020)) +
   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 in 2020',
        fill='') + 
   facet_grid(mod.YEAR ~ .)
-ggsave('figures/IFAD/SSP2_Moderate_2020_bayes_ssvs.png', width=10, height=5)
+ggsave('figures/IFAD/SSP2_Moderate_2020_bayes_ssvs_wt.png', width=10, height=5)
 
 ggplot(mapdat %>% filter(YEAR == 2025)) + 
   geom_sf(aes(fill=fies.mod.pred_median), color=NA) + 
@@ -771,7 +771,7 @@ ggplot(mapdat %>% filter(YEAR == 2025)) +
   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 in 2025',
        fill='') + 
   facet_grid(mod.YEAR ~ .)
-ggsave('figures/IFAD/SSP2_Moderate_2025_bayes_ssvs.png', width=10, height=5)
+ggsave('figures/IFAD/SSP2_Moderate_2025_bayes_ssvs_wt.png', width=10, height=5)
 
 ggplot(mapdat %>% filter(YEAR == 2030)) + 
   geom_sf(aes(fill=fies.mod.pred_median), color=NA) + 
@@ -785,7 +785,7 @@ ggplot(mapdat %>% filter(YEAR == 2030)) +
   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 in 2030',
        fill='') + 
   facet_grid(mod.YEAR ~ .)
-ggsave('figures/IFAD/SSP2_Moderate_2030_bayes_ssvs.png', width=10, height=5)
+ggsave('figures/IFAD/SSP2_Moderate_2030_bayes_ssvs_wt.png', width=10, height=5)
 
 
 #upper and lower
@@ -826,7 +826,7 @@ ggplot(mapdat) +
   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2\nLower Bound at 0.25-Credible Interval',
        fill='') + 
   facet_grid(mod25.YEAR ~ .)
-ggsave('figures/IFAD/SSP2_Moderate_Cred0.25_bayes_ssvs.png', width=10, height=12)
+ggsave('figures/IFAD/SSP2_Moderate_Cred0.25_bayes_ssvs_wt.png', width=10, height=12)
 
 
 ggplot(mapdat) + 
@@ -841,7 +841,7 @@ ggplot(mapdat) +
   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2\nUpper Bound at 0.75-Credible Interval',
        fill='') + 
   facet_grid(mod75.YEAR ~ .)
-ggsave('figures/IFAD/SSP2_Moderate_Cred0.75_bayes_ssvs.png', width=10, height=12)
+ggsave('figures/IFAD/SSP2_Moderate_Cred0.75_bayes_ssvs_wt.png', width=10, height=12)
 
 
 
