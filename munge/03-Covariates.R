@@ -16,4 +16,3 @@ covars <- covars %>%
          forest, livestock, pasture)
 
 cache('covars')
-
