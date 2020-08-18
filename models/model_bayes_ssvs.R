@@ -33,7 +33,7 @@ exc <- c()
 #exc <- c('mal_falciparum', 'mal_vivax', 'wasting', 'crop_prod')
 exc <- c('crops_prod', 'forest', 'builtup', 'livestock',
          'pasture', 'crops_prod', 'cropland',
-         'mal_vivax', 'stunting')
+         'mal_falciparum', 'mal_vivax', 'stunting')
 
 # Set up Model
 vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
@@ -844,8 +844,6 @@ ggsave('figures/bayes_SSVS/SSP2_Sev_Coefs_bayes_ssvs_wt.png', width=5, height=5)
 #        fill='') + 
 #   facet_grid(mod75.YEAR ~ .)
 # ggsave('figures/IFAD/SSP2_Moderate_Cred0.75_bayes_ssvs_wt.png', width=10, height=12)
-# 
-# 
 # 
 # 
 # 
