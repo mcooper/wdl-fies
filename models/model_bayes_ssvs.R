@@ -39,7 +39,11 @@ exc <- c()
 #exc <- c('mal_falciparum', 'mal_vivax', 'wasting', 'crop_prod')
 exc <- c('crops_prod', 'forest', 'builtup', 'livestock',
          'pasture', 'crops_prod', 'cropland',
+<<<<<<< HEAD
          'mal_vivax', 'stunting', 'mal_falciparum')
+=======
+         'mal_falciparum', 'mal_vivax', 'stunting')
+>>>>>>> 4bd1c7a1266f2df0de493859838def5bb1e8699d
 
 # Set up Model
 vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
@@ -665,6 +669,7 @@ ggplot(sdf %>% filter(term != '(Intercept)')) +
 ggsave('figures/bayes_SSVS/SSP2_Sev_Coefs_bayes_ssvs_wt.png', width=5, height=5)
 
 
+<<<<<<< HEAD
 ############################
 # IFAD call
 ############################
@@ -827,3 +832,202 @@ ggsave('figures/IFAD/SSP2_Moderate_Cred0.75_bayes_ssvs_wt.png', width=10, height
 
 
 
+=======
+# ############################
+# # IFAD call
+# ############################
+# 
+# #model coeff
+# mdf <- mdf_save
+# 
+# for (v in vars){
+#   if (v %in% mdf$term){
+#     mdf$scaled[mdf$term==v] <- mdf$median[mdf$term==v]*sd(moddat[ , v])
+#   } else{
+#     mdf <- bind_rows(mdf, data.frame(term=v, median=0, scaled=0))
+#   }
+# }
+# 
+# mdf$term[2:length(mdf$term)] <- c("Percent Urban Population",
+#                                   "Prevalence of Wasting",
+#                                   "Mean Years of Schooling",
+#                                   "Topographic Ruggedness Index",
+#                                   "GDP Per Capita",
+#                                   "Gini Coefficient",
+#                                   "Prevalence of Malaria",
+#                                   "Mean Annual Precipitation",
+#                                   "Poverty Headcount Index",
+#                                   "Average Temperature",
+#                                   "Water Scarcity Index")
+# 
+# mdf$term <- factor(mdf$term, levels=mdf$term[order(mdf$scaled)], ordered=TRUE)
+# 
+# ggplot(mdf %>% filter(term != '(Intercept)')) + 
+#   geom_bar(aes(x=term, y=scaled), stat='identity') + 
+#   coord_flip() + 
+#   labs(title='Change in Rate of Mod+Sev Food Insecurity\nWith increase of 1 SD in Var\nFor SSP2 Bayes SSVS Regression Model',
+#        x="", y="") + 
+#   scale_y_continuous(breaks = seq(from = -1, to = 1, by = 0.25)) +
+#   theme_minimal()
+# ggsave('figures/IFAD/SSP2_Mod_Coefs_bayes_ssvs_wt.png', width=6, height=6)
+# 
+# 
+# #graphs
+# totals$region[totals$region == "Southeast Asia"] <- "South & East Asia"
+# ggplot(totals %>% filter(var=='mod.total_median')) +
+#   geom_line(aes(x=YEAR, y=value, color=region), size=1) +
+#   scale_x_continuous(expand=c(0,0)) +
+#   scale_y_continuous(expand=c(0,0), labels = scales::comma) +
+#   labs(x='Year', y="Number Food Insecure",
+#        title="Number With Moderate or Severe Food Insecurity, By Continent") + 
+#   theme_bw() +
+#   theme(legend.title=element_blank())
+# ggsave('figures/IFAD/Time.Mod.Lines_bayes_ssvs_wt.png', width=8, height=5)
+# 
+# 
+# #rural/urban
+# totals <- preddat %>%
+#   filter(YEAR > 2010) %>%
+#   #group_by(YEAR) %>%
+#   group_by(YEAR) %>%
+#   summarize(mod.rural_median=sum(fies.mod.pred_median * (population*rural_perc), na.rm=T),
+#             mod.urban_median=sum(fies.mod.pred_median * (population*urban_perc), na.rm=T)) %>%
+#   rename(Rural = "mod.rural_median", Urban = "mod.urban_median") %>%
+#   gather(var, value, -YEAR)
+# 
+# ggplot(totals) +
+#   geom_line(aes(x=YEAR, y=value, color=var), size=1) +
+#   scale_x_continuous(expand=c(0,0)) +
+#   scale_y_continuous(expand=c(0,0), labels = scales::comma) +
+#   labs(x='Year', y="Number Food Insecure",
+#        title="Number With Moderate or Severe Food Insecurity, By Rural/Urban") +
+#   theme_bw() +
+#   theme(legend.title=element_blank())
+# ggsave('figures/IFAD/Time.Mod.Lines.RurUrb_bayes_ssvs_wt.png', width=8, height=5)
+# 
+# 
+# #credible interval
+# totals <- preddat %>%
+#   filter(YEAR > 2010) %>%
+#   #group_by(YEAR) %>%
+#   group_by(YEAR) %>%
+#   summarize(mod.total_median=sum(fies.mod.pred_median * (population), na.rm=T),
+#             mod.total_cred0.25=sum(fies.mod.pred_cred0.25 * (population), na.rm=T),
+#             mod.total_cred0.75=sum(fies.mod.pred_cred0.75 * (population), na.rm=T)) 
+# 
+# ggplot(totals) +
+#   geom_line(aes(x=YEAR, y=mod.total_median), size = 1) +
+#   geom_line(aes(x=YEAR, y=mod.total_cred0.25), size = 0.8, linetype = "dashed") +
+#   geom_line(aes(x=YEAR, y=mod.total_cred0.75), size = 0.8, linetype = "dashed") +
+#   scale_x_continuous(expand=c(0,0), limits=c(2011, 2030.5)) +
+#   scale_y_continuous(expand=c(0,0), limits=c(1*10^9, 4*10^9), labels = scales::comma) +
+#   labs(x='Year', y="Number Food Insecure",
+#        title="Number With Moderate or Severe Food Insecurity\nwith 0.25/0.75 Credible Intervals") +
+#   theme_bw() +
+#   theme(legend.title=element_blank())
+# ggsave('figures/IFAD/Time.Mod.Cred_bayes_ssvs_wt.png', width=8, height=5)
+# 
+# 
+# #map
+# ggplot(mapdat %>% filter(YEAR == 2020)) + 
+#   geom_sf(aes(fill=fies.mod.pred_median), color=NA) + 
+#   scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+#                                  "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
+#   geom_sf(data=countries, color='#000000', fill=NA) + 
+#   coord_sf(crs='+proj=robin') + 
+#   theme_void() + 
+#   theme(legend.position = 'bottom',
+#         plot.title = element_text(hjust = 0.5)) + 
+#   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 in 2020',
+#        fill='') + 
+#   facet_grid(mod.YEAR ~ .)
+# ggsave('figures/IFAD/SSP2_Moderate_2020_bayes_ssvs_wt.png', width=10, height=5)
+# 
+# ggplot(mapdat %>% filter(YEAR == 2025)) + 
+#   geom_sf(aes(fill=fies.mod.pred_median), color=NA) + 
+#   scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+#                                  "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
+#   geom_sf(data=countries, color='#000000', fill=NA) + 
+#   coord_sf(crs='+proj=robin') + 
+#   theme_void() + 
+#   theme(legend.position = 'bottom',
+#         plot.title = element_text(hjust = 0.5)) + 
+#   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 in 2025',
+#        fill='') + 
+#   facet_grid(mod.YEAR ~ .)
+# ggsave('figures/IFAD/SSP2_Moderate_2025_bayes_ssvs_wt.png', width=10, height=5)
+# 
+# ggplot(mapdat %>% filter(YEAR == 2030)) + 
+#   geom_sf(aes(fill=fies.mod.pred_median), color=NA) + 
+#   scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+#                                  "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
+#   geom_sf(data=countries, color='#000000', fill=NA) + 
+#   coord_sf(crs='+proj=robin') + 
+#   theme_void() + 
+#   theme(legend.position = 'bottom',
+#         plot.title = element_text(hjust = 0.5)) + 
+#   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 in 2030',
+#        fill='') + 
+#   facet_grid(mod.YEAR ~ .)
+# ggsave('figures/IFAD/SSP2_Moderate_2030_bayes_ssvs_wt.png', width=10, height=5)
+# 
+# 
+# #upper and lower
+# totals <- preddat %>%
+#   filter(YEAR > 2010) %>%
+#   #group_by(YEAR) %>%
+#   group_by(YEAR) %>%
+#   summarize(mod.total_median=sum(fies.mod.pred_median * (population), na.rm=T),
+#             mod.total_cred0.25=sum(fies.mod.pred_cred0.25 * (population), na.rm=T),
+#             mod.total_cred0.75=sum(fies.mod.pred_cred0.75 * (population), na.rm=T))  %>%
+#   gather(var, value, -YEAR)
+# 
+# mapdat <- merge(gdl %>%
+#                   select(-region), 
+#                 preddat %>% 
+#                   filter(YEAR %in% c(2020, 2025, 2030)) %>%
+#                   select(GDLCODE, YEAR, fies.mod.pred_cred0.25, fies.mod.pred_cred0.75), 
+#                 all.x=T, all.y=F) %>%
+#   merge(totals %>%
+#           filter(YEAR %in% c(2020, 2025, 2030)) %>%
+#           group_by(YEAR, var) %>%
+#           summarize(value=prettyNum(sum(value), scientific=F, big.mark=',')) %>%
+#           spread(var, value) %>%
+#           mutate(mod25.YEAR = paste0(YEAR, ':\n', mod.total_cred0.25, 
+#                                    '\nIn Moderate or Severe Food Insecurity'),
+#                  mod75.YEAR = paste0(YEAR, ':\n', mod.total_cred0.75, 
+#                                    '\nIn Moderate or Severe Food Insecurity')))
+# 
+# ggplot(mapdat) + 
+#   geom_sf(aes(fill=fies.mod.pred_cred0.25), color=NA) + 
+#   scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+#                                  "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
+#   geom_sf(data=countries, color='#000000', fill=NA) + 
+#   coord_sf(crs='+proj=robin') + 
+#   theme_void() + 
+#   theme(legend.position = 'bottom',
+#         plot.title = element_text(hjust = 0.5)) + 
+#   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2\nLower Bound at 0.25-Credible Interval',
+#        fill='') + 
+#   facet_grid(mod25.YEAR ~ .)
+# ggsave('figures/IFAD/SSP2_Moderate_Cred0.25_bayes_ssvs_wt.png', width=10, height=12)
+# 
+# 
+# ggplot(mapdat) + 
+#   geom_sf(aes(fill=fies.mod.pred_cred0.75), color=NA) + 
+#   scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+#                                  "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
+#   geom_sf(data=countries, color='#000000', fill=NA) + 
+#   coord_sf(crs='+proj=robin') + 
+#   theme_void() + 
+#   theme(legend.position = 'bottom',
+#         plot.title = element_text(hjust = 0.5)) + 
+#   labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2\nUpper Bound at 0.75-Credible Interval',
+#        fill='') + 
+#   facet_grid(mod75.YEAR ~ .)
+# ggsave('figures/IFAD/SSP2_Moderate_Cred0.75_bayes_ssvs_wt.png', width=10, height=12)
+# 
+# 
+# 
+# 
+>>>>>>> 4bd1c7a1266f2df0de493859838def5bb1e8699d
