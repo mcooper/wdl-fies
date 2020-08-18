@@ -52,7 +52,6 @@ modelFuture <- function(var){
   pred <- inv.logit(logit(dat[length(dat)]) + aroc*(1:nas))
   
   pred[is.nan(pred)] <- 0
-
   res <- c(dat, pred)
 
   return(res)
@@ -84,26 +83,58 @@ ref_fut <- read.csv('data/covars/rawdata/ssp/SspDb_country_data_2013-06-12.csv')
 
 #Get actual trends from 2010-2019
 actual <- read.csv('data/covars/rawdata/API_SP.POP.TOTL_DS2_en_csv_v2_1308146.csv', skip=4) %>%
-  select(-Country.Name, -Indicator.Name, -Indicator.Code) %>%
+  dplyr::select(-Country.Name, -Indicator.Name, -Indicator.Code) %>%
   gather(YEAR, pop_actual, -Country.Code) %>%
   mutate(ISO3 = countrycode(Country.Code, 'wb', 'iso3c'),
          YEAR = as.numeric(substr(YEAR, 2, 5))) %>%
   filter(!is.na(ISO3), YEAR > 2009) %>%
-  select(-Country.Code)
+  dplyr::select(-Country.Code)
 
 #Get country-level ratio of actual trends to predicted (from 2010) trends
-compare <- merge(actual, ref_fut, all.x=T, all.y=F) %>%
-  na.omit %>%
+compare <- merge(ref_fut, actual, all.x=T, all.y=F) %>%
   mutate(off = pop_actual/population) %>%
   #Add space for years to 2030
   merge(expand.grid(list(YEAR=2010:2030, ISO3=unique(ref_fut$ISO3))), all.y=T) %>%
   group_by(ISO3) %>%
   fill(off)
 
-ref_fut <- merge(ref_fut, compare, all.x=T, all.y=F) %>%
+new_ref_fut <- merge(ref_fut, compare, all.x=T, all.y=F) %>%
   mutate(off = ifelse(is.na(off), 1, off),
          population = population*off) %>%
-  select(-off, -pop_actual)
+  dplyr::select(-off, -pop_actual)
+
+##############################################3
+# Compare trajectories from:
+#  - GDL
+#  - World Bank
+#  - Future SSP Projections
+#  - World Bank-Adjusted Future SSP Projections
+################################################
+
+# ref_past_sum <- ref_past %>%
+#   group_by(YEAR) %>%
+#   summarize(pop = sum(population, na.rm=T)) %>%
+#   mutate(ref='past')
+# 
+# ref_fut_sum <- ref_fut %>%
+#   group_by(YEAR) %>%
+#   summarize(pop = sum(population, na.rm=T)) %>%
+#   mutate(ref='future')
+# 
+# ref_wb_sum <- actual %>%
+#   group_by(YEAR) %>%
+#   summarize(pop = sum(pop_actual, na.rm=T)) %>%
+#   mutate(ref='wb')
+# 
+# new_ref_fut <- new_ref_fut %>%
+#   group_by(YEAR) %>%
+#   summarize(pop = sum(population, na.rm=T)) %>%
+#   mutate(ref='new_fut')
+# 
+# all <- bind_rows(ref_past_sum, ref_fut_sum, ref_wb_sum, new_ref_fut)
+# 
+# ggplot(all) + 
+#   geom_line(aes(x=YEAR, y=pop, color=ref))
 
 ######################################################
 #Get each admin areas share of national tot, and model how that share has changed over time
@@ -120,12 +151,13 @@ rates <- ref_past %>%
   group_by(ISO3, YEAR) %>%
   mutate(admin_shares_total = sum(admin_share)) %>%
   ungroup(admin_share = admin_share/admin_shares_total) %>%
-  select(ISO3, GDLCODE, YEAR, admin_share)
+  dplyr::select(ISO3, GDLCODE, YEAR, admin_share)
 
 #Now extrapolate these rates to the future
-fut <-merge(rates, ref_fut) %>%
+fut <-merge(rates, new_ref_fut) %>%
   mutate(population = population*admin_share) %>%
-  select(-admin_share)
+  dplyr::select(-admin_share)
+
 
 #######################################################
 # Now extract future shares urban and rural by admin area
@@ -135,10 +167,12 @@ fut <-merge(rates, ref_fut) %>%
 #FROM https://www.worldclim.org/data/worldclim21.html
 ur <- stack(list.files('data/covars/rawdata/urban-rural', full.names=T, pattern='tif$'))
 
-e <- raster::extract(ur, sp, method='simple', fun=sum, na.rm=T,
-                                    sp=TRUE, df=TRUE)
+# e <- raster::extract(ur, sp, method='simple', fun=sum, na.rm=T,
+#                                     sp=TRUE, df=TRUE)
+# 
+# e <- e@data
 
-e <- e@data
+e <- read.csv('data/covars/rawdata/urban-rural/e.csv')
 
 res <- e %>%
   dplyr::select(GDLCODE=GDLcode, matches('ssp2')) %>%
@@ -160,7 +194,7 @@ res <- e %>%
 r <- merge(res, fut) %>%
   mutate(rural = Rural_Perc*population,
          urban = Urban_Perc*population) %>%
-  select(GDLCODE, ISO3, YEAR, population, rural, urban)
+  dplyr::select(GDLCODE, ISO3, YEAR, population, rural, urban)
 
 
 #For missing values in Vanuatu, use country means
@@ -178,7 +212,7 @@ r <- r %>%
   mutate_if(is.numeric, round) %>%
   mutate(rural_perc = rural/population,
          urban_perc = urban/population) %>%
-  select(-rural, -urban)
+  dplyr::select(-rural, -urban)
 
 write.csv(r, 'data/covars/results/urban-rural.csv', row.names=F)
     
