@@ -137,11 +137,11 @@ compare <- merge(gdp %>%
                    rename(wb_gdp=gdp), 
                  ssp %>%
                    rename(ssp_gdp=GDP)) %>%
-  mutate(ratio=wb_gdp/ssp_gdp,
-         ratio=ifelse(is.na(ratio), 1, ratio)) %>%
+  mutate(ratio=wb_gdp/ssp_gdp) %>%
   merge(expand.grid(list(YEAR=2010:2030, ISO3=unique(ssp$ISO3))), all.y=T) %>%
   group_by(ISO3) %>%
-  fill(ratio)
+  fill(ratio) %>%
+  mutate(ratio = ifelse(is.na(ratio), 1, ratio))
 
 ssp <- ssp %>%
   merge(compare %>% select(ISO3, YEAR, ratio)) %>%

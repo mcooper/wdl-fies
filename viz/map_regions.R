@@ -1,16 +1,15 @@
+#setwd('~/wdl-fies');library(ProjectTemplate);load.project()
 cty <- ne_countries(returnclass = 'sf') %>%
-  select(iso_a3)
-
-regions$iso_a3 <- as.character(regions$ISO3)
-
-cty <- merge(cty, regions, on='iso_a3', all.x=T)
+  select(ISO3=iso_a3, region=region_wb) %>%
+  filter(region != 'Antarctica')
 
 plt <- ggplot(cty) + 
   geom_sf(aes(fill=region)) + 
   coord_sf(crs='+proj=robin') + 
   theme_void() + 
   theme(legend.position = 'bottom',
-        plot.title = element_text(hjust = 0.5))
+        plot.title = element_text(hjust = 0.5)) + 
+  guides(fill=FALSE)
 plt
 
 ggsave(plot = plt, filename = 'figures/regions.png', width=12, height=7)

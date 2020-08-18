@@ -36,3 +36,4 @@ gdl <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4') %>%
 cache('fies_raw')
 cache('gdl')
 cache('regions')
+cache('u5.population')
