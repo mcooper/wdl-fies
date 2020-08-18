@@ -1,5 +1,5 @@
 gdl_fies <- merge(gdl,
-                  fies_subnat_wt %>%
+                  fies_subnat %>%
                     group_by(GDLCODE) %>%
                     summarize_if(is.numeric, mean))
 
@@ -40,3 +40,4 @@ ggplot() +
   labs(fill='',
        title='Subnational Rate of Severe Food Insecurity\n(Averaged over all years)')
 ggsave('figures/subnational-severe-wt.png', width=12, height=7)
+
