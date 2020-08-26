@@ -1,3 +1,5 @@
+setwd('~/wdl-fies')
+
 library(tidyverse)
 library(countrycode)
 

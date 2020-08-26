@@ -1,9 +1,11 @@
+setwd('~/wdl-fies')
+
 library(tidyverse)
 library(raster)
 library(lubridate)
 library(rgdal)
 
-sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit')
 
 d <- read.csv('data/covars/rawdata/conflict_deaths/ged191.csv') %>%
   dplyr::select(date_start, date_end, best, latitude, longitude) 

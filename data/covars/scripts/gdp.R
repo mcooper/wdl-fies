@@ -1,3 +1,5 @@
+setwd('~/wdl-fies')
+
 library(zoo)
 library(tidyverse)
 library(countrycode)
@@ -60,7 +62,7 @@ modelFuture <- function(var){
 #######################################
 #Read GDL GNI Data
 #######################################
-sf <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sf <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit')
 
 #https://globaldatalab.org/shdi/download_files/
 #https://globaldatalab.org/assets/2020/03/SHDI%20Complete%204.0%20%281%29.csv

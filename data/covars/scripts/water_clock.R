@@ -1,3 +1,5 @@
+setwd('~/wdl-fies')
+
 library(data.table)
 
 #water scarcity

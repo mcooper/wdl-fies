@@ -1,3 +1,5 @@
+setwd('~/wdl-fies')
+
 library(tidyverse)
 library(sf)
 library(readxl)
@@ -6,7 +8,7 @@ library(zoo)
 
 options(stringsAsFactors=F)
 
-sf <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sf <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit')
 
 ####################
 #### Past data

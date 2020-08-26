@@ -1,8 +1,10 @@
+setwd('~/wdl-fies')
+
 library(raster)
 library(rgdal)
 library(tidyverse)
 
-sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit')
 nd <- raster('data/covars/rawdata/nutrition_diversity_mfad.asc')
 
 e <- raster::extract(nd, sp, method='simple', fun=mean, na.rm=T,

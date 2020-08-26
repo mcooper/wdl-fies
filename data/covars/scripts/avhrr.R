@@ -1,8 +1,10 @@
+setwd('~/wdl-fies')
+
 library(raster)
 library(rgdal)
 library(tidyverse)
 
-sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit')
 
 ndvi <- raster('data/covars/rawdata/AVHRR/2016_vi_mn_75_100.tif')/10000
                

@@ -1,3 +1,5 @@
+setwd('~/wdl-fies')
+
 library(zoo)
 library(raster)
 library(rgdal)
@@ -61,7 +63,7 @@ modelFuture <- function(var){
 # Read in data
 ###############################################
 
-sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit')
 
 #Historic Population by admin area
 ref_past <- read.csv('data/covars/rawdata/SHDI Complete 4.0.csv') %>%

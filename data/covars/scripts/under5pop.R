@@ -1,3 +1,5 @@
+setwd('~/wdl-fies')
+
 library(tidyverse)
 library(zoo)
 library(rgdal)
@@ -51,7 +53,7 @@ modelFuture <- function(var){
   return(res)
 }
 
-sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit')
 
 u5 <- read.csv('data/covars/rawdata/ssp/SspDb_country_data_2013-06-12.csv') %>%
   filter(grepl('Aged0-4$', VARIABLE), 

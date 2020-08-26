@@ -1,8 +1,10 @@
+setwd('~/wdl-fies')
+
 library(raster)
 library(rgdal)
 library(tidyverse)
 
-sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4')
+sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit')
 
 ruggedness <- function(x){
   x <- as.vector(x)
