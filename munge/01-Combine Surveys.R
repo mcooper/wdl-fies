@@ -29,7 +29,7 @@ fies_raw <- fies_raw %>%
   select(-year)
 
 #Read in GDL Code
-gdl <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4') %>%
+gdl <- read_sf('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit') %>%
   rename(GDLCODE=GDLcode) %>%
   filter(!GDLCODE %in% c("COLr128", "GMBr101", "GMBr107", "INDr135", "NA"))
 

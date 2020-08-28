@@ -71,7 +71,12 @@ ref_past <- read.csv('data/covars/rawdata/SHDI Complete 4.0.csv') %>%
   mutate(gni_percap_2011=gnic*1000,
          population=pop*1000000) %>%
   dplyr::select(GDLCODE, 
-         YEAR=year, population)
+         YEAR=year, population) %>%
+  bind_rows(data.frame(GDLCODE='PRKt', #Add data for North Korea
+                       YEAR=2010:2018,
+                       population=seq(24.55e6, #Rough estimates from google
+                                      25.55e6,
+                                      length.out=9)))
 
 #Future Population by country
 ref_fut <- read.csv('data/covars/rawdata/ssp/SspDb_country_data_2013-06-12.csv') %>%
@@ -82,6 +87,27 @@ ref_fut <- read.csv('data/covars/rawdata/ssp/SspDb_country_data_2013-06-12.csv')
   group_by(ISO3) %>%
   complete(YEAR=2010:2030) %>%
   mutate(population = na.approx(population)*1000000)
+
+  #Extrapolate for South Sudan using rates for CAR
+  #Extrapolate for North Korea using rates for Tajikstan
+  SSD_ref <- sum(ref_past[grepl("SSD", ref_past$GDLCODE ) & ref_past$YEAR == 2010, 'population'])
+  PRK_ref <- sum(ref_past[grepl("PRK", ref_past$GDLCODE ) & ref_past$YEAR == 2010, 'population'])
+
+  SSD <- ref_fut %>% 
+    filter(ISO3=='CAF') %>% 
+    mutate(rate=population/min(population),
+           population=SSD_ref*rate,
+           ISO3='SSD') %>%
+    select(-rate)
+
+  PRK <- ref_fut %>% 
+    filter(ISO3=='TJK') %>% 
+    mutate(rate=population/min(population),
+           population=PRK_ref*rate,
+           ISO3='PRK') %>%
+    select(-rate)
+
+  ref_fut <- bind_rows(ref_fut, SSD, PRK)
 
 #Get actual trends from 2010-2019
 actual <- read.csv('data/covars/rawdata/API_SP.POP.TOTL_DS2_en_csv_v2_1308146.csv', skip=4) %>%
@@ -169,10 +195,10 @@ fut <-merge(rates, new_ref_fut) %>%
 #FROM https://www.worldclim.org/data/worldclim21.html
 ur <- stack(list.files('data/covars/rawdata/urban-rural', full.names=T, pattern='tif$'))
 
-# e <- raster::extract(ur, sp, method='simple', fun=sum, na.rm=T,
-#                                     sp=TRUE, df=TRUE)
-# 
-# e <- e@data
+#e <- raster::extract(ur, sp, method='simple', fun=sum, na.rm=T,
+#                      sp=TRUE, df=TRUE)
+#
+#e <- e@data
 
 e <- read.csv('data/covars/rawdata/urban-rural/e.csv')
 
