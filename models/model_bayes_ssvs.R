@@ -1,5 +1,5 @@
 #######################################################
-# Use BMA with SSP covariates
+# Use Bayes SSVS with SSP covariates
 # to estimate food insecurity, based on data for
 # modeled for 2020, 2025, and 2030
 #######################################################
@@ -39,11 +39,7 @@ exc <- c()
 #exc <- c('mal_falciparum', 'mal_vivax', 'wasting', 'crop_prod')
 exc <- c('crops_prod', 'forest', 'builtup', 'livestock',
          'pasture', 'crops_prod', 'cropland',
-<<<<<<< HEAD
          'mal_vivax', 'stunting', 'mal_falciparum')
-=======
-         'mal_falciparum', 'mal_vivax', 'stunting')
->>>>>>> 4bd1c7a1266f2df0de493859838def5bb1e8699d
 
 # Set up Model
 vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
@@ -669,7 +665,7 @@ ggplot(sdf %>% filter(term != '(Intercept)')) +
 ggsave('figures/bayes_SSVS/SSP2_Sev_Coefs_bayes_ssvs_wt.png', width=5, height=5)
 
 
-<<<<<<< HEAD
+
 ############################
 # IFAD call
 ############################
