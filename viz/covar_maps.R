@@ -10,7 +10,8 @@ exc <- c('crops_prod', 'forest', 'builtup', 'livestock', #8
 v <- names(covar_map)[!names(covar_map) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
                                             'fies.sev.rur', 'fies.mod.urb', 'fies.sev.urb',
                                             'Urban', 'Rural', 'fies.sev', 'fies.mod',
-                                            'population', 'YEAR', 'rural_perc', 'region',
+                                            'population', 'YEAR', 'rural_perc', 'region', 
+                                            'geometry',
                                             names(covar_map)[grepl('region', names(covar_map))],
                                             exc)]
 
@@ -30,5 +31,5 @@ for (n in v){
           plot.title = element_text(hjust = 0.5)) + 
     facet_wrap(~ YEAR, nrow=2, ncol=2)
 
-  ggsave(paste0('figures/covar_maps/', n, '.png'))
+  ggsave(paste0('figures/covar_maps/', n, '.png'), width=18, height=9.5)
 }
