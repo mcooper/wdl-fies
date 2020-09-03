@@ -19,8 +19,6 @@
 
 \author[1]{Matthew Cooper}
 \author[2]{Benjamin Müller}
-\author[3]{Juan Carlos Laso}
-\author[4]{Homi Kharas}
 
 \affil[1]{T.H. Chan School of Public Health, Harvard University}
 \affil[2]{Department of Economics, Vienna University of Economics and Business}
@@ -60,14 +58,10 @@ Based on the responses to these questions, a Rasch model is used to generate the
 For our analysis, we draw on several datasets.  First, we use the individual responses from 335,139 individuals from 331 surveys across 77 countries, downloaded from the FAO microdata catalogue.  Additionally, we use country-level FIES scores downloaded from FAOSTAT.
 
 To disaggregate the FIES by urban-rural areas, we used data on urbanization from \cite{Jiang2017}.
-%once implemented add here more to disaggregation 
 
 \subsection{Covariates Available in the Present}
 We use a large stack of covariates available for the present or the near-present, reflective of factors related to many aspects of food systems.  Datasets that were originally gridded were aggregated to the Admin-1 level taking the mean value.  A full table of datasets is given in Table \ref{tab:covars1}.
 
-%NOTE: WHEN JUSTIFYING COVARIATES, SAY THAT WE USE MANY FROM DEVELOPING COUNTRIES BECAUSE THE CAUSES OF FOOD INSECURITY ARE MORE DIVERSE THERE: ALMOST A KARENINA PRINCIPLE
-
-%update/create this table once we have our final model
 \begin{table}[H]
 	\begin{tabular}{llll}
 		\toprule
@@ -157,8 +151,40 @@ We use a large stack of covariates available for the present or the near-present
 
 
 \subsection{Covariates Available in the Present and Future}
-To model the FIES in the future, we use projections derived in line with the Shared Socio-Economic Pathways (SSPs).  The SSPs are a framework to estimate what the future might look like in terms of human development and climate-change mitigation, based on a number of scenarios.  We use projections of GDP \cite{Dellink2017}, education \cite{KC2017}, and urbanization \cite{Jiang2017} for SSP2, the middle-of the road pathway.
-%in general we use middle of the road but maybe also other scenarios to account for uncertainty
+To model the FIES in the future, we use projections from multiple sources. Most covariates are derived in line with the Shared Socio-Economic Pathways (SSPs). The SSPs are a framework to estimate what the future might look like in terms of human development and climate-change mitigation, based on a number of scenarios.  We use projections for SSP2, the middle-of the road pathway, from \cite{Crespo2017}, \cite{Dellink2017}, \cite{Rao2019a}, \cite{KC2017}, \cite{Jiang2017} and \cite{SSPData2017}.
+Additionally, we use projections for poverty and water scarcity from \cite{WDL2020PC} and \cite{WDL2020WSC} respectively and estimate our own forecasts (with elasticities to GDP) for ``Imports per capita'' and ``Agriculture as a Percent of GDP'' (See Table \ref{tab:covars3}.
+
+
+\begin{table}[H]
+	\begin{tabular}{llll}
+		\toprule
+		Name & Availability & Scale & Source \\
+		\midrule
+		GDP PPP per capita & Annual & National & \cite{Crespo2017} \\
+		- & - & - & \cite{Dellink2017} \\
+		Gini index & Annual & National & \cite{Rao2019a} \\
+		Share primary education & Annual & National & \cite{KC2017} \\
+		Share secondary education & Annual & National & \cite{KC2017} \\
+		%Share tertiary education & Annual & National & \cite{KC2017} \\
+		Share people in urban areas & Annual & Subnational & \cite{Jiang2017} \\
+        Crops production & Annual & Regional & \cite{Jiang2017} \\
+        Cropland cover & Annual & Regional & \cite{SSPData2017} \\
+        Forest land cover & Annual & Regional & \cite{SSPData2017} \\
+        Built up land cover & Annual & Regional & \cite{SSPData2017} \\
+        Livestock production & Annual & Regional & \cite{SSPData2017} \\
+        Poverty headcount index & Annual & National & \cite{WDL2020PC} \\
+        %Water stress index & Annual & Subnational & \cite{WDL2020WSC} \\
+        Water scarcity index & Annual & Subnational & \cite{WDL2020WSC} \\
+        %Absolute water scarcity index & Annual & Subnational & \cite{WDL2020WSC} \\
+        Imports per capita & Annual & National & \cite{TheWorldBank2016} \\
+        Agriculture percent of GDP & Annual & National & \cite{TheWorldBank2016} \\
+        \bottomrule
+	\end{tabular}
+	\caption{Co-Variates Included in Forecast Analysis}
+	\label{tab:covars3}
+\end{table}
+
+
 
 \section{Methods \& Results}
 \subsection{Disaggregating the FIES Subnationally}
