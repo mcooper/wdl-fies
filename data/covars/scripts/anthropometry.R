@@ -76,4 +76,13 @@ ep <- em %>%
   mutate(stunting=modelFuture(stunting),
          wasting=modelFuture(wasting))
 
+#For countries without data, set to 0
+ep$ISO3 <- substr(ep$GDLCODE, 1, 3)
+
+na_countries <- c('USA', 'CAN', 'AUS', 'CHL', 'ARG', 'URY', 'SAU', 'OMN', 
+                  'RUS', 'KAZ', 'ARM', 'AZE')
+
+ep$wasting[ep$ISO3 %in% na_countries] <- 0
+ep$stunting[ep$ISO3 %in% na_countries] <- 0
+
 write.csv(ep, 'data/covars/results/anthro_vars.csv', row.names=F)

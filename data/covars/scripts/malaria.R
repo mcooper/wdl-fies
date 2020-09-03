@@ -6,7 +6,7 @@ library(tidyverse)
 
 sp <- readOGR('data/GDL Shapefiles V4 0.005', 'GDL Shapefiles V4 Edit')
 
-fs <- list.files('data/covars/rawdata/malaria', pattern='^2019_Global_P._Incidence_20...tif$', full.names = T, recursive=T)
+fs <- list.files('data/covars/rawdata/malaria', pattern='^2019_Global_P._Mortality_Rate_20...tif$', full.names = T, recursive=T)
 
 s <- stack(fs)
 
@@ -14,7 +14,7 @@ e <- raster::extract(s, sp)
 
 getColSumsOrNull <- function(x){
 	if (is.null(dim(x))){
-		return(data.frame(X2019_Global_Pv_Incidence_2012=NA))
+		return(data.frame(X2019_Global_Pf_Mortality_Rate_2017=NA))
 	} else{
 		return(colSums(x, na.rm=T))
 	}
@@ -25,15 +25,12 @@ e2 <- lapply(e, getColSumsOrNull) %>%
 
 e3 <- e2 %>%
 	mutate(GDLCODE=sp$GDLcode) %>%
-  gather(timetype, incidence, -GDLCODE) %>%
-  mutate(YEAR=as.numeric(substr(timetype, nchar(timetype) - 3, nchar(timetype))),
-         type=ifelse(grepl('Pf', timetype), 'mal_falciparum', 'mal_vivax')) %>%
-  select(-timetype) %>%
-  spread(type, incidence)
+  gather(timetype, mal_falciparum, -GDLCODE) %>%
+  mutate(YEAR=as.numeric(substr(timetype, nchar(timetype) - 3, nchar(timetype)))) %>%
+  select(-timetype)
 
 #Missing data at northern latitudes
-e3$falciparum[is.na(e3$falciparum)] <- 0
-e3$vivax[is.na(e3$vivax)] <- 0
+e3$mal_falciparum[is.na(e3$mal_falciparum)] <- 0
 
 ##################################################
 # Now project to 2030 using methodlogy
@@ -81,8 +78,6 @@ e4 <- e3 %>%
   merge(expand.grid(list(GDLCODE=unique(e3$GDLCODE), YEAR=2000:2030)), all.y=T) %>%
   group_by(GDLCODE) %>%
   arrange(YEAR) %>%
-  mutate(mal_falciparum=modelFuture(mal_falciparum/100000),
-         mal_vivax=modelFuture(mal_vivax/100000))
-
+  mutate(mal_falciparum=modelFuture(mal_falciparum/100000))
 
 write.csv(e4, 'data/covars/results/malaria.csv', row.names=F)
