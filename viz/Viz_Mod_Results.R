@@ -2,108 +2,116 @@
 
 #Save outputs to wdl-fies-tex for manuscript
 setwd('~/wdl-fies-tex/img')
+library(cowplot)
+options(scipen=100)
 
 ############################
 # visualize results
 ############################
+
+########################
+# Make Map
+##########################
+
+mapdat <- merge(gdl,
+                preddat %>%
+                  filter(YEAR %in% c(2010, 2020, 2030)) %>%
+                  select(YEAR, GDLCODE, fies.mod.pred, fies.sev.pred) %>%
+                  gather(outcome, value, -YEAR, -GDLCODE) %>%
+                  mutate(FIES=ifelse(grepl('sev', outcome), 'Severe\n', 'Moderate-to-Severe\n')))
+
+ggplot(mapdat) +
+  geom_sf(aes(fill=value), color=NA) + 
+  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
+                                 "#fce08a", "#faae61", "#f36c44", "#a01c44"), 
+                       breaks=seq(0, 1, by=0.2),
+                       limits=c(0, max(mapdat$value))) + 
+  geom_sf(data=cty, color='#000000', fill=NA, size=0.15) + 
+  coord_sf(crs='+proj=robin', expand=FALSE) + 
+  theme_void() + 
+  theme(legend.position = 'bottom',
+        plot.title = element_text(hjust = 0.5),
+        panel.spacing.x = unit(-0.5, "in")) + 
+  labs(fill='') + 
+  facet_grid(YEAR ~ FIES, switch='y')
+ggsave('FullMap.pdf', width=7, dpi=750)
+system('pdfcrop FullMap.pdf FullMap.pdf')
+
+
+###########################
+# Setup Reference Map
+############################
+region_cols <- c("South Asia" = "#e41a1c",
+                 "Sub-Saharan Africa" = "#377eb8",
+                 "Europe & Central Asia" = "#4daf4a",
+                 "Middle East & North Africa" = "#f781bf",
+                 "Latin America & Caribbean" = "#ff7f00",
+                 "East Asia & Pacific" = "#a65628",
+                 "North America" = "#984ea3")
+
+cty <- ne_countries(returnclass='sf') %>%
+  filter(region_wb != 'Antarctica')
+
+reg <- ggplot(cty) + 
+  geom_sf(aes(fill=region_wb), color=NA) + 
+  coord_sf(crs='+proj=robin') + 
+  theme_void() + 
+  scale_fill_manual(values=region_cols) + 
+  guides(fill=guide_legend(ncol=2)) + 
+  labs(fill='')
+
 #####################
 # time series
 ###############
 
-#get totals by year
+#get totals by YEAR
 totals <- preddat %>%
-  filter(year > 2010) %>%
-  #group_by(year) %>%
-  group_by(year, region) %>%
+  mutate(region = ifelse(region == 'Middle Esat & North Africa',
+                         'Middle East & North Africa', region)) %>%
+  filter(YEAR >= 2010) %>%
+  group_by(YEAR, region) %>%
   summarize(mod.total=sum(fies.mod.pred * (population), na.rm=t),
             sev.total=sum(fies.sev.pred * (population), na.rm=t)) %>%
-  gather(var, value, -year, -region)
+  gather(var, value, -YEAR, -region) %>%
+  mutate(var = ifelse(grepl('mod', var), "Moderate-to-Severe", "Severe")) %>%
+  group_by(region, var) %>%
+  mutate(value = rollapply(value, width=3, FUN=mean, align='center', partial=TRUE))
 
 
-ggplot(totals %>% filter(var=='mod.total')) +
-  geom_area(aes(x=year, y=value, fill=region), position='stack') +
+stack <- ggplot(totals) +
+  geom_area(aes(x=YEAR, y=value, fill=region), position='stack') +
+  scale_fill_manual(values=region_cols) + 
   scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0)) +
-  labs(x='year', y="number food insecure",
-       title="number with moderate or severe food insecurity, by continent, stacked\n(random forest)") +
-  theme_bw()
-ggsave('figures/randomforest/time.mod.stack_randomforest.png', width=7, height=5)
+  scale_y_continuous(expand=expansion(mult=c(0,0.05), add=0), 
+                     labels=function(x){prettyNum(x, big.mark=',')}) +
+  theme_bw() + 
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        plot.margin=unit(c(0, 0.5, 0, 0), 'cm'),
+        panel.spacing=unit(2, 'lines')) +
+  labs(y="", title="", x='') +
+  guides(fill=FALSE) + 
+  facet_grid(. ~ var)
 
-ggplot(totals %>% filter(var=='mod.total')) +
-  geom_line(aes(x=year, y=value, color=region), size=1) +
-  scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0)) +
-  labs(x='year', y="number food insecure",
-       title="number with moderate or severe food insecurity, by continent\n(random forest)") +
-  theme_bw()
-ggsave('figures/randomforest/time.mod.lines_randomforest.png', width=7, height=5)
+lines <- ggplot(totals) +
+  geom_line(aes(x=YEAR, y=value, color=region), size=1) +
+  scale_color_manual(values=region_cols) + 
+  theme_bw() + 
+  theme(plot.margin=unit(c(-1, 0.5, 0, 0), 'lines'),
+        strip.text.x = element_blank(),
+        panel.spacing=unit(2, 'lines')) + 
+  scale_x_continuous(expand=c(0,0), labels=seq(2010, 2030, by=5)) +
+  scale_y_continuous(expand=expansion(mult=c(0,0.05), add=0), 
+                     labels=function(x){prettyNum(x, big.mark=',')}) +  
+  labs(x='', y="",
+       title="") +
+  guides(color=FALSE) + 
+  facet_grid(. ~ var)
 
-ggplot(totals %>% filter(var=='sev.total')) +
-  geom_area(aes(x=year, y=value, fill=region), position='stack') +
-  scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0)) +
-  labs(x='year', y="number food insecure",
-       title="number with severe food insecurity, by continent, stacked\n(random forest)") +
-  theme_bw()
-ggsave('figures/randomforest/time.sev.stack_randomforest.png', width=7, height=5)
-
-ggplot(totals %>% filter(var=='sev.total')) +
-  geom_line(aes(x=year, y=value, color=region), size=1) +
-  scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0)) +
-  labs(x='year', y="number food insecure",
-       title="number with severe food insecurity, by continent\n(random forest)") +
-  theme_bw()
-ggsave('figures/randomforest/time.sev.lines_randomforest.png', width=7, height=5)
-
-
-############################
-# make map
-##############################
-mapdat <- merge(gdl,
-                preddat %>% 
-                  filter(year %in% c(2020, 2025, 2030)) %>%
-                  select(gdlcode, year, fies.mod.pred, fies.sev.pred), 
-                all.x=t, all.y=f) %>%
-  merge(totals %>%
-          filter(year %in% c(2020, 2025, 2030)) %>%
-          group_by(year, var) %>%
-          summarize(value=prettynum(sum(value), scientific=f, big.mark=',')) %>%
-          spread(var, value) %>%
-          mutate(mod.year = paste0(year, ':\n', mod.total, 
-                                   '\nin moderate or severe food insecurity'),
-                 sev.year = paste0(year, ':\n', sev.total, 
-                                   '\nin severe food insecurity')))
-
-countries <- ne_countries(returnclass='sf')
-ggplot(mapdat) + 
-  geom_sf(aes(fill=fies.mod.pred), color=na) + 
-  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
-                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
-  geom_sf(data=countries, color='#000000', fill=na) + 
-  coord_sf(crs='+proj=robin') + 
-  theme_void() + 
-  theme(legend.position = 'bottom',
-        plot.title = element_text(hjust = 0.5)) + 
-  labs(title='rate of moderate or severe food insecurity under ssp2 (random forest)',
-       fill='') + 
-  facet_grid(mod.year ~ .)
-ggsave('figures/randomforest/ssp2_map_moderate_randomforest.png', width=10, height=12)
-
-ggplot(mapdat) +
-  geom_sf(aes(fill=fies.sev.pred), color=na) +
-  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0",
-                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) +
-  geom_sf(data=countries, color='#000000', fill=na) +
-  coord_sf(crs='+proj=robin') +
-  theme_void() +
-  theme(legend.position = 'bottom',
-        plot.title = element_text(hjust = 0.5)) +
-  labs(title='rate of severe food insecurity under ssp2 (random forest)',
-       fill='') +
-  facet_grid(sev.year ~ .)
-ggsave('figures/randomforest/ssp2_map_severe_randomforest.png', width=10, height=12)
-
+plot_grid(plot_grid(stack, lines, align='v', nrow=2, labels='AUTO'), 
+          reg, ncol=1, rel_heights=c(5, 1))
+ggsave('TimeSeries.pdf', width=7, height=7)
 
 ##################################
 # assess residuals
@@ -117,7 +125,7 @@ ggplot(moddat) +
                       '\nr-squared: ', round(r2, 4)),
        x='observed rates of mod+sev food insecurity',
        y='modeled rate of mod+sev food insecurity')	
-ggsave('figures/randomforest/ssp2_mod_residuals_randomforest.png', width=5, height=5)
+ggsave('mod_residuals.png', width=5, height=5)
 
 mae <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred))
 r2 <- cor(moddat$fies.sev, moddat$fies.sev.pred)
@@ -128,7 +136,7 @@ ggplot(moddat) +
                       '\nr-squared: ', round(r2, 4)),
        x='observed rates of sev food insecurity',
        y='modeled rate of sev food insecurity')	
-ggsave('figures/randomforest/ssp2_sev_residuals_randomforest.png', width=5, height=5)
+ggsave('sev_residuals.png', width=5, height=5)
 
 
 ##################################
@@ -142,21 +150,21 @@ ggsave('figures/randomforest/ssp2_sev_residuals_randomforest.png', width=5, heig
 #                                ntree = 500)
 
 # variable importance
-png('figures/randomforest/ssp2_mod_vimp_randomforest.png', width = 1000, height = 500, units="px")
+png('mod_vimp.png', width = 1000, height = 500, units="px")
 plot(vimp(rf.mod))
 dev.off()
 
-png('figures/randomforest/ssp2_sev_vimp_randomforest.png', width = 1000, height = 500, units="px")
+png('sev_vimp.png', width = 1000, height = 500, units="px")
 plot(vimp(rf.sev))
 dev.off()
 
 
 # variable effect
-png('figures/randomforest/ssp2_mod_coefs_randomforest.png', width = 1000, height = 800, units="px")
+png('mod_coefs.png', width = 1000, height = 800, units="px")
 plot.variable.rfsrc(rf.mod, sorted = t)
 dev.off()
 
-png('figures/randomforest/ssp2_sev_coefs_randomforest.png', width = 1000, height = 800, units="px")
+png('sev_coefs.png', width = 1000, height = 800, units="px")
 plot.variable.rfsrc(rf.sev, sorted = t)
 dev.off()
 
@@ -167,14 +175,14 @@ dev.off()
 ############################
 #graphs
 # ggplot(totals %>% filter(var=='mod.total')) +
-#   geom_line(aes(x=year, y=value, color=region), size=1) +
+#   geom_line(aes(x=YEAR, y=value, color=region), size=1) +
 #   scale_x_continuous(expand=c(0,0)) +
 #   scale_y_continuous(expand=c(0,0), labels = scales::comma) +
-#   labs(x='year', y="number food insecure",
+#   labs(x='YEAR', y="number food insecure",
 #        title="number with moderate or severe food insecurity, by continent") + 
 #   theme_bw() +
 #   theme(legend.title=element_blank())
-# ggsave('figures/ifad/time.mod.lines_randomforest.png', width=8, height=5)
+# ggsave('figures/ifad/time.mod.lines.png', width=8, height=5)
 
 
 #rural/urban
@@ -197,7 +205,7 @@ ggplot(totals %>% filter(out == 'Mod')) +
        title="Number With Moderate or Severe Food Insecurity, By Rural/Urban") +
   theme_bw() +
   theme(legend.title=element_blank())
-ggsave('figures/randomforest/Time.Mod.Lines.RurUrb_randomforest.png', width=8, height=5)
+ggsave('Time.Mod.Lines.RurUrb.png', width=8, height=5)
 
 
 ggplot(totals %>% filter(out == 'Sev')) +
@@ -208,7 +216,7 @@ ggplot(totals %>% filter(out == 'Sev')) +
        title="Number With Severe Food Insecurity, By Rural/Urban") +
   theme_bw() +
   theme(legend.title=element_blank())
-ggsave('figures/randomforest/Time.Sev.Lines.RurUrb_randomforest.png', width=8, height=5)
+ggsave('Time.Sev.Lines.RurUrb.png', width=8, height=5)
 
 #Proportion Urban or Rural
 prop <- preddat %>%
@@ -237,7 +245,7 @@ ggplot(prop %>% filter(out == 'Mod')) +
        title="Proportion of Urban and Rural People With Moderate or Severe Food Insecurity") +
   theme_bw() +
   theme(legend.title=element_blank())
-ggsave('figures/randomforest/Time.Mod.Lines.Prop.RurUrb_randomforest.png', width=8, height=5)
+ggsave('Time.Mod.Lines.Prop.RurUrb.png', width=8, height=5)
 
 
 ggplot(prop %>% filter(out == 'Sev')) +
@@ -248,50 +256,6 @@ ggplot(prop %>% filter(out == 'Sev')) +
        title="Number With Severe Food Insecurity, By Rural/Urban") +
   theme_bw() +
   theme(legend.title=element_blank())
-ggsave('figures/randomforest/Time.Sev.Lines.Prop.RurUrb_randomforest.png', width=8, height=5)
-
-
-#Map Individual Years
-ggplot(mapdat %>% filter(YEAR == 2020)) + 
-  geom_sf(aes(fill=fies.mod.pred), color=NA) + 
-  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
-                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
-  geom_sf(data=countries, color='#000000', fill=NA) + 
-  coord_sf(crs='+proj=robin') + 
-  theme_void() + 
-  theme(legend.position = 'bottom',
-        plot.title = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 in 2020',
-       fill='') + 
-  facet_grid(mod.YEAR ~ .)
-ggsave('figures/randomforest/SSP2_Moderate_2020_randomforest.png', width=10, height=5)
-
-ggplot(mapdat %>% filter(YEAR == 2025)) + 
-  geom_sf(aes(fill=fies.mod.pred), color=NA) + 
-  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
-                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
-  geom_sf(data=countries, color='#000000', fill=NA) + 
-  coord_sf(crs='+proj=robin') + 
-  theme_void() + 
-  theme(legend.position = 'bottom',
-        plot.title = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 in 2025',
-       fill='') + 
-  facet_grid(mod.YEAR ~ .)
-ggsave('figures/randomforest/SSP2_Moderate_2025_randomforest.png', width=10, height=5)
-
-ggplot(mapdat %>% filter(YEAR == 2030)) + 
-  geom_sf(aes(fill=fies.mod.pred), color=NA) + 
-  scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
-                                 "#fce08a", "#faae61", "#f36c44", "#a01c44")) + 
-  geom_sf(data=countries, color='#000000', fill=NA) + 
-  coord_sf(crs='+proj=robin') + 
-  theme_void() + 
-  theme(legend.position = 'bottom',
-        plot.title = element_text(hjust = 0.5)) + 
-  labs(title='Rate of Moderate or Severe Food Insecurity Under SSP2 in 2030',
-       fill='') + 
-  facet_grid(mod.YEAR ~ .)
-ggsave('figures/randomforest/SSP2_Moderate_2030_randomforest.png', width=10, height=5)
+ggsave('Time.Sev.Lines.Prop.RurUrb.png', width=8, height=5)
 
 
