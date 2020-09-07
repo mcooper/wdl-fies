@@ -1,0 +1,582 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{Puffer1973}{book}{}
+      \name{author}{2}{}{%
+        {{hash=cd574b3968bf2b860fbcb00b01b6912c}{%
+           family={Puffer},
+           familyi={P\bibinitperiod},
+           given={Ruth\bibnamedelima R.},
+           giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=c44af345c95d57a502cda3c6746ff909}{%
+           family={Serrano},
+           familyi={S\bibinitperiod},
+           given={Carlos\bibnamedelima V.},
+           giveni={C\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Washington, DC}%
+      }
+      \list{publisher}{1}{%
+        {World Heath Organization}%
+      }
+      \strng{namehash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{fullhash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{bibnamehash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{authorbibnamehash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{authornamehash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{authorfullhash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Patterns of Mortality in Childhood}}
+      \field{year}{1973}
+    \endentry
+    \entry{Habicht1974}{article}{}
+      \name{author}{5}{}{%
+        {{hash=fcab559fcefb6f1e97cc1e6c2b954cf8}{%
+           family={Habicht},
+           familyi={H\bibinitperiod},
+           given={J\bibnamedelima P},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=79e118f2ce9048a06bbaa1dbe0b979e6}{%
+           family={Martorell},
+           familyi={M\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod}}}%
+        {{hash=fe569b15684f5a640fdc269f3e39fb63}{%
+           family={Yarbrough},
+           familyi={Y\bibinitperiod},
+           given={C},
+           giveni={C\bibinitperiod}}}%
+        {{hash=4d223bda67bd8503b31c9d1e0e01b67e}{%
+           family={Malina},
+           familyi={M\bibinitperiod},
+           given={R\bibnamedelima M},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=2489a276b030ffc141c4fa879e55a892}{%
+           family={Klein},
+           familyi={K\bibinitperiod},
+           given={R\bibnamedelima E},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{14839b121d300cf39e046fe956791abe}
+      \strng{fullhash}{cff4bfc2fb7dd3b18beb0191fad4cbc2}
+      \strng{bibnamehash}{14839b121d300cf39e046fe956791abe}
+      \strng{authorbibnamehash}{14839b121d300cf39e046fe956791abe}
+      \strng{authornamehash}{14839b121d300cf39e046fe956791abe}
+      \strng{authorfullhash}{cff4bfc2fb7dd3b18beb0191fad4cbc2}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0140-6736 (Print){\textbackslash}r0140-6736 (Linking)}
+      \field{issn}{01406736}
+      \field{journaltitle}{Lancet}
+      \field{number}{7858}
+      \field{title}{{Height and weight standards for preschool children. How relevant are ethnic differences in growth potential?}}
+      \field{volume}{1}
+      \field{year}{1974}
+      \field{pages}{611}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/S0140-6736(74)92663-4
+      \endverb
+    \endentry
+    \entry{Perumal2018}{article}{}
+      \name{author}{3}{}{%
+        {{hash=bce0438cbfc46134fc0dac75280e08a3}{%
+           family={Perumal},
+           familyi={P\bibinitperiod},
+           given={Nandita},
+           giveni={N\bibinitperiod}}}%
+        {{hash=c07afe636bd876c271ed3197941c4482}{%
+           family={Bassani},
+           familyi={B\bibinitperiod},
+           given={Diego\bibnamedelima G},
+           giveni={D\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=efabf2d86e9f7b4b615571825c1934f0}{%
+           family={Roth},
+           familyi={R\bibinitperiod},
+           given={Daniel\bibnamedelima E},
+           giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{fullhash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{bibnamehash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{authorbibnamehash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{authornamehash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{authorfullhash}{102bffc8430f7a139f387b1e6b743567}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0022-3166}
+      \field{journaltitle}{The Journal of Nutrition}
+      \field{number}{3}
+      \field{title}{{Use and Misuse of Stunting as a Measure of Child Health}}
+      \field{volume}{148}
+      \field{year}{2018}
+      \field{pages}{311\bibrangedash 315}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1093/jn/nxx064
+      \endverb
+      \verb{urlraw}
+      \verb https://academic.oup.com/jn/article/148/3/311/4930811
+      \endverb
+      \verb{url}
+      \verb https://academic.oup.com/jn/article/148/3/311/4930811
+      \endverb
+    \endentry
+    \entry{Maxwell1992}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=ec73fab536003ab85c63dea1f36725fc}{%
+           family={Maxwell},
+           familyi={M\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8d88a9ac43a0aab17cf6725bb31b1c23}{%
+           family={Frankenberger},
+           familyi={F\bibinitperiod},
+           given={Timothy\bibnamedelima R.},
+           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{4ab56accbf177105277a508fdb503dba}
+      \strng{fullhash}{4ab56accbf177105277a508fdb503dba}
+      \strng{bibnamehash}{4ab56accbf177105277a508fdb503dba}
+      \strng{authorbibnamehash}{4ab56accbf177105277a508fdb503dba}
+      \strng{authornamehash}{4ab56accbf177105277a508fdb503dba}
+      \strng{authorfullhash}{4ab56accbf177105277a508fdb503dba}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Ifad Unicef}
+      \field{isbn}{9280620215}
+      \field{issn}{0305750X}
+      \field{title}{{Household Food Security: Concepts, Indicators, Measurements: A technical revies}}
+      \field{year}{1992}
+      \field{pages}{293}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/0305-750X(92)90001-C
+      \endverb
+      \verb{urlraw}
+      \verb http://www.ifad.org/hfs/tools/hfs/hfspub/hfs_toc.pdf
+      \endverb
+      \verb{url}
+      \verb http://www.ifad.org/hfs/tools/hfs/hfspub/hfs_toc.pdf
+      \endverb
+    \endentry
+    \entry{Sen1983}{book}{}
+      \name{author}{1}{}{%
+        {{hash=18688d43042a810cb6ae6bb19c167f1b}{%
+           family={Sen},
+           familyi={S\bibinitperiod},
+           given={Amartya},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{fullhash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{bibnamehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{authorbibnamehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{authornamehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{authorfullhash}{18688d43042a810cb6ae6bb19c167f1b}
+      \field{sortinit}{4}
+      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Journal of Comparative Economics}
+      \field{isbn}{0198284632}
+      \field{issn}{01475967}
+      \field{title}{{Poverty and famine: An essay on entitlement and deprivation}}
+      \field{year}{1983}
+      \verb{doi}
+      \verb 10.1016/0147-5967(83)90075-6
+      \endverb
+    \endentry
+    \entry{Haddad1994}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a19337d097995a682b9e14934a3ecc7b}{%
+           family={Haddad},
+           familyi={H\bibinitperiod},
+           given={Lawrence},
+           giveni={L\bibinitperiod}}}%
+        {{hash=cb8e89903ca3efe6b32c37cb7afbff34}{%
+           family={Kennedy},
+           familyi={K\bibinitperiod},
+           given={Eileen},
+           giveni={E\bibinitperiod}}}%
+        {{hash=2cf6974f197996c2cc6e2a103f69506f}{%
+           family={Sullivan},
+           familyi={S\bibinitperiod},
+           given={Joan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{f3e264e39a981052f9a8fc806f7143fe}
+      \strng{fullhash}{f3e264e39a981052f9a8fc806f7143fe}
+      \strng{bibnamehash}{f3e264e39a981052f9a8fc806f7143fe}
+      \strng{authorbibnamehash}{f3e264e39a981052f9a8fc806f7143fe}
+      \strng{authornamehash}{f3e264e39a981052f9a8fc806f7143fe}
+      \strng{authorfullhash}{f3e264e39a981052f9a8fc806f7143fe}
+      \field{sortinit}{5}
+      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0306-9192}
+      \field{issn}{03069192}
+      \field{journaltitle}{Food Policy}
+      \field{number}{3}
+      \field{title}{{Choice of indicators for food security and nutrition monitoring}}
+      \field{volume}{19}
+      \field{year}{1994}
+      \field{pages}{329\bibrangedash 343}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1016/0306-9192(94)90079-5
+      \endverb
+      \keyw{food security,indicators,nutrition monitoring}
+    \endentry
+    \entry{Maxwell1996}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ec73fab536003ab85c63dea1f36725fc}{%
+           family={Maxwell},
+           familyi={M\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{fullhash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{bibnamehash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{authorbibnamehash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{authornamehash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{authorfullhash}{ec73fab536003ab85c63dea1f36725fc}
+      \field{sortinit}{6}
+      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{0306-9192}
+      \field{issn}{03069192}
+      \field{journaltitle}{Food Policy}
+      \field{number}{2}
+      \field{title}{{Food security: A post-modern perspective}}
+      \field{volume}{21}
+      \field{year}{1996}
+      \field{pages}{155\bibrangedash 170}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1016/0306-9192(95)00074-7
+      \endverb
+      \keyw{Food policy,Food security,Post-modernism}
+    \endentry
+    \entry{Jones2013}{article}{}
+      \name{author}{4}{}{%
+        {{hash=eab93dff5c95e659217875fe04418258}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={A.\bibnamedelimi D.},
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=74f96d483364a4563db79695079d2e12}{%
+           family={Ngure},
+           familyi={N\bibinitperiod},
+           given={F.\bibnamedelimi M.},
+           giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=9a299d6184fb11212f8301ac7fc56795}{%
+           family={Pelto},
+           familyi={P\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=9a7e09d3ce3d1a9e3ee6673c96d39be2}{%
+           family={Young},
+           familyi={Y\bibinitperiod},
+           given={S.\bibnamedelimi L.},
+           giveni={S\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{69b0107a55cebf22c19a98b067a71805}
+      \strng{fullhash}{264166f5b31402f5a57e54d7491a3c47}
+      \strng{bibnamehash}{69b0107a55cebf22c19a98b067a71805}
+      \strng{authorbibnamehash}{69b0107a55cebf22c19a98b067a71805}
+      \strng{authornamehash}{69b0107a55cebf22c19a98b067a71805}
+      \strng{authorfullhash}{264166f5b31402f5a57e54d7491a3c47}
+      \field{sortinit}{7}
+      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780857939388}
+      \field{issn}{2156-5376}
+      \field{journaltitle}{Advances in Nutrition: An International Review Journal}
+      \field{number}{5}
+      \field{title}{{What Are We Assessing When We Measure Food Security? A Compendium and Review of Current Metrics}}
+      \field{volume}{4}
+      \field{year}{2013}
+      \field{pages}{481\bibrangedash 505}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.3945/an.113.004119
+      \endverb
+      \verb{urlraw}
+      \verb http://advances.nutrition.org/cgi/doi/10.3945/an.113.004119
+      \endverb
+      \verb{url}
+      \verb http://advances.nutrition.org/cgi/doi/10.3945/an.113.004119
+      \endverb
+    \endentry
+    \entry{Coates2007}{article}{}
+      \name{author}{3}{}{%
+        {{hash=f496c7c7a34af52d33582dc6a5d6368c}{%
+           family={Coates},
+           familyi={C\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5b4c9a0a7a5be61a3fbd2eacbf50357b}{%
+           family={Swindale},
+           familyi={S\bibinitperiod},
+           given={a},
+           giveni={a\bibinitperiod}}}%
+        {{hash=8da383892b0459e95c2a6b7feaf061cb}{%
+           family={Bilinsky},
+           familyi={B\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{fullhash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{bibnamehash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{authorbibnamehash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{authornamehash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{authorfullhash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \field{sortinit}{8}
+      \field{sortinithash}{1b24cab5087933ef0826a7cd3b99e994}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780874216561}
+      \field{issn}{0717-6163}
+      \field{journaltitle}{Washington, DC: Food and Nutrition Technical {\ldots}}
+      \field{number}{August}
+      \field{title}{{Household Food Insecurity Access Scale (HFIAS) for measurement of food access: indicator guide}}
+      \field{year}{2007}
+      \field{pages}{Version 3}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1007/s13398-014-0173-7.2
+      \endverb
+      \keyw{Food and Nutrition Technical Assistance III Projec}
+    \endentry
+    \entry{Maxwell1999}{article}{}
+      \name{author}{6}{}{%
+        {{hash=f9c581ebca23dfbe48e5a30ed8b046f6}{%
+           family={Maxwell},
+           familyi={M\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=89aa6f359d4c8797e556ba538b407fc9}{%
+           family={Ahiadeke},
+           familyi={A\bibinitperiod},
+           given={Clement},
+           giveni={C\bibinitperiod}}}%
+        {{hash=0c60c9d0e0d0297dad7a7653c13c9359}{%
+           family={Levin},
+           familyi={L\bibinitperiod},
+           given={Carol},
+           giveni={C\bibinitperiod}}}%
+        {{hash=68e35a0cf3c996c44cd9a1c71ae6111b}{%
+           family={Armar-Klemesu},
+           familyi={A\bibinithyphendelim K\bibinitperiod},
+           given={Margaret},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0d919a57967348f66056e063ed17b752}{%
+           family={Zakariah},
+           familyi={Z\bibinitperiod},
+           given={Sawudatu},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8f22ac7d70b763c0e2e4231acbaf8369}{%
+           family={Lamptey},
+           familyi={L\bibinitperiod},
+           given={Grace\bibnamedelima Mary},
+           giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{0fdea1a69255090e0a26c00a68ebd399}
+      \strng{fullhash}{18d79a17ae58689fb4e7c88c2e2e6030}
+      \strng{bibnamehash}{0fdea1a69255090e0a26c00a68ebd399}
+      \strng{authorbibnamehash}{0fdea1a69255090e0a26c00a68ebd399}
+      \strng{authornamehash}{0fdea1a69255090e0a26c00a68ebd399}
+      \strng{authorfullhash}{18d79a17ae58689fb4e7c88c2e2e6030}
+      \field{sortinit}{9}
+      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{03069192}
+      \field{journaltitle}{Food Policy}
+      \field{title}{{Alternative food-security indicators: Revisiting the frequency and severity of 'coping strategies'}}
+      \field{year}{1999}
+      \verb{doi}
+      \verb 10.1016/S0306-9192(99)00051-2
+      \endverb
+      \keyw{Coping strategies,Food security,Ghana,Indicators}
+    \endentry
+    \entry{Ballard2011}{article}{}
+      \name{author}{1}{}{%
+        {{hash=213d37b97642ee828a4f0577c27fbaba}{%
+           family={Ballard},
+           familyi={B\bibinitperiod},
+           given={Terri},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{213d37b97642ee828a4f0577c27fbaba}
+      \strng{fullhash}{213d37b97642ee828a4f0577c27fbaba}
+      \strng{bibnamehash}{213d37b97642ee828a4f0577c27fbaba}
+      \strng{authorbibnamehash}{213d37b97642ee828a4f0577c27fbaba}
+      \strng{authornamehash}{213d37b97642ee828a4f0577c27fbaba}
+      \strng{authorfullhash}{213d37b97642ee828a4f0577c27fbaba}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Measurement}
+      \field{title}{{Household Hunger Scale}}
+      \field{year}{2011}
+      \field{pages}{23}
+      \range{pages}{1}
+      \verb{urlraw}
+      \verb http://www.fantaproject.org/downloads/pdfs/HHS_Indicator_Guide_Aug2011.pdf
+      \endverb
+      \verb{url}
+      \verb http://www.fantaproject.org/downloads/pdfs/HHS_Indicator_Guide_Aug2011.pdf
+      \endverb
+      \keyw{fanta 2,food nutrition technical assis,usaid}
+    \endentry
+    \entry{Ballard2013}{article}{}
+      \name{author}{3}{}{%
+        {{hash=48e9d54f50813c18148eda59b75bae74}{%
+           family={Ballard},
+           familyi={B\bibinitperiod},
+           given={T},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5fda126273d2edaf9406d26a9a3f0272}{%
+           family={Kepple},
+           familyi={K\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c5481301434a9bf880bb2644503ae4f4}{%
+           family={Cafiero},
+           familyi={C\bibinitperiod},
+           given={C},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{fullhash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{bibnamehash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{authorbibnamehash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{authornamehash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{authorfullhash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0263-2241}
+      \field{journaltitle}{Technical Paper}
+      \field{title}{{The food insecurity experience scale: development of a global standard for monitoring hunger worldwide}}
+      \field{year}{2013}
+      \verb{doi}
+      \verb 10.1016/j.measurement.2017.10.065
+      \endverb
+    \endentry
+    \entry{Cafiero2018}{article}{}
+      \name{author}{3}{}{%
+        {{hash=96e6fe476a19cc032a16f6986fe75c25}{%
+           family={Cafiero},
+           familyi={C\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+        {{hash=538758880e27d823c9071b10fc4278ca}{%
+           family={Viviani},
+           familyi={V\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1ed969c60d00822f370a6b367c5ea64b}{%
+           family={Nord},
+           familyi={N\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{fullhash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{bibnamehash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{authorbibnamehash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{authornamehash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{authorfullhash}{a66ff446803e9645294a3a7bc0030daf}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{02632241}
+      \field{journaltitle}{Measurement: Journal of the International Measurement Confederation}
+      \field{title}{{Food security measurement in a global context: The food insecurity experience scale}}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1016/j.measurement.2017.10.065
+      \endverb
+      \keyw{Food security measurement,Rasch model,Scale equating,Sustainable development goals}
+    \endentry
+    \entry{smith2017world}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a613be39bf29d58b7f437dbb16e527e2}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={Michael\bibnamedelima D},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=780023fa9a6990cadfe4b114c1302fdf}{%
+           family={Rabbitt},
+           familyi={R\bibinitperiod},
+           given={Matthew\bibnamedelima P},
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=514e2313aeab1adb64ea3affd9eac3b5}{%
+           family={Coleman-Jensen},
+           familyi={C\bibinithyphendelim J\bibinitperiod},
+           given={Alisha},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{5763f2a572f2dbb6900ad7999eb3d5b9}
+      \strng{fullhash}{5763f2a572f2dbb6900ad7999eb3d5b9}
+      \strng{bibnamehash}{5763f2a572f2dbb6900ad7999eb3d5b9}
+      \strng{authorbibnamehash}{5763f2a572f2dbb6900ad7999eb3d5b9}
+      \strng{authornamehash}{5763f2a572f2dbb6900ad7999eb3d5b9}
+      \strng{authorfullhash}{5763f2a572f2dbb6900ad7999eb3d5b9}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{World Development}
+      \field{title}{Who are the world’s food insecure? New evidence from the Food and Agriculture Organization’s food insecurity experience scale}
+      \field{volume}{93}
+      \field{year}{2017}
+      \field{pages}{402\bibrangedash 412}
+      \range{pages}{11}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

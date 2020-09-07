@@ -1,7 +1,7 @@
 # setwd('~/wdl-fies'); library(ProjectTemplate); load.project(list(data_loading=T))
 
 #Save outputs to wdl-fies-tex for manuscript
-setwd('~/wdl-fies-tex/img')
+setwd('~/wdl-fies/docs/img')
 library(cowplot)
 options(scipen=100)
 
