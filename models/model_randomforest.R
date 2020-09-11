@@ -92,7 +92,7 @@ write.csv(moddat, 'data/moddat.csv', row.names=F)
 sel <- preddat %>%
   select(ISO3, YEAR, GDLCODE, stunting, urban_perc, fies.mod.pred, population) %>%
   filter(YEAR %in% c(2020, 2025, 2030)) %>%
-  merge(u5.population) %>%
+  merge(u5.population, all.x=T, all.y=F) %>%
   mutate(u5pop.urban = urban_perc*u5_frac*population,
          u5pop.rural = (1 - urban_perc)*u5_frac*population,
          stunting.urban = stunting*u5pop.urban,

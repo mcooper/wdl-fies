@@ -187,8 +187,39 @@ comb <- merge(ssp, gdp_proc, all=T) %>%
   mutate(gdp = GDP*admin_gdp_share) %>%
   merge(pop %>%
           select(GDLCODE, ISO3, YEAR, population)) %>%
-  mutate(gdp_percap = gdp/population,
-         gdp_percap = ifelse(is.infinite(gdp_percap), NA, gdp_percap)) %>%
-  select(ISO3, YEAR, GDLCODE, gdp_percap)
+  select(ISO3, YEAR, GDLCODE, gdp, population)
 
-write.csv(comb, 'data/covars/results/gdp.csv', row.names=F)
+############################################
+# Impact of COVID!
+#############################################
+get_roc <- function(x){
+  c(NA, diff(x))/c(NA, x[-length(x)])
+}
+
+apply_roc <- function(val, roc){
+  newvals <- c(val[1])
+  for (i in 2:length(val)){
+    newvals[i] <- newvals[i-1]*(1 + roc[i])
+  }
+  newvals
+}
+
+covid <- read.csv('data/covars/rawdata/gdp/covid_impact.csv') %>%
+  gather(YEAR, roc_pred, -ISO3) %>%
+  mutate(YEAR = as.numeric(substr(YEAR, 2, 5)),
+         roc_pred = roc_pred/100) %>%
+  filter(YEAR %in% c(2020, 2021))
+
+#Get yoy percentage changes
+final <- comb %>%
+  arrange(GDLCODE, YEAR) %>%
+  group_by(GDLCODE) %>%
+  mutate(roc = get_roc(gdp)) %>%
+  merge(covid, all.x=T, all.y=F) %>%
+  group_by(GDLCODE) %>%
+  mutate(roc = ifelse(is.na(roc_pred), roc, roc_pred),
+         gdp = apply_roc(gdp, roc),
+         gdp_percap = gdp/population) %>%
+  select(GDLCODE, YEAR, gdp_percap)
+
+write.csv(final, 'data/covars/results/gdp.csv', row.names=F)
