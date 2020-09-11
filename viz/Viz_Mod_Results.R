@@ -13,6 +13,9 @@ options(scipen=100)
 # Make Map
 ##########################
 
+cty <- ne_countries(returnclass='sf') %>%
+  filter(region_wb != 'Antarctica')
+
 mapdat <- merge(gdl,
                 preddat %>%
                   filter(YEAR %in% c(2010, 2020, 2030)) %>%
@@ -49,9 +52,6 @@ region_cols <- c("South Asia" = "#e41a1c",
                  "East Asia & Pacific" = "#a65628",
                  "North America" = "#984ea3")
 
-cty <- ne_countries(returnclass='sf') %>%
-  filter(region_wb != 'Antarctica')
-
 reg <- ggplot(cty) + 
   geom_sf(aes(fill=region_wb), color=NA) + 
   coord_sf(crs='+proj=robin') + 
@@ -74,8 +74,8 @@ totals <- preddat %>%
             sev.total=sum(fies.sev.pred * (population), na.rm=t)) %>%
   gather(var, value, -YEAR, -region) %>%
   mutate(var = ifelse(grepl('mod', var), "Moderate-to-Severe", "Severe")) %>%
-  group_by(region, var) %>%
-  mutate(value = rollapply(value, width=3, FUN=mean, align='center', partial=TRUE))
+  group_by(region, var)# %>%
+  #mutate(value = rollapply(value, width=3, FUN=mean, align='center', partial=TRUE))
 
 
 stack <- ggplot(totals) +
@@ -113,6 +113,24 @@ plot_grid(plot_grid(stack, lines, align='v', nrow=2, labels='AUTO'),
           reg, ncol=1, rel_heights=c(5, 1))
 ggsave('TimeSeries.pdf', width=7, height=7)
 
+# Figure out whassup with south asia in 2017
+sa <- preddat %>%
+  filter(region == 'South Asia') %>%
+  select(stunting, wasting, school_mean, hci, gdp_percap, gini, YEAR, population) %>% 
+  group_by(YEAR) %>%
+  summarize(stunting=weighted.mean(stunting, w=population),
+            wasting=weighted.mean(wasting, w=population),
+            school_mean=weighted.mean(school_mean, w=population),
+            hci=weighted.mean(hci, w=population),
+            gdp_percap=weighted.mean(gdp_percap, w=population),
+            gini=weighted.mean(gini, w=population)) %>%
+  mutate_at(vars(-group_cols()),function(x){x/max(x)}) %>%
+  gather(key, value, -YEAR)
+
+ggplot(sa) +
+  geom_line(aes(x=YEAR*2030, y=value, color=key))
+
+
 ##################################
 # assess residuals
 ##################################
@@ -137,37 +155,6 @@ ggplot(moddat) +
        x='observed rates of sev food insecurity',
        y='modeled rate of sev food insecurity')	
 ggsave('sev_residuals.png', width=5, height=5)
-
-
-##################################
-# plot scaled covariates
-#####################################
-
-
-# rf.var.sel <- var.select.rfsrc(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
-#                                data = moddat,
-#                                method = "md",
-#                                ntree = 500)
-
-# variable importance
-png('mod_vimp.png', width = 1000, height = 500, units="px")
-plot(vimp(rf.mod))
-dev.off()
-
-png('sev_vimp.png', width = 1000, height = 500, units="px")
-plot(vimp(rf.sev))
-dev.off()
-
-
-# variable effect
-png('mod_coefs.png', width = 1000, height = 800, units="px")
-plot.variable.rfsrc(rf.mod, sorted = t)
-dev.off()
-
-png('sev_coefs.png', width = 1000, height = 800, units="px")
-plot.variable.rfsrc(rf.sev, sorted = t)
-dev.off()
-
 
 
 ############################

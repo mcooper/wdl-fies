@@ -85,4 +85,26 @@ na_countries <- c('USA', 'CAN', 'AUS', 'CHL', 'ARG', 'URY', 'SAU', 'OMN',
 ep$wasting[ep$ISO3 %in% na_countries] <- 0
 ep$stunting[ep$ISO3 %in% na_countries] <- 0
 
-write.csv(ep, 'data/covars/results/anthro_vars.csv', row.names=F)
+write.csv(ep, 'data/covars/rawdata/precovid_anthro.csv')
+
+##############################
+# Account for Covid
+############################
+
+#Wasting will increase 14.3% in 2020: https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31647-0/fulltext
+#Let assume the same for Stunting
+
+ep <- read.csv('data/covars/results/anthro_vars.csv')
+
+covid <- function(var, year){
+  var[year == 2020] <- var[year == 2019]*(1.14)
+  var[year == 2021] <- (var[year == 2020] + var[year == 2022])/2
+  var
+}
+
+ep2 <- ep %>%
+  group_by(GDLCODE) %>%
+  mutate(stunting=covid(stunting, YEAR),
+         wasting=covid(wasting, YEAR))
+
+write.csv(ep2, 'data/covars/results/anthro_vars.csv', row.names=F)

@@ -71,7 +71,7 @@ The experience of at least moderate food insecurity, or eating less than one wou
   \label{fig:map}
 \end{figure}
 
-Globally, in the year 2020, we estimate that 2.33 billion people experience at least moderate food insecurity, and 829 million people experience severe food insecurity (See Fig. \ref{fig:timeseries}).  While the total number of people in moderate and severe food security held roughly constant for the 2010s and even increased in latter part of that decade, we predict that it will decline throughout the 2020s.  However, this overall decline will not be uniform across the world.  Our model expects that, in sub-Saharan Africa, moderate food insecurity will increase throughout the 2020s and severe food insecurity will plateau, although it will improve in some countries, such as Kenya, Senegal, and Ethiopia.  Food Security will fall in most other world regions, particularly South Asia and East Asia \& the Pacific.
+Globally, in the year 2020, we estimate that 2.33 billion people experience at least moderate food insecurity, and 829 million people experience severe food insecurity (See Fig. \ref{fig:timeseries}).  While the total number of people in moderate and severe food security held roughly constant for the 2010s and even increased in latter part of that decade, we predict that it will decline throughout the 2020s.  However, this overall decline will not be uniform across the world.  Our model expects that, in sub-Saharan Africa, moderate food insecurity will increase throughout the 2020s and severe food insecurity will plateau.  Food Security will fall in most other world regions, particularly South Asia and East Asia \& the Pacific.
 
 \begin{figure}[H]
   \centering
@@ -98,6 +98,8 @@ Cliamte change is not yet a major threat on a global scale, although there will 
 \section{Methods}
 
 \subsection{Disaggregation}
+The data on the FIES collected by Gallup 
+
 Assumptions
 
 \subsection{Covariates}
@@ -110,21 +112,9 @@ Cite determinants of FIES form \citep{smith2017world}.
 
 \subsection{Modeling}
 
-- tried different modelling approaches: lasso, bayes ssvs and random forest
+Random Forest
 
-- random forest performed best in terms of r2/mse and predictions
-
-- random forest used because it captures interactions, machine learning approach
-
-- tuned hyperparameters based on OOB error rate for different combinations, mtry and nodesize
-
-- estimated 5000 trees
-
-- awesome in-sample fit, overfitting?
-
-- out-of-sample fit also very good, r2 around 0.99
-
-- variable importance and coefficient table?
+Hyperparameter selection
 
 \section{Conclusion}
 
@@ -141,12 +131,12 @@ Cite determinants of FIES form \citep{smith2017world}.
 	\item During the last 12 MONTHS, was there a time when you were worried you would not have enough food to eat because of a lack of money or other resources?
 	\item Still thinking about the last 12 MONTHS, was there a time when you were unable to eat healthy and nutritious food because of a lack of money or other resources?
 	\item Was there a time when you ate only a few kinds of foods because of a lack of money or other resources?
-	\item Was there a time when you had to skip a meal because there was not enough money or other resources to get food?
-	\item Still thinking about the last 12 MONTHS, was there a time when you ate less than you thought you should because of a lack of money or other resources?
-	\item Was there a time when your household ran out of food because of a lack of money or other resources?
-	\item Was there a time when you were hungry but did not eat because there was not enough money or other resources for food?
-	\item During the last 12 MONTHS, was there a time when you went without eating for a whole day because of a lack of money or other resources?
-\end{enumerate}
+- out-of-sample fit also very good, r2 around 0.99
 
+- variable importance and coefficient table?
 
-\end{document}
+\section{Conclusion}
+
+\printbibliography
+
+\section*{Supplemental Info}

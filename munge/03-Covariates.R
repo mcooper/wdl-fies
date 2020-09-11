@@ -11,7 +11,7 @@ for (f in fs){
 #Select ony vars that have future data
 covars <- covars %>%
   select(YEAR, ISO3, GDLCODE, stunting, wasting, school_mean, ruggedness,
-         gdp_percap, gini, mal_falciparum, mean_annual_precip, hci, tavg, 
+         gdp_percap, gini, mal_falciparum, precip, hci, tave, 
          population, rural_perc, urban_perc, wci_index, builtup, cropland, crops_prod,
          forest, livestock, pasture) %>%
   merge(regions)
