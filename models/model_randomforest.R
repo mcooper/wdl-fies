@@ -111,3 +111,34 @@ sel <- preddat %>%
 write.csv(sel, 'figures/fies.mod.results_randomforest.csv', row.names=F)
 
 
+
+##################################
+#### plot scaled covariates
+########################################
+
+
+# rf.var.sel <- var.select.rfsrc(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
+#                                data = moddat,
+#                                method = "md",
+#                                ntree = 500)
+
+setwd('~/wdl-fies/docs/img')
+
+# variable importance
+png('mod_vimp.png', width = 1000, height = 500, units="px")
+plot(vimp(rf.mod))
+dev.off()
+
+png('sev_vimp.png', width = 1000, height = 500, units="px")
+plot(vimp(rf.sev))
+dev.off()
+
+# variable effect
+png('mod_coefs.png', width = 1000, height = 800, units="px")
+plot.variable.rfsrc(rf.mod, sorted = T)
+dev.off()
+
+png('sev_coefs.png', width = 1000, height = 800, units="px")
+plot.variable.rfsrc(rf.sev, sorted = T)
+dev.off()
+
