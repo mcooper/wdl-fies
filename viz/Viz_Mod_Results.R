@@ -74,8 +74,8 @@ totals <- preddat %>%
             sev.total=sum(fies.sev.pred * (population), na.rm=t)) %>%
   gather(var, value, -YEAR, -region) %>%
   mutate(var = ifelse(grepl('mod', var), "Moderate-to-Severe", "Severe")) %>%
-  group_by(region, var)# %>%
-  #mutate(value = rollapply(value, width=3, FUN=mean, align='center', partial=TRUE))
+  group_by(region, var) %>%
+  mutate(value = rollapply(value, width=3, FUN=mean, align='center', partial=TRUE))
 
 
 stack <- ggplot(totals) +
@@ -113,22 +113,22 @@ plot_grid(plot_grid(stack, lines, align='v', nrow=2, labels='AUTO'),
           reg, ncol=1, rel_heights=c(5, 1))
 ggsave('TimeSeries.pdf', width=7, height=7)
 
-# Figure out whassup with south asia in 2017
-sa <- preddat %>%
-  filter(region == 'South Asia') %>%
-  select(stunting, wasting, school_mean, hci, gdp_percap, gini, YEAR, population) %>% 
-  group_by(YEAR) %>%
-  summarize(stunting=weighted.mean(stunting, w=population),
-            wasting=weighted.mean(wasting, w=population),
-            school_mean=weighted.mean(school_mean, w=population),
-            hci=weighted.mean(hci, w=population),
-            gdp_percap=weighted.mean(gdp_percap, w=population),
-            gini=weighted.mean(gini, w=population)) %>%
-  mutate_at(vars(-group_cols()),function(x){x/max(x)}) %>%
-  gather(key, value, -YEAR)
-
-ggplot(sa) +
-  geom_line(aes(x=YEAR*2030, y=value, color=key))
+# # Figure out whassup with south asia in 2017
+# sa <- preddat %>%
+#   filter(region == 'South Asia') %>%
+#   select(stunting, wasting, school_mean, hci, gdp_percap, gini, YEAR, population) %>% 
+#   group_by(YEAR) %>%
+#   summarize(stunting=weighted.mean(stunting, w=population),
+#             wasting=weighted.mean(wasting, w=population),
+#             school_mean=weighted.mean(school_mean, w=population),
+#             hci=weighted.mean(hci, w=population),
+#             gdp_percap=weighted.mean(gdp_percap, w=population),
+#             gini=weighted.mean(gini, w=population)) %>%
+#   mutate_at(vars(-group_cols()),function(x){x/max(x)}) %>%
+#   gather(key, value, -YEAR)
+# 
+# ggplot(sa) +
+#   geom_line(aes(x=YEAR*2030, y=value, color=key))
 
 
 ##################################

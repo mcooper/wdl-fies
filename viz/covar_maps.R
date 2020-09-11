@@ -20,8 +20,8 @@ for (n in v){
 
   ggplot() + 
     geom_sf(data=covar_map, aes(fill=mapvar), size=0.05) +
-    labs(fill=n,
-         title=n) + 
+    labs(fill='',
+         title='') + 
     scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", 
                                    "#e4ea9a", "#fbf8c0", "#fce08a", "#faae61", 
                                    "#f36c44", "#a01c44")) +
@@ -31,5 +31,5 @@ for (n in v){
           plot.title = element_text(hjust = 0.5)) + 
     facet_wrap(~ YEAR, nrow=2, ncol=2)
 
-  ggsave(paste0('figures/covar_maps/', n, '.png'), width=18, height=9.5)
+  ggsave(paste0('docs/img/covars/', n, '.png'), width=7, height=5)
 }

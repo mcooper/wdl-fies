@@ -1,21 +1,21 @@
 [0] Config.pm:304> INFO - This is Biber 2.14 (beta)
 [0] Config.pm:307> INFO - Logfile is 'modeling_fies.blg'
-[62] biber:322> INFO - === Mon Sep  7, 2020, 00:09:43
-[74] Biber.pm:415> INFO - Reading 'modeling_fies.bcf'
-[131] Biber.pm:943> INFO - Found 14 citekeys in bib section 0
-[146] Biber.pm:4256> INFO - Processing section 0
-[146] Utils.pm:75> INFO - Globbing data source 'library.bib'
-[146] Utils.pm:91> INFO - Globbed data source 'library.bib' to library.bib
+[63] biber:322> INFO - === Fri Sep 11, 2020, 15:18:42
+[77] Biber.pm:415> INFO - Reading 'modeling_fies.bcf'
+[134] Biber.pm:943> INFO - Found 14 citekeys in bib section 0
+[147] Biber.pm:4256> INFO - Processing section 0
+[147] Utils.pm:75> INFO - Globbing data source 'library.bib'
+[147] Utils.pm:91> INFO - Globbed data source 'library.bib' to library.bib
 [156] Biber.pm:4455> INFO - Looking for bibtex format file 'library.bib' for section 0
-[218] bibtex.pm:1653> INFO - LaTeX decoding ...
-[1744] bibtex.pm:1471> INFO - Found BibTeX data source 'library.bib'
-[1859] Utils.pm:293> WARN - ISBN '0140-6736 (Print){\textbackslash}r0140-6736 (Linking)' in entry 'Habicht1974' is invalid - run biber with '--validate_datamodel' for details.
-[1875] Utils.pm:293> WARN - ISBN '0306-9192' in entry 'Haddad1994' is invalid - run biber with '--validate_datamodel' for details.
-[1878] Utils.pm:293> WARN - ISBN '0306-9192' in entry 'Maxwell1996' is invalid - run biber with '--validate_datamodel' for details.
-[1934] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1934] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1934] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[1934] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[1944] bbl.pm:652> INFO - Writing 'modeling_fies.bbl' with encoding 'UTF-8'
-[1952] bbl.pm:755> INFO - Output to modeling_fies.bbl
-[1952] Biber.pm:128> INFO - WARNINGS: 3
+[216] bibtex.pm:1653> INFO - LaTeX decoding ...
+[1871] bibtex.pm:1471> INFO - Found BibTeX data source 'library.bib'
+[2117] Utils.pm:293> WARN - ISBN '0140-6736 (Print){\textbackslash}r0140-6736 (Linking)' in entry 'Habicht1974' is invalid - run biber with '--validate_datamodel' for details.
+[2150] Utils.pm:293> WARN - ISBN '0306-9192' in entry 'Haddad1994' is invalid - run biber with '--validate_datamodel' for details.
+[2159] Utils.pm:293> WARN - ISBN '0306-9192' in entry 'Maxwell1996' is invalid - run biber with '--validate_datamodel' for details.
+[2266] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[2267] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[2267] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[2267] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[2286] bbl.pm:652> INFO - Writing 'modeling_fies.bbl' with encoding 'UTF-8'
+[2300] bbl.pm:755> INFO - Output to modeling_fies.bbl
+[2300] Biber.pm:128> INFO - WARNINGS: 3

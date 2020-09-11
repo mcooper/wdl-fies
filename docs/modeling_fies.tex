@@ -58,6 +58,9 @@ Drawing on the insights derived in designing and implementing these novel food s
 
 Since 2014, in partnership with Gallup World Poll, the FAO conducted surveys around the world in 77 countries and nearly 200 languages to estimate the prevalence of food insecurity using the FIES.  Using this data, we used machine learning to estimate levels of food insecurity around the world at the subnational level.  Our analysis highlights several important global and regional trends in food security.
 
+NOTE: SHOULD CITE \citep{smith2017world}, a previous study that used the FIES to estimate correlates of food insecurity.
+
+
 \section{Results}
 \subsection{Spatial Distribution of Food Insecurity}
 We found significant heterogeneities in the global distribution of severe food insecurity, estimated to be people who had to go an entire day without eating at least once in the previous year (See Fig. \ref{fig:map}).  For the year 2020, mainland sub-Saharan Africa is the continent with with the highest rates of severe food insecurity, with at least 15\% of people in severe food insecurity in at last one region in every country except Gabon and Equatorial Guinea.  Outside of Africa, serious pockets of severe food insecurity also occur in Venezuela, Syria, Papua New Guinea, Yemen, and Afghanistan.  In many large middle-income countries, severe food insecurity is also quite prevalent, with rates between 10-15\% in areas like northern Brazil, many central Asian and middle-eastern countries, and India and Indonesia.
@@ -98,17 +101,36 @@ Cliamte change is not yet a major threat on a global scale, although there will 
 \section{Methods}
 
 \subsection{Disaggregation}
-The data on the FIES collected by Gallup 
-
-Assumptions
+The data on the FIES collected by Gallup records many individual-level attributes from the respondents, including age, gender, wealth quintile, and whether they live in an urban or rural area.  Using national data on these variables, a standard weighting schema is created for each individual, based on the ratio of population probabilities to sample probabilities of an individual with those characteristics being selected \citep{bethlehem2009applied}.  We used a similar methodology, except at a subnational level.  We used year-specific subnational estimates of population percentages by gender, age, urbanization, and, where available, wealth, and created a separate set of weights for each admin area across all individuals.  For age and gender, we used gridded data from WorldPop \citep{Tatem2017}, for urbanization, we used spatially explicit estimates published by Jones and O'Neill \citep{Jones2016}, and for wealth we used data from Demographic and Health Surveys \citep{dhsall}.  This methodology rests on the mild assumption that subnational differences in rates of food insecurity are more due to factors related to demographics, urbanization, and wealth than other unobservable factors.
 
 \subsection{Covariates}
+We model subnational rates of severe and moderate-to-severe food insecurity as a function of several covariates related to human development, food security, health, infrastructure, and the environment (See Table \ref{tab:covars}.  We aimed for covariates that had subnational spatial resolution or peer-reviewed projections available through the year 2030.  For many variables, we combined historic subnational data with national projections through the 2020s to derive simple subnational estimates for the next decade.  For projections based on the Shared Socioeconomic Pathways (SSP) framework, we used the middle-of-the-road pathway, SSP2, and for climatological variables, we use forecasts based on Representative Concentration Pathway 6.  Finally, we adjusted several variables to account for the effects of COVID-19, including GDP per capita using June 2020 estimates from the World Bank \citep{prospects2020june}, stunting and wasting using August 2020 estimates published in \textit{The Lancet} \citep{headey2020impacts}, as well as the poverty headcount index (CITATION).  For a detailed overview of the steps involved in processing and preparing each covariate, see the Appendix.
 
-Selection and Processing
 
-(Maybe put some in Appendix)
+\begin{table}[H]
+	\begin{tabular}{llll}
+		\toprule
+		Name & Source \\
+		\midrule
+		Population & \citep{Smits2019, KC2017} \\
+		Urban Percentage & \citep{Jonesi2016} \\
+		Stunting & \citep{Local2020} \\
+		Wasting & \citep{Local2020} \\
+		Mean Years of Schooling & \citep{Smits2019, KC2017} \\
+		GDP Per Capita & \citep{Smits2019, Dellink2017} \\
+		Gini Coefficient & \citep{Rao2019a} \\
+		Poverty Headcount Index & (CITATION) \\
+		Water Scarcity & (CITATION) \\
+		Mean Annual Precipitation &  \cite{abatzoglou2018terraclimate, warszawski2014inter} \\
+		Topographic Ruggedness &  \cite{USGS1996, Riley1999} \\
+		Mean Temperature &  \cite{abatzoglou2018terraclimate, warszawski2014inter} \\
+		Malaria (\textit{P. falciparum}) Mortality Rate &  \cite{Weiss2019} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Covariates Included in Present-Day Analysis}
+	\label{tab:covars1}
+\end{table}
 
-Cite determinants of FIES form \citep{smith2017world}.
 
 \subsection{Modeling}
 
@@ -123,20 +145,151 @@ Hyperparameter selection
 \section*{Supplemental Info}
 \setcounter{table}{0}
 \setcounter{figure}{0}
+\setcounter{section}{0}
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thesection}{S\arabic{section}}
 
-\subsection{Component Questions of the FIES}
+\section{Component Questions of the FIES}
 \begin{enumerate}
 	\item During the last 12 MONTHS, was there a time when you were worried you would not have enough food to eat because of a lack of money or other resources?
 	\item Still thinking about the last 12 MONTHS, was there a time when you were unable to eat healthy and nutritious food because of a lack of money or other resources?
 	\item Was there a time when you ate only a few kinds of foods because of a lack of money or other resources?
-- out-of-sample fit also very good, r2 around 0.99
+	\item Was there a time when you had to skip a meal because there was not enough money or other resources to get food?
+	\item Still thinking about the last 12 MONTHS, was there a time when you ate less than you thought you should because of a lack of money or other resources?
+	\item Was there a time when your household ran out of food because of a lack of money or other resources?
+	\item Was there a time when you were hungry but did not eat because there was not enough money or other resources for food?
+	\item During the last 12 MONTHS, was there a time when you went without eating for a whole day because of a lack of money or other resources?
+\end{enumerate}
 
-- variable importance and coefficient table?
+\section{Covariates}
+\subsection{Population}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+ \citep{Smits2019, KC2017}
 
-\section{Conclusion}
 
-\printbibliography
+\subsection{Urban Percentage}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+ \citep{Jonesi2016}
 
-\section*{Supplemental Info}
+
+\subsection{Stunting}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+ \citep{Local2020}
+
+
+\subsection{Wasting}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+ \citep{Local2020}
+
+
+\subsection{Mean Years of Schooling}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+ \citep{Smits2019, KC2017}
+
+
+\subsection{GDP Per Capita}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+ \citep{Smits2019, Dellink2017}
+
+
+\subsection{Gini Coefficient}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+ \citep{Rao2019a}
+
+
+\subsection{Poverty Headcount Index}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+ (CITATION)
+
+
+\subsection{Water Scarcity}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+ (CITATION)
+
+
+\subsection{Mean Annual Precipitation}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+  \cite{abatzoglou2018terraclimate, warszawski2014inter}
+
+
+\subsection{Topographic Ruggedness}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+  \cite{USGS1996, Riley1999}
+
+
+\subsection{Mean Temperature}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+  \cite{abatzoglou2018terraclimate, warszawski2014inter}
+
+
+\subsection{Malaria (\textit{P. falciparum}) Mortality Rate}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \label{fig:timeseries}
+\end{figure}
+  \cite{Weiss2019}
+
+\end{document}
