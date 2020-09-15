@@ -149,7 +149,7 @@ dev.off()
 ##################################
 mse <- mean(sqrt((moddat$fies.mod - moddat$fies.mod.pred)^2))
 r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
-ggplot(moddat) + 
+res.mod <- ggplot(moddat) + 
   geom_point(aes(x=fies.mod, y=fies.mod.pred), alpha = 0.3) + 
   geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
   xlim(0, 1) + ylim(0, 1) +
@@ -157,11 +157,11 @@ ggplot(moddat) +
                       '\nR-Squared: ', round(r2, 4)),
        x='Observed Rates Of Moderat-to-Severe Food Insecurity',
        y='Modeled Rates Of Moderat-to-Severe Food Insecurity')
-ggsave('model/mod_residuals.png', width=5, height=5)
+res.mod; ggsave('model/mod_residuals.png', width=5, height=5)
 
 mse <- mean(sqrt((moddat$fies.sev - moddat$fies.sev.pred)^2))
 r2 <- cor(moddat$fies.sev, moddat$fies.sev.pred)
-ggplot(moddat) + 
+res.sev <- ggplot(moddat) + 
   geom_point(aes(x=fies.sev, y=fies.sev.pred), alpha = 0.3) +
   geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
   xlim(0, 1) + ylim(0, 1) +
@@ -169,4 +169,8 @@ ggplot(moddat) +
                       '\nR-Squared: ', round(r2, 4)),
        x='Observed Rates Of Severe Food Insecurity',
        y='Modeled Rates Of Severe Food Insecurity')	
-ggsave('model/sev_residuals.png', width=5, height=5)
+res.sev; ggsave('model/sev_residuals.png', width=5, height=5)
+
+plot_grid(res.mod, res.sev, align='h',labels='AUTO')
+ggsave('model/residuals.png', width=14, height=7)
+

@@ -8,7 +8,7 @@
 \BOOKMARK [2][-]{subsection.4.3}{Modeling}{section.4}% 8
 \BOOKMARK [1][-]{section.5}{Conclusion}{}% 9
 \BOOKMARK [1][-]{section.1}{Component Questions of the FIES}{}% 10
-\BOOKMARK [1][-]{section.2}{Modeling Covariates Into the Future}{}% 11
+\BOOKMARK [1][-]{section.2}{Predicting Covariates Into the Future}{}% 11
 \BOOKMARK [2][-]{subsection.2.1}{Annualized Rate of Change}{section.2}% 12
 \BOOKMARK [2][-]{subsection.2.2}{Population}{section.2}% 13
 \BOOKMARK [2][-]{subsection.2.3}{Urban Percentage}{section.2}% 14
@@ -23,3 +23,4 @@
 \BOOKMARK [2][-]{subsection.2.12}{Mean Temperature}{section.2}% 23
 \BOOKMARK [2][-]{subsection.2.13}{Topographic Ruggedness}{section.2}% 24
 \BOOKMARK [2][-]{subsection.2.14}{Malaria \(P. falciparum\) Mortality Rate}{section.2}% 25
+\BOOKMARK [1][-]{section.3}{Description and Validation of Models}{}% 26
