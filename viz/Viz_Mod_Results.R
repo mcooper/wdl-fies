@@ -36,8 +36,8 @@ ggplot(mapdat) +
         plot.title = element_text(hjust = 0.5),
         panel.spacing.x = unit(-0.5, "in")) + 
   labs(fill='') + 
-  facet_grid(YEAR ~ FIES, switch='y')
-ggsave('FullMap.pdf', width=7, dpi=750)
+  facet_grid(FIES ~ YEAR, switch='y')
+ggsave('FullMap.pdf', width=10, dpi=750)
 system('pdfcrop FullMap.pdf FullMap.pdf')
 
 
