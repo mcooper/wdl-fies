@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.6)  11 SEP 2020 15:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.6)  14 SEP 2020 22:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -711,6 +711,14 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \c@LT@chunks=\count284
 \LT@p@ftn=\toks24
 )
+(/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
 (/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count285
@@ -972,30 +980,30 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 (./modeling_fies.aux)
 \openout1 = `modeling_fies.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 28.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 2
-7.
+8.
 
 (/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
-LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    ... okay on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1028,7 +1036,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 27.
+Package hyperref Info: Link coloring OFF on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1041,9 +1049,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count428
 )
-LaTeX Info: Redefining \ref on input line 27.
-LaTeX Info: Redefining \pageref on input line 27.
-LaTeX Info: Redefining \nameref on input line 27.
+LaTeX Info: Redefining \ref on input line 28.
+LaTeX Info: Redefining \pageref on input line 28.
+LaTeX Info: Redefining \nameref on input line 28.
 
 (./modeling_fies.out) (./modeling_fies.out)
 \@outlinefile=\write4
@@ -1107,60 +1115,187 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'modeling_fies.bbl' found.
 
 (./modeling_fies.bbl)
-Package biblatex Info: Reference section=0 on input line 27.
-Package biblatex Info: Reference segment=0 on input line 27.
+Package biblatex Info: Reference section=0 on input line 28.
+Package biblatex Info: Reference segment=0 on input line 28.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<img/FullMap.pdf, id=75, 505.89pt x 404.51125pt>
-File: img/FullMap.pdf Graphic file (type pdf)
-<use img/FullMap.pdf>
-Package pdftex.def Info: img/FullMap.pdf  used on input line 69.
-(pdftex.def)             Requested size: 416.83289pt x 333.30617pt.
+
+LaTeX Warning: Reference `fig:map' on page 2 undefined on input line 67.
 
 [2]
-<img/TimeSeries.pdf, id=90, 505.89pt x 505.89pt>
+<img/FullMap.pdf, id=146, 722.7pt x 269.005pt>
+File: img/FullMap.pdf Graphic file (type pdf)
+<use img/FullMap.pdf>
+Package pdftex.def Info: img/FullMap.pdf  used on input line 74.
+(pdftex.def)             Requested size: 722.69823pt x 269.00433pt.
+
+Overfull \hbox (58.32637pt too wide) in paragraph at lines 74--75
+ [][] 
+ []
+
+[3
+
+ <./img/FullMap.pdf>]
+<img/TimeSeries.pdf, id=161, 505.89pt x 505.89pt>
 File: img/TimeSeries.pdf Graphic file (type pdf)
 <use img/TimeSeries.pdf>
-Package pdftex.def Info: img/TimeSeries.pdf  used on input line 78.
+Package pdftex.def Info: img/TimeSeries.pdf  used on input line 84.
 (pdftex.def)             Requested size: 416.83289pt x 416.83948pt.
- [3 <./img/FullMap.pdf>] [4 <./img/TimeSeries.pdf>] [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 142.
+ [4
 
-(./modeling_fies.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 142.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 142.
+ <./img/TimeSeries.pdf>] [5] [6] [7]pdfTeX warning (ext4): destination with the
+ same identifier (name{section.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.154 \section{Component Questions of the FIES}
+                                               pdfTeX warning (ext4): destinati
+on with the same identifier (name{section.2}) has been already used, duplicate 
+ignored
+<to be read again> 
+                   \relax 
+l.166 ...tion{Modeling Covariates Into the Future}
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{subsection.2.1}) has been already used, du
+plicate ignored
+<to be read again> 
+                   \relax 
+l.167 \subsection{Annualized Rate of Change}
+                                             [8]
+Overfull \hbox (6.77905pt too wide) in paragraph at lines 203--204
+[]\OT1/cmr/m/n/10 We do this by com-bin-ing his-toric sub-na-tional data from t
+he Sub-na-tional De-vel-op-ment Database
+ []
+
+<img/covars/population.png, id=290, 505.89pt x 361.35pt>
+File: img/covars/population.png Graphic file (type png)
+<use img/covars/population.png>
+Package pdftex.def Info: img/covars/population.png  used on input line 207.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[9]
+<img/covars/urban_perc.png, id=306, 505.89pt x 361.35pt>
+File: img/covars/urban_perc.png Graphic file (type png)
+<use img/covars/urban_perc.png>
+Package pdftex.def Info: img/covars/urban_perc.png  used on input line 217.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [10 <./img/covars/population.png (PNG copy)>]
+<img/covars/wasting.png, id=315, 505.89pt x 361.35pt>
+File: img/covars/wasting.png Graphic file (type png)
+<use img/covars/wasting.png>
+Package pdftex.def Info: img/covars/wasting.png  used on input line 228.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [11 <./img/covars/urban_perc.png (PNG copy)>]
+<img/covars/stunting.png, id=322, 505.89pt x 361.35pt>
+File: img/covars/stunting.png Graphic file (type png)
+<use img/covars/stunting.png>
+Package pdftex.def Info: img/covars/stunting.png  used on input line 238.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [12 <./img/covars/wasting.png (PNG copy)>]
+<img/covars/gdp_percap.png, id=331, 505.89pt x 361.35pt>
+File: img/covars/gdp_percap.png Graphic file (type png)
+<use img/covars/gdp_percap.png>
+Package pdftex.def Info: img/covars/gdp_percap.png  used on input line 249.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [13 <./img/covars/stunting.png (PNG copy)>]
+<img/covars/school_mean.png, id=340, 505.89pt x 361.35pt>
+File: img/covars/school_mean.png Graphic file (type png)
+<use img/covars/school_mean.png>
+Package pdftex.def Info: img/covars/school_mean.png  used on input line 259.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [14 <./img/covars/gdp_percap.png (PNG copy)>]
+<img/covars/gini.png, id=347, 505.89pt x 361.35pt>
+File: img/covars/gini.png Graphic file (type png)
+<use img/covars/gini.png>
+Package pdftex.def Info: img/covars/gini.png  used on input line 269.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [15 <./img/covars/school_mean.png (PNG copy)>]
+<img/covars/hci.png, id=354, 505.89pt x 361.35pt>
+File: img/covars/hci.png Graphic file (type png)
+<use img/covars/hci.png>
+Package pdftex.def Info: img/covars/hci.png  used on input line 278.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [16 <./img/covars/gini.png (PNG copy)>]
+<img/covars/wci_index.png, id=360, 505.89pt x 361.35pt>
+File: img/covars/wci_index.png Graphic file (type png)
+<use img/covars/wci_index.png>
+Package pdftex.def Info: img/covars/wci_index.png  used on input line 287.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+
+[17 <./img/covars/hci.png (PNG copy)>]
+<img/covars/precip.png, id=368, 505.89pt x 361.35pt>
+File: img/covars/precip.png Graphic file (type png)
+<use img/covars/precip.png>
+Package pdftex.def Info: img/covars/precip.png  used on input line 297.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [18 <./img/covars/wci_index.png (PNG copy)>]
+<img/covars/tave.png, id=374, 505.89pt x 361.35pt>
+File: img/covars/tave.png Graphic file (type png)
+<use img/covars/tave.png>
+Package pdftex.def Info: img/covars/tave.png  used on input line 306.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [19 <./img/covars/precip.png (PNG copy)>]
+<img/covars/ruggedness.png, id=383, 505.89pt x 361.35pt>
+File: img/covars/ruggedness.png Graphic file (type png)
+<use img/covars/ruggedness.png>
+Package pdftex.def Info: img/covars/ruggedness.png  used on input line 315.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [20 <./img/covars/tave.png (PNG copy)>]
+<img/covars/mal_falciparum.png, id=390, 505.89pt x 361.35pt>
+File: img/covars/mal_falciparum.png Graphic file (type png)
+<use img/covars/mal_falciparum.png>
+Package pdftex.def Info: img/covars/mal_falciparum.png  used on input line 325.
+
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [21 <./img/covars/ruggedness.png (PNG copy)>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 329.
+ [22 <./img/covars/mal_falciparum.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 329.
+ (./modeling_fies.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 329.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 329.
 Package rerunfilecheck Info: File `modeling_fies.out' has not changed.
-(rerunfilecheck)             Checksum: 31310F27FB5C4393A1A54ED6096D4462;569.
+(rerunfilecheck)             Checksum: 7AB4F0CBDF9520F9487CF53AB0D9FC68;1590.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package logreq Info: Writing requests to 'modeling_fies.run.xml'.
 \openout1 = `modeling_fies.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 329.
  ) 
 Here is how much of TeX's memory you used:
- 16334 strings out of 483107
- 281592 string characters out of 5964631
- 920626 words of memory out of 5000000
- 31099 multiletter control sequences out of 15000+600000
- 538835 words of font info for 47 fonts, out of 8000000 for 9000
+ 16595 strings out of 483107
+ 287585 string characters out of 5964631
+ 924309 words of memory out of 5000000
+ 31272 multiletter control sequences out of 15000+600000
+ 539502 words of font info for 49 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 48i,6n,46p,1128b,1306s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmtt10.pfb>
-Output written on modeling_fies.pdf (6 pages, 6220336 bytes).
+ 48i,8n,46p,1321b,1397s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on modeling_fies.pdf (22 pages, 14827298 bytes).
 PDF statistics:
- 203 PDF objects out of 1000 (max. 8388607)
- 177 compressed objects within 2 object streams
- 43 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 485 PDF objects out of 1000 (max. 8388607)
+ 419 compressed objects within 5 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 276 words of extra memory for PDF output out of 10000 (max. 10000000)
 
