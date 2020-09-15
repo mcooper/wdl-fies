@@ -39,7 +39,7 @@ rf.tune.mod <- tune.rfsrc(formula = as.formula(paste("fies.mod",
                           mtrystart = max(1, floor(sqrt(length(vars)))), 
                           nodesizetry = c(1:3),
                           ntreetry = 5000,
-                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(4/5))),
+                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
                           trace = T,
                           dobest = T); rf.tune.mod$optimal
 
@@ -63,7 +63,7 @@ rf.tune.sev <- tune.rfsrc(formula = as.formula(paste("fies.sev",
                           mtrystart = max(1, floor(sqrt(length(vars)))), 
                           nodesizetry = c(1:3),
                           ntreetry = 5000,
-                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(4/5))),
+                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
                           trace = T,
                           dobest = T); rf.tune.sev$optimal
 # model
@@ -114,7 +114,7 @@ write.csv(sel, 'figures/fies.mod.results_randomforest.csv', row.names=F)
 
 ##################################
 #### plot scaled covariates
-########################################
+##################################
 
 
 # rf.var.sel <- var.select.rfsrc(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
@@ -122,23 +122,51 @@ write.csv(sel, 'figures/fies.mod.results_randomforest.csv', row.names=F)
 #                                method = "md",
 #                                ntree = 500)
 
-setwd('~/wdl-fies/docs/img')
+#setwd('~/wdl-fies/docs/img')
+setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
 
 # variable importance
-png('mod_vimp.png', width = 1000, height = 500, units="px")
+png('model/mod_vimp.png', width = 1000, height = 500, units="px")
 plot(vimp(rf.mod))
 dev.off()
 
-png('sev_vimp.png', width = 1000, height = 500, units="px")
+png('model/sev_vimp.png', width = 1000, height = 500, units="px")
 plot(vimp(rf.sev))
 dev.off()
 
 # variable effect
-png('mod_coefs.png', width = 1000, height = 800, units="px")
+png('model/mod_coefs.png', width = 1000, height = 800, units="px")
 plot.variable.rfsrc(rf.mod, sorted = T)
 dev.off()
 
-png('sev_coefs.png', width = 1000, height = 800, units="px")
+png('model/sev_coefs.png', width = 1000, height = 800, units="px")
 plot.variable.rfsrc(rf.sev, sorted = T)
 dev.off()
 
+
+##################################
+# assess residuals
+##################################
+mse <- mean(sqrt((moddat$fies.mod - moddat$fies.mod.pred)^2))
+r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
+ggplot(moddat) + 
+  geom_point(aes(x=fies.mod, y=fies.mod.pred), alpha = 0.3) + 
+  geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
+  xlim(0, 1) + ylim(0, 1) +
+  labs(caption=paste0('Mean Squared Error: ',  round(mse, 4),
+                      '\nR-Squared: ', round(r2, 4)),
+       x='Observed Rates Of Moderat-to-Severe Food Insecurity',
+       y='Modeled Rates Of Moderat-to-Severe Food Insecurity')
+ggsave('model/mod_residuals.png', width=5, height=5)
+
+mse <- mean(sqrt((moddat$fies.sev - moddat$fies.sev.pred)^2))
+r2 <- cor(moddat$fies.sev, moddat$fies.sev.pred)
+ggplot(moddat) + 
+  geom_point(aes(x=fies.sev, y=fies.sev.pred), alpha = 0.3) +
+  geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
+  xlim(0, 1) + ylim(0, 1) +
+  labs(caption=paste0('Mean Squared Error: ',  round(mse, 4),
+                      '\nR-Squared: ', round(r2, 4)),
+       x='Observed Rates Of Severe Food Insecurity',
+       y='Modeled Rates Of Severe Food Insecurity')	
+ggsave('model/sev_residuals.png', width=5, height=5)
