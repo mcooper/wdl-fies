@@ -104,7 +104,7 @@ While we found that food insecurity will decrease overall by 2030, our middle-of
 The data on the FIES collected by Gallup records many individual-level attributes from the respondents, including age, gender, wealth quintile, and whether they live in an urban or rural area.  Using national data on these variables, a standard weighting schema is created for each individual, based on the ratio of population probabilities to sample probabilities of an individual with those characteristics being selected \citep{bethlehem2009applied}.  We used a similar methodology, except we calculated post-stratification weights at a subnational level.  We used year-specific subnational estimates of population percentages by gender, age, urbanization, and, where available, wealth, and created a separate set of weights for each admin area across all individuals.  For age and gender, we used gridded data from WorldPop \citep{Tatem2017}, for urbanization, we used spatially explicit estimates published by Jones and O'Neill \citep{Jones2016}, and for wealth we used data from Demographic and Health Surveys \citep{dhsall}.  This methodology rests on the mild assumption that subnational differences in rates of food insecurity are more due to factors related to demographics, urbanization, and wealth than other unobservable factors.
 
 \subsection{Covariates}
-We model subnational rates of severe and moderate-to-severe food insecurity as a function of several covariates related to human development, food security, health, infrastructure, and the environment (See Table \ref{tab:covars}.  We aimed for covariates that had subnational spatial resolution or peer-reviewed projections available through the year 2030.  For many variables, we combined historic subnational data with national projections through the 2020s to derive simple subnational estimates for the next decade.  For projections based on the Shared Socioeconomic Pathways (SSP) framework, we used the middle-of-the-road pathway, SSP2, and for climatological variables, we use forecasts based on Representative Concentration Pathway 6.  Finally, we adjusted several variables to account for the effects of COVID-19, including GDP per capita using June 2020 estimates from the World Bank \citep{prospects2020}, stunting and wasting using August 2020 estimates published in \textit{The Lancet} \citep{headey2020impacts}, as well as the poverty headcount index (CITATION).  For a detailed overview of the steps involved in processing and preparing each covariate, see the Appendix.
+We model subnational rates of severe and moderate-to-severe food insecurity as a function of several covariates related to human development, food security, health, infrastructure, and the environment (See Table \ref{tab:covars}).  We aimed for covariates that had subnational spatial resolution or peer-reviewed projections available through the year 2030.  For many variables, we combined historic subnational data with national projections through the 2020s to derive simple subnational estimates for the next decade.  For projections based on the Shared Socioeconomic Pathways (SSP) framework, we used the middle-of-the-road pathway, SSP2, and for climatological variables, we use forecasts based on Representative Concentration Pathway 6.  Finally, we adjusted several variables to account for the effects of COVID-19, including GDP per capita using June 2020 estimates from the World Bank \citep{prospects2020}, stunting and wasting using August 2020 estimates published in \textit{The Lancet} \citep{headey2020impacts}, as well as the poverty headcount index (CITATION).  For a detailed overview of the steps involved in processing and preparing each covariate, see the Appendix.
 
 
 \begin{table}[H]
@@ -133,9 +133,11 @@ We model subnational rates of severe and moderate-to-severe food insecurity as a
 
 \subsection{Modeling}
 
-Random Forest
+Given the subnational FIES data resulting from the disaggregation combined with the covariates stated above (See Table \ref{tab:covars}), we modelled subnational rates of severe and moderate-to-severe food insecurity for the whole world in the period of 2010 to 2030. We conduced suitable statistical methods such as Least Absolute Shrinkage and Selection Operator (LASSO) regression and Bayesian Stochastic Search and Variable Selection (Bayes SSVS), as well as machine learning methods such as Random Forest regression. Based on various model validation metrics, Random Forest (RF) regression performs best which can be seen as a contribution to the increasing importance of such methods in the field (CITATION: Master Thesis M\"uller?).
 
-Hyperparameter selection
+By using the most popular model validation metrics, we observed a in-sample mean squared error (MSE) of 0.00?? with a R2 of 0.999? for the RF regression model. Since these models are prone to overfitting (CITATION) it is crucial to check the out-of-sample prediction performance. Hence, we trained the RF regression model with 75\% of the data and predicted rates of severe and moderate-to-severe food insecurity for the remaining 25\%. We got an out-of-sample MSE of 0.00?? with a R2 of 0.99??. This excellent out-of-sample performance makes the RF regression model particularly suitable for our application. See the Supplement Info for a detailed description and validation of all models.
+
+In RF regression models two main hyperparameters can be selected. One parameter which describes the number of variables randomly selected as candidates for splitting a node and another which describes the forest average number of unique cases (data points) in a terminal node, “mtry” and “nodesize” respectively (CITATION, manual r package randomforestSRC). We calculated the Out-Of-Bag (OOB) error for different combinations of the hyperparameters. The OOB error is the mean prediction error of the observation not included in the bootstrap aggregating or bagging (CITATION). By choosing the combination of hyperparameters with the lowest OOB error we found the optimal values which we used in our RF regression model to predict subnational rates of severe and moderate-to-severe food insecurity.
 
 Population \citep{Smits2019, KC2017}
 
@@ -163,7 +165,7 @@ Population \citep{Smits2019, KC2017}
 	\item During the last 12 MONTHS, was there a time when you went without eating for a whole day because of a lack of money or other resources?
 \end{enumerate}
 
-\section{Modeling Covariates Into the Future}
+\section{Predicting Covariates Into the Future}
 \subsection{Annualized Rate of Change}
 For many of our covariates, to extrapolate recent trends to the future, it is necessary to draw on annualized rates of change, which are then used to anticipate the rate of future change.  This method can be used for any variable that is a fraction or a rate.  We use this method to estimate future rates of stunting, wasting, and malaria mortality, as well as to model future admin shares of GDP and population.  Thus, we give an overview of the methodology here.
 
@@ -316,7 +318,6 @@ As a measure of accessibility, we include the mean topographic ruggedness of eac
   \caption{Topographic ruggedness}
 \end{figure}
 
-
 \subsection{Malaria (\textit{P. falciparum}) Mortality Rate}
 We used data from \textit{The Lancet} to estimate the mortality (deaths per 100,000 population per year) due to Malaria \citep{Weiss2019}, taking the average pixel values within each subnational administrative area.  We then estimated future malaria mortality based on AROC method.
 
@@ -325,5 +326,15 @@ We used data from \textit{The Lancet} to estimate the mortality (deaths per 100,
   \includegraphics[width=\linewidth]{img/covars/mal_falciparum.png}
   \caption{Rate of mortality due to \textit{P. falciparum} Malaria}
 \end{figure}
+
+\section{Description and Validation of Models}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/covars/mod_residuals.png}
+  \caption{Prevalence of stunting.}
+\end{figure}
+
 
 \end{document}
