@@ -4,7 +4,7 @@
 #setwd('~/wdl-fies/docs/img')
 setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
 
-library(cowplot)
+#library(cowplot)
 options(scipen=100)
 
 ############################
