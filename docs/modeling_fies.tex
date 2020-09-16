@@ -133,17 +133,17 @@ We model subnational rates of severe and moderate-to-severe food insecurity as a
 
 \subsection{Modeling}
 
-Given the subnational FIES data resulting from the disaggregation combined with the covariates stated above (See Table \ref{tab:covars}), we modelled subnational rates of severe and moderate-to-severe food insecurity for the whole world in the period of 2010 to 2030. We conduced suitable statistical methods such as Least Absolute Shrinkage and Selection Operator (LASSO) regression and Bayesian Stochastic Search and Variable Selection (Bayes SSVS), as well as machine learning methods such as Random Forest regression. Based on various model validation metrics, Random Forest (RF) regression performs best which can be seen as a contribution to the increasing importance of such methods in the field. For a detailed description and comparison of all models check M\"uller (CITATION: Master Thesis M\"uller 2020).
+Given the subnational FIES data resulting from the disaggregation combined with the covariates stated above (See Table \ref{tab:covars}) we model subnational rates of moderate-to-severe and severe food insecurity for the whole world in the period of 2010 to 2030. We conduced suitable statistical methods such as Least Absolute Shrinkage and Selection Operator (LASSO) regression and Bayesian Stochastic Search and Variable Selection (Bayes SSVS), as well as machine learning methods such as Random Forest regression. 
 
-By using the most popular model validation metrics, we observed for the severe as well as for the moderate-to-severe RF regression model a in-sample mean squared error (MSE) of around zero with a R-squared (${R}^2$) of 0.99 (See Fig. \ref{fig:rf_in-sample}). Although RF regression models avoid overfitting by randomly selecting features at every node split (CITATION: Breiman 2001), it is still crucial to check the out-of-sample prediction performance. Hence, we trained the RF regression model with 75\% of the data and predicted rates of severe and moderate-to-severe food insecurity for the remaining 25\%. Similarly to the in-sample MSE and ${R}^2$, the out-of-sample MSE is close to zero with a ${R}^2$ of around 0.99 for both models (See Fig. \ref{fig:rf_out-sample}). This excellent out-of-sample performance makes the RF regression model particularly suitable for our application. 
-%See the Supplement Info for a detailed description and validation of all models.
+Based on various model validation metrics, Random Forest (RF) regression performs best which can be seen as a contribution to the increasing importance of such methods in the field. The RF regression is based on the creation of a large number of decision trees and is known to perform well in the presence of nonlinearities and possible important interaction terms of individual covariates. Since this is likely to be the case in our application, this method is particularly suitable for modeling rates of moderate-to-severe and severe food insecurity. 
 
-In RF regression models two main hyperparameters can be selected. One parameter which describes the number of variables randomly selected as candidates for splitting a node and another which describes the forest average number of unique cases (data points) in a terminal node, “mtry” and “nodesize” respectively (CITATION: Manual R-package randomforestSRC). We calculated the Out-Of-Bag (OOB) error for different combinations of the hyperparameters for the severe and moderate-to-severe model. The OOB error is the mean prediction error of the observations not included in the bootstrap aggregating or bagging (CITATION: Some fundamental work on Random Forest). By choosing the combination of hyperparameters with the lowest OOB error we found the optimal values for both model respectively.
+By using the most popular model validation metrics, we observe for the moderate-to-sever as well as the severe RF regression model a in-sample mean squared error (MSE) of around zero with a R-squared (${R}^2$) value of 0.99 (See Fig. \ref{fig:rf_in-sample}). Although RF regression models tackle the issue of overfitting by applying various ensemble methods (CITATION: Breiman 2001), it is crucial to validate the out-of-sample prediction performance. Hence, we trained the RF regression model with 75\% of the available observations and predicted rates of moderate-to-severe and severe food insecurity for the remaining 25\%. Similarly to the in-sample model validation metrics, the out-of-sample MSE is close to zero with a ${R}^2$ of around 0.99 for both models (See Fig. \ref{fig:rf_out-sample}).
 
-Apart from tuning the hyperparameters, we examined the importance of the individual covariates (See Table \ref{tab:covars}) in explaining rates of severe and moderate-to-severe food insecurity. This is entirely based on the prediction error. By training the RF regression models with all covariates and predicting an outcome with and without a specific variables we calculated the average prediction error when leaving out that variable. According to the highest average prediction error we rank the importance of the models. We found that for both, the severe and moderate-to-severe model, the Poverty Headcount Index, Stunting, GDP Per Capita and the Gini Coefficient are the most important variables in explaining rates of severe and moderate-to-severe food insecurity (See Fig. \ref{fig:rf_vimp}). 
+To get the best possible model performance, it is necessary to tune the hyperparamter. In RF regression models two main hyperparameters can be specified. One parameter which describes the number of variables randomly selected as candidates for splitting a node and another which describes the forest average number of observations in a leaf node. We calculated the Out-Of-Bag (OOB) error for different combinations of hyperparameters for the moderate-to-severe and severe model. By choosing the combination of hyperparameters with the smallest OOB error we found the optimal combination for both models respectively. Additionally to these two hyperparamters a third parameter describes the number of trees to be created. We found that 5000 trees are more than sufficient for the error rates to converge (See Fig. \ref{fig:rf_error}).
 
+Apart from tuning the hyperparameters, we examined the importance of the individual covariates in explaining rates of moderate-to-severe and severe food insecurity. This is based on the prediction error with and without a specific variable. According to the highest average prediction error we ranked the importance of the variables and found that for both, the moderate-to-severe and severe model, the Poverty Headcount Index, Stunting, GDP Per Capita and the Gini Coefficient are the most important variables for explaining differences in rates of moderate-to-severe and severe food insecurity (See Fig. \ref{fig:rf_vimp}).
 
-Population \citep{Smits2019, KC2017}
+For a detailed description and validation of the RF regression models see the Supplemental Info and for a comparison of all models check M\"uller (CITATION: Master Thesis M\"uller 2020).
 
 \section{Conclusion}
 
@@ -277,7 +277,7 @@ We use estimates of national income inequality from Rao et al. \citep{Rao2019a}.
 \end{figure}
 
 \subsection{Poverty Headcount Index}
-We used estimates of the Poverty Headcount Index for the recent past and future from Cuaresma et al. \citep{Cuaresma2018}, updated to include the impact of the coronavirus.  We include the Poverty Headcount Index in our model at the national level.  SOMEBODY FAMILIAR WITH THE WORLD POVERTY CLOCK FEEL FREE TO ADD MORE.
+We used estimates of the Poverty Headcount Index for the recent past and future from the World Poverty Clock by the World Data Lab (CITATION: World Data Lab), updated to include the impact of the coronavirus. In our model we include national level poverty rates at a threshold of \$1.90 which is defined as \textit{extreme} poverty. By using the concept of parametrized Lorenz curves in combination with mean income/consumption and population projections future poverty rates are calculated. For more details on the methodology and information on global and country level poverty check the website \textit{worldpoverty.io}.
 
 \begin{figure}[H]
   \centering
@@ -331,7 +331,31 @@ We used data from \textit{The Lancet} to estimate the mortality (deaths per 100,
   \caption{Rate of mortality due to \textit{P. falciparum} Malaria}
 \end{figure}
 
-\section{Description and Validation of Models}
+\section{Description and Validation of Random Forest regression models}
+
+%RF regression models are based on the creation of a large number of decision trees. To boost the performance of such models different ensemble methods are used, where two of them stand out. The bagging and 
+
+%To ensure that predicted rates are bounded by 0 and 1 we conduct a logit transformation of the dependent variable and inverse logit transformation of the predictions. 
+
+Without providing a detailed theoretical description of the RF regression model, we focus on the implementation and specification of the model. For implementation we use the R-package \textit{randomForestSRC} by Ishwaran and Kogalur (CITATION: R-package randomforestSRC). Specifically, we apply the functions \textit{tune.rfsrc()} to find the optimal combination of hyperparamters and the function \textit{rfsrc()} to perform the RF regression models. After predicting rates of moderate-to-severe and severe food insecurity we plot the modeled vs. observed rates and calculated the MSE and ${R}^2$ (See Fig. \ref{fig:rf_in-sample} and Fig. \ref{fig:rf_out-sample}) for both models. Additionally, we use the function \textit{vimp()} to gain insights into the development of the error rates with increasing numbers of trees (See Fig. \ref{fig:rf_error}) and the importance of individual variables (See Fig. \ref{fig:rf_vimp}).
+
+\subsection{Tuning the hyperparamters}
+The optimal hyperparamters \textit{mtry} and \textit{nodesize} are found by calculating the OOB error and choosing the combination with the smallest OOB. 
+
+We find the optimal hyperparamters by choosing the combination with the smallest OOB error. The \textit{tune.rfsrc()} function does exactly that and returns the optimal values of \textit{mtry} and \textit{nodesize}. For the moderate-to-severe as well as for the severe model we specify a number of function arguments. INCLUDE ALL FUNCTION ARGUMENTS HERE AND DESCRIBE WHY WE CHOOSE THEM
+
+
+Since RF regression models use bootstrap aggregation (also called bagging) some observations are not used when building a specific tree. These observations are used to calulate the predictions error of a specific tree. We get the mean OOB by 
+
+Based on these observations
+The OOB error is the mean prediction error of the observations not included in the bootstrap aggregating or bagging (CITATION: Some fundamental work on Random Forest). 
+
+\subsection{Variable Importance}
+By training the RF regression models with all covariates and predicting rates with and without a specific variable we calculated the average prediction error when leaving out the specific variable
+
+
+
+
 
 \begin{figure}[H]
   \centering

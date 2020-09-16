@@ -23,4 +23,6 @@
 \BOOKMARK [2][-]{subsection.2.12}{Mean Temperature}{section.2}% 23
 \BOOKMARK [2][-]{subsection.2.13}{Topographic Ruggedness}{section.2}% 24
 \BOOKMARK [2][-]{subsection.2.14}{Malaria \(P. falciparum\) Mortality Rate}{section.2}% 25
-\BOOKMARK [1][-]{section.3}{Description and Validation of Models}{}% 26
+\BOOKMARK [1][-]{section.3}{Description and Validation of Random Forest regression models}{}% 26
+\BOOKMARK [2][-]{subsection.3.1}{Tuning the hyperparamters}{section.3}% 27
+\BOOKMARK [2][-]{subsection.3.2}{Variable Importance}{section.3}% 28
