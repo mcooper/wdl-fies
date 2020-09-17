@@ -141,9 +141,9 @@ By using the most popular model validation metrics, we observe for the moderate-
 
 To get the best possible model performance, it is necessary to tune the hyperparamter. In RF regression models two main hyperparameters can be specified. One parameter which describes the number of variables randomly selected as candidates for splitting a node and another which describes the forest average number of observations in a leaf node. We calculated the Out-Of-Bag (OOB) error for different combinations of hyperparameters for the moderate-to-severe and severe model. By choosing the combination of hyperparameters with the smallest OOB error we found the optimal combination for both models respectively. Additionally to these two hyperparamters a third parameter describes the number of trees to be created. We found that 5000 trees are more than sufficient for the error rates to converge (See Fig. \ref{fig:rf_error}).
 
-Apart from tuning the hyperparameters, we examined the importance of the individual covariates in explaining rates of moderate-to-severe and severe food insecurity. This is based on the prediction error with and without a specific variable. According to the highest average prediction error we ranked the importance of the variables and found that for both, the moderate-to-severe and severe model, the Poverty Headcount Index, Stunting, GDP Per Capita and the Gini Coefficient are the most important variables for explaining differences in rates of moderate-to-severe and severe food insecurity (See Fig. \ref{fig:rf_vimp}).
+Apart from tuning the hyperparameters, we examined the importance of the individual covariates in explaining rates of moderate-to-severe and severe food insecurity. By training the models with all covariates and predicting rates with and without a individual variable we calculated the average prediction error of omitting that variable. Using the highest average prediction error we ranked the importance of the variables and found that for both, the moderate-to-severe and severe model, the Poverty Headcount Index, Stunting, GDP Per Capita and the Gini Coefficient are the most important variables for explaining differences in rates of moderate-to-severe and severe food insecurity (See Fig. \ref{fig:rf_vimp}).
 
-For a detailed description and validation of the RF regression models see the Supplemental Info and for a comparison of all models check M\"uller (CITATION: Master Thesis M\"uller 2020).
+For a detailed description, implementation and validation of the RF regression models see the Supplemental Info and for a comparison of all models check M\"uller (CITATION: Master Thesis M\"uller 2020).
 
 \section{Conclusion}
 
@@ -331,29 +331,35 @@ We used data from \textit{The Lancet} to estimate the mortality (deaths per 100,
   \caption{Rate of mortality due to \textit{P. falciparum} Malaria}
 \end{figure}
 
-\section{Description and Validation of Random Forest regression models}
+\section{Description, Implementation and Validation of the RF regression model}
 
-%RF regression models are based on the creation of a large number of decision trees. To boost the performance of such models different ensemble methods are used, where two of them stand out. The bagging and 
-
-%To ensure that predicted rates are bounded by 0 and 1 we conduct a logit transformation of the dependent variable and inverse logit transformation of the predictions. 
-
-Without providing a detailed theoretical description of the RF regression model, we focus on the implementation and specification of the model. For implementation we use the R-package \textit{randomForestSRC} by Ishwaran and Kogalur (CITATION: R-package randomforestSRC). Specifically, we apply the functions \textit{tune.rfsrc()} to find the optimal combination of hyperparamters and the function \textit{rfsrc()} to perform the RF regression models. After predicting rates of moderate-to-severe and severe food insecurity we plot the modeled vs. observed rates and calculated the MSE and ${R}^2$ (See Fig. \ref{fig:rf_in-sample} and Fig. \ref{fig:rf_out-sample}) for both models. Additionally, we use the function \textit{vimp()} to gain insights into the development of the error rates with increasing numbers of trees (See Fig. \ref{fig:rf_error}) and the importance of individual variables (See Fig. \ref{fig:rf_vimp}).
-
-\subsection{Tuning the hyperparamters}
-The optimal hyperparamters \textit{mtry} and \textit{nodesize} are found by calculating the OOB error and choosing the combination with the smallest OOB. 
-
-We find the optimal hyperparamters by choosing the combination with the smallest OOB error. The \textit{tune.rfsrc()} function does exactly that and returns the optimal values of \textit{mtry} and \textit{nodesize}. For the moderate-to-severe as well as for the severe model we specify a number of function arguments. INCLUDE ALL FUNCTION ARGUMENTS HERE AND DESCRIBE WHY WE CHOOSE THEM
+WE NEED HERE A SHORT PARAGRAPH ON HOW RF MODELS WORK, THIS WILL HELP: https://www.kdnuggets.com/2017/10/random-forests-explained.html
 
 
-Since RF regression models use bootstrap aggregation (also called bagging) some observations are not used when building a specific tree. These observations are used to calulate the predictions error of a specific tree. We get the mean OOB by 
-
-Based on these observations
-The OOB error is the mean prediction error of the observations not included in the bootstrap aggregating or bagging (CITATION: Some fundamental work on Random Forest). 
-
-\subsection{Variable Importance}
-By training the RF regression models with all covariates and predicting rates with and without a specific variable we calculated the average prediction error when leaving out the specific variable
+The RF regression is a machine learning method based on the creation of a large number of decision trees. Such models are used for prediction purposes and do not describe any relationships in the training data... 
 
 
+For implementation we use the R-package \textit{randomForestSRC} by Ishwaran and Kogalur (CITATION: R-package randomforestSRC). Specifically, we apply the functions \textit{tune.rfsrc()} to find the optimal combination of hyperparamters and the function \textit{rfsrc()} to perform the RF regression models. After predicting rates of moderate-to-severe and severe food insecurity we plot the modeled vs. observed rates and calculated the MSE and ${R}^2$ (See Fig. \ref{fig:rf_in-sample} and Fig. \ref{fig:rf_out-sample}) for both models. Additionally, we use the function \textit{vimp()} to gain insights into the development of the error rates with increasing numbers of trees (See Fig. \ref{fig:rf_error}) and the importance of individual variables (See Fig. \ref{fig:rf_vimp}).
+
+To ensure that predicted rates are bounded by 0 and 1 we conduct a logit transformation of the dependent variable and inverse logit transformation of the predictions. 
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/model/error_rf.png}
+  \caption{Error Rate of the RF regression model. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
+  \label{fig:rf_error}
+\end{figure}
+
+HERE A FEW SENTENCES ON THE NUMBER OF TREES WITH LINK TO NEXT PARAGRAPH
+
+In addition to the parameter that describes the number of trees to be created, two hyperparameters must be tuned. In the function \textit{tune.rfsrc()} these paramters are called \textit{mtry} and \textit{nodesize}. \textit{Mtry} describes the number of variables randomly selected as candidates for splitting a node and \textit{nodesize} describes the forest average number of observations in a leaf node. The optimal pair of hyperparamters is found by trying different combinations and choosing the one with the smallest OOB error.
+
+EXPLAIN THE OOB ERROR HERE?
+
+The function \textit{tune.rfsrc()} does exactly that and returns optimal values for \textit{mtry} and \textit{nodesize}. We applied this function on the both, the moderate-to-severe and the severe model. For the modarate-to-severe model the optimal combination is \textit{mtry} = 12 and \textit{nodesize} = 1 and for the severe model we found \textit{mtry} = 10 and \textit{nodesize} = 2 to be optimal.
+
+STATE FUNCTION ARGUMENTS HERE?
 
 
 
@@ -371,6 +377,10 @@ By training the RF regression models with all covariates and predicting rates wi
   \label{fig:rf_out-sample}
 \end{figure}
 
+HERE EVERYTHING ON THE MODEL, NOT SURE HOW DETAILED
+For modeling the rates of moderate-to-severe and severe food insecurity we use the function \textit{rfsrc()}. We specify 
+
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{img/model/vimp_rf.png}
@@ -378,12 +388,10 @@ By training the RF regression models with all covariates and predicting rates wi
   \label{fig:rf_vimp}
 \end{figure}
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{img/model/error_rf.png}
-  \caption{Error Rate of the RF regression model. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
-  \label{fig:rf_error}
-\end{figure}
+Lastly we asses the importance of individual variables. By training the RF regression models with all covariates and predicting rates with and without a specific variable we calculated the average prediction error when leaving out the specific variable
+
+MORE INFORMATION HERE
+
 
 
 

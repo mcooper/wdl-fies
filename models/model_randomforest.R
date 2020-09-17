@@ -40,10 +40,11 @@ moddat <- moddat %>%
 rf.tune.mod <- tune.rfsrc(formula = as.formula(paste("fies.mod", 
                                                      paste(vars, collapse = "+"), sep= "~")),
                           data = moddat,
-                          mtrystart = max(1, floor(sqrt(length(vars)))), 
-                          nodesizetry = c(1:3),
-                          ntreetry = 5000,
+                          mtrystart = ncol(moddat)/2, 
+                          nodesizetry = c(1:5),
+                          ntree = 5000,
                           sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
+                          improve = 1e-3,
                           trace = T,
                           dobest = T); rf.tune.mod$optimal
 
@@ -64,10 +65,10 @@ preddat$fies.mod.pred <- inv.logit(predict(rf.mod, preddat)$predicted)
 rf.tune.sev <- tune.rfsrc(formula = as.formula(paste("fies.sev", 
                                                      paste(vars, collapse = "+"), sep= "~")),
                           data = moddat,
-                          mtrystart = max(1, floor(sqrt(length(vars)))), 
-                          nodesizetry = c(1:3),
-                          ntreetry = 5000,
-                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
+                          #mtrystart = max(1, floor(sqrt(length(vars)))), 
+                          #nodesizetry = c(1:3),
+                          ntreetry = 10000,
+                          #sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
                           trace = T,
                           dobest = T); rf.tune.sev$optimal
 # model
