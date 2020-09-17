@@ -334,6 +334,8 @@ We used data from \textit{The Lancet} to estimate the mortality (deaths per 100,
 \section{Description, Implementation and Validation of the RF regression model}
 
 WE NEED HERE A SHORT PARAGRAPH ON HOW RF MODELS WORK, THIS WILL HELP: https://www.kdnuggets.com/2017/10/random-forests-explained.html
+INCLUDE BAGGING AND RANDOM FEATURE SELECTION, NECESSARY TO EXPLAIN OOB ERROR
+
 
 
 The RF regression is a machine learning method based on the creation of a large number of decision trees. Such models are used for prediction purposes and do not describe any relationships in the training data... 
@@ -341,8 +343,13 @@ The RF regression is a machine learning method based on the creation of a large 
 
 For implementation we use the R-package \textit{randomForestSRC} by Ishwaran and Kogalur (CITATION: R-package randomforestSRC). Specifically, we apply the functions \textit{tune.rfsrc()} to find the optimal combination of hyperparamters and the function \textit{rfsrc()} to perform the RF regression models. After predicting rates of moderate-to-severe and severe food insecurity we plot the modeled vs. observed rates and calculated the MSE and ${R}^2$ (See Fig. \ref{fig:rf_in-sample} and Fig. \ref{fig:rf_out-sample}) for both models. Additionally, we use the function \textit{vimp()} to gain insights into the development of the error rates with increasing numbers of trees (See Fig. \ref{fig:rf_error}) and the importance of individual variables (See Fig. \ref{fig:rf_vimp}).
 
-To ensure that predicted rates are bounded by 0 and 1 we conduct a logit transformation of the dependent variable and inverse logit transformation of the predictions. 
 
+
+STEP-BY-STEP: LOGIT TRANSFORM, TUNE, MODEL, PREDICT, VALIDATE
+
+
+To ensure that predicted rates are bounded by 0 and 1 we conduct a logit transformation of the dependent variable and inverse logit transformation of the predictions. 
+MAYBE STATE THIS SOMEWHERE ELSE, NOT SURE WHERE
 
 \begin{figure}[H]
   \centering
