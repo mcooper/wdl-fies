@@ -33,33 +33,33 @@
 \author[2,3]{Benjamin Müller}
 \author[4]{Carlo Cafiero}
 \author[2,5]{Juan Carlos Laso}
-\author[2,6]{Homi Kharas}
+\author[2,6]{Wolfgang Fengler}
+\author[2,7]{Homi Kharas}
 
 \affil[1]{T.H. Chan School of Public Health, Harvard University}
 \affil[2]{The World Data Lab, Vienna, Austria}
 \affil[3]{Department of Economics, Vienna University of Economics and Business}
 \affil[4]{The Food and Agricultural Organization of the United Nations}
 \affil[5]{The International Institute for Applied Systems Analysis}
-\affil[6]{The Brookings Institute}
+\affil[6]{The World Bank}
+\affil[7]{The Brookings Institute}
 \affil[*]{Corresponding Author: mcooper@hsph.harvard.edu}
 
 \maketitle
 \begin{abstract}
-We modeled levels of of food security at a subnational level from 2010 to 2030 using microdata from 77 countries collected by the FAO and Gallup World Poll for the Voices of the Hungry project.  We find significant heterogeneity in levels of food security around the world, ranging from parts of the global north with less than 1\% of the population food insecure to parts of the global south where as much as 3 out of 4 people are severely food insecure.  Examining global temporal trends and accounting for the effects of the COVID-19 pandemic, we find that food insecurity has been increasing over the past several years, but under middle-of-the-road assumptions for development and population change, food insecurity will decline throughout the 2020s.  This global decrease is largely driven by trends in South and East Asia, and some parts of the world, particularly sub-Saharan Africa, are projected to show increases in the prevalence of food insecurity throughout the next decade. This is the first global picture of the Food Insecurity Experience Scale, the food security metric most indicative of the lived experience of hunger.
+We modeled levels of of food security at a subnational level from 2010 to 2030 using microdata from 77 countries collected by the FAO and Gallup World Poll for the Voices of the Hungry project.  We find significant heterogeneity in levels of food security around the world, ranging from parts of the global north with less than 1\% of the population food insecure to parts of the global south where as much as 3 out of 4 people are severely food insecure.  Examining global temporal trends and accounting for the effects of the COVID-19 pandemic, we find that food insecurity has been increasing over the past several years, but under middle-of-the-road assumptions for development and population change, food insecurity will decline throughout the 2020s.  This global decrease is largely driven by trends in South and East Asia, and some parts of the world, particularly sub-Saharan Africa, are projected to show increases in the prevalence of food insecurity throughout the next decade. This is the first global picture at a subnational level of the Food Insecurity Experience Scale, the food security metric most indicative of the lived experience of hunger.
 \end{abstract}
 
-\section{Introduction}
-Being food secure is a critical component of human flourishing, which is why the second Sustainable Development Goal (SDG 2) is ``Zero Hunger".  While a number of indicators are used to track progress towards this goal, the indicator that is most indicative of the human experience of food insecurity is the Food Insecurity Experience Scale, or FIES.  The FIES was developed due to a recognized need to measure actual food insecurity based on personal exposure to hunger, rather than proxies for food insecurity, such as estimates of calories per capita, or health consequences of food insecurity, such as child stunting.  However, as a relatively new metric, little work has been done so far to model food security at a global scale or estimate current trends in the number of food insecure people using the FIES.
+\section{Main}
+Being food secure is a critical component of human flourishing, which is why the second Sustainable Development Goal (SDG 2) is ``Zero Hunger."  While a number of indicators are used to track progress towards this goal, the indicator that is most indicative of the human experience of food insecurity is the Food Insecurity Experience Scale, or FIES.  The FIES was developed due to a recognized need to measure actual food insecurity based on personal exposure to hunger, rather than proxies for food insecurity, such as estimates of calories per capita, or health consequences of food insecurity, such as child stunting.  However, as a relatively new metric, little work has been done so far to model food security or estimate current trends using the FIES at more local spatial scales.
 
-Food security has traditionally been difficult to measure, and this has led to incomplete or inaccurate pictures of global hunger.  Metrics of macro-health, such as anthropometry and mortality rates are correlated broadly with food insecurity and have been used for many years to monitor human well-being \citep{Puffer1973, Habicht1974}.  However, these metrics are confounded with other determinants of health such as infectious disease and are not meaningful at the scale of individuals or households \citep{Perumal2018}.  Other proxies for food security, such as food availability estimated from crop yields \citep{Maxwell1992}, are also inadequate because they do not indicate how accessible food is to the general population, and food insecurity can certainly occur in the absence of food availability decline \citep{Sen1983}.  Moreover, these metrics are very sensitive to incorrect estimates of crop yields and food reserves at a national scale.  Thus, global estimates of hunger and food insecurity based on these metrics carry forward similar flaws.
+Food security has traditionally been difficult to measure, and this has led to incomplete or inaccurate pictures of global hunger.  Metrics of macro-health, such as anthropometry and mortality rates are correlated broadly with food insecurity and have been used for many years to monitor human well-being \citep{Puffer1973, Habicht1974}.  However, these metrics are confounded with other determinants of health such as infectious disease and are not meaningful at the scale of individuals or households \citep{Perumal2018}.  Other proxies for food security, such as food availability estimated from crop yields \citep{Maxwell1992}, are also inadequate because they only make rough estimates of how accessible food is to the general population, and food insecurity can certainly occur in the absence of food availability decline \citep{Sen1983}.  Moreover, these metrics are very sensitive to incorrect estimates of crop yields and food reserves at a national scale.  Thus, global estimates of hunger and food insecurity based on these metrics carry forward similar flaws.
 
 As researchers began to focus on food insecurity at the individual and household level, household microdata collecting information on household finances and consumption became a common proxy for food security \citep{Haddad1994}.  However, these efforts were criticized for being onerous, insufficiently comparable, as well as for ignoring subjective and experiential aspects of food security \citep{Maxwell1996}.  This led to the emergence of several indicators designed to be rapidly deployable, culturally cross-comparable, and based on the lived experience of food security \citep{Jones2013}.  These metrics include the Household Food Insecurity and Access Scale (HFIAS) \citep{Coates2007}; the Coping Strategies Index (CSI) \citep{Maxwell1999}; and the Household Hunger Scale (HHS) \citep{Ballard2011}.
 
-Drawing on the insights derived in designing and implementing these novel food security metrics, the FIES was developed by the Food and Agricultural Organization (FAO) of the UN \cite{Ballard2013}.  The FIES is based on a survey of eight behaviors indicative of food insecurity and hunger over the previous year, such as skipping meals or worrying about having enough to eat.  Using a Rash model \citep{Cafiero2018}, each individual in the survey is given a severity score, and thresholds for moderate and severe food insecurity are set at the behaviors of eating less than the respondent thought they should, and not eating for a while day, respectively.  Thus, people in moderate-to-severe food insecurity are estimated to have not eaten as much as they should have at least once in the previous year, while people in severe food insecurity are estimated to have gone an entire day without eating in the previous year.
+Drawing on the insights derived in designing and implementing these novel food security metrics, the FIES was developed by the Food and Agricultural Organization (FAO) of the UN \cite{Ballard2013} and quickly became a useful tool for understanding individual and household-level food insecurity \citep{smith2017world}.  The FIES is based on a survey of eight behaviors indicative of food insecurity and hunger over the previous year, such as skipping meals or worrying about having enough to eat.  Using a Rash model \citep{Cafiero2018}, each individual in the survey is given a severity score, and thresholds for moderate and severe food insecurity are set at the behaviors of eating less than the respondent thought they should, and not eating for a while day, respectively.  Thus, people in moderate-to-severe food insecurity are estimated to have not eaten as much as they should have at least once in the previous year, while people in severe food insecurity are estimated to have gone an entire day without eating in the previous year.
 
-Since 2014, in partnership with Gallup World Poll, the FAO has published surveys from around the world in 77 countries to estimate the prevalence of food insecurity using the FIES.  With this data, we used machine learning to estimate levels of food insecurity around the world at the subnational level.  Our analysis highlights several important global and regional trends in food security.
-
-NOTE: SHOULD CITE \citep{smith2017world}, a previous study that used the FIES to estimate correlates of food insecurity.
+Since 2014, in partnership with Gallup World Poll, the FAO has published surveys from around the world to estimate the prevalence of food insecurity using the FIES.  Drawing on surveys from 77 countries, we used machine learning to estimate levels of food insecurity around the world at the subnational level.  Our analysis highlights several important global and regional trends in food security.
 
 
 \section{Results}
@@ -101,13 +101,14 @@ While we found that food insecurity will decrease overall by 2030, our middle-of
 \section{Methods}
 
 \subsection{Disaggregation}
-The data on the FIES collected by Gallup records many individual-level attributes from the respondents, including age, gender, wealth quintile, and whether they live in an urban or rural area.  Using national data on these variables, a standard weighting schema is created for each individual, based on the ratio of population probabilities to sample probabilities of an individual with those characteristics being selected \citep{bethlehem2009applied}.  We used a similar methodology, except we calculated post-stratification weights at a subnational level.  We used year-specific subnational estimates of population percentages by gender, age, urbanization, and, where available, wealth, and created a separate set of weights for each admin area across all individuals.  For age and gender, we used gridded data from WorldPop \citep{Tatem2017}, for urbanization, we used spatially explicit estimates published by Jones and O'Neill \citep{Jones2016}, and for wealth we used data from Demographic and Health Surveys \citep{dhsall}.  This methodology rests on the mild assumption that subnational differences in rates of food insecurity are more due to factors related to demographics, urbanization, and wealth than other unobservable factors.
+The data on the FIES collected by Gallup records many individual-level attributes from the respondents, including age, gender, wealth quintile, and whether they live in an urban or rural area.  Using national data on these variables, a standard weighting schema is created for each individual, based on the ratio of population probabilities to sample probabilities of an individual with those characteristics being selected \citep{bethlehem2009applied}.  We used a similar methodology, except we calculated post-stratification weights at a subnational level.  We used year-specific subnational estimates of population percentages by gender, age, urbanization, and, where available, wealth, and created a separate set of weights for each admin area across all individuals.  For age and gender, we used gridded data from WorldPop \citep{Tatem2017}, for urbanization, we used spatially explicit estimates published by Jones and O'Neill \citep{Jones2016}, and for wealth we used data from Demographic and Health Surveys \citep{dhsall}.  This methodology rests on the mild assumption that subnational differences in rates of food insecurity are more due to factors related to demographics, urbanization, and wealth than to other unobservable factors.
 
 \subsection{Covariates}
-We model subnational rates of severe and moderate-to-severe food insecurity as a function of several covariates related to human development, food security, health, infrastructure, and the environment (See Table \ref{tab:covars}).  We aimed for covariates that had subnational spatial resolution or peer-reviewed projections available through the year 2030.  For many variables, we combined historic subnational data with national projections through the 2020s to derive simple subnational estimates for the next decade.  For projections based on the Shared Socioeconomic Pathways (SSP) framework, we used the middle-of-the-road pathway, SSP2, and for climatological variables, we use forecasts based on Representative Concentration Pathway 6.  Finally, we adjusted several variables to account for the effects of COVID-19, including GDP per capita using June 2020 estimates from the World Bank \citep{prospects2020}, stunting and wasting using August 2020 estimates published in \textit{The Lancet} \citep{headey2020impacts}, as well as the poverty headcount index (CITATION).  For a detailed overview of the steps involved in processing and preparing each covariate, see the Appendix.
+We model subnational rates of severe and moderate-to-severe food insecurity as a function of several covariates related to human development, food security, health, infrastructure, and the environment (See Table \ref{tab:covars}).  We aimed for covariates that had subnational spatial resolution and peer-reviewed projections available through the year 2030.  For many variables, we combined historic subnational data with national projections through the 2020s to derive simple subnational estimates for the next decade.  For projections based on the Shared Socioeconomic Pathways (SSP) framework, we used the middle-of-the-road pathway, SSP2, and for climatological variables, we use forecasts based on Representative Concentration Pathway (RCP) 6.0.  Finally, we adjusted several variables to account for the effects of COVID-19, including GDP per capita using June 2020 estimates from the World Bank \citep{prospects2020}, stunting and wasting using August 2020 estimates published in \textit{The Lancet} \citep{headey2020impacts}, as well as the poverty headcount index \cite{cuaresma2018will}.  For a detailed overview of the steps involved in processing and preparing each covariate, see the Appendix.
 
 
 \begin{table}[H]
+  \centering
 	\begin{tabular}{ll}
 		\toprule
 		Name & Source \\
@@ -133,13 +134,17 @@ We model subnational rates of severe and moderate-to-severe food insecurity as a
 
 \subsection{Modeling}
 
-Given the subnational FIES data resulting from the disaggregation combined with the covariates stated above (See Table \ref{tab:covars}), we modelled subnational rates of severe and moderate-to-severe food insecurity for the whole world in the period of 2010 to 2030. We conduced suitable statistical methods such as Least Absolute Shrinkage and Selection Operator (LASSO) regression and Bayesian Stochastic Search and Variable Selection (Bayes SSVS), as well as machine learning methods such as Random Forest regression. Based on various model validation metrics, Random Forest (RF) regression performs best which can be seen as a contribution to the increasing importance of such methods in the field (CITATION: Master Thesis M\"uller?).
+We modeled subnational rates of moderate-to-severe and severe food insecurity globally at the subnational level in the period of 2010 to 2030 using the disaggregated FIES data combined with the covariates. Using the log-transformed rate of food insecurity as our outcome variable, we explored several modeling approaches, including linear regression methods such as Least Absolute Shrinkage and Selection Operator (LASSO) regression and Bayesian Stochastic Search and Variable Selection (Bayes SSVS), as well as machine learning methods such as Random Forest regression. 
 
-By using the most popular model validation metrics, we observed a in-sample mean squared error (MSE) of 0.00?? with a R2 of 0.999? for the RF regression model. Since these models are prone to overfitting (CITATION) it is crucial to check the out-of-sample prediction performance. Hence, we trained the RF regression model with 75\% of the data and predicted rates of severe and moderate-to-severe food insecurity for the remaining 25\%. We got an out-of-sample MSE of 0.00?? with a R2 of 0.99??. This excellent out-of-sample performance makes the RF regression model particularly suitable for our application. See the Supplement Info for a detailed description and validation of all models.
+Based on various model validation metrics, Random Forest (RF) regression performed the best. The RF regression involves generating a large number of decision trees, each under slightly different conditions and using different sub-samples of the data, and then aggregating the predictions of the decision trees.  Random forest models are known to perform well in the presence of non-linearities and important interactions among predictor variables \citep{breiman2001random}. Since this is likely to be the case in our application, this method is particularly suitable for modeling rates of moderate-to-severe and severe food insecurity. 
 
-In RF regression models two main hyperparameters can be selected. One parameter which describes the number of variables randomly selected as candidates for splitting a node and another which describes the forest average number of unique cases (data points) in a terminal node, “mtry” and “nodesize” respectively (CITATION, manual r package randomforestSRC). We calculated the Out-Of-Bag (OOB) error for different combinations of the hyperparameters. The OOB error is the mean prediction error of the observation not included in the bootstrap aggregating or bagging (CITATION). By choosing the combination of hyperparameters with the lowest OOB error we found the optimal values which we used in our RF regression model to predict subnational rates of severe and moderate-to-severe food insecurity.
+We observed for the moderate-to-severe as well as the severe RF regression model an in-sample mean squared error (MSE) between 0.002-0.005, with a R-squared (${R}^2$) value of 0.999 (See Fig. \ref{fig:rf_in-sample}). Although RF regression models tackle the issue of overfitting by applying various ensemble methods \citep{breiman2001random}, it is crucial to validate the out-of-sample prediction performance. Hence, we trained the RF regression model with 75\% of the available observations and predicted rates of moderate-to-severe and severe food insecurity for the remaining 25\%. Similarly to the in-sample model validation metrics, the out-of-sample MSE is between 0.008-0.017, with a ${R}^2$ of around 0.98-0.99 for both models (See Fig. \ref{fig:rf_out-sample}).
 
-Population \citep{Smits2019, KC2017}
+To get the best possible model performance, it is necessary to tune the hyperparamters, which control the process in which the random forest algorithm is run.  Key hyperparameters include the number of decision trees to generate, the number of variables randomly selected as candidates for splitting a node, and the average number of observations in a leaf node.  We calculated the Out-Of-Bag (OOB) error for different combinations of hyperparameters for the moderate-to-severe and severe models. By choosing the combination of hyperparameters with the smallest OOB error we found the optimal combination for both models respectively. We found that 5000 trees are more than sufficient for the error rates to converge (See Fig. \ref{fig:rf_error}).
+
+Apart from tuning the hyperparameters, we examined the importance of the individual covariates in explaining rates of moderate-to-severe and severe food insecurity. By training the models with all covariates and predicting rates with and without a individual variable we calculated the average prediction error of omitting that variable. Using the highest average prediction error we ranked the importance of the variables and found that for both, the moderate-to-severe and severe model, the Poverty Headcount Index, Stunting, GDP Per Capita and the Gini Coefficient are the most important variables for explaining differences in rates of moderate-to-severe and severe food insecurity (See Fig. \ref{fig:rf_vimp}).
+
+For a detailed description, implementation and validation of the RF regression models see the Supplemental Info.
 
 \section{Conclusion}
 
@@ -273,7 +278,7 @@ We use estimates of national income inequality from Rao et al. \citep{Rao2019a}.
 \end{figure}
 
 \subsection{Poverty Headcount Index}
-We used estimates of the Poverty Headcount Index for the recent past and future from Cuaresma et al. \citep{Cuaresma2018}, updated to include the impact of the coronavirus.  We include the Poverty Headcount Index in our model at the national level.  SOMEBODY FAMILIAR WITH THE WORLD POVERTY CLOCK FEEL FREE TO ADD MORE.
+We used estimates of the Poverty Headcount Index for the recent past and future from the World Poverty Clock by the World Data Lab \citep{cuaresma2018will}, updated to include the impact of the coronavirus. In our model we include national level poverty rates at a threshold of \$1.90 which is defined as \textit{extreme} poverty. By using the concept of parameterized Lorenz curves in combination with mean income/consumption and population projections future poverty rates are calculated. For more details on the methodology and information on global and country level poverty check the website \url{worldpoverty.io}.
 
 \begin{figure}[H]
   \centering
@@ -283,7 +288,6 @@ We used estimates of the Poverty Headcount Index for the recent past and future 
 
 
 \subsection{Water Scarcity}
-SOMEBODY FAMILIAR WITH THE WATER CLOCK METHODOLOGY, FEEL FREE TO ADD MORE.
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{img/covars/wci_index.png}
@@ -327,14 +331,64 @@ We used data from \textit{The Lancet} to estimate the mortality (deaths per 100,
   \caption{Rate of mortality due to \textit{P. falciparum} Malaria}
 \end{figure}
 
-\section{Description and Validation of Models}
+\section{Description, Implementation and Validation of the RF regression model}
 
+%WE NEED HERE A SHORT PARAGRAPH ON HOW RF MODELS WORK, THIS WILL HELP: https://www.kdnuggets.com/2017/10/random-forests-explained.html
+%INCLUDE BAGGING AND RANDOM FEATURE SELECTION, NECESSARY TO EXPLAIN OOB ERROR
+
+The RF regression is a machine learning method based on the creation of a large number of decision trees. By taking an ensemble of decision tree models, random forests introduce more variance and balance out the bias that is common to single decision trees \citep{friedman2001elements}.  For each of the decision trees in a random forest model, observations are selected at random with replacement, a method known as bootstrap aggregating, or bagging, and features are area also selected at random.
+
+For implementation we use the R-package \texttt{randomForestSRC} by Ishwaran and Kogalur \citep{ishwaran2019randomforestsrc}. Specifically, we apply the functions \texttt{tune.rfsrc()} to find the optimal combination of hyperparamters and the function \texttt{rfsrc()} to perform the RF regression models. After predicting rates of moderate-to-severe and severe food insecurity we plot the modeled vs. observed rates and calculated the MSE and ${R}^2$ (See Fig. \ref{fig:rf_in-sample} and Fig. \ref{fig:rf_out-sample}) for both models. Additionally, we use the function \texttt{vimp()} to gain insights into the development of the error rates with increasing numbers of trees (See Fig. \ref{fig:rf_error}) and the importance of individual variables (See Fig. \ref{fig:rf_vimp}).
+
+%STEP-BY-STEP: LOGIT TRANSFORM, TUNE, MODEL, PREDICT, VALIDATE
+
+To ensure that predicted rates are bounded by 0 and 1 we conduct a logit transformation of the dependent variable and inverse logit transformation of the predictions. 
+%MAYBE STATE THIS SOMEWHERE ELSE, NOT SURE WHERE
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{img/covars/mod_residuals.png}
-  \caption{Prevalence of stunting.}
+  \includegraphics[width=\linewidth]{img/model/error_rf.png}
+  \caption{Error Rate of the RF regression model. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
+  \label{fig:rf_error}
 \end{figure}
+
+%HERE A FEW SENTENCES ON THE NUMBER OF TREES WITH LINK TO NEXT PARAGRAPH
+
+In addition to the parameter that describes the number of trees to be created, two other important hyperparameters must be tuned. In the function \texttt{tune.rfsrc()} these parameters are called \texttt{mtry} and \texttt{nodesize}. \texttt{mtry} describes the number of variables randomly selected as candidates for splitting a node and \texttt{nodesize} describes the average number of observations in a leaf node. The optimal pair of hyperparamters is found by trying different combinations and choosing the one with the smallest out-of-bag (OOB) error.
+
+%EXPLAIN THE OOB ERROR HERE?
+
+The function \texttt{tune.rfsrc()} does exactly that and returns optimal values for \texttt{mtry} and \texttt{nodesize}. We applied this function on the both, the moderate-to-severe and the severe model. For the moderate-to-severe model the optimal combination is \texttt{mtry} = 12 and \texttt{nodesize} = 1 and for the severe model we found \texttt{mtry} = 10 and \texttt{nodesize} = 2 to be optimal.
+
+%STATE FUNCTION ARGUMENTS HERE?
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/model/in-sample_rf.png}
+  \caption{In-Sample Fit of the RF regression model. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
+  \label{fig:rf_in-sample}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/model/out-sample_rf.png}
+  \caption{Out-Of-Sample Fit of the RF regression model with 75\% training set and 25\% test set. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
+  \label{fig:rf_out-sample}
+\end{figure}
+
+%HERE EVERYTHING ON THE MODEL, NOT SURE HOW DETAILED
+%For modeling the rates of moderate-to-severe and severe food insecurity we use the function \texttt{rfsrc()}. We specify 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/model/vimp_rf.png}
+  \caption{Variable Importance of the RF regression model. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
+  \label{fig:rf_vimp}
+\end{figure}
+
+%https://kogalur.github.io/randomForestSRC/theory.html#section4.2
+Lastly we asses the importance of individual variables. This is based on the Breiman-Culter permutation variable importance information \citep{breiman2001random}.  This involved comparing the prediction error on the OOB data to the prediction error of OOB cases where the x-variable $x$ is randomly permutated.  The importance of an individual variable is thus the mean difference between the perturbed and unperturbed error rate, across all trees. 
+%MORE INFORMATION HERE
 
 
 \end{document}

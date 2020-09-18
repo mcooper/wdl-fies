@@ -1,8 +1,10 @@
 # setwd('~/wdl-fies'); library(ProjectTemplate); load.project(list(data_loading=T))
 
 #Save outputs to wdl-fies-tex for manuscript
-setwd('~/wdl-fies/docs/img')
-library(cowplot)
+#setwd('~/wdl-fies/docs/img')
+setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
+
+#library(cowplot)
 options(scipen=100)
 
 ############################
@@ -129,32 +131,6 @@ ggsave('TimeSeries.pdf', width=7, height=7)
 # 
 # ggplot(sa) +
 #   geom_line(aes(x=YEAR*2030, y=value, color=key))
-
-
-##################################
-# assess residuals
-##################################
-mae <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
-r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
-ggplot(moddat) + 
-  geom_point(aes(x=fies.mod, y=fies.mod.pred)) + 
-  labs(title='model performance (random forest)',
-       caption=paste0('mean absolute error: ',  round(mae, 4),
-                      '\nr-squared: ', round(r2, 4)),
-       x='observed rates of mod+sev food insecurity',
-       y='modeled rate of mod+sev food insecurity')	
-ggsave('mod_residuals.png', width=5, height=5)
-
-mae <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred))
-r2 <- cor(moddat$fies.sev, moddat$fies.sev.pred)
-ggplot(moddat) + 
-  geom_point(aes(x=fies.sev, y=fies.sev.pred)) + 
-  labs(title='model performance (random forest)',
-       caption=paste0('mean absolute error: ',  round(mae, 4),
-                      '\nr-squared: ', round(r2, 4)),
-       x='observed rates of sev food insecurity',
-       y='modeled rate of sev food insecurity')	
-ggsave('sev_residuals.png', width=5, height=5)
 
 
 ############################

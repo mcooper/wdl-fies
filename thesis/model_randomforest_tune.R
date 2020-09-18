@@ -102,9 +102,9 @@ moddat_test$i <- 1; moddat_train$i <- 0
 rf.tune <- tune.rfsrc(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
                       data = moddat_train,
                       mtryStart = max(1, floor(sqrt(length(vars)))), 
-                      nodesizeTry = c(1:15),
+                      nodesizeTry = c(1:5),
                       ntreeTry = 500,
-                      sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(4/5))),
+                      #sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/5))),
                       trace = T,
                       doBest = T); rf.tune$optimal
 

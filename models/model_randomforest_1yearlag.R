@@ -48,7 +48,7 @@ rf.tune.mod <- tune.rfsrc(formula = as.formula(paste("fies.mod",
                           mtrystart = max(1, floor(sqrt(length(vars)))), 
                           nodesizetry = c(1:3),
                           ntreetry = 5000,
-                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(4/5))),
+                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
                           trace = T,
                           dobest = T); rf.tune.mod$optimal
 
@@ -72,7 +72,7 @@ rf.tune.sev <- tune.rfsrc(formula = as.formula(paste("fies.sev",
                           mtrystart = max(1, floor(sqrt(length(vars)))), 
                           nodesizetry = c(1:3),
                           ntreetry = 5000,
-                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(4/5))),
+                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
                           trace = T,
                           dobest = T); rf.tune.sev$optimal
 # model

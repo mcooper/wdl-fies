@@ -3,7 +3,7 @@ setwd('~/wdl-fies')
 library(tidyverse)
 
 #poverty headcount
-pc <- read.csv('data/covars/rawdata/povertyclock/pc2020-04-28.csv') %>% 
+pc <- read.csv('data/covars/rawdata/povertyclock/pc2020-08-18.csv') %>% 
   filter(daily_spending == "1.9", 
          age_group == "[00,05)",
          year <= 2030) %>%
