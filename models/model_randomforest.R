@@ -138,6 +138,12 @@ rf.mod$xvar.names <- vars_full
 rf.sev$yvar.names <- c("Severe Food Insecurity")
 rf.sev$xvar.names <- vars_full
 
+# hv.mod <- holdout.vimp(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
+#                 data = moddat,
+#                 ntree = 5000, 
+#                 mtry = rf.tune.mod$optimal[[2]],
+#                 nodesize = rf.tune.mod$optimal[[1]],
+#                 verbose = TRUE)
 
 # error rate and variable importance
 plot(vimp(rf.mod), plots.one.page = F, sorted = T, verbose = T)
