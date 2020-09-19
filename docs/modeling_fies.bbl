@@ -818,7 +818,7 @@
       \field{pages}{519\bibrangedash 521}
       \range{pages}{3}
     \endentry
-    \entry{cuaresma2018will}{article}{}
+    \entry{Cuaresma2018}{article}{}
       \name{author}{6}{}{%
         {{hash=310977675c3c65c9af8531a21dc40050}{%
            family={Cuaresma},
@@ -860,7 +860,6 @@
       \strng{authorbibnamehash}{b385f0807a89a2d1e4e46a67b04de51e}
       \strng{authornamehash}{b385f0807a89a2d1e4e46a67b04de51e}
       \strng{authorfullhash}{bbea96212d57f12155e7f24a912f27ef}
-      \field{extraname}{1}
       \field{sortinit}{2}
       \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
@@ -1054,61 +1053,6 @@
       \verb 10.1016/j.futures.2018.07.001
       \endverb
       \keyw{E,Gini,Income inequality,Projections,SSP,ducation inequality}
-    \endentry
-    \entry{Cuaresma2018}{article}{}
-      \name{author}{6}{}{%
-        {{hash=310977675c3c65c9af8531a21dc40050}{%
-           family={Cuaresma},
-           familyi={C\bibinitperiod},
-           given={Jes{ú}s\bibnamedelima Crespo},
-           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=c084bfc585ee17f34f8a34b65afe88cf}{%
-           family={Fengler},
-           familyi={F\bibinitperiod},
-           given={Wolfgang},
-           giveni={W\bibinitperiod}}}%
-        {{hash=d4087ba8f3c339b292f6d02128ab8272}{%
-           family={Kharas},
-           familyi={K\bibinitperiod},
-           given={Homi},
-           giveni={H\bibinitperiod}}}%
-        {{hash=68039391f4bc1c6cf7f3850e453f9b8c}{%
-           family={Bekhtiar},
-           familyi={B\bibinitperiod},
-           given={Karim},
-           giveni={K\bibinitperiod}}}%
-        {{hash=e8d6e3a5abb0204ba3d6f70388a0c0b6}{%
-           family={Brottrager},
-           familyi={B\bibinitperiod},
-           given={Michael},
-           giveni={M\bibinitperiod}}}%
-        {{hash=74051e9b4936603abd8e93b5d30bade6}{%
-           family={Hofer},
-           familyi={H\bibinitperiod},
-           given={Martin},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Nature Publishing Group}%
-      }
-      \strng{namehash}{b385f0807a89a2d1e4e46a67b04de51e}
-      \strng{fullhash}{bbea96212d57f12155e7f24a912f27ef}
-      \strng{bibnamehash}{b385f0807a89a2d1e4e46a67b04de51e}
-      \strng{authorbibnamehash}{b385f0807a89a2d1e4e46a67b04de51e}
-      \strng{authornamehash}{b385f0807a89a2d1e4e46a67b04de51e}
-      \strng{authorfullhash}{bbea96212d57f12155e7f24a912f27ef}
-      \field{extraname}{2}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Palgrave Communications}
-      \field{number}{1}
-      \field{title}{Will the Sustainable Development Goals be fulfilled? Assessing present and future global poverty}
-      \field{volume}{4}
-      \field{year}{2018}
-      \field{pages}{1\bibrangedash 8}
-      \range{pages}{8}
     \endentry
     \entry{abatzoglou2018terraclimate}{article}{}
       \name{author}{4}{}{%
@@ -1497,10 +1441,101 @@
       \verb 10.1016/S0140-6736(19)31097-9
       \endverb
     \endentry
+    \entry{breiman2001random}{article}{}
+      \name{author}{1}{}{%
+        {{hash=132b7100417675d55d5d4d8b244f7a34}{%
+           family={Breiman},
+           familyi={B\bibinitperiod},
+           given={Leo},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{fullhash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{bibnamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authorbibnamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authornamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authorfullhash}{132b7100417675d55d5d4d8b244f7a34}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Machine learning}
+      \field{number}{1}
+      \field{title}{Random forests}
+      \field{volume}{45}
+      \field{year}{2001}
+      \field{pages}{5\bibrangedash 32}
+      \range{pages}{28}
+    \endentry
+    \entry{friedman2001elements}{book}{}
+      \name{author}{3}{}{%
+        {{hash=971cf69058b64a94326dea0f2a8bbcce}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={Jerome},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
+           family={Hastie},
+           familyi={H\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod}}}%
+        {{hash=88eea600247d798f8b2ce0b2dc614492}{%
+           family={Tibshirani},
+           familyi={T\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer series in statistics New York}%
+      }
+      \strng{namehash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{fullhash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{bibnamehash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{authorbibnamehash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{authornamehash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{authorfullhash}{568e7b5149c552567af3c9b520d96bb3}
+      \field{sortinit}{5}
+      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{10}
+      \field{title}{The elements of statistical learning}
+      \field{volume}{1}
+      \field{year}{2001}
+    \endentry
+    \entry{ishwaran2019randomforestsrc}{article}{}
+      \name{author}{2}{}{%
+        {{hash=01ac834cae76b7edc44968f1597d75a4}{%
+           family={Ishwaran},
+           familyi={I\bibinitperiod},
+           given={H},
+           giveni={H\bibinitperiod}}}%
+        {{hash=860c16b1b29b20683f0b9f286683ea71}{%
+           family={Kogalur},
+           familyi={K\bibinitperiod},
+           given={UB},
+           giveni={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{fullhash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{bibnamehash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{authorbibnamehash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{authornamehash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{authorfullhash}{90ac875d50e1b3141df05b073fe2f329}
+      \field{sortinit}{5}
+      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{R Package Version}
+      \field{number}{1}
+      \field{title}{randomForestSRC: Fast unified random forests for survival, regression, and classification (RF-SRC)}
+      \field{volume}{2}
+      \field{year}{2019}
+    \endentry
   \enddatalist
-  \missing{breiman2001random}
-  \missing{friedman2001elements}
-  \missing{ishwaran2019randomforestsrc}
 \endrefsection
 \endinput
 

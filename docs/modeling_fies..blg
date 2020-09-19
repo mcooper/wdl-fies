@@ -1,5 +1,0 @@
-[0] Config.pm:304> INFO - This is Biber 2.14 (beta)
-[0] Config.pm:307> INFO - Logfile is 'modeling_fies..blg'
-[62] biber:322> INFO - === Fri Sep 11, 2020, 15:14:23
-[92] Utils.pm:309> ERROR - Cannot find 'modeling_fies..bcf'!
-[93] Biber.pm:132> INFO - ERRORS: 1
