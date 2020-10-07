@@ -12,7 +12,7 @@ for (f in fs){
 covars <- covars %>%
   select(YEAR, ISO3, GDLCODE, stunting, wasting, school_mean, ruggedness,
          gdp_percap, gini, mal_falciparum, precip, hci, tave, 
-         population, rural_perc, urban_perc, wci_index, builtup, cropland, crops_prod,
+         population, rural_perc, urban_perc, ws_share, builtup, cropland, crops_prod,
          forest, livestock, pasture) %>%
   merge(regions)
 
@@ -41,7 +41,7 @@ covars$gdp_percap[covars$ISO3=='SSD'] <- rep(caf_gdp_percap, each=n_admin1)
 covars$gini[covars$ISO3=='SSD'] <- rep(caf_gini, each=n_admin1)
 
 ######## North Korea #############
-#WCI, School mean, GDP Percap, same as Tajikstan
+#Water Scarcity Share, School mean, GDP Percap, same as Tajikstan
 #Malaria is 0
 covars$mal_falciparum[covars$ISO3=='PRK'] <- 0
 
@@ -51,12 +51,12 @@ tjk <- covars %>%
   summarize(school_mean = weighted.mean(school_mean, w=population),
             gdp_percap = weighted.mean(gdp_percap, w=population),
             gini = weighted.mean(gini, w=population),
-            wci_index = weighted.mean(wci_index, w=population))
+            ws_share = weighted.mean(ws_share, w=population))
 
 covars$school_mean[covars$ISO3=='PRK'] <- tjk$school_mean
 covars$gdp_percap[covars$ISO3=='PRK'] <- tjk$gdp_percap
 covars$gini[covars$ISO3=='PRK'] <- tjk$gini
-covars$wci_index[covars$ISO3=='PRK'] <- tjk$wci_index
+covars$ws_share[covars$ISO3=='PRK'] <- tjk$ws_share
 
 ###########################################################################
 # Missing data at the region level
@@ -110,3 +110,4 @@ covars <- covars %>%
 covars <- na.omit(covars)
 
 cache('covars')
+
