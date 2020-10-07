@@ -1,8 +1,8 @@
 # setwd('~/wdl-fies'); library(ProjectTemplate); load.project(list(data_loading=T))
 
 #Save outputs to wdl-fies-tex for manuscript
-#setwd('~/wdl-fies/docs/img')
-setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
+setwd('~/wdl-fies/docs/img')
+#setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
 
 #library(cowplot)
 options(scipen=100)
@@ -30,7 +30,8 @@ ggplot(mapdat) +
   scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
                                  "#fce08a", "#faae61", "#f36c44", "#a01c44"), 
                        breaks=seq(0, 1, by=0.2),
-                       limits=c(0, max(mapdat$value))) + 
+                       limits=c(0, max(mapdat$value)),
+                       labels=function(x){paste0(x*100, '%')}) + 
   geom_sf(data=cty, color='#000000', fill=NA, size=0.15) + 
   coord_sf(crs='+proj=robin', expand=FALSE) + 
   theme_void() + 
@@ -39,7 +40,7 @@ ggplot(mapdat) +
         panel.spacing.x = unit(-0.5, "in")) + 
   labs(fill='') + 
   facet_grid(FIES ~ YEAR, switch='y')
-ggsave('FullMap.pdf', width=10, dpi=750)
+ggsave('FullMap.pdf', width=10)
 system('pdfcrop FullMap.pdf FullMap.pdf')
 
 
