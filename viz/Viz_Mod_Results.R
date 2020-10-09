@@ -64,7 +64,7 @@ reg <- ggplot(cty) +
   labs(fill='')
 
 #####################
-# time series
+# totals time series
 ###############
 
 #get totals by YEAR
@@ -222,4 +222,35 @@ ggplot(prop %>% filter(out == 'Sev')) +
   theme(legend.title=element_blank())
 ggsave('Time.Sev.Lines.Prop.RurUrb.png', width=8, height=5)
 
+
+###############################################
+# Rates over time, not just raw number
+################################################
+
+#get rate by YEAR
+rates <- preddat %>%
+  mutate(region = ifelse(region == 'Middle Esat & North Africa',
+                         'Middle East & North Africa', region)) %>%
+  filter(YEAR >= 2010) %>%
+  group_by(YEAR, region) %>%
+  summarize(mod.rate=weighted.mean(fies.mod.pred, w=population, na.rm=T),
+            sev.rate=weighted.mean(fies.sev.pred, w=population, na.rm=T)) %>%
+  gather(var, value, -YEAR, -region) %>%
+  mutate(var = ifelse(grepl('mod', var), "Moderate-to-Severe", "Severe")) %>%
+  group_by(region, var) %>%
+  mutate(value = rollapply(value, width=3, FUN=mean, align='center', partial=TRUE))
+
+lines <- ggplot(rates) +
+  geom_line(aes(x=YEAR, y=value, color=region), size=1) +
+  scale_color_manual(values=region_cols) + 
+  theme_bw() + 
+  theme(plot.margin=unit(c(-1, 0.5, 0, 0), 'lines'),
+        strip.text.x = element_blank(),
+        panel.spacing=unit(2, 'lines')) + 
+  scale_x_continuous(expand=c(0,0), labels=seq(2010, 2030, by=5)) +
+  scale_y_continuous(expand=expansion(mult=c(0,0.05), add=0), 
+                     labels=function(x){prettyNum(x, big.mark=',')}) +  
+  labs(x='', y="",
+       title="") +
+  facet_grid(. ~ var)
 
