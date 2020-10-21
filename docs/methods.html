@@ -1,0 +1,63 @@
+<h1 id="disaggregating-individual-level-fies-microdata">Disaggregating Individual-Level FIES Microdata</h1>
+<p>We started with 331 surveys from 77 countries from the years 2014 to 2018 from the <a href="https://microdata.fao.org/index.php/catalog/Food-Security">FAO microdata catalogue</a>. This survey data comes in the form of individual-level data, with approximately 1,000 individuals interviewed per survey. For each individual, data on their age, gender, education, locality (urban/rural) and national wealth quintile is collected, as well as whether they exhibited 8 behaviors indicative of food insecurity over the previous year. Based on these 8 behaviors, using methods <a href="https://doi.org/10.1016/j.measurement.2017.10.065">developed by the FAO</a>, the FAO estimates the probability that an individual is over the threshold for severe and moderate-to-severe food insecurity according to the Food Insecurity Experience Scale (FIES). To get estimates of national prevalences, the FAO assigns each individual a weight based on how their demographic characteristics are more or less representative of national characteristics compared to the sample of individuals interviewed, and then takes the weighted mean probability of being over thresholds for severe and moderate-to-severe food insecurity.</p>
+<p>We use a similar methodology to the FAO, except we use subnational data on wealth, gender, age, and urbanization to calculate separate weights at each subnational level. We use each individual in the country sample for each subnational calculation with different weights each time. To estimate subnational prevalences of age and gender, we use data from <a href="https://worldpop.org">WorldPop</a>, for subnational prevalences of urban and rural population, we use data from <a href="https://doi.org/10.1088/1748-9326/11/8/084003">Jones &amp; O’Neill (2016) <em>Environ. Res. Lett.</em></a>, and for the subnational prevalences of wealth quintiles, we use data from <a href="https://dhsprogram.com/">Demographic and Health Surveys</a>, where available. This methodology allows us to estimate and model the FIES at a subnational level, and rests on the mild assumption that individuals of the same age, gender, urban/rural context and wealth quintile will have the same risk of food insecurity, no matter where in the country they are observed.</p>
+<h1 id="covariates">Covariates</h1>
+<p>We use a dozen covariates characterizing food systems to model food insecurity rates over space and over time. For each covariate that is not time-invariant, we aim for data sources that have been peer-reviewed and include projections to at least the year 2030. For projections that come from scenario or simulation based methodologies, we use the most middle-of-the-road estimates. Thus, for climate projections, we use estimates from the Representative Concentration Pathway (RCP) 6.5, and for projections from the Shared Socio-Economic Pathways (SSP) framework, we use projections from SSP 2. In cases where we estimate the future of</p>
+<table>
+<thead>
+<tr class="header">
+<th>Covariate</th>
+<th>Data Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Urban Percentage</td>
+<td>Jones2016</td>
+</tr>
+<tr class="even">
+<td>Stunting</td>
+<td>Local2020</td>
+</tr>
+<tr class="odd">
+<td>Wasting</td>
+<td>Local2020</td>
+</tr>
+<tr class="even">
+<td>Mean Years of Schooling</td>
+<td>Smits2019, KC2017</td>
+</tr>
+<tr class="odd">
+<td>GDP Per Capita</td>
+<td>Smits2019, Dellink2017</td>
+</tr>
+<tr class="even">
+<td>Gini Coefficient</td>
+<td>Rao2019a</td>
+</tr>
+<tr class="odd">
+<td>Poverty Headcount Index</td>
+<td>Cuaresma2018</td>
+</tr>
+<tr class="even">
+<td>Water Scarcity</td>
+<td>(CITATION)</td>
+</tr>
+<tr class="odd">
+<td>Mean Annual Precipitation</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Topographic Ruggedness</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Mean Temperature</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Malaria (\textit{P. falciparum) Mortality Rate</td>
+<td></td>
+</tr>
+</tbody>
+</table>
