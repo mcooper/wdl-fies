@@ -1,6 +1,7 @@
 setwd('~/wdl-fies')
 
 library(tidyverse)
+library(zoo)
 
 #water scarcity
 fs <- list.files('data/covars/rawdata/wc', pattern='csv$', recursive = T, full.names = T)

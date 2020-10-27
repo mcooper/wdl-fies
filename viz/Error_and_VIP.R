@@ -1,39 +1,4 @@
-
-
-preddat <- read.csv('data/preddat.csv')
-moddat <- read.csv('data/moddat.csv')
-
-######################
-# save output for poli
-########################
-
-sel <- preddat %>%
-  select(ISO3, YEAR, GDLCODE, stunting, urban_perc, fies.mod.pred, population) %>%
-  filter(YEAR %in% c(2020, 2025, 2030)) %>%
-  merge(u5.population, all.x=T, all.y=F) %>%
-  mutate(u5pop.urban = urban_perc*u5_frac*population,
-         u5pop.rural = (1 - urban_perc)*u5_frac*population,
-         stunting.urban = stunting*u5pop.urban,
-         stunting.rural = stunting*u5pop.rural,
-         population.urban = population*urban_perc,
-         population.rural = population*(1 - urban_perc),
-         fies.urban = fies.mod.pred*population.urban,
-         fies.rural = fies.mod.pred*population.rural) %>%
-  select(-stunting, -urban_perc, -fies.mod.pred, -population, -u5_frac) %>%
-  gather(var, value, -ISO3, -YEAR, -GDLCODE) %>%
-  mutate(geo_area=ifelse(grepl('urban', var), 'Urban', 'Rural'),
-         var=gsub('.rural|.urban', '', var),
-         value = round(value)) %>%
-  spread(var, value)
-
-write.csv(sel, 'figures/HC_2020-10-07.csv', row.names=F) #update date
-
-
-
-##########################################
-#### plot error and variable importance
-##########################################
-
+# setwd('~/wdl-fies');library(ProjectTemplate);load.project()
 #setwd('~/wdl-fies/docs/img')
 setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
 
@@ -41,39 +6,46 @@ library(cowplot)
 library(gridGraphics)
 options(scipen=100)
 
+vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
+                                            'fies.sev.rur', 'fies.mod.urb', 'fies.sev.urb',
+                                            'fies.mod.pred', 'fies.sev.pred',
+                                            'urban', 'rural', 'fies.sev', 'fies.mod',
+                                            'population', 'YEAR', 'rural_perc', 'region')]
+
 # change varaibles names
 vars_full <- c("Stunting", "Wasting", "Mean Years of Schooling", "Topographic Ruggedness",
               "GDP Per Capita", "Gini Coefficient", "Malaria Mortality Rate", "Mean Annual Precipitation",
               "Poverty Headcount Index", "Mean Temperature", "Urban Percentage", "Water Scarcity") #has to be in the same order as "vars"
 
-rf.mod$yvar.names <- c("Moderate-to-Severe Food Insecurity")
-rf.mod$xvar.names <- vars_full
-rf.sev$yvar.names <- c("Severe Food Insecurity")
-rf.sev$xvar.names <- vars_full
 
-# hv.mod <- holdout.vimp(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
-#                 data = moddat,
-#                 ntree = 5000, 
-#                 mtry = rf.tune.mod$optimal[[2]],
-#                 nodesize = rf.tune.mod$optimal[[1]],
-#                 verbose = TRUE)
+hv.mod <- holdout.vimp(formula = as.formula(paste("fies.mod", 
+                                                  paste(vars, collapse = "+"), sep= "~")),
+                 data = moddat,
+                 ntree = 5000, 
+                 mtry = rf.tune.mod$optimal[[2]],
+                 nodesize = rf.tune.mod$optimal[[1]],
+                 verbose = TRUE)
 
-# error rate and variable importance
-plot(vimp(rf.mod), plots.one.page = F, sorted = T, verbose = T)
-grid.echo(); mod.error <- grid.grab() #save plot individually
-grid.echo(); mod.vimp <- grid.grab()
+hv.sev <- holdout.vimp(formula = as.formula(paste("fies.sev", 
+                                                  paste(vars, collapse = "+"), sep= "~")),
+                 data = moddat,
+                 ntree = 5000, 
+                 mtry = rf.tune.sev$optimal[[2]],
+                 nodesize = rf.tune.sev$optimal[[1]],
+                 verbose = TRUE)
 
-plot(vimp(rf.sev), plots.one.page = F, sorted = T, verbose = T)
-grid.echo(); sev.error <- grid.grab() #save plot individually
-grid.echo(); sev.vimp <- grid.grab()
+df <- data.frame(var=c(names(hv.mod), names(hv.sev)),
+                 val=c(hv.mod, hv.sev),
+                 mod=rep(c('Moderate', 'Severe'), each=12),
+                 lab=rep(vars_full, 2))
 
-plot_grid(mod.error, sev.error, labels='AUTO', scale = 0.8)
-ggsave('model/error_rf.png', width=14, height=7)
+df$lab <- factor(df$lab, levels=vars_full[order(hv.mod)])
 
-plot_grid(mod.vimp, sev.vimp, labels='AUTO', scale = 0.8)
-ggsave('model/vimp_rf.png', width=17, height=7)
-
-
+ggplot(df) + 
+  geom_bar(aes(x=lab, y=val), stat='identity', fill='#0F1290') +
+  coord_flip() + 
+  facet_grid(. ~ mod) + 
+  theme_bw()
 
 # variable effect
 # png('model/mod.coefs_rf.png', width = 1000, height = 800, units="px")

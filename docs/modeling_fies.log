@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.6)  18 SEP 2020 20:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.6)  26 OCT 2020 20:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -980,30 +980,30 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 (./modeling_fies.aux)
 \openout1 = `modeling_fies.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 28.
-LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 2
-8.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 45.
+LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 4
+5.
 
 (/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    ... okay on input line 45.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1036,7 +1036,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 28.
+Package hyperref Info: Link coloring OFF on input line 45.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1049,9 +1049,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count428
 )
-LaTeX Info: Redefining \ref on input line 28.
-LaTeX Info: Redefining \pageref on input line 28.
-LaTeX Info: Redefining \nameref on input line 28.
+LaTeX Info: Redefining \ref on input line 45.
+LaTeX Info: Redefining \pageref on input line 45.
+LaTeX Info: Redefining \nameref on input line 45.
 
 (./modeling_fies.out) (./modeling_fies.out)
 \@outlinefile=\write4
@@ -1114,173 +1114,184 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'modeling_fies.bbl' found.
 
-(./modeling_fies.bbl)
-Package biblatex Info: Reference section=0 on input line 28.
-Package biblatex Info: Reference segment=0 on input line 28.
+(./modeling_fies.bbl
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                friedman2001elements
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+)
+Package biblatex Info: Reference section=0 on input line 45.
+Package biblatex Info: Reference segment=0 on input line 45.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+! Misplaced alignment tab character &.
+l.89 ...s, particularly South Asia and East Asia &
+                                                   the Pacific.
+? 
 [2]
-<img/FullMap.pdf, id=150, 722.7pt x 269.005pt>
-File: img/FullMap.pdf Graphic file (type pdf)
-<use img/FullMap.pdf>
-Package pdftex.def Info: img/FullMap.pdf  used on input line 74.
-(pdftex.def)             Requested size: 722.69823pt x 269.00433pt.
+<img/TimeSeries.pdf, id=147, 505.89pt x 505.89pt>
+File: img/TimeSeries.pdf Graphic file (type pdf)
+<use img/TimeSeries.pdf>
+Package pdftex.def Info: img/TimeSeries.pdf  used on input line 93.
+(pdftex.def)             Requested size: 416.83289pt x 416.83948pt.
+ [3 <./img/TimeSeries.pdf>] [4]
+<img/FullMap.png, id=164, 722.7pt x 505.4082pt>
+File: img/FullMap.png Graphic file (type png)
+<use img/FullMap.png>
+Package pdftex.def Info: img/FullMap.png  used on input line 105.
+(pdftex.def)             Requested size: 722.69823pt x 505.40695pt.
 
-Overfull \hbox (58.32637pt too wide) in paragraph at lines 74--75
+Overfull \hbox (58.32637pt too wide) in paragraph at lines 105--106
  [][] 
  []
 
-[3
 
- <./img/FullMap.pdf>]
-<img/TimeSeries.pdf, id=164, 505.89pt x 505.89pt>
-File: img/TimeSeries.pdf Graphic file (type pdf)
-<use img/TimeSeries.pdf>
-Package pdftex.def Info: img/TimeSeries.pdf  used on input line 84.
-(pdftex.def)             Requested size: 416.83289pt x 416.83948pt.
- [4
+LaTeX Warning: Float too large for page by 110.57407pt on input line 108.
 
- <./img/TimeSeries.pdf>] [5] [6] [7] [8]pdfTeX warning (ext4): destination with
- the same identifier (name{section.1}) has been already used, duplicate ignored
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <./img/FullMap.png (PNG copy)>] [6
+
+
+] [7] [8] [9]pdfTeX warning (ext4): destination with the same identifier (name{
+section.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.161 \section{Component Questions of the FIES}
-                                               pdfTeX warning (ext4): destinati
-on with the same identifier (name{section.2}) has been already used, duplicate 
-ignored
+l.194 \section{Component Questions of the FIES}
+                                                [10]pdfTeX warning (ext4): dest
+ination with the same identifier (name{section.2}) has been already used, dupli
+cate ignored
 <to be read again> 
                    \relax 
-l.173 ...on{Predicting Covariates Into the Future}
-                                                  pdfTeX warning (ext4): destin
-ation with the same identifier (name{subsection.2.1}) has been already used, du
-plicate ignored
-<to be read again> 
-                   \relax 
-l.174 \subsection{Annualized Rate of Change}
-                                             [9]
-Overfull \hbox (6.77905pt too wide) in paragraph at lines 210--211
+l.206 ...on{Predicting Covariates Into the Future}
+                                                  
+Overfull \hbox (6.77905pt too wide) in paragraph at lines 243--244
 []\OT1/cmr/m/n/10 We do this by com-bin-ing his-toric sub-na-tional data from t
 he Sub-na-tional De-vel-op-ment Database
  []
 
-<img/covars/population.png, id=315, 505.89pt x 361.35pt>
+<img/covars/population.png, id=307, 505.89pt x 361.35pt>
 File: img/covars/population.png Graphic file (type png)
 <use img/covars/population.png>
-Package pdftex.def Info: img/covars/population.png  used on input line 214.
+Package pdftex.def Info: img/covars/population.png  used on input line 247.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
-[10 <./img/covars/population.png (PNG copy)>]
-<img/covars/urban_perc.png, id=326, 505.89pt x 361.35pt>
+[11]
+<img/covars/urban_perc.png, id=324, 505.89pt x 361.35pt>
 File: img/covars/urban_perc.png Graphic file (type png)
 <use img/covars/urban_perc.png>
-Package pdftex.def Info: img/covars/urban_perc.png  used on input line 224.
+Package pdftex.def Info: img/covars/urban_perc.png  used on input line 257.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
-<img/covars/wasting.png, id=330, 505.89pt x 361.35pt>
+ [12 <./img/covars/population.png (PNG copy)>]
+<img/covars/wasting.png, id=333, 505.89pt x 361.35pt>
 File: img/covars/wasting.png Graphic file (type png)
 <use img/covars/wasting.png>
-Package pdftex.def Info: img/covars/wasting.png  used on input line 235.
+Package pdftex.def Info: img/covars/wasting.png  used on input line 268.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [11 <./img/covars/urban_perc.png (PNG copy)>]
-<img/covars/stunting.png, id=337, 505.89pt x 361.35pt>
+ [13 <./img/covars/urban_perc.png (PNG copy)>]
+<img/covars/stunting.png, id=341, 505.89pt x 361.35pt>
 File: img/covars/stunting.png Graphic file (type png)
 <use img/covars/stunting.png>
-Package pdftex.def Info: img/covars/stunting.png  used on input line 245.
+Package pdftex.def Info: img/covars/stunting.png  used on input line 278.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [12 <./img/covars/wasting.png (PNG copy)>]
-<img/covars/gdp_percap.png, id=346, 505.89pt x 361.35pt>
+ [14 <./img/covars/wasting.png (PNG copy)>]
+<img/covars/gdp_percap.png, id=350, 505.89pt x 361.35pt>
 File: img/covars/gdp_percap.png Graphic file (type png)
 <use img/covars/gdp_percap.png>
-Package pdftex.def Info: img/covars/gdp_percap.png  used on input line 256.
+Package pdftex.def Info: img/covars/gdp_percap.png  used on input line 289.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [13 <./img/covars/stunting.png (PNG copy)>]
-<img/covars/school_mean.png, id=355, 505.89pt x 361.35pt>
+ [15 <./img/covars/stunting.png (PNG copy)>]
+<img/covars/school_mean.png, id=358, 505.89pt x 361.35pt>
 File: img/covars/school_mean.png Graphic file (type png)
 <use img/covars/school_mean.png>
-Package pdftex.def Info: img/covars/school_mean.png  used on input line 266.
+Package pdftex.def Info: img/covars/school_mean.png  used on input line 299.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [14 <./img/covars/gdp_percap.png (PNG copy)>]
-<img/covars/gini.png, id=362, 505.89pt x 361.35pt>
+ [16 <./img/covars/gdp_percap.png (PNG copy)>]
+<img/covars/gini.png, id=365, 505.89pt x 361.35pt>
 File: img/covars/gini.png Graphic file (type png)
 <use img/covars/gini.png>
-Package pdftex.def Info: img/covars/gini.png  used on input line 276.
+Package pdftex.def Info: img/covars/gini.png  used on input line 309.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [15 <./img/covars/school_mean.png (PNG copy)>]
-<img/covars/hci.png, id=370, 505.89pt x 361.35pt>
+
+[17 <./img/covars/school_mean.png (PNG copy)>]
+<img/covars/hci.png, id=373, 505.89pt x 361.35pt>
 File: img/covars/hci.png Graphic file (type png)
 <use img/covars/hci.png>
-Package pdftex.def Info: img/covars/hci.png  used on input line 285.
+Package pdftex.def Info: img/covars/hci.png  used on input line 318.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [16 <./img/covars/gini.png (PNG copy)>]
-<img/covars/wci_index.png, id=377, 505.89pt x 361.35pt>
-File: img/covars/wci_index.png Graphic file (type png)
-<use img/covars/wci_index.png>
-Package pdftex.def Info: img/covars/wci_index.png  used on input line 293.
+ [18 <./img/covars/gini.png (PNG copy)>]
+<img/covars/ws_share.png, id=382, 505.89pt x 361.35pt>
+File: img/covars/ws_share.png Graphic file (type png)
+<use img/covars/ws_share.png>
+Package pdftex.def Info: img/covars/ws_share.png  used on input line 328.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
-
-[17 <./img/covars/hci.png (PNG copy)>]
-<img/covars/precip.png, id=385, 505.89pt x 361.35pt>
+ [19 <./img/covars/hci.png (PNG copy)>]
+<img/covars/precip.png, id=391, 505.89pt x 361.35pt>
 File: img/covars/precip.png Graphic file (type png)
 <use img/covars/precip.png>
-Package pdftex.def Info: img/covars/precip.png  used on input line 303.
+Package pdftex.def Info: img/covars/precip.png  used on input line 338.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [18 <./img/covars/wci_index.png (PNG copy)>]
-<img/covars/tave.png, id=391, 505.89pt x 361.35pt>
+ [20 <./img/covars/ws_share.png (PNG copy)>]
+<img/covars/tave.png, id=398, 505.89pt x 361.35pt>
 File: img/covars/tave.png Graphic file (type png)
 <use img/covars/tave.png>
-Package pdftex.def Info: img/covars/tave.png  used on input line 312.
+Package pdftex.def Info: img/covars/tave.png  used on input line 347.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [19 <./img/covars/precip.png (PNG copy)>]
-<img/covars/ruggedness.png, id=401, 505.89pt x 361.35pt>
+ [21 <./img/covars/precip.png (PNG copy)>]
+<img/covars/ruggedness.png, id=406, 505.89pt x 361.35pt>
 File: img/covars/ruggedness.png Graphic file (type png)
 <use img/covars/ruggedness.png>
-Package pdftex.def Info: img/covars/ruggedness.png  used on input line 321.
+Package pdftex.def Info: img/covars/ruggedness.png  used on input line 356.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [20 <./img/covars/tave.png (PNG copy)>]
-<img/covars/mal_falciparum.png, id=408, 505.89pt x 361.35pt>
+ [22 <./img/covars/tave.png (PNG copy)>]
+<img/covars/mal_falciparum.png, id=413, 505.89pt x 361.35pt>
 File: img/covars/mal_falciparum.png Graphic file (type png)
 <use img/covars/mal_falciparum.png>
-Package pdftex.def Info: img/covars/mal_falciparum.png  used on input line 330.
+Package pdftex.def Info: img/covars/mal_falciparum.png  used on input line 365.
 
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [21 <./img/covars/ruggedness.png (PNG copy)>]pdfTeX warning (ext4): destinatio
+ [23 <./img/covars/ruggedness.png (PNG copy)>]pdfTeX warning (ext4): destinatio
 n with the same identifier (name{section.3}) has been already used, duplicate i
 gnored
 <to be read again> 
                    \relax 
-l.334 ...nd Validation of the RF regression model}
+l.369 ...nd Validation of the RF regression model}
                                                   
-<img/model/error_rf.png, id=421, 1011.78pt x 505.89pt>
+<img/model/error_rf.png, id=425, 1011.78pt x 505.89pt>
 File: img/model/error_rf.png Graphic file (type png)
 <use img/model/error_rf.png>
-Package pdftex.def Info: img/model/error_rf.png  used on input line 350.
+Package pdftex.def Info: img/model/error_rf.png  used on input line 385.
 (pdftex.def)             Requested size: 416.83289pt x 208.41974pt.
- [22 <./img/covars/mal_falciparum.png (PNG copy)>]
-<img/model/in-sample_rf.png, id=427, 1011.78pt x 505.89pt>
+ [24 <./img/covars/mal_falciparum.png (PNG copy)>]
+<img/model/in-sample_rf.png, id=432, 1011.78pt x 505.89pt>
 File: img/model/in-sample_rf.png Graphic file (type png)
 <use img/model/in-sample_rf.png>
-Package pdftex.def Info: img/model/in-sample_rf.png  used on input line 367.
+Package pdftex.def Info: img/model/in-sample_rf.png  used on input line 402.
 (pdftex.def)             Requested size: 416.83289pt x 208.41974pt.
-<img/model/out-sample_rf.png, id=428, 1011.78pt x 505.89pt>
+<img/model/out-sample_rf.png, id=433, 1011.78pt x 505.89pt>
 File: img/model/out-sample_rf.png Graphic file (type png)
 <use img/model/out-sample_rf.png>
-Package pdftex.def Info: img/model/out-sample_rf.png  used on input line 374.
+Package pdftex.def Info: img/model/out-sample_rf.png  used on input line 409.
 (pdftex.def)             Requested size: 416.83289pt x 208.41974pt.
- [23 <./img/model/error_rf.png> <./img/model/in-sample_rf.png>]
-<img/model/vimp_rf.png, id=435, 1228.59pt x 505.89pt>
+ [25 <./img/model/error_rf.png> <./img/model/in-sample_rf.png>]
+<img/model/vimp_rf.png, id=441, 1228.59pt x 505.89pt>
 File: img/model/vimp_rf.png Graphic file (type png)
 <use img/model/vimp_rf.png>
-Package pdftex.def Info: img/model/vimp_rf.png  used on input line 384.
+Package pdftex.def Info: img/model/vimp_rf.png  used on input line 419.
 (pdftex.def)             Requested size: 416.83289pt x 171.63751pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 394.
- [24 <./img/model/out-sample_rf.png> <./img/model/vimp_rf.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 394.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 429.
+ [26 <./img/model/out-sample_rf.png> <./img/model/vimp_rf.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 429.
 
 (./modeling_fies.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 394.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 394.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 429.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 429.
 Package rerunfilecheck Info: File `modeling_fies.out' has not changed.
-(rerunfilecheck)             Checksum: 33E1A6BCA7BE4AFFD2C3EB67E665FA88;1689.
+(rerunfilecheck)             Checksum: 090940BC07C32E34D47DB7333E84F038;1606.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
@@ -1288,37 +1299,38 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package logreq Info: Writing requests to 'modeling_fies.run.xml'.
 \openout1 = `modeling_fies.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 394.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 429.
  ) 
 Here is how much of TeX's memory you used:
- 16642 strings out of 483107
- 288824 string characters out of 5964631
- 925367 words of memory out of 5000000
- 31305 multiletter control sequences out of 15000+600000
- 539529 words of font info for 49 fonts, out of 8000000 for 9000
+ 16652 strings out of 483107
+ 289040 string characters out of 5964631
+ 925494 words of memory out of 5000000
+ 31310 multiletter control sequences out of 15000+600000
+ 539837 words of font info for 50 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 48i,8n,46p,1324b,1401s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,8n,46p,1377b,1403s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/mattcoop/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.
-600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on modeling_fies.pdf (24 pages, 15232749 bytes).
+600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on modeling_fies.pdf (26 pages, 4279476 bytes).
 PDF statistics:
- 529 PDF objects out of 1000 (max. 8388607)
- 453 compressed objects within 5 object streams
- 116 named destinations out of 1000 (max. 500000)
- 304 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 538 PDF objects out of 1000 (max. 8388607)
+ 462 compressed objects within 5 object streams
+ 120 named destinations out of 1000 (max. 500000)
+ 296 words of extra memory for PDF output out of 10000 (max. 10000000)
 

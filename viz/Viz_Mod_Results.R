@@ -4,7 +4,7 @@
 setwd('~/wdl-fies/docs/img')
 #setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
 
-#library(cowplot)
+library(cowplot)
 options(scipen=100)
 
 ############################
@@ -23,13 +23,13 @@ mapdat <- merge(gdl,
                   filter(YEAR %in% c(2010, 2020, 2030)) %>%
                   select(YEAR, GDLCODE, fies.mod.pred, fies.sev.pred) %>%
                   gather(outcome, value, -YEAR, -GDLCODE) %>%
-                  mutate(FIES=ifelse(grepl('sev', outcome), 'Severe\n', 'Moderate-to-Severe\n')))
+                  mutate(FIES=ifelse(grepl('sev', outcome), 'Severe\n', 'Moderate\n')))
 
 ggplot(mapdat) +
   geom_sf(aes(fill=value), color=NA) + 
   scale_fill_gradientn(colours=c("#5e51a2", "#2f89be", "#66c3a6", "#add8a4", "#e4ea9a", "#fbf8c0", 
                                  "#fce08a", "#faae61", "#f36c44", "#a01c44"), 
-                       breaks=seq(0, 1, by=0.2),
+                       breaks=seq(0, 1, by=0.25),
                        limits=c(0, max(mapdat$value)),
                        labels=function(x){paste0(x*100, '%')}) + 
   geom_sf(data=cty, color='#000000', fill=NA, size=0.15) + 
@@ -47,16 +47,21 @@ system('pdfcrop FullMap.pdf FullMap.pdf')
 ###########################
 # Setup Reference Map
 ############################
-region_cols <- c("South Asia" = "#e41a1c",
-                 "Sub-Saharan Africa" = "#377eb8",
-                 "Europe & Central Asia" = "#4daf4a",
-                 "Middle East & North Africa" = "#f781bf",
-                 "Latin America & Caribbean" = "#ff7f00",
-                 "East Asia & Pacific" = "#a65628",
-                 "North America" = "#984ea3")
+region_cols <- c("Central & Southern Asia"="#F36D25",
+                 "Sub-Saharan Africa"="#E11484",
+                 "Europe & Northern America"="#02558B",
+                  "Northern Africa & Western Asia"="#F99D26",
+                  "Latin America & the Caribbean"="#00AED9",
+                  "Australia & New Zealand"="#EB1C2D",
+                  "Eastern & South-Eastern Asia"="#279B48",
+                  "Oceania"="#901A3A")
 
-reg <- ggplot(cty) + 
-  geom_sf(aes(fill=region_wb), color=NA) + 
+regdat <- merge(cty %>%
+                  select(ISO3 = iso_a3),
+                regions)
+
+reg <- ggplot(regdat) + 
+  geom_sf(aes(fill=region_sdg), color=NA) + 
   coord_sf(crs='+proj=robin') + 
   theme_void() + 
   scale_fill_manual(values=region_cols) + 
@@ -69,17 +74,14 @@ reg <- ggplot(cty) +
 
 #get totals by YEAR
 totals <- preddat %>%
-  mutate(region = ifelse(region == 'Middle Esat & North Africa',
-                         'Middle East & North Africa', region)) %>%
   filter(YEAR >= 2010) %>%
   group_by(YEAR, region) %>%
   summarize(mod.total=sum(fies.mod.pred * (population), na.rm=t),
             sev.total=sum(fies.sev.pred * (population), na.rm=t)) %>%
   gather(var, value, -YEAR, -region) %>%
-  mutate(var = ifelse(grepl('mod', var), "Moderate-to-Severe", "Severe")) %>%
+  mutate(var = ifelse(grepl('mod', var), "Moderate", "Severe")) %>%
   group_by(region, var) %>%
   mutate(value = rollapply(value, width=3, FUN=mean, align='center', partial=TRUE))
-
 
 stack <- ggplot(totals) +
   geom_area(aes(x=YEAR, y=value, fill=region), position='stack') +
@@ -116,141 +118,34 @@ plot_grid(plot_grid(stack, lines, align='v', nrow=2, labels='AUTO'),
           reg, ncol=1, rel_heights=c(5, 1))
 ggsave('TimeSeries.pdf', width=7, height=7)
 
-# # Figure out whassup with south asia in 2017
-# sa <- preddat %>%
-#   filter(region == 'South Asia') %>%
-#   select(stunting, wasting, school_mean, hci, gdp_percap, gini, YEAR, population) %>% 
-#   group_by(YEAR) %>%
-#   summarize(stunting=weighted.mean(stunting, w=population),
-#             wasting=weighted.mean(wasting, w=population),
-#             school_mean=weighted.mean(school_mean, w=population),
-#             hci=weighted.mean(hci, w=population),
-#             gdp_percap=weighted.mean(gdp_percap, w=population),
-#             gini=weighted.mean(gini, w=population)) %>%
-#   mutate_at(vars(-group_cols()),function(x){x/max(x)}) %>%
-#   gather(key, value, -YEAR)
-# 
-# ggplot(sa) +
-#   geom_line(aes(x=YEAR*2030, y=value, color=key))
-
-
-############################
-# ifad call
-############################
-#graphs
-# ggplot(totals %>% filter(var=='mod.total')) +
-#   geom_line(aes(x=YEAR, y=value, color=region), size=1) +
-#   scale_x_continuous(expand=c(0,0)) +
-#   scale_y_continuous(expand=c(0,0), labels = scales::comma) +
-#   labs(x='YEAR', y="number food insecure",
-#        title="number with moderate or severe food insecurity, by continent") + 
-#   theme_bw() +
-#   theme(legend.title=element_blank())
-# ggsave('figures/ifad/time.mod.lines.png', width=8, height=5)
-
-
-#rural/urban
-totals <- preddat %>%
-  filter(YEAR > 2010) %>%
-  group_by(YEAR) %>%
-  summarize(mod.rural=sum(fies.mod.pred * (population*rural_perc), na.rm=T),
-            mod.urban=sum(fies.mod.pred * (population*urban_perc), na.rm=T),
-            sev.rural=sum(fies.sev.pred * (population*rural_perc), na.rm=T),
-            sev.urban=sum(fies.sev.pred * (population*urban_perc), na.rm=T)) %>%
-  gather(var, value, -YEAR) %>%
-  mutate(out = ifelse(grepl('mod', var), 'Mod', 'Sev'),
-         var = ifelse(grepl('rural', var), 'Rural', 'Urban'))
-
-ggplot(totals %>% filter(out == 'Mod')) +
-  geom_line(aes(x=YEAR, y=value, color=var), size=1) +
-  scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0), labels = scales::comma) +
-  labs(x='Year', y="Number Food Insecure",
-       title="Number With Moderate or Severe Food Insecurity, By Rural/Urban") +
-  theme_bw() +
-  theme(legend.title=element_blank())
-ggsave('Time.Mod.Lines.RurUrb.png', width=8, height=5)
-
-
-ggplot(totals %>% filter(out == 'Sev')) +
-  geom_line(aes(x=YEAR, y=value, color=var), size=1) +
-  scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0), labels = scales::comma) +
-  labs(x='Year', y="Number Food Insecure",
-       title="Number With Severe Food Insecurity, By Rural/Urban") +
-  theme_bw() +
-  theme(legend.title=element_blank())
-ggsave('Time.Sev.Lines.RurUrb.png', width=8, height=5)
-
-#Proportion Urban or Rural
-prop <- preddat %>%
-  mutate(pop.rural=population*rural_perc,
-         pop.urban=population*urban_perc,
-         mod.rural=fies.mod.pred * pop.rural,
-         mod.urban=fies.mod.pred * pop.urban,
-         sev.rural=fies.sev.pred * pop.rural,
-         sev.urban=fies.sev.pred * pop.urban) %>%
-  group_by(YEAR) %>%
-  summarize_at(vars(matches('urban$|rural$')), sum) %>%
-  mutate(sev.rural=sev.rural/pop.rural,
-         sev.urban=sev.urban/pop.urban,
-         mod.rural=mod.rural/pop.rural,
-         mod.urban=mod.urban/pop.urban) %>%
-  select(-matches('pop')) %>%
-  gather(var, value, -YEAR) %>%
-  mutate(out = ifelse(grepl('mod', var), 'Mod', 'Sev'),
-         var = ifelse(grepl('rural', var), 'Rural', 'Urban'))
-
-ggplot(prop %>% filter(out == 'Mod')) +
-  geom_line(aes(x=YEAR, y=value, color=var), size=1) +
-  scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0), labels = scales::comma) +
-  labs(x='Year', y="Number Food Insecure",
-       title="Proportion of Urban and Rural People With Moderate or Severe Food Insecurity") +
-  theme_bw() +
-  theme(legend.title=element_blank())
-ggsave('Time.Mod.Lines.Prop.RurUrb.png', width=8, height=5)
-
-
-ggplot(prop %>% filter(out == 'Sev')) +
-  geom_line(aes(x=YEAR, y=value, color=var), size=1) +
-  scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0), labels = scales::comma) +
-  labs(x='Year', y="Number Food Insecure",
-       title="Number With Severe Food Insecurity, By Rural/Urban") +
-  theme_bw() +
-  theme(legend.title=element_blank())
-ggsave('Time.Sev.Lines.Prop.RurUrb.png', width=8, height=5)
-
-
 ###############################################
 # Rates over time, not just raw number
 ################################################
 
 #get rate by YEAR
 rates <- preddat %>%
-  mutate(region = ifelse(region == 'Middle Esat & North Africa',
-                         'Middle East & North Africa', region)) %>%
   filter(YEAR >= 2010) %>%
   group_by(YEAR, region) %>%
   summarize(mod.rate=weighted.mean(fies.mod.pred, w=population, na.rm=T),
             sev.rate=weighted.mean(fies.sev.pred, w=population, na.rm=T)) %>%
   gather(var, value, -YEAR, -region) %>%
-  mutate(var = ifelse(grepl('mod', var), "Moderate-to-Severe", "Severe")) %>%
+  mutate(var = ifelse(grepl('mod', var), "Moderate", "Severe")) %>%
   group_by(region, var) %>%
   mutate(value = rollapply(value, width=3, FUN=mean, align='center', partial=TRUE))
 
-lines <- ggplot(rates) +
+ratelines <- ggplot(rates) +
   geom_line(aes(x=YEAR, y=value, color=region), size=1) +
   scale_color_manual(values=region_cols) + 
   theme_bw() + 
   theme(plot.margin=unit(c(-1, 0.5, 0, 0), 'lines'),
-        strip.text.x = element_blank(),
         panel.spacing=unit(2, 'lines')) + 
-  scale_x_continuous(expand=c(0,0), labels=seq(2010, 2030, by=5)) +
+  scale_x_continuous(expand=c(0,0), labels=seq(2010, 2030, by=5)) + 
   scale_y_continuous(expand=expansion(mult=c(0,0.05), add=0), 
-                     labels=function(x){prettyNum(x, big.mark=',')}) +  
+                     labels=function(x){paste0(x*100, '%')}) +
   labs(x='', y="",
        title="") +
+  guides(color=FALSE) +           
   facet_grid(. ~ var)
 
+plot_grid(ratelines, reg, ncol=1, rel_heights=c(2.5, 1))
+ggsave('Rates.pdf', width=7, height=5)

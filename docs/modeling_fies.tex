@@ -1,4 +1,5 @@
 \documentclass{article}
+
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[a4paper, margin=1.25in]{geometry}
@@ -24,6 +25,22 @@
 ]{biblatex}
 
 \addbibresource{library.bib}
+
+% TODO:
+% - re-run model
+%   - Use validation with FAO data, if possible
+% - discuss validation more
+%   - various exclusions: HICs
+%   - Compare to country reports
+% - get new results:
+%   - new regions
+%   - Get rates over time
+% - describing FIES
+%   - Go over different data sources
+% - add some kind of framework for selecting covars
+% - make appendix separate
+% - add higher level overview of modeling the covars
+
 
 \begin{document}
 
@@ -51,80 +68,95 @@ We modeled levels of of food security at a subnational level from 2010 to 2030 u
 \end{abstract}
 
 \section{Main}
-Being food secure is a critical component of human flourishing, which is why the second Sustainable Development Goal (SDG 2) is ``Zero Hunger."  While a number of indicators are used to track progress towards this goal, the indicator that is most indicative of the human experience of food insecurity is the Food Insecurity Experience Scale, or FIES.  The FIES was developed due to a recognized need to measure actual food insecurity based on personal exposure to hunger, rather than proxies for food insecurity, such as estimates of calories per capita, or health consequences of food insecurity, such as child stunting.  However, as a relatively new metric, little work has been done so far to model food security or estimate current trends using the FIES at more local spatial scales.
+Food security is a critical component of human flourishing, which is why the second Sustainable Development Goal (SDG 2) is “Zero Hunger." One of the indicators to track progress on the first target of this goal, to ensure access by everyone to safe, nutritious and sufficient food (SDG2.1), is the prevalence of moderate to severe food insecurity in the population based on the Food Insecurity Experience Scale, or FIES. The FIES was developed by FAO in 2013 as a global extension of pioneering work done on Latin America to develop a metric of food insecurity based on the perspective of people who experience it. Other indicators of food insecurity, such as FAO's most commonly used estimate of undernourishment, are based on macro models of the mean and distribution of calories consumed per capita in a population. These do not capture the actual lived exposure of individuals to food shortages. 
+
+Because the FIES is based on responses to polls, the data is limited to 77 countries where the polls have been conducted and microdata has been vetted and released by the FAO. The current practice is to assign the regional average prevalence rate for countries without survey data in order to compile regional and global aggregates. This is not very satisfactory. In addition, because the FIES is a relatively new metric, it does not have a sufficiently long time series to estimate trends with any degree of precision. To understand whether SDG 2 is being met, one needs to estimate food insecurity outcomes in 2030. 
+
+The contribution of this paper is to fill these two gaps of coverage and forecasts by developing a model of FIES outcomes that is based on covariates that are available for places where actual polling data is not available, and that can be forecast to 2030 to get a sense of what food insecurity at that time might look like. We also take advantage of the within-country spatial distribution of FIES reports to push the analysis beyond country level to a sub-national level, that is administratively once removed from the national level (Admin-1). To our knowledge, this is the first effort to model the FIES outcomes at that scale.
 
 Food security has traditionally been difficult to measure, and this has led to incomplete or inaccurate pictures of global hunger.  Metrics of macro-health, such as anthropometry and mortality rates are correlated broadly with food insecurity and have been used for many years to monitor human well-being \citep{Puffer1973, Habicht1974}.  However, these metrics are confounded with other determinants of health such as infectious disease and are not meaningful at the scale of individuals or households \citep{Perumal2018}.  Other proxies for food security, such as food availability estimated from crop yields \citep{Maxwell1992}, are also inadequate because they only make rough estimates of how accessible food is to the general population, and food insecurity can certainly occur in the absence of food availability decline \citep{Sen1983}.  Moreover, these metrics are very sensitive to incorrect estimates of crop yields and food reserves at a national scale.  Thus, global estimates of hunger and food insecurity based on these metrics carry forward similar flaws.
 
 As researchers began to focus on food insecurity at the individual and household level, household microdata collecting information on household finances and consumption became a common proxy for food security \citep{Haddad1994}.  However, these efforts were criticized for being onerous, insufficiently comparable, as well as for ignoring subjective and experiential aspects of food security \citep{Maxwell1996}.  This led to the emergence of several indicators designed to be rapidly deployable, culturally cross-comparable, and based on the lived experience of food security \citep{Jones2013}.  These metrics include the Household Food Insecurity and Access Scale (HFIAS) \citep{Coates2007}; the Coping Strategies Index (CSI) \citep{Maxwell1999}; and the Household Hunger Scale (HHS) \citep{Ballard2011}.
 
-Drawing on the insights derived in designing and implementing these novel food security metrics, the FIES was developed by the Food and Agricultural Organization (FAO) of the UN \cite{Ballard2013} and quickly became a useful tool for understanding individual and household-level food insecurity \citep{smith2017world}.  The FIES is based on a survey of eight behaviors indicative of food insecurity and hunger over the previous year, such as skipping meals or worrying about having enough to eat.  Using a Rash model \citep{Cafiero2018}, each individual in the survey is given a severity score, and thresholds for moderate and severe food insecurity are set at the behaviors of eating less than the respondent thought they should, and not eating for a while day, respectively.  Thus, people in moderate-to-severe food insecurity are estimated to have not eaten as much as they should have at least once in the previous year, while people in severe food insecurity are estimated to have gone an entire day without eating in the previous year.
+Drawing on the insights derived in designing and implementing these novel food security metrics, the FIES was developed by the Food and Agricultural Organization (FAO) of the UN \cite{Ballard2013} and quickly became a useful tool for understanding individual and household-level food insecurity \citep{smith2017world}.  The FIES is based on a survey of eight behaviors indicative of food insecurity and hunger over the previous year, such as skipping meals or worrying about having enough to eat.  Using a Rash model \citep{Cafiero2018}, each individual in the survey is given a severity score that maximizes the likelihood of observing he responses given to the 8 questions asked in the survey.  Once individuals are ranked in this fashion, thresholds for moderate and severe food insecurity are set that describe people's experiences, and the prevalences can be computed. A moderately food insecure adult has compromised on food quality and variety, as a result of lack of income, has been unsure about their ability to obtain food and has skipped meals or run out of food occasionally. A severely food insecure adult has run out of food and has gone an entire day without eating at times during the year.
 
-Since 2014, in partnership with Gallup World Poll, the FAO has published surveys from around the world to estimate the prevalence of food insecurity using the FIES.  Drawing on surveys from 77 countries, we used machine learning to estimate levels of food insecurity around the world at the subnational level.  Our analysis highlights several important global and regional trends in food security.
-
+Since 2014, in partnership with Gallup World Poll, the FAO has published surveys from around the world to estimate the prevalence of food insecurity using the FIES.  Drawing on surveys from 77 countries, we used machine learning to estimate levels of food insecurity around the world at the subnational level.  The model is then used to infer levels of food insecurity around the world at the subnational level and to forecast food insecurity to the year 2030.
 
 \section{Results}
-\subsection{Spatial Distribution of Food Insecurity}
-We found significant heterogeneities in the global distribution of severe food insecurity, estimated to be people who had to go an entire day without eating at least once in the previous year (See Fig. \ref{fig:map}).  For the year 2020, mainland sub-Saharan Africa is the continent with with the highest rates of severe food insecurity, with at least 15\% of people in severe food insecurity in at last one region in every country except Gabon and Equatorial Guinea.  Outside of Africa, serious pockets of severe food insecurity also occur in Venezuela, Syria, Papua New Guinea, Yemen, and Afghanistan.  In many large middle-income countries, severe food insecurity is also quite prevalent, with rates between 10-15\% in areas like northern Brazil, many central Asian and middle-eastern countries, and India and Indonesia.
+% Maybe pull out individual interesting scenarios?
+Globally, in the year 2020, we estimate that 829 million people are above the threshold for severe food insecurity, and an additional 1.5 billion people are above the threshold for moderate food insecurity (See Fig. \ref{fig:timeseries}). These numbers are higher than the estimates in the 2019 FAO State of Food Insecurity report, which estimated about 700 million severely food insecure people and an additional 1.31 billion people experiencing at least moderate food insecurity in 2018. 
 
-The experience of at least moderate food insecurity, or eating less than one would prefer, is quite common in many parts of the world.  In 2020, it is quite common in Africa, south and southeast Asia, and parts of Latin America, where in many places over 50\% of the population experiences this degree of food insecurity.  Even in countries widely considered to be developed, such as Australia, the United States, and parts of eastern and southern Europe, moderate-to-severe food insecurity is as high as 10-15\%.  
-
-\begin{landscape}
-\begin{figure}[h]
-  \centering
-  \includegraphics{img/FullMap.pdf}
-  \caption{Modeled rates of severe and moderate-to-severe food insecurity for the years 2010, 2020, and 2030}
-  \label{fig:map}
-\end{figure}
-\end{landscape}
-
-Globally, in the year 2020, we estimate that 2.33 billion people experience at least moderate food insecurity, and 829 million people experience severe food insecurity (See Fig. \ref{fig:timeseries}).  While the total number of people in moderate and severe food security held roughly constant for the 2010s and even increased in latter part of that decade, we predict that it will decline throughout the 2020s.  However, this overall decline will not be uniform across the world.  Our model expects that, in most of sub-Saharan Africa, moderate food insecurity will increase throughout the 2020s and severe food insecurity will plateau, although some countries, such as Kenya, Ethiopia, and Ghana, will see improvements.  Food Security will fall in most other world regions, particularly South Asia and East Asia \& the Pacific.  
+While the total number of people experiencing moderate and severe food insecurity held roughly constant for the 2010s and even increased in latter part of that decade, we predict that it will decline throughout the 2020s. However, this overall decline will not be uniform across the world. Our model expects that, in most of sub-Saharan Africa, moderate food insecurity will increase throughout the 2020s and severe food insecurity will plateau, although some countries, such as Kenya, Ethiopia, and Ghana, will see improvements. Food insecurity will fall in most other world regions, particularly South Asia and East Asia & the Pacific.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
-  \caption{Number of people in moderate-to-severe and severe food insecurity, by World Bank regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
+  \caption{Number of people over the thresholds for moderate and severe food insecurity, by UN SDG regions over time, with a 3-year smoothing.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
   \label{fig:timeseries}
 \end{figure}
 
-This results of this analysis can be explored in more detail on the \href{worldhunger.io}{World Hunger Clock}, including statistics for each subnational administrative area.
+We found substantial heterogeneity in the global distribution of severe food insecurity (See Fig. \ref{fig:map}).  For the year 2020, mainland sub-Saharan Africa is the continent with with the highest rates of severe food insecurity, with at least 15\% of people over the threshold for severe food insecurity in at last one subnational area in every country except Gabon and Equatorial Guinea.  Outside of Africa, serious pockets of severe food insecurity also occur in Venezuela, Syria, Papua New Guinea, Yemen, and Afghanistan.  In many large middle-income countries, severe food insecurity is also quite prevalent, with rates between 10-15\% in areas like northern Brazil, many central Asian and middle-eastern countries, and India and Indonesia.
 
+The experience of at least moderate food insecurity is quite common in many parts of the world.  In 2020, much of Africa, south and southeast Asia, and parts of Latin America had over 50\% of the population living with moderate food insecurity.  Even in countries widely considered to be developed, such as Australia, the United States, and parts of eastern and southern Europe, over 10\% of the population is above the threshold for moderate food insecurity.  
+
+\begin{landscape}
+\begin{figure}[h]
+  \centering
+  \includegraphics{img/FullMap.png}
+  \caption{Modeled spatial distribution of moderate and severe food insecurity for the years 2010, 2020, and 2030.}
+  \label{fig:map}
+\end{figure}
+\end{landscape}
+
+The results of this analysis can be further explored in more detail on the \href{worldhunger.io}{World Hunger Clock}, including statistics for each subnational administrative area.
 
 \section{Discussion}
-This paper presents the first global estimates of the experience of food insecurity at a subnational level, with forecasts out to the year 2030.  We found that, while food insecurity has been increasing and has worsened in 2020 with the novel coronavirus, our models predict that number of people who experience food insecurity globally will decrease throughout the 2020s, largely because of progress in south and east Asia.  Nevertheless, many regions, most notably sub-Saharan Africa, are expected to see overall increases in the number of food insecure people.
+This paper presents the first global estimates of the experience of food insecurity at a subnational level, with forecasts out to the year 2030.  We found that, while food insecurity has been increasing and has likely worsened in 2020 with economic downturn associated with the novel coronavirus, our models predict that number of people who experience food insecurity globally will decrease throughout the 2020s, largely because of progress in south and east Asia.  Nevertheless, many regions, most notably sub-Saharan Africa, are expected to see overall increases in the number of food insecure people. %Add here comparison with SOFI, but emphasize that discrepancies may also come from measuring different things
 
+%Homi says delete this para
 While this is the first comprehensive projection of indicator 2.1.2 for SDG 2, projections for other indicators for that goal have been made.  The most recent State of Food Insecurity (SOFI) report by the FAO projected indicator 2.1.1, the prevalence of undernourishment, and found that that, much like food insecurity, undernourishment had been increasing throughout the 2010s \citep{sofi2020}.  The SOFI report also modeled the prevalence of undernourishment in 2030 based on recent trends, giving more weight to recent years, and projected that undernourishment will increase by 2030 \citep[Part 1, Page 11]{sofi2020}.  Using a similar method for modeling the prevalence of stunting (indicator 2.2.1), the SOFI reported that the rate of stunting would decrease by 2030 \citep[Part 1, Page 30]{sofi2020}.
 
 The fact that the SOFI expects increases in undernourishment while we predict decreases in food insecurity is likely due to our differing modeling approaches. While the SOFI report extrapolated recent trends in undernourishment, we modeled food insecurity based on projections of factors like GDP per capita, population, and the prevalence of stunting.  We found that, in a random forest model, these predictors were very successful at predicting recent rates of both moderate-to-severe and severe food insecurity.
 
-While we found that food insecurity will decrease overall by 2030, our middle-of-the-road scenario only expects the number of people experiencing moderate or severe food insecurity to fall by 12\% and the number of people experiencing severe food insecurity to fall by 20\%.  This still leaves billions of people eating less than they should and nearly half a billion people going entire days without eating a decade from now, far short of the SDG 2 goal of ``zero hunger."  Moreover, decreases in food insecurity as measured by the FIES do not necessarily mean there will be improvements in other significant challenges such as poor dietary quality, micronutrient deficiencies, or obesity.  Thus, while expected trends in correlates of food security give cause for optimism, there is still significant work to be done in pursuit of SDG 2.
+%Add section about the drivers of food insecurity, as well as how they largely account for the outcomes observed.
+
+While we found that food insecurity will decrease overall by 2030, our model, which relies on middle-of-the-road assumptions, only expects the number of people experiencing moderate food insecurity to fall by 12\% and the number of people experiencing severe food insecurity to fall by 20\%.  This still leaves billions of people eating less than they should and nearly half a billion people going entire days without eating a decade from now, a number that falls far short of the SDG 2 goal of ``zero hunger."  Moreover, decreases in food insecurity as measured by the FIES do not necessarily mean there will be improvements in other significant challenges such as poor dietary quality, micronutrient deficiencies, or obesity.  Thus, while expected trends in correlates of food security give cause for optimism, there is still significant work to be done in pursuit of SDG 2.
 
 \section{Methods}
 
 \subsection{Disaggregation}
-The data on the FIES collected by Gallup records many individual-level attributes from the respondents, including age, gender, wealth quintile, and whether they live in an urban or rural area.  Using national data on these variables, a standard weighting schema is created for each individual, based on the ratio of population probabilities to sample probabilities of an individual with those characteristics being selected \citep{bethlehem2009applied}.  We used a similar methodology, except we calculated post-stratification weights at a subnational level.  We used year-specific subnational estimates of population percentages by gender, age, urbanization, and, where available, wealth, and created a separate set of weights for each admin area across all individuals.  For age and gender, we used gridded data from WorldPop \citep{Tatem2017}, for urbanization, we used spatially explicit estimates published by Jones and O'Neill \citep{Jones2016}, and for wealth we used data from Demographic and Health Surveys \citep{dhsall}.  This methodology rests on the mild assumption that subnational differences in rates of food insecurity are more due to factors related to demographics, urbanization, and wealth than to other unobservable factors.
+The data on the FIES collected by Gallup records many individual-level attributes from the respondents, including age, gender, wealth quintile, and whether they live in an urban or rural area.  Using national data on these variables, a standard weighting scheme is created for each individual, based on the ratio of population probabilities to sample probabilities of an individual with those characteristics being selected \citep{bethlehem2009applied}.  We used a similar methodology, except we calculated post-stratification weights at a subnational level.  We used year-specific subnational estimates of population percentages by gender, age, urbanization, and, where available, wealth, and created a separate set of weights for each subnational area across all individuals.  For age and gender, we used gridded data from WorldPop \citep{Tatem2017}, for urbanization, we used spatially explicit estimates published by Jones and O'Neill \citep{Jones2016}, and for wealth we used data on household wealth quintiles from Demographic and Health Surveys \citep{dhsall}, where available.  This methodology rests on the mild assumption that subnational differences in rates of food insecurity are more due to factors related to demographics, urbanization, and wealth than to other unobservable factors.
 
 \subsection{Covariates}
-We model subnational rates of severe and moderate-to-severe food insecurity as a function of several covariates related to human development, food security, health, infrastructure, and the environment (See Table \ref{tab:covars}).  We aimed for covariates that had subnational spatial resolution and peer-reviewed projections available through the year 2030.  For many variables, we combined historic subnational data with national projections through the 2020s to derive simple subnational estimates for the next decade.  For projections based on the Shared Socioeconomic Pathways (SSP) framework, we used the middle-of-the-road pathway, SSP2, and for climatological variables, we use forecasts based on Representative Concentration Pathway (RCP) 6.0.  Finally, we adjusted several variables to account for the effects of COVID-19, including GDP per capita using June 2020 estimates from the World Bank \citep{prospects2020}, stunting and wasting using August 2020 estimates published in \textit{The Lancet} \citep{headey2020impacts}, as well as the poverty headcount index \cite{Cuaresma2018}.  For a detailed overview of the steps involved in processing and preparing each covariate, see the Appendix.
+We model subnational rates of severe and moderate-to-severe food insecurity as a function of several covariates related to human development, food security, health, infrastructure, income levels and distribution, and the environment (See Table \ref{tab:covars}).  We aimed for covariates that had subnational spatial resolution and peer-reviewed projections available through the year 2030.   For projections based on the Shared Socioeconomic Pathways (SSP) framework, we used the middle-of-the-road pathway, SSP2, and for climatological variables, we use forecasts based on Representative Concentration Pathway (RCP) 6.0.  
+
+Many of the variables required harmonizing subnational historic data with projections at the national level.  This included mean years of schooling, GDP per capita, as well as for projections of population. We used observed trajectories in the historical distribution of variables among subnational areas within a country to estimate the future distribution of GDP, population, and schooling among subnational areas and disaggregate national-level future projections.
+
+In cases of health variables that have shown long-term trends and represented a rate of occurrence in a population, including stunting, wasting, and malaria mortality rate, we estimate the Annualized Rate of Change (AROC) for each subnational area to model these variables for 2030. The involves taking the rate of change between each pair of years in the dataset, and then taking the mean rate of change over the period for which data is available, giving greater weight to more recent years.  This method has been used to estimate rates of stunting and wasting in 2025 \citep{Local2020}; we simply use the same method to make forecasts to the year 2030.
+
+For the climate variables temperature and precipitation, we combined historical observations with an ensemble of four bias-corrected simulations of the future climate from the Inter-Sectoral Impact Model Intercomparison Project (ISIMIP) \citep{warszawski2014inter}.
+
+Finally, we adjusted several variables to account for the effects of COVID-19, including GDP per capita using June 2020 estimates from the World Bank \citep{prospects2020}, stunting and wasting using August 2020 estimates published in \textit{The Lancet} \citep{headey2020impacts}, as well as the poverty headcount index \cite{Cuaresma2018}.  For a detailed overview of the steps involved in processing and preparing each covariate, see the Appendix.
 
 
 \begin{table}[H]
   \centering
-	\begin{tabular}{ll}
+	\begin{tabular}{lll}
 		\toprule
-		Name & Source \\
+    Name & Source & Scale \\
 		\midrule
-		Urban Percentage & \citep{Jones2016} \\
-		Stunting & \citep{Local2020} \\
-		Wasting & \citep{Local2020} \\
-		Mean Years of Schooling & \citep{Smits2019, KC2017} \\
-		GDP Per Capita & \citep{Smits2019, Dellink2017} \\
-		Gini Coefficient & \citep{Rao2019a} \\
-    Poverty Headcount Index & \citep{Cuaresma2018} \\
-		Water Scarcity & (CITATION) \\
-		Mean Annual Precipitation &  \cite{abatzoglou2018terraclimate, warszawski2014inter} \\
-		Topographic Ruggedness &  \cite{USGS1996, Riley1999} \\
-		Mean Temperature &  \cite{abatzoglou2018terraclimate, warszawski2014inter} \\
-		Malaria (\textit{P. falciparum}) Mortality Rate &  \cite{Weiss2019} \\
+    Urban Percentage & \citep{Jones2016} & Subnational \\
+    Stunting & \citep{Local2020} & Subnational \\
+    Wasting & \citep{Local2020} & Subnational \\
+    Mean Years of Schooling & \citep{Smits2019, KC2017} & Subnational\\
+    GDP Per Capita & \citep{Smits2019, Dellink2017} & Subnational \\
+    Gini Coefficient & \citep{Rao2019a} & National\\
+    Poverty Headcount Index & \citep{Cuaresma2018} & National \\
+    Water Scarcity & \citep{greve2018global} & Subnational \\
+    Mean Annual Precipitation &  \cite{abatzoglou2018terraclimate, warszawski2014inter} & Subnational \\
+    Topographic Ruggedness &  \cite{USGS1996, Riley1999} & Subnational \\
+    Mean Temperature &  \cite{abatzoglou2018terraclimate, warszawski2014inter} & Subnational \\
+    Malaria (\textit{P. falciparum}) Mortality Rate &  \cite{Weiss2019} & Subnational \\
 		\bottomrule
 	\end{tabular}
 	\caption{Covariates Included in Present-Day Analysis}
@@ -133,18 +165,18 @@ We model subnational rates of severe and moderate-to-severe food insecurity as a
 
 
 \subsection{Modeling}
+We fit two models for all subnational areas globally from 2010 to 2030: one for the percent of the population over the threshold for moderate food insecurity, and one for the percent of the population over the threshold for severe food insecurity.  We used random forest regressions, as this approach performs well in the presence of non-linearities and important interactions among predictor variables \citep{hastie2009elements}, while providing more model interpretability than other machine learning approaches \citep{ishwaran2007variable}.  A random forest regression involves generating a large number of decision trees, each under slightly different conditions and using different sub-samples of the data, and then aggregating the predictions of the decision trees.
 
-We modeled subnational rates of moderate-to-severe and severe food insecurity globally at the subnational level in the period of 2010 to 2030 using the disaggregated FIES data combined with the covariates. Using the log-transformed rate of food insecurity as our outcome variable, we explored several modeling approaches, including linear regression methods such as Least Absolute Shrinkage and Selection Operator (LASSO) regression and Bayesian Stochastic Search and Variable Selection (Bayes SSVS), as well as machine learning methods such as Random Forest regression. 
+Because the outcome variables in our models, the rate of moderate or severe food insecurity, is a bounded outcome, we first used a logistic transformation to extend the range from $[0,1]$ to $(-\infty, \infty)$.  Then, after estimating the model, we used the inverse logit to convert the unbounded model predictions to a rate between 0 and 1.
 
-Based on various model validation metrics, Random Forest (RF) regression performed the best. The RF regression involves generating a large number of decision trees, each under slightly different conditions and using different sub-samples of the data, and then aggregating the predictions of the decision trees.  Random forest models are known to perform well in the presence of non-linearities and important interactions among predictor variables \citep{hastie2009elements}. Since this is likely to be the case in our application, this method is particularly suitable for modeling rates of moderate-to-severe and severe food insecurity. 
+To get the best possible model performance, it is necessary to tune the hyperparamters, which control the process in which the random forest algorithm is run.  Key hyperparameters include the number of decision trees to generate, the number of variables randomly selected as candidates for splitting a node, and the average number of observations in a leaf node.  We calculated the Out-Of-Bag (OOB) error for different combinations of hyperparameters for the moderate-to-severe and severe models. By choosing the combinations of hyperparameters with the smallest OOB error we found the optimal combination for both models. We found that 5000 trees are more than sufficient for the error rates to converge (See Fig. \ref{fig:rf_error}).
 
-We observed for the moderate-to-severe as well as the severe RF regression model an in-sample mean squared error (MSE) between 0.002-0.005, with a R-squared (${R}^2$) value of 0.999 (See Fig. \ref{fig:rf_in-sample}). To test the out-of-sample prediction performance we used ten-fold cross-validation. First, we partitioned the data into ten equal sized subsamples. Once partitioned, we trained the RF regression models on nine subsamples and tested the models on the remaining one. This process gets repeated ten times, with each subsample being used once for testing. We then calculated the average MSE and ${R}^2$ over all ten out-of-sample predictions. Similarly to the in-sample model validation metrics, the average out-of-sample MSE is between 0.008-0.016, with an average ${R}^2$ of around 0.99 for both models (See Fig. \ref{fig:rf_out-sample}). Besides using the full set of countries to validate the out-of-sample performance, we halved the sample size by excluding high-income countries (HIC) (according to the World Bank definition, REFERENCE NEEDED) and performed ten-fold cross-validation for this limited set of countries. We found that even when excluding HIC the average out-of-sample MSE is between 0.013-0.023, with an average ${R}^2$ of around 0.98 for both models.
+%Talk more about validation: excluding HICs, how many runs, etc
+We observed for the moderate as well as the severe model an in-sample mean squared error (MSE) between 0.002-0.005, with a R-squared (${R}^2$) value of 0.999 (See Fig. \ref{fig:rf_in-sample}). To test the out-of-sample prediction performance we used ten-fold cross-validation. First, we partitioned the data into ten equal sized subsamples. Once partitioned, we trained the RF regression models on nine subsamples and tested the models on the remaining one. This process gets repeated ten times, with each subsample being used once for testing. We then calculated the average MSE and ${R}^2$ over all ten out-of-sample predictions. Similarly to the in-sample model validation metrics, the average out-of-sample MSE is between 0.008-0.016, with an average ${R}^2$ of around 0.99 for both models (See Fig. \ref{fig:rf_out-sample}). Besides using the full set of countries to validate the out-of-sample performance, we halved the sample size by excluding high-income countries (HIC) (according to the World Bank definition, REFERENCE NEEDED) and performed ten-fold cross-validation for this limited set of countries. We found that even when excluding HIC the average out-of-sample MSE is between 0.013-0.023, with an average ${R}^2$ of around 0.98 for both models.
 
-To get the best possible model performance, it is necessary to tune the hyperparamters, which control the process in which the random forest algorithm is run.  Key hyperparameters include the number of decision trees to generate, the number of variables randomly selected as candidates for splitting a node, and the average number of observations in a leaf node.  We calculated the Out-Of-Bag (OOB) error for different combinations of hyperparameters for the moderate-to-severe and severe models. By choosing the combination of hyperparameters with the smallest OOB error we found the optimal combination for both models respectively. We found that 5000 trees are more than sufficient for the error rates to converge (See Fig. \ref{fig:rf_error}).
+After fitting the models, we examined the importance of the individual covariates in explaining rates of moderate and severe food insecurity. By training the models with all covariates and predicting rates with and without a individual variable we calculated the average prediction error of omitting that variable. Using the highest average prediction error we ranked the importance of the variables and found that for both, the moderate-to-severe and severe model, the Poverty Headcount Index, Stunting, GDP Per Capita and the Gini Coefficient are the most important variables for explaining differences in rates of moderate-to-severe and severe food insecurity (See Fig. \ref{fig:rf_vimp}).
 
-Apart from tuning the hyperparameters, we examined the importance of the individual covariates in explaining rates of moderate-to-severe and severe food insecurity. By training the models with all covariates and predicting rates with and without a individual variable we calculated the average prediction error of omitting that variable. Using the highest average prediction error we ranked the importance of the variables and found that for both, the moderate-to-severe and severe model, the Poverty Headcount Index, Stunting, GDP Per Capita and the Gini Coefficient are the most important variables for explaining differences in rates of moderate-to-severe and severe food insecurity (See Fig. \ref{fig:rf_vimp}).
-
-For a detailed description, implementation and validation of the RF regression models see the Supplemental Info.
+For a detailed description, implementation and validation of the random forest models see the Supplemental Info.
 
 \section{Conclusion}
 
@@ -172,9 +204,9 @@ For a detailed description, implementation and validation of the RF regression m
 
 \section{Predicting Covariates Into the Future}
 \subsection{Annualized Rate of Change}
-For many of our covariates, to extrapolate recent trends to the future, it is necessary to draw on annualized rates of change, which are then used to anticipate the rate of future change.  This method can be used for any variable that is a fraction or a rate.  We use this method to estimate future rates of stunting, wasting, and malaria mortality, as well as to model future admin shares of GDP and population.  Thus, we give an overview of the methodology here.
+For many of our covariates, to extrapolate recent trends to the future, it is necessary to draw on annualized rates of change, which are then used to anticipate the rate of future change.  This method can be used for any variable that is a fraction or a rate.  We use this method to estimate future rates of stunting, wasting, and malaria mortality, as well as to model future subnational shares of GDP and population.  Thus, we give an overview of the methodology here.
 
-First, for each admin area, $a$, the rate of change (ROC) is calculated between each pair of adjacent years, $y$, based on a value, $p$, such that $0 < p < 1$, available for each year.
+First, for each subnational area, $a$, the rate of change (ROC) is calculated between each pair of adjacent years, $y$, based on a value, $p$, such that $0 < p < 1$, available for each year.
 
 \begin{equation}
   \text{ROC}_{a,y} = \text{logit} \left( \frac{p_{a,y}}{p_{a,y-1}} \right)
@@ -207,7 +239,7 @@ For cases where we are modeling shares of a whole, for example when modeling sub
 \subsection{Population}
 Although population is not a covariate in our random forest model, it is an important precursor to other covariates, such as GDP per capita, and future estimates of population are also necessary to convert modeled future rates of food insecurity into total headcounts of food insecurity.  Thus, in addition to our other covariates, we also modeled population into the future.
 
-We do this by combining historic subnational data from the Subnational Development Database \citep{Smits2019} with national level population estimates for the 21st century \citep{KC2017}.  To account for within-country trends and changes in population distribution, we use the AROC method outlined in equations \ref{eqn:a} - \ref{eqn:d} to project each admin areas share of national population totals. We then disaggregate the national totals given by KC et al. to estimate future subnational populations.
+We do this by combining historic subnational data from the Subnational Development Database \citep{Smits2019} with national level population estimates for the 21st century \citep{KC2017}.  To account for within-country trends and changes in population distribution, we use the AROC method outlined in equations \ref{eqn:a} - \ref{eqn:d} to project each subnational areas share of national population totals. We then disaggregate the national totals given by KC et al. to estimate future subnational populations.
 
 \begin{figure}[H]
   \centering
@@ -247,7 +279,7 @@ We model stunting using the same methodology we use to summarize and model wasti
 \end{figure}
 
 \subsection{GDP Per Capita}
-We estimate global subnational GDP per capita using historic subnational estimates of Gross National Income (GNI) from the Subnational Human Development Database \cite{Smits2019} and forecasts of national GDP within the SSP framework from Dellink et al. \cite{Dellink2017}.  We first use data from the World Bank to estimate the mean country-level ratio of GNI to GDP and adjust the subnational estimates of GNI according to that country-specific ratio.  We then calculate each admin area's share of country GDP, and then use the AROC method to estimate each admin area's share of total country GDP.  Based on these trajectories in each admin areas share of total country GDP, we estimate what each admin area's share of GDP will be for each year from 2019 to 2030.  We divide that share of GDP by the population of the administrative area, which we had previously estimated.  Thus, national GDP totals are consistent with the projections of Dellink et al., but are disaggregated according to the historic patters of GDP share in the Subnational Human Development Database.
+We estimate global subnational GDP per capita using historic subnational estimates of Gross National Income (GNI) from the Subnational Human Development Database \cite{Smits2019} and forecasts of national GDP within the SSP framework from Dellink et al. \cite{Dellink2017}.  We first use data from the World Bank to estimate the mean country-level ratio of GNI to GDP and adjust the subnational estimates of GNI according to that country-specific ratio.  We then calculate each subnational area's share of country GDP, and then use the AROC method to estimate each subnational area's share of total country GDP.  Based on these trajectories in each subnational areas share of total country GDP, we estimate what each subnational area's share of GDP will be for each year from 2019 to 2030.  We divide that share of GDP by the population of the administrative area, which we had previously estimated.  Thus, national GDP totals are consistent with the projections of Dellink et al., but are disaggregated according to the historic patters of GDP share in the Subnational Human Development Database.
 
 Finally, we used estimates of country-level changes in GDP growth for the years 2020 and 2021 to account for the impact of the coronavirus \citep{prospects2020}.  We then model GDP as resuming its previous growth trajectory based on previously-estimated growth rates from 2022-2030, but growing from an estimate for 2021 that includes the coronavirus shock.
 
@@ -288,6 +320,8 @@ We used estimates of the Poverty Headcount Index for the recent past and future 
 
 
 \subsection{Water Scarcity Share}
+We used the water scarcity index (WSI) developed by \citep{greve2018global}. The index represents the ratio of the decadal averages in water demand to water supply and it assesses changes in water scarcity on a 0.5 by 0.5 degree global grid.  Based on this index, we estimate the share of people living in areas with less than 1000m\textsuperscript{3} of water available per capita per year. The WSI has been used already to build the water scarcity clock. For more information visit \href{https://worldwater.io/}{worldwater.io}.
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{img/covars/ws_share.png}
@@ -296,7 +330,7 @@ We used estimates of the Poverty Headcount Index for the recent past and future 
 
 
 \subsection{Mean Annual Precipitation}
-For mean annual precipitation, we use data for the years 2010 to 2019 from the TerraClimate dataset \citep{abatzoglou2018terraclimate}, summarized to each admin area.  For data for the years 2020-2030, we use models from the Inter-Sectoral Model Intercomparison Project \citep{warszawski2014inter}.  Specifically, we use an ensemble of bias-corrected projections under representative concentration pathway (RCP) 6.0, taking the mean of the ensemble.
+For mean annual precipitation, we use data for the years 2010 to 2019 from the TerraClimate dataset \citep{abatzoglou2018terraclimate}, summarized to each subnational area.  For data for the years 2020-2030, we use models from the Inter-Sectoral Model Intercomparison Project \citep{warszawski2014inter}.  Specifically, we use an ensemble of bias-corrected projections under representative concentration pathway (RCP) 6.0, taking the mean of the ensemble.
 
 \begin{figure}[H]
   \centering
@@ -314,7 +348,7 @@ For mean temperature, we used the same datasets that we'd used for precipitation
 \end{figure}
 
 \subsection{Topographic Ruggedness}
-As a measure of accessibility, we include the mean topographic ruggedness of each admin area.  We first used a gridded dataset of elevation from the USGS \cite{USGS1996} and calculated the index at each grid cell using the methodology from Riley et al. \citep{Riley1999}.  We then summarized the values of all the grid cells within each administrative area.  Because this variable does not change over time, it is constant across all years in the model.
+As a measure of accessibility, we include the mean topographic ruggedness of each subnational area.  We first used a gridded dataset of elevation from the USGS \cite{USGS1996} and calculated the index at each grid cell using the methodology from Riley et al. \citep{Riley1999}.  We then summarized the values of all the grid cells within each administrative area.  Because this variable does not change over time, it is constant across all years in the model.
 
 \begin{figure}[H]
   \centering

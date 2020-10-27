@@ -12,9 +12,9 @@ for (f in fs){
 covars <- covars %>%
   select(YEAR, ISO3, GDLCODE, stunting, wasting, school_mean, ruggedness,
          gdp_percap, gini, mal_falciparum, precip, hci, tave, 
-         population, rural_perc, urban_perc, ws_share, builtup, cropland, crops_prod,
-         forest, livestock, pasture) %>%
-  merge(regions)
+         population, rural_perc, urban_perc, ws_share) %>%
+  merge(regions %>%
+          select(region=region_sdg, ISO3))
 
 #########################################################################
 # Missing entire variable at the country level.  

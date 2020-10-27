@@ -10,7 +10,9 @@ data/gridded_gdlpolys
 data/regions.csv
 data/FAOSTAT*
 data/GDL*
-data/GDL*
+*.csv
+*.RData
+*.Rdata
 cache/*
 .Rhistory
 *.swp

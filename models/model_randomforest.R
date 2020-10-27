@@ -16,16 +16,11 @@ moddat <- merge(fies_subnat,
 preddat <- covars %>%
   data.frame
 
-exc <- c('crops_prod', 'forest', 'builtup', 'livestock', #8
-         'pasture', 'cropland')
-
 # set up model
 vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
                                             'fies.sev.rur', 'fies.mod.urb', 'fies.sev.urb',
                                             'urban', 'rural', 'fies.sev', 'fies.mod',
-                                            'population', 'YEAR', 'rural_perc', 'region',
-                                            names(moddat)[grepl('region', names(moddat))],
-                                            exc)]
+                                            'population', 'YEAR', 'rural_perc', 'region')]
 
 moddat <- moddat %>%
   mutate(fies.mod = logit(fies.mod),
@@ -84,3 +79,4 @@ moddat <- moddat %>%
 
 write.csv(preddat, 'data/preddat.csv', row.names=F)
 write.csv(moddat, 'data/moddat.csv', row.names=F)
+save(list=c('rf.mod', 'rf.sev', 'rf.tune.mod', 'rf.tune.sev'), file='data/models.RData')

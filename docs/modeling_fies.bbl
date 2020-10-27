@@ -722,6 +722,93 @@
       \field{title}{Demographic and Health Surveys}
       \field{year}{2004-2017}
     \endentry
+    \entry{Local2020}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=50189852339055f390173773239ac765}{%
+           family={Disease\bibnamedelimb Child\bibnamedelimb Growth\bibnamedelimb Failure\bibnamedelima Collaborators},
+           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Local\bibnamedelima Burden},
+           giveni={L\bibinitperiod\bibinitdelim B\bibinitperiod},
+           prefix={of},
+           prefixi={o\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{fullhash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{bibnamehash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{authorbibnamehash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{authornamehash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{authorfullhash}{5160cb2f22fd3f077822bf891085d602}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature}
+      \field{number}{7789}
+      \field{title}{Mapping child growth failure across low-and middle-income countries}
+      \field{volume}{577}
+      \field{year}{2020}
+      \field{pages}{231}
+      \range{pages}{1}
+    \endentry
+    \entry{warszawski2014inter}{article}{}
+      \name{author}{6}{}{%
+        {{hash=15ad9ee62d0da64094ee2612c44a0a8c}{%
+           family={Warszawski},
+           familyi={W\bibinitperiod},
+           given={Lila},
+           giveni={L\bibinitperiod}}}%
+        {{hash=05315ac79677cd23f2ebab5ab31ee4e0}{%
+           family={Frieler},
+           familyi={F\bibinitperiod},
+           given={Katja},
+           giveni={K\bibinitperiod}}}%
+        {{hash=fbf49f30a23091a45fac431500257bd3}{%
+           family={Huber},
+           familyi={H\bibinitperiod},
+           given={Veronika},
+           giveni={V\bibinitperiod}}}%
+        {{hash=cd91083d20dd345693baa3f46d9b3e9e}{%
+           family={Piontek},
+           familyi={P\bibinitperiod},
+           given={Franziska},
+           giveni={F\bibinitperiod}}}%
+        {{hash=fbc9c517df39cc94a30d16ccb8f6ea80}{%
+           family={Serdeczny},
+           familyi={S\bibinitperiod},
+           given={Olivia},
+           giveni={O\bibinitperiod}}}%
+        {{hash=58453421c6611cb862826d04f949404d}{%
+           family={Schewe},
+           familyi={S\bibinitperiod},
+           given={Jacob},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {National Acad Sciences}%
+      }
+      \strng{namehash}{29769b65640556c96c90fa9accf65d34}
+      \strng{fullhash}{c865d82e3502316dee31b8013a514db9}
+      \strng{bibnamehash}{29769b65640556c96c90fa9accf65d34}
+      \strng{authorbibnamehash}{29769b65640556c96c90fa9accf65d34}
+      \strng{authornamehash}{29769b65640556c96c90fa9accf65d34}
+      \strng{authorfullhash}{c865d82e3502316dee31b8013a514db9}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the National Academy of Sciences}
+      \field{number}{9}
+      \field{title}{The inter-sectoral impact model intercomparison project (ISI--MIP): project framework}
+      \field{volume}{111}
+      \field{year}{2014}
+      \field{pages}{3228\bibrangedash 3232}
+      \range{pages}{5}
+    \endentry
     \entry{prospects2020}{article}{}
       \name{author}{1}{}{%
         {{hash=48f493eb4a4e250a6a3f9491b7df3299}{%
@@ -872,39 +959,6 @@
       \field{pages}{1\bibrangedash 8}
       \range{pages}{8}
     \endentry
-    \entry{Local2020}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{1}{}{%
-        {{hash=50189852339055f390173773239ac765}{%
-           family={Disease\bibnamedelimb Child\bibnamedelimb Growth\bibnamedelimb Failure\bibnamedelima Collaborators},
-           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim C\bibinitperiod},
-           given={Local\bibnamedelima Burden},
-           giveni={L\bibinitperiod\bibinitdelim B\bibinitperiod},
-           prefix={of},
-           prefixi={o\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Nature Publishing Group}%
-      }
-      \strng{namehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{fullhash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{bibnamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authorbibnamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authornamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authorfullhash}{5160cb2f22fd3f077822bf891085d602}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature}
-      \field{number}{7789}
-      \field{title}{Mapping child growth failure across low-and middle-income countries}
-      \field{volume}{577}
-      \field{year}{2020}
-      \field{pages}{231}
-      \range{pages}{1}
-    \endentry
     \entry{Smits2019}{article}{}
       \name{author}{2}{}{%
         {{hash=8951b02c5196d9f9d5e72e7e4b7bb2c5}{%
@@ -999,8 +1053,8 @@
       \strng{authorbibnamehash}{93cd26ae53e78113edda02df27f3c71e}
       \strng{authornamehash}{93cd26ae53e78113edda02df27f3c71e}
       \strng{authorfullhash}{1b95d68452b7bd3ce8efb8e7a2cc3658}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{09593780}
@@ -1041,8 +1095,8 @@
       \strng{authorbibnamehash}{7c4fc21444cfb7e23d4e888b39bc158b}
       \strng{authornamehash}{7c4fc21444cfb7e23d4e888b39bc158b}
       \strng{authorfullhash}{10267bf07d4ddb9459da3e35eae1bc37}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{00163287}
@@ -1053,6 +1107,82 @@
       \verb 10.1016/j.futures.2018.07.001
       \endverb
       \keyw{E,Gini,Income inequality,Projections,SSP,ducation inequality}
+    \endentry
+    \entry{greve2018global}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{hash=c7d0ba43697fb5ed9324d4b0d7e424fb}{%
+           family={Greve},
+           familyi={G\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=2b32ad0cae15bf56a081c560ef64b815}{%
+           family={Kahil},
+           familyi={K\bibinitperiod},
+           given={Taher},
+           giveni={T\bibinitperiod}}}%
+        {{hash=f83922bcf703ae3c8625d9763f070bc7}{%
+           family={Mochizuki},
+           familyi={M\bibinitperiod},
+           given={Junko},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3af7ca3a4ab4c4a075ce6931c27f8205}{%
+           family={Schinko},
+           familyi={S\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=721d9fcd0f2858918ccdd4ecabc0753b}{%
+           family={Satoh},
+           familyi={S\bibinitperiod},
+           given={Yusuke},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=cb5e48b701d52ff7d73d92c18df6eeff}{%
+           family={Burek},
+           familyi={B\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod}}}%
+        {{hash=c63d4b532915c2df1ff0581efa885d8c}{%
+           family={Fischer},
+           familyi={F\bibinitperiod},
+           given={G},
+           giveni={G\bibinitperiod}}}%
+        {{hash=2e65b430971fa50ae59996d2ed567cf4}{%
+           family={Tramberend},
+           familyi={T\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+        {{hash=cfe18059ec66d16315e3157a8266ccf4}{%
+           family={Burtscher},
+           familyi={B\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod}}}%
+        {{hash=28b3e248bf4b7585847db0e8c6d34cb3}{%
+           family={Langan},
+           familyi={L\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{d91597b61c160c8ead98f6303ea4d746}
+      \strng{fullhash}{e2fe996c886198b1269516f90ed90719}
+      \strng{bibnamehash}{d91597b61c160c8ead98f6303ea4d746}
+      \strng{authorbibnamehash}{d91597b61c160c8ead98f6303ea4d746}
+      \strng{authornamehash}{d91597b61c160c8ead98f6303ea4d746}
+      \strng{authorfullhash}{e2fe996c886198b1269516f90ed90719}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature Sustainability}
+      \field{number}{9}
+      \field{title}{Global assessment of water challenges under uncertainty in water scarcity projections}
+      \field{volume}{1}
+      \field{year}{2018}
+      \field{pages}{486\bibrangedash 494}
+      \range{pages}{9}
     \endentry
     \entry{abatzoglou2018terraclimate}{article}{}
       \name{author}{4}{}{%
@@ -1096,60 +1226,6 @@
       \field{year}{2018}
       \field{pages}{170191}
       \range{pages}{1}
-    \endentry
-    \entry{warszawski2014inter}{article}{}
-      \name{author}{6}{}{%
-        {{hash=15ad9ee62d0da64094ee2612c44a0a8c}{%
-           family={Warszawski},
-           familyi={W\bibinitperiod},
-           given={Lila},
-           giveni={L\bibinitperiod}}}%
-        {{hash=05315ac79677cd23f2ebab5ab31ee4e0}{%
-           family={Frieler},
-           familyi={F\bibinitperiod},
-           given={Katja},
-           giveni={K\bibinitperiod}}}%
-        {{hash=fbf49f30a23091a45fac431500257bd3}{%
-           family={Huber},
-           familyi={H\bibinitperiod},
-           given={Veronika},
-           giveni={V\bibinitperiod}}}%
-        {{hash=cd91083d20dd345693baa3f46d9b3e9e}{%
-           family={Piontek},
-           familyi={P\bibinitperiod},
-           given={Franziska},
-           giveni={F\bibinitperiod}}}%
-        {{hash=fbc9c517df39cc94a30d16ccb8f6ea80}{%
-           family={Serdeczny},
-           familyi={S\bibinitperiod},
-           given={Olivia},
-           giveni={O\bibinitperiod}}}%
-        {{hash=58453421c6611cb862826d04f949404d}{%
-           family={Schewe},
-           familyi={S\bibinitperiod},
-           given={Jacob},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {National Acad Sciences}%
-      }
-      \strng{namehash}{29769b65640556c96c90fa9accf65d34}
-      \strng{fullhash}{c865d82e3502316dee31b8013a514db9}
-      \strng{bibnamehash}{29769b65640556c96c90fa9accf65d34}
-      \strng{authorbibnamehash}{29769b65640556c96c90fa9accf65d34}
-      \strng{authornamehash}{29769b65640556c96c90fa9accf65d34}
-      \strng{authorfullhash}{c865d82e3502316dee31b8013a514db9}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Proceedings of the National Academy of Sciences}
-      \field{number}{9}
-      \field{title}{The inter-sectoral impact model intercomparison project (ISI--MIP): project framework}
-      \field{volume}{111}
-      \field{year}{2014}
-      \field{pages}{3228\bibrangedash 3232}
-      \range{pages}{5}
     \endentry
     \entry{USGS1996}{book}{}
       \name{author}{1}{}{%
@@ -1441,42 +1517,8 @@
       \verb 10.1016/S0140-6736(19)31097-9
       \endverb
     \endentry
-    \entry{breiman2001random}{article}{}
-      \name{author}{1}{}{%
-        {{hash=132b7100417675d55d5d4d8b244f7a34}{%
-           family={Breiman},
-           familyi={B\bibinitperiod},
-           given={Leo},
-           giveni={L\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{fullhash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{bibnamehash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{authorbibnamehash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{authornamehash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{authorfullhash}{132b7100417675d55d5d4d8b244f7a34}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Machine learning}
-      \field{number}{1}
-      \field{title}{Random forests}
-      \field{volume}{45}
-      \field{year}{2001}
-      \field{pages}{5\bibrangedash 32}
-      \range{pages}{28}
-    \endentry
-    \entry{friedman2001elements}{book}{}
+    \entry{hastie2009elements}{book}{}
       \name{author}{3}{}{%
-        {{hash=971cf69058b64a94326dea0f2a8bbcce}{%
-           family={Friedman},
-           familyi={F\bibinitperiod},
-           given={Jerome},
-           giveni={J\bibinitperiod}}}%
         {{hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
            family={Hastie},
            familyi={H\bibinitperiod},
@@ -1487,24 +1529,58 @@
            familyi={T\bibinitperiod},
            given={Robert},
            giveni={R\bibinitperiod}}}%
+        {{hash=971cf69058b64a94326dea0f2a8bbcce}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={Jerome},
+           giveni={J\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {Springer series in statistics New York}%
+        {Springer Science \& Business Media}%
       }
-      \strng{namehash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{fullhash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{bibnamehash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{authorbibnamehash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{authornamehash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{authorfullhash}{568e7b5149c552567af3c9b520d96bb3}
-      \field{sortinit}{5}
-      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \strng{namehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{fullhash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{bibnamehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{authorbibnamehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{authornamehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{authorfullhash}{7ca1bfe876d5e037b6aed69704221267}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{number}{10}
-      \field{title}{The elements of statistical learning}
+      \field{title}{The elements of statistical learning: data mining, inference, and prediction}
+      \field{year}{2009}
+    \endentry
+    \entry{ishwaran2007variable}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=87b2e79f8f2ab0a4040e84b52fbe2710}{%
+           family={Ishwaran},
+           familyi={I\bibinitperiod},
+           given={Hemant},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {The Institute of Mathematical Statistics}%
+        {the Bernoulli Society}%
+      }
+      \strng{namehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{fullhash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{bibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{authorbibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{authornamehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{authorfullhash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electronic Journal of Statistics}
+      \field{title}{Variable importance in binary regression trees and forests}
       \field{volume}{1}
-      \field{year}{2001}
+      \field{year}{2007}
+      \field{pages}{519\bibrangedash 537}
+      \range{pages}{19}
     \endentry
     \entry{ishwaran2019randomforestsrc}{article}{}
       \name{author}{2}{}{%
@@ -1525,8 +1601,8 @@
       \strng{authorbibnamehash}{90ac875d50e1b3141df05b073fe2f329}
       \strng{authornamehash}{90ac875d50e1b3141df05b073fe2f329}
       \strng{authorfullhash}{90ac875d50e1b3141df05b073fe2f329}
-      \field{sortinit}{5}
-      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{sortinit}{6}
+      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{R Package Version}
@@ -1535,7 +1611,37 @@
       \field{volume}{2}
       \field{year}{2019}
     \endentry
+    \entry{breiman2001random}{article}{}
+      \name{author}{1}{}{%
+        {{hash=132b7100417675d55d5d4d8b244f7a34}{%
+           family={Breiman},
+           familyi={B\bibinitperiod},
+           given={Leo},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{fullhash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{bibnamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authorbibnamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authornamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authorfullhash}{132b7100417675d55d5d4d8b244f7a34}
+      \field{sortinit}{6}
+      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Machine learning}
+      \field{number}{1}
+      \field{title}{Random forests}
+      \field{volume}{45}
+      \field{year}{2001}
+      \field{pages}{5\bibrangedash 32}
+      \range{pages}{28}
+    \endentry
   \enddatalist
+  \missing{friedman2001elements}
 \endrefsection
 \endinput
 
