@@ -1,3 +1,4 @@
+setwd('~/wdl-fies'); library(ProjectTemplate); load.project()
 
 ######################
 # save output for poli
@@ -20,7 +21,13 @@ sel <- preddat %>%
   mutate(geo_area=ifelse(grepl('urban', var), 'Urban', 'Rural'),
          var=gsub('.rural|.urban', '', var),
          value = round(value)) %>%
-  spread(var, value)
+  spread(var, value) %>%
+  #Remove bad polygons
+  filter(!GDLCODE %in% c("KNAt", "SMRt", "GBRr113", "GBRr114", "USAr152", "ECUr104",
+                         "AZEr111", "AZEr110", "NZLr116", "CPVr106"))
 
-write.csv(sel, 'figures/HC_2020-10-07.csv', row.names=F) #update date
+gdl <- gdl %>%
+  filter(GDLCODE %in% sel$GDLCODE)
 
+write.csv(sel, 'figures/HC_2020-10-28_data.csv', row.names=F) #update date
+write_sf(gdl, 'figures/HC_2020-10-28_polys.geojson', driver='GeoJSON')
