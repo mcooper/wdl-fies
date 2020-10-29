@@ -17,35 +17,31 @@ vars_full <- c("Stunting", "Wasting", "Mean Years of Schooling", "Topographic Ru
               "GDP Per Capita", "Gini Coefficient", "Malaria Mortality Rate", "Mean Annual Precipitation",
               "Poverty Headcount Index", "Mean Temperature", "Urban Percentage", "Water Scarcity") #has to be in the same order as "vars"
 
+v.mod <- vimp(rf.mod, importance='permute')
+v.sev <- vimp(rf.sev, importance='permute')
 
-hv.mod <- holdout.vimp(formula = as.formula(paste("fies.mod", 
-                                                  paste(vars, collapse = "+"), sep= "~")),
-                 data = moddat,
-                 ntree = 5000, 
-                 mtry = rf.tune.mod$optimal[[2]],
-                 nodesize = rf.tune.mod$optimal[[1]],
-                 verbose = TRUE)
-
-hv.sev <- holdout.vimp(formula = as.formula(paste("fies.sev", 
-                                                  paste(vars, collapse = "+"), sep= "~")),
-                 data = moddat,
-                 ntree = 5000, 
-                 mtry = rf.tune.sev$optimal[[2]],
-                 nodesize = rf.tune.sev$optimal[[1]],
-                 verbose = TRUE)
-
-df <- data.frame(var=c(names(hv.mod), names(hv.sev)),
-                 val=c(hv.mod, hv.sev),
+df <- data.frame(var=c(names(v.mod$importance), names(v.sev$importance)),
+                 val=c(v.mod$importance, v.sev$importance),
                  mod=rep(c('Moderate', 'Severe'), each=12),
                  lab=rep(vars_full, 2))
 
-df$lab <- factor(df$lab, levels=vars_full[order(hv.mod)])
+df$lab <- factor(df$lab, levels=vars_full[order(v.sev$importance)])
+
+convertToOutcomeScale <- function(x){
+  #Determine how an error of x on a logit transformed scale
+  #affects the mean absolute error after being transformed back to [0,1]
+  mean(abs(moddat$fies.mod - inv.logit(logit(moddat$fies.mod) + x)))
+}
+
+df$val <- sapply(df$val, convertToOutcomeScale)
 
 ggplot(df) + 
   geom_bar(aes(x=lab, y=val), stat='identity', fill='#0F1290') +
   coord_flip() + 
   facet_grid(. ~ mod) + 
-  theme_bw()
+  theme_bw() + 
+  labs(x='', y='Increase in Model Error When Variable is Permutated')
+ggsave('VIMP.pdf', width=7, height=3.75)
 
 # variable effect
 # png('model/mod.coefs_rf.png', width = 1000, height = 800, units="px")
