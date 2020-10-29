@@ -1,25 +1,28 @@
 \BOOKMARK [1][-]{section.1}{Main}{}% 1
 \BOOKMARK [1][-]{section.2}{Results}{}% 2
-\BOOKMARK [1][-]{section.3}{Discussion}{}% 3
-\BOOKMARK [1][-]{section.4}{Methods}{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{Disaggregation}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{Covariates}{section.4}% 6
-\BOOKMARK [2][-]{subsection.4.3}{Modeling}{section.4}% 7
-\BOOKMARK [1][-]{section.5}{Conclusion}{}% 8
-\BOOKMARK [1][-]{section.1}{Component Questions of the FIES}{}% 9
-\BOOKMARK [1][-]{section.2}{Predicting Covariates Into the Future}{}% 10
-\BOOKMARK [2][-]{subsection.2.1}{Annualized Rate of Change}{section.2}% 11
-\BOOKMARK [2][-]{subsection.2.2}{Population}{section.2}% 12
-\BOOKMARK [2][-]{subsection.2.3}{Urban Percentage}{section.2}% 13
-\BOOKMARK [2][-]{subsection.2.4}{Wasting}{section.2}% 14
-\BOOKMARK [2][-]{subsection.2.5}{Stunting}{section.2}% 15
-\BOOKMARK [2][-]{subsection.2.6}{GDP Per Capita}{section.2}% 16
-\BOOKMARK [2][-]{subsection.2.7}{Mean Years of Schooling}{section.2}% 17
-\BOOKMARK [2][-]{subsection.2.8}{Gini Coefficient}{section.2}% 18
-\BOOKMARK [2][-]{subsection.2.9}{Poverty Headcount Index}{section.2}% 19
-\BOOKMARK [2][-]{subsection.2.10}{Water Scarcity Share}{section.2}% 20
-\BOOKMARK [2][-]{subsection.2.11}{Mean Annual Precipitation}{section.2}% 21
-\BOOKMARK [2][-]{subsection.2.12}{Mean Temperature}{section.2}% 22
-\BOOKMARK [2][-]{subsection.2.13}{Topographic Ruggedness}{section.2}% 23
-\BOOKMARK [2][-]{subsection.2.14}{Malaria \(P. falciparum\) Mortality Rate}{section.2}% 24
-\BOOKMARK [1][-]{section.3}{Description, Implementation and Validation of the RF regression model}{}% 25
+\BOOKMARK [2][-]{subsection.2.1}{Food Insecurity over Time}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Food Insecurity over Space}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Important Predictors of Food Insecurity}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Discussion}{}% 6
+\BOOKMARK [1][-]{section.4}{Methods}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Disaggregation}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Covariates}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Modeling}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 11
+\BOOKMARK [1][-]{section.1}{Component Questions of the FIES}{}% 12
+\BOOKMARK [1][-]{section.2}{Predicting Covariates Into the Future}{}% 13
+\BOOKMARK [2][-]{subsection.2.1}{Annualized Rate of Change}{section.2}% 14
+\BOOKMARK [2][-]{subsection.2.2}{Population}{section.2}% 15
+\BOOKMARK [2][-]{subsection.2.3}{Urban Percentage}{section.2}% 16
+\BOOKMARK [2][-]{subsection.2.4}{Wasting}{section.2}% 17
+\BOOKMARK [2][-]{subsection.2.5}{Stunting}{section.2}% 18
+\BOOKMARK [2][-]{subsection.2.6}{GDP Per Capita}{section.2}% 19
+\BOOKMARK [2][-]{subsection.2.7}{Mean Years of Schooling}{section.2}% 20
+\BOOKMARK [2][-]{subsection.2.8}{Gini Coefficient}{section.2}% 21
+\BOOKMARK [2][-]{subsection.2.9}{Poverty Headcount Index}{section.2}% 22
+\BOOKMARK [2][-]{subsection.2.10}{Water Scarcity Share}{section.2}% 23
+\BOOKMARK [2][-]{subsection.2.11}{Mean Annual Precipitation}{section.2}% 24
+\BOOKMARK [2][-]{subsection.2.12}{Mean Temperature}{section.2}% 25
+\BOOKMARK [2][-]{subsection.2.13}{Topographic Ruggedness}{section.2}% 26
+\BOOKMARK [2][-]{subsection.2.14}{Malaria \(P. falciparum\) Mortality Rate}{section.2}% 27
+\BOOKMARK [1][-]{section.3}{Description, Implementation and Validation of the RF regression model}{}% 28

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.6)  26 OCT 2020 20:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.6)  29 OCT 2020 02:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -977,33 +977,39 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count421
 \l__pdf_internal_box=\box55
 )
-(./modeling_fies.aux)
+(./modeling_fies.aux
+
+LaTeX Warning: Label `fig:timeseries' multiply defined.
+
+
+LaTeX Warning: Label `fig:map' multiply defined.
+
+)
 \openout1 = `modeling_fies.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 43.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 4
-5.
-
-(/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
+3.
+ (/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    ... okay on input line 43.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1036,7 +1042,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box57
-Package hyperref Info: Link coloring OFF on input line 45.
+Package hyperref Info: Link coloring OFF on input line 43.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -1049,9 +1055,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count428
 )
-LaTeX Info: Redefining \ref on input line 45.
-LaTeX Info: Redefining \pageref on input line 45.
-LaTeX Info: Redefining \nameref on input line 45.
+LaTeX Info: Redefining \ref on input line 43.
+LaTeX Info: Redefining \pageref on input line 43.
+LaTeX Info: Redefining \nameref on input line 43.
 
 (./modeling_fies.out) (./modeling_fies.out)
 \@outlinefile=\write4
@@ -1114,223 +1120,502 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'modeling_fies.bbl' found.
 
-(./modeling_fies.bbl
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                friedman2001elements
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-)
-Package biblatex Info: Reference section=0 on input line 45.
-Package biblatex Info: Reference segment=0 on input line 45.
+(./modeling_fies.bbl)
+Package biblatex Info: Reference section=0 on input line 43.
+Package biblatex Info: Reference segment=0 on input line 43.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-! Misplaced alignment tab character &.
-l.89 ...s, particularly South Asia and East Asia &
-                                                   the Pacific.
-? 
+
+LaTeX Warning: Citation 'Puffer1973' on page 2 undefined on input line 73.
+
+
+LaTeX Warning: Citation 'Habicht1974' on page 2 undefined on input line 73.
+
+
+LaTeX Warning: Citation 'Perumal2018' on page 2 undefined on input line 73.
+
+
+LaTeX Warning: Citation 'Maxwell1992' on page 2 undefined on input line 73.
+
+
+LaTeX Warning: Citation 'Sen1983' on page 2 undefined on input line 73.
+
+
+LaTeX Warning: Citation 'Haddad1994' on page 2 undefined on input line 75.
+
+
+LaTeX Warning: Citation 'Maxwell1996' on page 2 undefined on input line 75.
+
+
+LaTeX Warning: Citation 'Jones2013' on page 2 undefined on input line 75.
+
+
+LaTeX Warning: Citation 'kennedy2005keynote' on page 2 undefined on input line 
+75.
+
+
+LaTeX Warning: Citation 'Coates2007' on page 2 undefined on input line 75.
+
+
+LaTeX Warning: Citation 'Ballard2013' on page 2 undefined on input line 77.
+
+
+LaTeX Warning: Citation 'wambogo2018validity' on page 2 undefined on input line
+ 77.
+
+
+LaTeX Warning: Citation 'smith2017world' on page 2 undefined on input line 77.
+
+
+LaTeX Warning: Citation 'Cafiero2018' on page 2 undefined on input line 77.
+
 [2]
-<img/TimeSeries.pdf, id=147, 505.89pt x 505.89pt>
+<img/TimeSeries.pdf, id=128, 505.89pt x 505.89pt>
 File: img/TimeSeries.pdf Graphic file (type pdf)
 <use img/TimeSeries.pdf>
-Package pdftex.def Info: img/TimeSeries.pdf  used on input line 93.
+Package pdftex.def Info: img/TimeSeries.pdf  used on input line 89.
 (pdftex.def)             Requested size: 416.83289pt x 416.83948pt.
- [3 <./img/TimeSeries.pdf>] [4]
-<img/FullMap.png, id=164, 722.7pt x 505.4082pt>
+ [3 <./img/TimeSeries.pdf>]
+<img/Rates.pdf, id=141, 505.89pt x 361.35pt>
+File: img/Rates.pdf Graphic file (type pdf)
+<use img/Rates.pdf>
+Package pdftex.def Info: img/Rates.pdf  used on input line 98.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [4 <./img/Rates.pdf>]
+<img/FullMap.png, id=153, 722.7pt x 505.4082pt>
 File: img/FullMap.png Graphic file (type png)
 <use img/FullMap.png>
-Package pdftex.def Info: img/FullMap.png  used on input line 105.
+Package pdftex.def Info: img/FullMap.png  used on input line 112.
 (pdftex.def)             Requested size: 722.69823pt x 505.40695pt.
 
-Overfull \hbox (58.32637pt too wide) in paragraph at lines 105--106
+Overfull \hbox (58.32637pt too wide) in paragraph at lines 112--113
  [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 110.57407pt on input line 108.
+LaTeX Warning: Float too large for page by 110.57407pt on input line 115.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5 <./img/FullMap.png (PNG copy)>] [6
+[5 <./img/FullMap.png (PNG copy)>]
+<img/VIMP.pdf, id=159, 505.89pt x 271.0125pt>
+File: img/VIMP.pdf Graphic file (type pdf)
+<use img/VIMP.pdf>
+Package pdftex.def Info: img/VIMP.pdf  used on input line 125.
+(pdftex.def)             Requested size: 505.88875pt x 271.01183pt.
+
+Overfull \hbox (89.05586pt too wide) in paragraph at lines 125--126
+ [][] 
+ []
 
 
-] [7] [8] [9]pdfTeX warning (ext4): destination with the same identifier (name{
-section.1}) has been already used, duplicate ignored
+LaTeX Warning: Citation 'sofi2020' on page 6 undefined on input line 137.
+
+
+LaTeX Warning: Citation 'sofi2020' on page 6 undefined on input line 137.
+
+
+LaTeX Warning: Citation 'sofi2020' on page 6 undefined on input line 137.
+
+[6
+
+
+ <./img/VIMP.pdf>]
+
+LaTeX Warning: Citation 'bethlehem2009applied' on page 7 undefined on input lin
+e 150.
+
+
+LaTeX Warning: Citation 'Tatem2017' on page 7 undefined on input line 150.
+
+
+LaTeX Warning: Citation 'Jones2016' on page 7 undefined on input line 150.
+
+
+LaTeX Warning: Citation 'dhsall' on page 7 undefined on input line 150.
+
+
+LaTeX Warning: Citation 'oneill2014new' on page 7 undefined on input line 153.
+
+
+LaTeX Warning: Citation 'van2011representative' on page 7 undefined on input li
+ne 153.
+
+
+LaTeX Warning: Citation 'Local2020' on page 7 undefined on input line 157.
+
+[7]
+
+LaTeX Warning: Citation 'warszawski2014inter' on page 8 undefined on input line
+ 159.
+
+
+LaTeX Warning: Citation 'prospects2020' on page 8 undefined on input line 161.
+
+
+LaTeX Warning: Citation 'headey2020impacts' on page 8 undefined on input line 1
+61.
+
+
+LaTeX Warning: Citation 'Cuaresma2018' on page 8 undefined on input line 161.
+
+
+LaTeX Warning: Citation 'Jones2016' on page 8 undefined on input line 170.
+
+
+LaTeX Warning: Citation 'Local2020' on page 8 undefined on input line 171.
+
+
+LaTeX Warning: Citation 'Local2020' on page 8 undefined on input line 172.
+
+
+LaTeX Warning: Citation 'Smits2019' on page 8 undefined on input line 173.
+
+
+LaTeX Warning: Citation 'KC2017' on page 8 undefined on input line 173.
+
+
+LaTeX Warning: Citation 'Smits2019' on page 8 undefined on input line 174.
+
+
+LaTeX Warning: Citation 'Dellink2017' on page 8 undefined on input line 174.
+
+
+LaTeX Warning: Citation 'Rao2019a' on page 8 undefined on input line 175.
+
+
+LaTeX Warning: Citation 'Cuaresma2018' on page 8 undefined on input line 176.
+
+
+LaTeX Warning: Citation 'greve2018global' on page 8 undefined on input line 177
+.
+
+
+LaTeX Warning: Citation 'abatzoglou2018terraclimate' on page 8 undefined on inp
+ut line 178.
+
+
+LaTeX Warning: Citation 'warszawski2014inter' on page 8 undefined on input line
+ 178.
+
+
+LaTeX Warning: Citation 'USGS1996' on page 8 undefined on input line 179.
+
+
+LaTeX Warning: Citation 'Riley1999' on page 8 undefined on input line 179.
+
+
+LaTeX Warning: Citation 'abatzoglou2018terraclimate' on page 8 undefined on inp
+ut line 180.
+
+
+LaTeX Warning: Citation 'warszawski2014inter' on page 8 undefined on input line
+ 180.
+
+
+LaTeX Warning: Citation 'Weiss2019' on page 8 undefined on input line 181.
+
+
+Overfull \hbox (96.93713pt too wide) in paragraph at lines 166--184
+ [][] 
+ []
+
+
+LaTeX Warning: Citation 'hastie2009elements' on page 8 undefined on input line 
+190.
+
+
+LaTeX Warning: Citation 'ishwaran2007variable' on page 8 undefined on input lin
+e 190.
+
+[8]
+
+LaTeX Warning: Empty bibliography on input line 205.
+
+pdfTeX warning (ext4): destination with the same identifier (name{section.1}) h
+as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.194 \section{Component Questions of the FIES}
-                                                [10]pdfTeX warning (ext4): dest
-ination with the same identifier (name{section.2}) has been already used, dupli
-cate ignored
+l.215 \section{Component Questions of the FIES}
+                                               pdfTeX warning (ext4): destinati
+on with the same identifier (name{section.2}) has been already used, duplicate 
+ignored
 <to be read again> 
                    \relax 
-l.206 ...on{Predicting Covariates Into the Future}
-                                                  
-Overfull \hbox (6.77905pt too wide) in paragraph at lines 243--244
+l.228 ...on{Predicting Covariates Into the Future}
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{subsection.2.1}) has been already used, du
+plicate ignored
+<to be read again> 
+                   \relax 
+l.229 \subsection{Annualized Rate of Change}
+                                             [9]pdfTeX warning (ext4): destinat
+ion with the same identifier (name{subsection.2.2}) has been already used, dupl
+icate ignored
+<to be read again> 
+                   \relax 
+l.262 \subsection{Population}
+                             
+
+LaTeX Warning: Citation 'Smits2019' on page 10 undefined on input line 265.
+
+
+LaTeX Warning: Citation 'KC2017' on page 10 undefined on input line 265.
+
+
+Overfull \hbox (6.77905pt too wide) in paragraph at lines 265--266
 []\OT1/cmr/m/n/10 We do this by com-bin-ing his-toric sub-na-tional data from t
 he Sub-na-tional De-vel-op-ment Database
  []
 
-<img/covars/population.png, id=307, 505.89pt x 361.35pt>
+<img/covars/population.png, id=210, 505.89pt x 361.35pt>
 File: img/covars/population.png Graphic file (type png)
 <use img/covars/population.png>
-Package pdftex.def Info: img/covars/population.png  used on input line 247.
+Package pdftex.def Info: img/covars/population.png  used on input line 269.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
-[11]
-<img/covars/urban_perc.png, id=324, 505.89pt x 361.35pt>
-File: img/covars/urban_perc.png Graphic file (type png)
-<use img/covars/urban_perc.png>
-Package pdftex.def Info: img/covars/urban_perc.png  used on input line 257.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [12 <./img/covars/population.png (PNG copy)>]
-<img/covars/wasting.png, id=333, 505.89pt x 361.35pt>
-File: img/covars/wasting.png Graphic file (type png)
-<use img/covars/wasting.png>
-Package pdftex.def Info: img/covars/wasting.png  used on input line 268.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [13 <./img/covars/urban_perc.png (PNG copy)>]
-<img/covars/stunting.png, id=341, 505.89pt x 361.35pt>
-File: img/covars/stunting.png Graphic file (type png)
-<use img/covars/stunting.png>
-Package pdftex.def Info: img/covars/stunting.png  used on input line 278.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [14 <./img/covars/wasting.png (PNG copy)>]
-<img/covars/gdp_percap.png, id=350, 505.89pt x 361.35pt>
-File: img/covars/gdp_percap.png Graphic file (type png)
-<use img/covars/gdp_percap.png>
-Package pdftex.def Info: img/covars/gdp_percap.png  used on input line 289.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [15 <./img/covars/stunting.png (PNG copy)>]
-<img/covars/school_mean.png, id=358, 505.89pt x 361.35pt>
-File: img/covars/school_mean.png Graphic file (type png)
-<use img/covars/school_mean.png>
-Package pdftex.def Info: img/covars/school_mean.png  used on input line 299.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [16 <./img/covars/gdp_percap.png (PNG copy)>]
-<img/covars/gini.png, id=365, 505.89pt x 361.35pt>
-File: img/covars/gini.png Graphic file (type png)
-<use img/covars/gini.png>
-Package pdftex.def Info: img/covars/gini.png  used on input line 309.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
-
-[17 <./img/covars/school_mean.png (PNG copy)>]
-<img/covars/hci.png, id=373, 505.89pt x 361.35pt>
-File: img/covars/hci.png Graphic file (type png)
-<use img/covars/hci.png>
-Package pdftex.def Info: img/covars/hci.png  used on input line 318.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [18 <./img/covars/gini.png (PNG copy)>]
-<img/covars/ws_share.png, id=382, 505.89pt x 361.35pt>
-File: img/covars/ws_share.png Graphic file (type png)
-<use img/covars/ws_share.png>
-Package pdftex.def Info: img/covars/ws_share.png  used on input line 328.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [19 <./img/covars/hci.png (PNG copy)>]
-<img/covars/precip.png, id=391, 505.89pt x 361.35pt>
-File: img/covars/precip.png Graphic file (type png)
-<use img/covars/precip.png>
-Package pdftex.def Info: img/covars/precip.png  used on input line 338.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [20 <./img/covars/ws_share.png (PNG copy)>]
-<img/covars/tave.png, id=398, 505.89pt x 361.35pt>
-File: img/covars/tave.png Graphic file (type png)
-<use img/covars/tave.png>
-Package pdftex.def Info: img/covars/tave.png  used on input line 347.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [21 <./img/covars/precip.png (PNG copy)>]
-<img/covars/ruggedness.png, id=406, 505.89pt x 361.35pt>
-File: img/covars/ruggedness.png Graphic file (type png)
-<use img/covars/ruggedness.png>
-Package pdftex.def Info: img/covars/ruggedness.png  used on input line 356.
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [22 <./img/covars/tave.png (PNG copy)>]
-<img/covars/mal_falciparum.png, id=413, 505.89pt x 361.35pt>
-File: img/covars/mal_falciparum.png Graphic file (type png)
-<use img/covars/mal_falciparum.png>
-Package pdftex.def Info: img/covars/mal_falciparum.png  used on input line 365.
-
-(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
- [23 <./img/covars/ruggedness.png (PNG copy)>]pdfTeX warning (ext4): destinatio
-n with the same identifier (name{section.3}) has been already used, duplicate i
-gnored
+[10]pdfTeX warning (ext4): destination with the same identifier (name{subsectio
+n.2.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.369 ...nd Validation of the RF regression model}
+l.273 \subsection{Urban Percentage}
+                                   
+
+LaTeX Warning: Citation 'Jones2016' on page 11 undefined on input line 275.
+
+<img/covars/urban_perc.png, id=222, 505.89pt x 361.35pt>
+File: img/covars/urban_perc.png Graphic file (type png)
+<use img/covars/urban_perc.png>
+Package pdftex.def Info: img/covars/urban_perc.png  used on input line 279.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[11 <./img/covars/population.png (PNG copy)>]
+
+LaTeX Warning: Citation 'Local2020' on page 12 undefined on input line 284.
+
+
+LaTeX Warning: Citation 'Local2020' on page 12 undefined on input line 284.
+
+
+LaTeX Warning: Citation 'headey2020impacts' on page 12 undefined on input line 
+286.
+
+<img/covars/wasting.png, id=228, 505.89pt x 361.35pt>
+File: img/covars/wasting.png Graphic file (type png)
+<use img/covars/wasting.png>
+Package pdftex.def Info: img/covars/wasting.png  used on input line 290.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[12 <./img/covars/urban_perc.png (PNG copy)>]
+
+LaTeX Warning: Citation 'headey2020impacts' on page 13 undefined on input line 
+296.
+
+<img/covars/stunting.png, id=234, 505.89pt x 361.35pt>
+File: img/covars/stunting.png Graphic file (type png)
+<use img/covars/stunting.png>
+Package pdftex.def Info: img/covars/stunting.png  used on input line 300.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[13 <./img/covars/wasting.png (PNG copy)>]
+
+LaTeX Warning: Citation 'Smits2019' on page 14 undefined on input line 305.
+
+
+LaTeX Warning: Citation 'Dellink2017' on page 14 undefined on input line 305.
+
+
+LaTeX Warning: Citation 'prospects2020' on page 14 undefined on input line 307.
+
+
+<img/covars/gdp_percap.png, id=241, 505.89pt x 361.35pt>
+File: img/covars/gdp_percap.png Graphic file (type png)
+<use img/covars/gdp_percap.png>
+Package pdftex.def Info: img/covars/gdp_percap.png  used on input line 311.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[14 <./img/covars/stunting.png (PNG copy)>]
+
+LaTeX Warning: Citation 'Smits2019' on page 15 undefined on input line 316.
+
+
+LaTeX Warning: Citation 'KC2017' on page 15 undefined on input line 316.
+
+<img/covars/school_mean.png, id=247, 505.89pt x 361.35pt>
+File: img/covars/school_mean.png Graphic file (type png)
+<use img/covars/school_mean.png>
+Package pdftex.def Info: img/covars/school_mean.png  used on input line 321.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[15 <./img/covars/gdp_percap.png (PNG copy)>]
+
+LaTeX Warning: Citation 'Rao2019a' on page 16 undefined on input line 327.
+
+<img/covars/gini.png, id=253, 505.89pt x 361.35pt>
+File: img/covars/gini.png Graphic file (type png)
+<use img/covars/gini.png>
+Package pdftex.def Info: img/covars/gini.png  used on input line 331.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[16 <./img/covars/school_mean.png (PNG copy)>]
+
+LaTeX Warning: Citation 'Cuaresma2018' on page 17 undefined on input line 336.
+
+<img/covars/hci.png, id=260, 505.89pt x 361.35pt>
+File: img/covars/hci.png Graphic file (type png)
+<use img/covars/hci.png>
+Package pdftex.def Info: img/covars/hci.png  used on input line 340.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[17 <./img/covars/gini.png (PNG copy)>]
+
+LaTeX Warning: Citation 'greve2018global' on page 18 undefined on input line 34
+6.
+
+<img/covars/ws_share.png, id=269, 505.89pt x 361.35pt>
+File: img/covars/ws_share.png Graphic file (type png)
+<use img/covars/ws_share.png>
+Package pdftex.def Info: img/covars/ws_share.png  used on input line 350.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[18 <./img/covars/hci.png (PNG copy)>]
+
+LaTeX Warning: Citation 'abatzoglou2018terraclimate' on page 19 undefined on in
+put line 356.
+
+
+LaTeX Warning: Citation 'warszawski2014inter' on page 19 undefined on input lin
+e 356.
+
+<img/covars/precip.png, id=275, 505.89pt x 361.35pt>
+File: img/covars/precip.png Graphic file (type png)
+<use img/covars/precip.png>
+Package pdftex.def Info: img/covars/precip.png  used on input line 360.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[19 <./img/covars/ws_share.png (PNG copy)>]
+<img/covars/tave.png, id=282, 505.89pt x 361.35pt>
+File: img/covars/tave.png Graphic file (type png)
+<use img/covars/tave.png>
+Package pdftex.def Info: img/covars/tave.png  used on input line 369.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+ [20 <./img/covars/precip.png (PNG copy)>]
+
+LaTeX Warning: Citation 'USGS1996' on page 21 undefined on input line 374.
+
+
+LaTeX Warning: Citation 'Riley1999' on page 21 undefined on input line 374.
+
+<img/covars/ruggedness.png, id=288, 505.89pt x 361.35pt>
+File: img/covars/ruggedness.png Graphic file (type png)
+<use img/covars/ruggedness.png>
+Package pdftex.def Info: img/covars/ruggedness.png  used on input line 378.
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[21 <./img/covars/tave.png (PNG copy)>]
+
+LaTeX Warning: Citation 'Weiss2019' on page 22 undefined on input line 383.
+
+<img/covars/mal_falciparum.png, id=294, 505.89pt x 361.35pt>
+File: img/covars/mal_falciparum.png Graphic file (type png)
+<use img/covars/mal_falciparum.png>
+Package pdftex.def Info: img/covars/mal_falciparum.png  used on input line 387.
+
+(pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
+[22 <./img/covars/ruggedness.png (PNG copy)>]pdfTeX warning (ext4): destination
+ with the same identifier (name{section.3}) has been already used, duplicate ig
+nored
+<to be read again> 
+                   \relax 
+l.391 ...nd Validation of the RF regression model}
                                                   
-<img/model/error_rf.png, id=425, 1011.78pt x 505.89pt>
+
+LaTeX Warning: Citation 'friedman2001elements' on page 23 undefined on input li
+ne 396.
+
+
+LaTeX Warning: Citation 'ishwaran2019randomforestsrc' on page 23 undefined on i
+nput line 398.
+
+
+Overfull \hbox (125.30109pt too wide) in paragraph at lines 398--399
+[]\OT1/cmr/m/n/10 For im-ple-men-ta-tion we use the R-package \OT1/cmtt/m/n/10 
+randomForestSRC \OT1/cmr/m/n/10 by Ish-waran and Ko-galur [[]].
+ []
+
+<img/model/error_rf.png, id=306, 1011.78pt x 505.89pt>
 File: img/model/error_rf.png Graphic file (type png)
 <use img/model/error_rf.png>
-Package pdftex.def Info: img/model/error_rf.png  used on input line 385.
+Package pdftex.def Info: img/model/error_rf.png  used on input line 407.
 (pdftex.def)             Requested size: 416.83289pt x 208.41974pt.
- [24 <./img/covars/mal_falciparum.png (PNG copy)>]
-<img/model/in-sample_rf.png, id=432, 1011.78pt x 505.89pt>
+[23 <./img/covars/mal_falciparum.png (PNG copy)>]
+<img/model/in-sample_rf.png, id=312, 1011.78pt x 505.89pt>
 File: img/model/in-sample_rf.png Graphic file (type png)
 <use img/model/in-sample_rf.png>
-Package pdftex.def Info: img/model/in-sample_rf.png  used on input line 402.
+Package pdftex.def Info: img/model/in-sample_rf.png  used on input line 424.
 (pdftex.def)             Requested size: 416.83289pt x 208.41974pt.
-<img/model/out-sample_rf.png, id=433, 1011.78pt x 505.89pt>
+<img/model/out-sample_rf.png, id=313, 1011.78pt x 505.89pt>
 File: img/model/out-sample_rf.png Graphic file (type png)
 <use img/model/out-sample_rf.png>
-Package pdftex.def Info: img/model/out-sample_rf.png  used on input line 409.
+Package pdftex.def Info: img/model/out-sample_rf.png  used on input line 431.
 (pdftex.def)             Requested size: 416.83289pt x 208.41974pt.
- [25 <./img/model/error_rf.png> <./img/model/in-sample_rf.png>]
-<img/model/vimp_rf.png, id=441, 1228.59pt x 505.89pt>
+ [24 <./img/model/error_rf.png> <./img/model/in-sample_rf.png>]
+<img/model/vimp_rf.png, id=320, 1228.59pt x 505.89pt>
 File: img/model/vimp_rf.png Graphic file (type png)
 <use img/model/vimp_rf.png>
-Package pdftex.def Info: img/model/vimp_rf.png  used on input line 419.
+Package pdftex.def Info: img/model/vimp_rf.png  used on input line 441.
 (pdftex.def)             Requested size: 416.83289pt x 171.63751pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 429.
- [26 <./img/model/out-sample_rf.png> <./img/model/vimp_rf.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 429.
+
+
+LaTeX Warning: Citation 'breiman2001random' on page 25 undefined on input line 
+447.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 451.
+[25 <./img/model/out-sample_rf.png> <./img/model/vimp_rf.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 451.
 
 (./modeling_fies.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 429.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 429.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 451.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 451.
 Package rerunfilecheck Info: File `modeling_fies.out' has not changed.
-(rerunfilecheck)             Checksum: 090940BC07C32E34D47DB7333E84F038;1606.
+(rerunfilecheck)             Checksum: DDBF6650491007A4CDDEEDD4FD05DDFF;1846.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                modeling_fies
+(biblatex)                and rerun LaTeX afterwards.
 
 Package logreq Info: Writing requests to 'modeling_fies.run.xml'.
 \openout1 = `modeling_fies.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 429.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 451.
  ) 
 Here is how much of TeX's memory you used:
- 16652 strings out of 483107
- 289040 string characters out of 5964631
- 925494 words of memory out of 5000000
- 31310 multiletter control sequences out of 15000+600000
- 539837 words of font info for 50 fonts, out of 8000000 for 9000
+ 16481 strings out of 483107
+ 283575 string characters out of 5964631
+ 921571 words of memory out of 5000000
+ 31175 multiletter control sequences out of 15000+600000
+ 539536 words of font info for 49 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 48i,8n,46p,1377b,1403s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 48i,9n,46p,1379b,1337s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/mattcoop/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.
 600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on modeling_fies.pdf (26 pages, 4279476 bytes).
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on modeling_fies.pdf (25 pages, 4842090 bytes).
 PDF statistics:
- 538 PDF objects out of 1000 (max. 8388607)
- 462 compressed objects within 5 object streams
- 120 named destinations out of 1000 (max. 500000)
- 296 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 407 PDF objects out of 1000 (max. 8388607)
+ 330 compressed objects within 4 object streams
+ 83 named destinations out of 1000 (max. 500000)
+ 330 words of extra memory for PDF output out of 10000 (max. 10000000)
 

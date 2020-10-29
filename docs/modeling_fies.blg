@@ -1,20 +1,16 @@
 [0] Config.pm:304> INFO - This is Biber 2.14 (beta)
 [0] Config.pm:307> INFO - Logfile is 'modeling_fies.blg'
-[76] biber:322> INFO - === Mon Oct 26, 2020, 20:42:32
-[89] Biber.pm:415> INFO - Reading 'modeling_fies.bcf'
-[157] Biber.pm:943> INFO - Found 38 citekeys in bib section 0
-[170] Biber.pm:4256> INFO - Processing section 0
-[170] Utils.pm:75> INFO - Globbing data source 'library.bib'
-[171] Utils.pm:91> INFO - Globbed data source 'library.bib' to library.bib
-[180] Biber.pm:4455> INFO - Looking for bibtex format file 'library.bib' for section 0
-[250] bibtex.pm:1653> INFO - LaTeX decoding ...
-[1962] bibtex.pm:1471> INFO - Found BibTeX data source 'library.bib'
-[2203] Utils.pm:293> WARN - year field '2004-2017' in entry 'dhsall' is not an integer - this will probably not sort properly.
-[2357] Utils.pm:293> WARN - I didn't find a database entry for 'friedman2001elements' (section 0)
-[2388] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[2388] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[2388] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[2388] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[2425] bbl.pm:652> INFO - Writing 'modeling_fies.bbl' with encoding 'UTF-8'
-[2462] bbl.pm:755> INFO - Output to modeling_fies.bbl
-[2462] Biber.pm:128> INFO - WARNINGS: 2
+[66] biber:322> INFO - === Thu Oct 29, 2020, 02:06:11
+[79] Biber.pm:415> INFO - Reading 'modeling_fies.bcf'
+[139] Biber.pm:943> INFO - Found 40 citekeys in bib section 0
+[153] Biber.pm:4256> INFO - Processing section 0
+[153] Utils.pm:75> INFO - Globbing data source 'library.bib'
+[153] Utils.pm:91> INFO - Globbed data source 'library.bib' to library.bib
+[163] Biber.pm:4455> INFO - Looking for bibtex format file 'library.bib' for section 0
+[228] bibtex.pm:1653> INFO - LaTeX decoding ...
+[1776] bibtex.pm:1471> INFO - Found BibTeX data source 'library.bib'
+[1958] Utils.pm:293> WARN - year field '2004-2017' in entry 'dhsall' is not an integer - this will probably not sort properly.
+[2118] Utils.pm:293> WARN - BibTeX subsystem: /tmp/biber_tmp_HOWo/library.bib_67557.utf8, line 437, warning: possible runaway string started at line 436
+[2118] Utils.pm:309> ERROR - BibTeX subsystem: /tmp/biber_tmp_HOWo/library.bib_67557.utf8, line 440, syntax error: found "@article", expected end of entry ("}" or ")") (skipping to next "@")
+[2118] Biber.pm:128> INFO - WARNINGS: 2
+[2118] Biber.pm:132> INFO - ERRORS: 1
