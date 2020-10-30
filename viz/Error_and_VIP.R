@@ -1,6 +1,6 @@
 # setwd('~/wdl-fies');library(ProjectTemplate);load.project()
-#setwd('~/wdl-fies/docs/img')
-setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
+setwd('~/wdl-fies/docs/img')
+#setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
 
 library(cowplot)
 library(gridGraphics)
@@ -53,32 +53,59 @@ ggsave('VIMP.pdf', width=7, height=3.75)
 mae.mod <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
 mae.sev <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred))
 
-r2.mod <- cor(moddat$fies.mod, moddat$fies.mod.pred)
-r2.sev <- cor(moddat$fies.sev, moddat$fies.sev.pred)
-
+r2.mod <- cor(moddat$fies.mod, moddat$fies.mod.pred)^2
+r2.sev <- cor(moddat$fies.sev, moddat$fies.sev.pred)^2
 
 mod.res <- ggplot(moddat) + 
   geom_point(aes(x=fies.mod, y=fies.mod.pred), alpha = 0.3) + 
   geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
   xlim(0, 1) + ylim(0, 1) +
-  labs(caption=paste0('Mean Squared Error: ',  round(mse, 4),
-                      '\nR-Squared: ', round(r2, 4)),
+  labs(caption=paste0('Mean Average Error: ',  round(mae.mod, 4),
+                      '\nR-Squared: ', round(r2.mod, 4)),
        x='Observed Rates Of Moderat-to-Severe Food Insecurity',
        y='Modeled Rates Of Moderat-to-Severe Food Insecurity'); mod.res
-#ggsave('model/mod.residuals_rf.png', width=5, height=5)
 
-mse <- mean(sqrt((moddat$fies.sev - moddat$fies.sev.pred)^2))
-r2 <- cor(moddat$fies.sev, moddat$fies.sev.pred)
 sev.res <- ggplot(moddat) + 
   geom_point(aes(x=fies.sev, y=fies.sev.pred), alpha = 0.3) +
   geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
   xlim(0, 1) + ylim(0, 1) +
-  labs(caption=paste0('Mean Squared Error: ',  round(mse, 4),
-                      '\nR-Squared: ', round(r2, 4)),
+  labs(caption=paste0('Mean Average Error: ',  round(mae.sev, 4),
+                      '\nR-Squared: ', round(r2.sev, 4)),
        x='Observed Rates Of Severe Food Insecurity',
        y='Modeled Rates Of Severe Food Insecurity')	; sev.res
-#ggsave('model/sev.residuals_rf.png', width=5, height=5)
 
 plot_grid(mod.res, sev.res, align='h',labels='AUTO')
-ggsave('model/in-sample_rf.png', width=14, height=7)
+ggsave('docs/img/model/in-sample_rf.png', width=14, height=7)
+
+
+#Out of Sample
+mae.mod <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred.cv))
+mae.sev <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred.cv))
+
+r2.mod <- cor(moddat$fies.mod, moddat$fies.mod.pred.cv)^2
+r2.sev <- cor(moddat$fies.sev, moddat$fies.sev.pred.cv)^2
+
+mod.res <- ggplot(moddat) + 
+  geom_point(aes(x=fies.mod, y=fies.mod.pred.cv), alpha = 0.3) + 
+  geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
+  xlim(0, 1) + ylim(0, 1) +
+  labs(caption=paste0('Mean Average Error: ',  round(mae.mod, 4),
+                      '\nR-Squared: ', round(r2.mod, 4)),
+       x='Observed Rates Of Moderat-to-Severe Food Insecurity',
+       y='Modeled Rates Of Moderat-to-Severe Food Insecurity'); mod.res
+
+sev.res <- ggplot(moddat) + 
+  geom_point(aes(x=fies.sev, y=fies.sev.pred.cv), alpha = 0.3) +
+  geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
+  xlim(0, 1) + ylim(0, 1) +
+  labs(caption=paste0('Mean Average Error: ',  round(mae.sev, 4),
+                      '\nR-Squared: ', round(r2.sev, 4)),
+       x='Observed Rates Of Severe Food Insecurity',
+       y='Modeled Rates Of Severe Food Insecurity')	; sev.res
+
+plot_grid(mod.res, sev.res, align='h',labels='AUTO')
+ggsave('docs/img/model/out-sample_rf.png', width=14, height=7)
+
+
+
 

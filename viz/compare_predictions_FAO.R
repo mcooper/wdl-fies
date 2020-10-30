@@ -25,6 +25,31 @@ preddat2 <- preddat %>%
 m <- merge(compare, preddat2, all.x=T, all.y=F) %>%
   na.omit
 
+fao <- unique(compare$ISO3)
+mod <- unique(moddat$ISO3)
+out <- fao[!fao %in% mod]
+
+#Remove china - they have estimates better than Norway??
+out <- out[out != 'CHN']
+
+s <- m %>%
+  filter(ISO3 %in% out)
+
+plot(s$fies.mod.3yr.fao, s$fies.mod.3yr.pred)
+cor(s$fies.mod.3yr.fao, s$fies.mod.3yr.pred)
+mean(abs(s$fies.mod.3yr.fao - s$fies.mod.3yr.pred))
+
+plot(s$fies.sev.3yr.fao, s$fies.sev.3yr.pred)
+cor(s$fies.sev.3yr.fao, s$fies.sev.3yr.pred)
+mean(abs(s$fies.sev.3yr.fao - s$fies.sev.3yr.pred))
+
+
+
+
+
+
+
+
 plot(m$fies.mod.3yr.fao, m$fies.mod.3yr.pred)
 cor(m$fies.mod.3yr.fao, m$fies.mod.3yr.pred)
 

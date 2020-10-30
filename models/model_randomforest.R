@@ -76,9 +76,10 @@ moddat$fies.sev.pred <- inv.logit(as.numeric(predict(rf.sev, moddat)$predicted))
 preddat$fies.sev.pred <- inv.logit(as.numeric(predict(rf.sev, preddat)$predicted))
 
 #Run model under k-fold cross validation
-samp <- sample(1:10, nrow(moddat), replace=T)
+iso3s <- unique(moddat$ISO3)
+samp <- sample(1:10, length(iso3s), replace=T)
 for (s in 1:10){
-  ix <- samp != s
+  ix <- moddat$ISO3 %in% iso3s[samp != s]
 
   rf.mod.cv <- rfsrc(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
                   data = moddat[ix, ],
