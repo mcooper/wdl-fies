@@ -127,15 +127,31 @@ rates <- preddat %>%
   filter(YEAR >= 2010) %>%
   group_by(YEAR, region) %>%
   summarize(mod.rate=weighted.mean(fies.mod.pred, w=population, na.rm=T),
-            sev.rate=weighted.mean(fies.sev.pred, w=population, na.rm=T)) %>%
-  gather(var, value, -YEAR, -region) %>%
+            sev.rate=weighted.mean(fies.sev.pred, w=population, na.rm=T),
+            population=sum(population)) %>%
+  gather(var, value, -YEAR, -region, -population) %>%
   mutate(var = ifelse(grepl('mod', var), "Moderate", "Severe")) %>%
   group_by(region, var) %>%
   mutate(value = rollapply(value, width=3, FUN=mean, align='center', partial=TRUE))
 
-ratelines <- ggplot(rates) +
-  geom_line(aes(x=YEAR, y=value, color=region), size=1) +
-  scale_color_manual(values=region_cols) + 
+world <- rates %>%
+  group_by(YEAR, var) %>%
+  summarize(value=weighted.mean(value, w=population, na.rm=T)) %>%
+  mutate(region='World')
+
+ratesb <- bind_rows(rates, world)
+
+region_cols2 <- c(region_cols, "World"="#000000")
+size <- c(rep(1, 8), 2)
+names(size) <- names(region_cols2)
+lty <- c(rep(1, 8), 2)
+names(lty) <- names(region_cols2)
+
+(ratelines <- ggplot() +
+  geom_line(data=ratesb, aes(x=YEAR, y=value, color=region, size=region, linetype=region), show.legend=F) +
+  scale_color_manual(values=region_cols2) + 
+  scale_size_manual(values=size) + 
+  scale_linetype_manual(values=lty) + 
   theme_bw() + 
   theme(plot.margin=unit(c(-1, 0.5, 0, 0), 'lines'),
         panel.spacing=unit(2, 'lines')) + 
@@ -144,8 +160,42 @@ ratelines <- ggplot(rates) +
                      labels=function(x){paste0(x*100, '%')}) +
   labs(x='', y="",
        title="") +
-  guides(color=FALSE) +           
-  facet_grid(. ~ var)
+  facet_grid(. ~ var))
 
-plot_grid(ratelines, reg, ncol=1, rel_heights=c(2.5, 1))
+
+(legendplot <- ggplot() + 
+  geom_line(aes(x=c(0,1), y=c(0, 1), color=c('World', 'World'), 
+                size=c('World', 'World'), linetype=c('World', 'World'))) +
+  scale_size_manual(values=1) + 
+  scale_color_manual(values='#4d4d4d') + 
+  scale_linetype_manual(values=2) + 
+  theme_bw()+ 
+  labs(color='', linetype='', size='') + 
+  theme(legend.key.width = unit(3, "cm"),
+        legend.box.margin = ggplot2::margin(-5, -5, -5, -5),
+        legend.box.background = element_rect(fill = "transparent", colour = NA),
+        legend.background = element_rect(fill = "transparent", colour = NA)))
+
+pltleg <- get_legend(legendplot)
+regleg <- get_legend(reg)
+
+regnoleg <- ggplot(regdat) + 
+  geom_sf(aes(fill=region_sdg), color=NA) + 
+  coord_sf(crs='+proj=robin') + 
+  theme_void() + 
+  scale_fill_manual(values=region_cols) + 
+  guides(fill=FALSE) + 
+  labs(fill='')
+
+plot_grid(ratelines,
+          plot_grid(regnoleg,
+                    plot_grid(pltleg, 
+                              regleg, 
+                              ncol=1, 
+                              rel_heights=c(1, 4)),
+                    ncol=2,
+                    rel_widths=c(1, 1.5)),
+          ncol=1,
+          rel_heights=c(2.5, 1))
+
 ggsave('Rates.pdf', width=7, height=5)

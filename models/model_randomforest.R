@@ -1,10 +1,12 @@
-#######################################################
+######################################################
 # use random forest with ssp covariates
 # to estimate food insecurity, based on data for
 # modeled for 2020, 2025, and 2030
 #######################################################
 
-# setwd('~/wdl-fies'); library(ProjectTemplate); load.project()
+set.seed(100)
+
+setwd('~/wdl-fies'); library(ProjectTemplate); load.project()
 
 # read in data
 moddat <- merge(fies_subnat,
@@ -33,7 +35,7 @@ rf.tune.mod <- tune.rfsrc(formula = as.formula(paste("fies.mod",
                           data = moddat,
                           mtryStart = ncol(moddat)/2, 
                           nodesizeTry = c(1:3),
-                          ntree = 5000,
+                          ntree = 1000,
                           sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
                           trace = T,
                           dobest = T); rf.tune.mod$optimal
@@ -41,7 +43,7 @@ rf.tune.mod <- tune.rfsrc(formula = as.formula(paste("fies.mod",
 # model
 rf.mod <- rfsrc(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
                 data = moddat,
-                ntree = 5000, 
+                ntree = 1000, 
                 mtry = rf.tune.mod$optimal[[2]],
                 nodesize = rf.tune.mod$optimal[[1]],
                 do.trace = TRUE)
@@ -57,14 +59,14 @@ rf.tune.sev <- tune.rfsrc(formula = as.formula(paste("fies.sev",
                           data = moddat,
                           mtryStart = ncol(moddat)/2, 
                           nodesizeTry = c(1:3),
-                          ntree = 5000,
+                          ntree = 1000,
                           sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
                           trace = T,
                           dobest = T); rf.tune.sev$optimal
 # model
 rf.sev <- rfsrc(formula = as.formula(paste("fies.sev", paste(vars, collapse = "+"), sep= "~")),
                 data = moddat,
-                ntree = 5000, 
+                ntree = 1000, 
                 mtry = rf.tune.sev$optimal[[2]],
                 nodesize = rf.tune.sev$optimal[[1]],
                 do.trace = TRUE)
@@ -73,6 +75,30 @@ rf.sev <- rfsrc(formula = as.formula(paste("fies.sev", paste(vars, collapse = "+
 moddat$fies.sev.pred <- inv.logit(as.numeric(predict(rf.sev, moddat)$predicted))
 preddat$fies.sev.pred <- inv.logit(as.numeric(predict(rf.sev, preddat)$predicted))
 
+#Run model under k-fold cross validation
+samp <- sample(1:10, nrow(moddat), replace=T)
+for (s in 1:10){
+  ix <- samp != s
+
+  rf.mod.cv <- rfsrc(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
+                  data = moddat[ix, ],
+                  ntree = 1000, 
+                  mtry = rf.tune.mod$optimal[[2]],
+                  nodesize = rf.tune.mod$optimal[[1]],
+                  do.trace = TRUE)
+  
+  rf.sev.cv <- rfsrc(formula = as.formula(paste("fies.sev", paste(vars, collapse = "+"), sep= "~")),
+                  data = moddat[ix, ],
+                  ntree = 1000, 
+                  mtry = rf.tune.sev$optimal[[2]],
+                  nodesize = rf.tune.sev$optimal[[1]],
+                  do.trace = TRUE)
+
+  moddat$fies.mod.pred.cv[!ix] <- inv.logit(predict(rf.mod.cv, moddat[!ix,])$predicted)
+  moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(rf.sev.cv, moddat[!ix,])$predicted)
+}
+
+#Re-transform true outcomes
 moddat <- moddat %>%
   mutate(fies.mod = inv.logit(fies.mod),
          fies.sev = inv.logit(fies.sev))

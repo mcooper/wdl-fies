@@ -6,6 +6,10 @@ library(cowplot)
 library(gridGraphics)
 options(scipen=100)
 
+####################################
+# Variable Importance
+###################################
+
 vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
                                             'fies.sev.rur', 'fies.mod.urb', 'fies.sev.urb',
                                             'fies.mod.pred', 'fies.sev.pred',
@@ -43,33 +47,16 @@ ggplot(df) +
   labs(x='', y='Increase in Model Error When Variable is Permutated')
 ggsave('VIMP.pdf', width=7, height=3.75)
 
-# variable effect
-# png('model/mod.coefs_rf.png', width = 1000, height = 800, units="px")
-# plot.variable.rfsrc(rf.mod, sorted = T)
-# dev.off()
-# 
-# png('model/sev.coefs_rf.png', width = 1000, height = 800, units="px")
-# plot.variable.rfsrc(rf.sev, sorted = T)
-# dev.off()
-# 
-# plot.variable.rfsrc(rf.mod, sorted = T)
-# grid.echo()
-# mod.coef <- grid.grab()
-# 
-# plot.variable.rfsrc(rf.sev, sorted = T)
-# grid.echo()
-# sev.coef <- grid.grab()
-# 
-# plot_grid(plot.variable.rfsrc(rf.mod, sorted = T), plot.variable.rfsrc(rf.mod, sorted = T), align='h',labels='AUTO', scale = 0.8)
-# ggsave('model/coef_rf.png', width=18, height=8)
-
-
-
 ##################################
 # assess residuals
 ##################################
-mse <- mean(sqrt((moddat$fies.mod - moddat$fies.mod.pred)^2))
-r2 <- cor(moddat$fies.mod, moddat$fies.mod.pred)
+mae.mod <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
+mae.sev <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred))
+
+r2.mod <- cor(moddat$fies.mod, moddat$fies.mod.pred)
+r2.sev <- cor(moddat$fies.sev, moddat$fies.sev.pred)
+
+
 mod.res <- ggplot(moddat) + 
   geom_point(aes(x=fies.mod, y=fies.mod.pred), alpha = 0.3) + 
   geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
