@@ -25,94 +25,61 @@ vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
                                             'population', 'YEAR', 'rural_perc', 'region')]
 
 moddat <- moddat %>%
-  mutate(fies.mod = logit(fies.mod),
-         fies.sev = logit(fies.sev))
+  mutate(fies.mod.logit = logit(fies.mod),
+         fies.sev.logit = logit(fies.sev))
 
-prm <- expand.grid(list(node=c(1:7),
-                        mtry=c(6,5,4,3),
-                        depth=c(1:5, -1)))
+prm <- expand.grid(list(node=c(1:10, 12, 14, 16, 20, 25, 100),
+                        mtry=c(6:1),
+                        depth=c(1:7, -1)))
+
 prm$ix <- 1:nrow(prm)
 
-
-#Run model under k-fold cross validation
+#Run model under 10-fold cross validation
+#at the country level
 iso3s <- unique(moddat$ISO3)
 samp <- sample(1:10, length(iso3s), replace=T)
 for (i in 1:nrow(prm)){
+  cat(round(i/nrow(prm)*100, 2), 'percent done!\n')
   for (s in 1:10){
     ix <- moddat$ISO3 %in% iso3s[samp != s]
-
+    
     mtry <- prm$mtry[i]
     node <- prm$node[i]
     if(prm$depth[i] < 0){
       depth <- prm$depth[i]
     } else{
-      depth <- nULL
+      depth <- NULL
     }
-
-    rf.mod <- rfsrc(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
-                    data = moddat[ix, ],
-                    ntree = 1000, 
-                    mtry = mtry,
-                    nodesize = node,
-                    depth = depth,
-                    do.trace = TRUE)
     
-    rf.sev <- rfsrc(formula = as.formula(paste("fies.sev", paste(vars, collapse = "+"), sep= "~")),
+    rf.mod <- rfsrc(formula = as.formula(paste("fies.mod.logit", 
+                                               paste(vars, collapse = "+"), sep= "~")),
                     data = moddat[ix, ],
                     ntree = 1000, 
                     mtry = mtry,
                     nodesize = node,
-                    depth = depth,
-                    do.trace = TRUE)
+                    depth = depth)
+    
+    rf.sev <- rfsrc(formula = as.formula(paste("fies.sev.logit", 
+                                               paste(vars, collapse = "+"), sep= "~")),
+                    data = moddat[ix, ],
+                    ntree = 1000, 
+                    mtry = mtry,
+                    nodesize = node,
+                    depth = depth)
       
     moddat$fies.mod.pred[!ix] <- inv.logit(predict(rf.mod, moddat[!ix,])$predicted)
     moddat$fies.sev.pred[!ix] <- inv.logit(predict(rf.sev, moddat[!ix,])$predicted)
-
-    prm$sev.rsq <- cor(moddat$fies.sev.pred, moddat$fies.sev)^2
-    prm$mod.rsq <- cor(moddat$fies.mod.pred, moddat$fies.mod)^2
+    
+    prm$sev.rsq[i] <- cor(moddat$fies.sev.pred, moddat$fies.sev)^2
+    prm$mod.rsq[i] <- cor(moddat$fies.mod.pred, moddat$fies.mod)^2
   }
 }
 
-
-# model
-rf.mod <- rfsrc(formula = as.formula(paste("fies.mod", paste(vars, collapse = "+"), sep= "~")),
-                data = moddat,
-                ntree = 1000, 
-                mtry = rf.tune.mod$optimal[[2]],
-                nodesize = rf.tune.mod$optimal[[1]],
-                do.trace = TRUE)
-
-#get predications
-moddat$fies.mod.pred <- inv.logit(predict(rf.mod, moddat)$predicted)
-preddat$fies.mod.pred <- inv.logit(predict(rf.mod, preddat)$predicted)
-
-## sev
-# tune parameters
-rf.tune.sev <- tune.rfsrc(formula = as.formula(paste("fies.sev", 
-                                                     paste(vars, collapse = "+"), sep= "~")),
-                          data = moddat,
-                          mtryStart = ncol(moddat)/2, 
-                          nodesizeTry = c(1:3),
-                          ntree = 1000,
-                          sampsize = min(nrow(moddat)*.632, max(150, nrow(moddat)^(3/4))),
-                          trace = T,
-                          dobest = T); rf.tune.sev$optimal
-# model
-rf.sev <- rfsrc(formula = as.formula(paste("fies.sev", paste(vars, collapse = "+"), sep= "~")),
-                data = moddat,
-                ntree = 1000, 
-                mtry = rf.tune.sev$optimal[[2]],
-                nodesize = rf.tune.sev$optimal[[1]],
-                do.trace = TRUE)
+system('~/telegram.sh "Done Running Random Forests"')
 
 # predictions
 moddat$fies.sev.pred <- inv.logit(as.numeric(predict(rf.sev, moddat)$predicted))
 preddat$fies.sev.pred <- inv.logit(as.numeric(predict(rf.sev, preddat)$predicted))
-
-#Re-transform true outcomes
-moddat <- moddat %>%
-  mutate(fies.mod = inv.logit(fies.mod),
-         fies.sev = inv.logit(fies.sev))
 
 write.csv(preddat, 'data/preddat.csv', row.names=F)
 write.csv(moddat, 'data/moddat.csv', row.names=F)
