@@ -32,14 +32,20 @@ prm <- expand.grid(list(node=c(1:10, 12, 14, 16, 20, 25, 100),
                         mtry=c(6:1),
                         depth=c(1:7, -1)))
 
+prm2 <- expand.grid(list(node=c(1:10, 12, 14, 16, 20, 25, 100),
+                        mtry=c(13:1),
+                        depth=c(1:10, -1)))
+
+prm <- bind_rows(prm, prm2[!paste(prm2$node, prm2$depth, prm2$mtry, sep='-') %in% paste(prm$node, prm$depth, prm$mtry, sep='-'), ])
+
 prm$ix <- 1:nrow(prm)
 
 #Run model under 10-fold cross validation
 #at the country level
 iso3s <- unique(moddat$ISO3)
 samp <- sample(1:10, length(iso3s), replace=T)
-for (i in 1:nrow(prm)){
-  cat(round(i/nrow(prm)*100, 2), 'percent done!\n')
+for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
+  cat(round(sum(!is.na(prm$sev.rsq))/nrow(prm)*100, 2), 'percent done!\n')
   for (s in 1:10){
     ix <- moddat$ISO3 %in% iso3s[samp != s]
     
@@ -74,6 +80,9 @@ for (i in 1:nrow(prm)){
     prm$mod.rsq[i] <- cor(moddat$fies.mod.pred, moddat$fies.mod)^2
   }
 }
+
+prm[which.max(prm$mod.rsq), ]
+prm[which.max(prm$sev.rsq), ]
 
 system('~/telegram.sh "Done Running Random Forests"')
 
