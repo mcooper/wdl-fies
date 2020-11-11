@@ -47,26 +47,39 @@ system('pdfcrop FullMap.pdf FullMap.pdf')
 ###########################
 # Setup Reference Map
 ############################
-region_cols <- c("Central & Southern Asia"="#F36D25",
-                 "Sub-Saharan Africa"="#E11484",
-                 "Europe & Northern America"="#02558B",
-                  "Northern Africa & Western Asia"="#F99D26",
-                  "Latin America & the Caribbean"="#00AED9",
-                  "Australia & New Zealand"="#EB1C2D",
-                  "Eastern & South-Eastern Asia"="#279B48",
-                  "Oceania"="#901A3A")
+region_cols <- c("High income"="#279B48",
+                 "Upper-middle income"="#02558B",
+                 "Lower-middle income"="#F36D25",
+                 "Low income"="#EB1C2D")
 
-regdat <- merge(cty %>%
-                  select(ISO3 = iso_a3),
-                regions)
+regdat <- cty %>% select(ISO3 = iso_a3, region_wb = income_grp) #use world bank regions by income
+
+# rename and change order from high income to low income
+regdat$region_wb[regdat$region_wb == "1. High income: OECD"] <- "High income"
+regdat$region_wb[regdat$region_wb == "2. High income: nonOECD"] <- "High income"
+regdat$region_wb[regdat$region_wb == "3. Upper middle income"] <- "Upper-middle income"
+regdat$region_wb[regdat$region_wb == "4. Lower middle income"] <- "Lower-middle income"
+regdat$region_wb[regdat$region_wb == "5. Low income"] <- "Low income"
+
 
 reg <- ggplot(regdat) + 
-  geom_sf(aes(fill=region_sdg), color=NA) + 
+  geom_sf(aes(fill=factor(regdat$region_wb, levels = c("High income", 
+                                                       "Upper-middle income", 
+                                                       "Lower-middle income", 
+                                                       "Low income"))),
+          color=NA) + 
   coord_sf(crs='+proj=robin') + 
   theme_void() + 
   scale_fill_manual(values=region_cols) + 
   guides(fill=guide_legend(ncol=2)) + 
   labs(fill='')
+
+
+#also change regions in preddat
+preddat <- merge(preddat, st_drop_geometry(regdat)) %>%
+  select(-region) %>%
+  rename(region = "region_wb")
+
 
 #####################
 # totals time series
@@ -142,9 +155,9 @@ world <- rates %>%
 ratesb <- bind_rows(rates, world)
 
 region_cols2 <- c(region_cols, "World"="#000000")
-size <- c(rep(1, 8), 2)
+size <- c(rep(1, 4), 2)
 names(size) <- names(region_cols2)
-lty <- c(rep(1, 8), 2)
+lty <- c(rep(1, 4), 2)
 names(lty) <- names(region_cols2)
 
 (ratelines <- ggplot() +
@@ -180,7 +193,7 @@ pltleg <- get_legend(legendplot)
 regleg <- get_legend(reg)
 
 regnoleg <- ggplot(regdat) + 
-  geom_sf(aes(fill=region_sdg), color=NA) + 
+  geom_sf(aes(fill=region_wb), color=NA) + 
   coord_sf(crs='+proj=robin') + 
   theme_void() + 
   scale_fill_manual(values=region_cols) + 
