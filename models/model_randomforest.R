@@ -32,9 +32,9 @@ prm <- expand.grid(list(node=c(1:10, 12, 14, 16, 20, 25, 100),
                         mtry=c(6:1),
                         depth=c(1:7, -1)))
 
-prm2 <- expand.grid(list(node=c(1:10, 12, 14, 16, 20, 25, 100),
+prm2 <- expand.grid(list(node=c(1:10, 12, 14, 15, 16, 17, 18, 19, 20, 25, 100),
                         mtry=c(13:1),
-                        depth=c(1:10, -1)))
+                        depth=c(1:13, -1)))
 
 prm <- bind_rows(prm, prm2[!paste(prm2$node, prm2$depth, prm2$mtry, sep='-') %in% paste(prm$node, prm$depth, prm$mtry, sep='-'), ])
 
@@ -80,6 +80,8 @@ for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
     prm$mod.rsq[i] <- cor(moddat$fies.mod.pred, moddat$fies.mod)^2
   }
 }
+
+write.csv(prm, 'data/prm.csv', row.names=F)
 
 prm[which.max(prm$mod.rsq), ]
 prm[which.max(prm$sev.rsq), ]
