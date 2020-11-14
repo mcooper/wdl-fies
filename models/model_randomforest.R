@@ -40,8 +40,10 @@ prm <- bind_rows(prm, prm2[!paste(prm2$node, prm2$depth, prm2$mtry, sep='-') %in
 
 prm$ix <- 1:nrow(prm)
 
+#############################################
 #Run model under 10-fold cross validation
 #at the country level
+##########################################
 iso3s <- unique(moddat$ISO3)
 samp <- sample(1:10, length(iso3s), replace=T)
 for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
@@ -83,15 +85,37 @@ for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
 
 write.csv(prm, 'data/prm.csv', row.names=F)
 
-prm[which.max(prm$mod.rsq), ]
-prm[which.max(prm$sev.rsq), ]
+mod.prm <- prm[which.max(prm$mod.rsq), ]
+sev.prm <- prm[which.max(prm$sev.rsq), ]
 
 system('~/telegram.sh "Done Running Random Forests"')
+
+#########################################
+# Run full models with best parameters
+##########################################
+
+rf.mod <- rfsrc(formula = as.formula(paste("fies.mod.logit", 
+                                           paste(vars, collapse = "+"), sep= "~")),
+                data = moddat,
+                ntree = 5000, 
+                mtry = mod.prm$mtry,
+                nodesize = mod.prm$node,
+                depth = mod.prm$depth)
+
+rf.sev <- rfsrc(formula = as.formula(paste("fies.sev.logit", 
+                                           paste(vars, collapse = "+"), sep= "~")),
+                data = moddat,
+                ntree = 5000, 
+                mtry = sev.prm$mtry,
+                nodesize = sev.prm$node,
+                depth = sev.prm$depth)
 
 # predictions
 moddat$fies.sev.pred <- inv.logit(as.numeric(predict(rf.sev, moddat)$predicted))
 preddat$fies.sev.pred <- inv.logit(as.numeric(predict(rf.sev, preddat)$predicted))
+moddat$fies.mod.pred <- inv.logit(as.numeric(predict(rf.mod, moddat)$predicted))
+preddat$fies.mod.pred <- inv.logit(as.numeric(predict(rf.mod, preddat)$predicted))
 
 write.csv(preddat, 'data/preddat.csv', row.names=F)
 write.csv(moddat, 'data/moddat.csv', row.names=F)
-save(list=c('rf.mod', 'rf.sev', 'rf.tune.mod', 'rf.tune.sev'), file='data/models.RData')
+save(list=c('rf.mod', 'rf.sev'), file='data/models.RData')
