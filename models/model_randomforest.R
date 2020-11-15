@@ -36,9 +36,13 @@ prm2 <- expand.grid(list(node=c(1:10, 12, 14, 15, 16, 17, 18, 19, 20, 25, 100),
                         mtry=c(13:1),
                         depth=c(1:13, -1)))
 
+prm$sev.mae <- NA
+prm$mod.mae <- NA
+
 prm <- bind_rows(prm, prm2[!paste(prm2$node, prm2$depth, prm2$mtry, sep='-') %in% paste(prm$node, prm$depth, prm$mtry, sep='-'), ])
 
 prm$ix <- 1:nrow(prm)
+
 
 #############################################
 #Run model under 10-fold cross validation
@@ -78,9 +82,11 @@ for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
     moddat$fies.mod.pred[!ix] <- inv.logit(predict(rf.mod, moddat[!ix,])$predicted)
     moddat$fies.sev.pred[!ix] <- inv.logit(predict(rf.sev, moddat[!ix,])$predicted)
     
-    prm$sev.rsq[i] <- cor(moddat$fies.sev.pred, moddat$fies.sev)^2
-    prm$mod.rsq[i] <- cor(moddat$fies.mod.pred, moddat$fies.mod)^2
   }
+  prm$sev.rsq[i] <- cor(moddat$fies.sev.pred, moddat$fies.sev)^2
+  prm$mod.rsq[i] <- cor(moddat$fies.mod.pred, moddat$fies.mod)^2
+  prm$sev.mae[i] <- mean(abs(moddat$fies.sev.pred - moddat$fies.sev))
+  prm$mod.mae[i] <- mean(abs(moddat$fies.mod.pred - moddat$fies.mod))
 }
 
 write.csv(prm, 'data/prm.csv', row.names=F)
