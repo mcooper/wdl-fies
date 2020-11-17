@@ -48,12 +48,10 @@ prm$ix <- 1:nrow(prm)
 #Run model under 10-fold cross validation
 #at the country level
 ##########################################
-iso3s <- unique(moddat$ISO3)
-samp <- sample(1:10, length(iso3s), replace=T)
 for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
   cat(round(sum(!is.na(prm$sev.rsq))/nrow(prm)*100, 2), 'percent done!\n')
-  for (s in 1:10){
-    ix <- moddat$ISO3 %in% iso3s[samp != s]
+  for (iso3 in unique(moddat$ISO3)){
+    ix <- moddat$ISO3 != iso3
     
     mtry <- prm$mtry[i]
     node <- prm$node[i]
@@ -79,14 +77,14 @@ for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
                     nodesize = node,
                     depth = depth)
       
-    moddat$fies.mod.pred[!ix] <- inv.logit(predict(rf.mod, moddat[!ix,])$predicted)
-    moddat$fies.sev.pred[!ix] <- inv.logit(predict(rf.sev, moddat[!ix,])$predicted)
+    moddat$fies.mod.pred.cv[!ix] <- inv.logit(predict(rf.mod, moddat[!ix,])$predicted)
+    moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(rf.sev, moddat[!ix,])$predicted)
     
   }
-  prm$sev.rsq[i] <- cor(moddat$fies.sev.pred, moddat$fies.sev)^2
-  prm$mod.rsq[i] <- cor(moddat$fies.mod.pred, moddat$fies.mod)^2
-  prm$sev.mae[i] <- mean(abs(moddat$fies.sev.pred - moddat$fies.sev))
-  prm$mod.mae[i] <- mean(abs(moddat$fies.mod.pred - moddat$fies.mod))
+  prm$sev.rsq[i] <- cor(moddat$fies.sev.pred.cv, moddat$fies.sev)^2
+  prm$mod.rsq[i] <- cor(moddat$fies.mod.pred.cv, moddat$fies.mod)^2
+  prm$sev.mae[i] <- mean(abs(moddat$fies.sev.pred.cv - moddat$fies.sev))
+  prm$mod.mae[i] <- mean(abs(moddat$fies.mod.pred.cv - moddat$fies.mod))
 }
 
 write.csv(prm, 'data/prm.csv', row.names=F)
@@ -95,6 +93,56 @@ mod.prm <- prm[which.max(prm$mod.rsq), ]
 sev.prm <- prm[which.max(prm$sev.rsq), ]
 
 system('~/telegram.sh "Done Running Random Forests"')
+
+###################################################
+# Re-run cross validation for best hyperparameters
+#################################################
+i <- mod.prm$ix
+for (s in 1:10){
+  ix <- moddat$ISO3 %in% iso3s[samp != s]
+  
+  mtry <- prm$mtry[i]
+  node <- prm$node[i]
+  if(prm$depth[i] < 0){
+    depth <- prm$depth[i]
+  } else{
+    depth <- NULL
+  }
+  
+  rf.mod <- rfsrc(formula = as.formula(paste("fies.mod.logit", 
+                                             paste(vars, collapse = "+"), sep= "~")),
+                  data = moddat[ix, ],
+                  ntree = 1000, 
+                  mtry = mtry,
+                  nodesize = node,
+                  depth = depth)
+    
+  moddat$fies.mod.pred.cv[!ix] <- inv.logit(predict(rf.mod, moddat[!ix,])$predicted)
+}
+
+i <- sev.prm$ix
+for (s in 1:10){
+  ix <- moddat$ISO3 %in% iso3s[samp != s]
+  
+  mtry <- prm$mtry[i]
+  node <- prm$node[i]
+  if(prm$depth[i] < 0){
+    depth <- prm$depth[i]
+  } else{
+    depth <- NULL
+  }
+  
+  rf.sev <- rfsrc(formula = as.formula(paste("fies.mod.logit", 
+                                             paste(vars, collapse = "+"), sep= "~")),
+                  data = moddat[ix, ],
+                  ntree = 1000, 
+                  mtry = mtry,
+                  nodesize = node,
+                  depth = depth)
+    
+  moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(rf.mod, moddat[!ix,])$predicted)
+}
+
 
 #########################################
 # Run full models with best parameters

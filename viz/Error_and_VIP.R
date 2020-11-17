@@ -95,10 +95,36 @@ sev.res <- ggplot(moddat) +
        x='Observed Rates Of Severe Food Insecurity',
        y='Modeled Rates Of Severe Food Insecurity')	; sev.res
 
-plot_grid(mod.res, sev.res, align='h',labels='AUTO')
-ggsave('in-sample_rf.png', width=14, height=7)
+grd <- plot_grid(mod.res, sev.res, align='h',labels='AUTO')
+ggsave(grd, filename='docs/img/in-sample_rf.png', width=14, height=7)
 
-###############################
-# Error over training period
-##################################
+#########################################
+# Out of Sample Residuals
+#########################################
+mae.mod <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred.cv))
+mae.sev <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred.cv))
+
+r2.mod <- cor(moddat$fies.mod, moddat$fies.mod.pred.cv)^2
+r2.sev <- cor(moddat$fies.sev, moddat$fies.sev.pred.cv)^2
+
+mod.res <- ggplot(moddat) + 
+  geom_point(aes(x=fies.mod, y=fies.mod.pred.cv), alpha = 0.3) + 
+  geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
+  xlim(0, 1) + ylim(0, 1) +
+  labs(caption=paste0('Mean Average Error: ',  round(mae.mod, 4),
+                      '\nR-Squared: ', round(r2.mod, 4)),
+       x='Observed Rates Of Moderat-to-Severe Food Insecurity',
+       y='Modeled Rates Of Moderat-to-Severe Food Insecurity'); mod.res
+
+sev.res <- ggplot(moddat) + 
+  geom_point(aes(x=fies.sev, y=fies.sev.pred.cv), alpha = 0.3) +
+  geom_abline(intercept = 0, slope = 1, color = "red", size = 0.5) +
+  xlim(0, 1) + ylim(0, 1) +
+  labs(caption=paste0('Mean Average Error: ',  round(mae.sev, 4),
+                      '\nR-Squared: ', round(r2.sev, 4)),
+       x='Observed Rates Of Severe Food Insecurity',
+       y='Modeled Rates Of Severe Food Insecurity')	; sev.res
+
+grd <- plot_grid(mod.res, sev.res, align='h',labels='AUTO')
+ggsave(grd, filename='docs/img/in-sample_rf.png', width=14, height=7)
 
