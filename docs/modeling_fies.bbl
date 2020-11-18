@@ -819,8 +819,8 @@
       \strng{authorbibnamehash}{172695a36a9d1c5154c0ae636d0fac93}
       \strng{authornamehash}{172695a36a9d1c5154c0ae636d0fac93}
       \strng{authorfullhash}{acd445284344424545d0455ddc249550}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Climatic change}
@@ -829,39 +829,6 @@
       \field{volume}{109}
       \field{year}{2011}
       \field{pages}{5}
-      \range{pages}{1}
-    \endentry
-    \entry{Local2020}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{1}{}{%
-        {{hash=50189852339055f390173773239ac765}{%
-           family={Disease\bibnamedelimb Child\bibnamedelimb Growth\bibnamedelimb Failure\bibnamedelima Collaborators},
-           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim C\bibinitperiod},
-           given={Local\bibnamedelima Burden},
-           giveni={L\bibinitperiod\bibinitdelim B\bibinitperiod},
-           prefix={of},
-           prefixi={o\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Nature Publishing Group}%
-      }
-      \strng{namehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{fullhash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{bibnamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authorbibnamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authornamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authorfullhash}{5160cb2f22fd3f077822bf891085d602}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature}
-      \field{number}{7789}
-      \field{title}{Mapping child growth failure across low-and middle-income countries}
-      \field{volume}{577}
-      \field{year}{2020}
-      \field{pages}{231}
       \range{pages}{1}
     \endentry
     \entry{warszawski2014inter}{article}{}
@@ -1067,6 +1034,39 @@
       \field{year}{2018}
       \field{pages}{1\bibrangedash 8}
       \range{pages}{8}
+    \endentry
+    \entry{Local2020}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=50189852339055f390173773239ac765}{%
+           family={Disease\bibnamedelimb Child\bibnamedelimb Growth\bibnamedelimb Failure\bibnamedelima Collaborators},
+           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Local\bibnamedelima Burden},
+           giveni={L\bibinitperiod\bibinitdelim B\bibinitperiod},
+           prefix={of},
+           prefixi={o\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{fullhash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{bibnamehash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{authorbibnamehash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{authornamehash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{authorfullhash}{5160cb2f22fd3f077822bf891085d602}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature}
+      \field{number}{7789}
+      \field{title}{Mapping child growth failure across low-and middle-income countries}
+      \field{volume}{577}
+      \field{year}{2020}
+      \field{pages}{231}
+      \range{pages}{1}
     \endentry
     \entry{Smits2019}{article}{}
       \name{author}{2}{}{%
@@ -1660,37 +1660,6 @@
       \field{title}{The elements of statistical learning: data mining, inference, and prediction}
       \field{year}{2009}
     \endentry
-    \entry{ishwaran2007variable}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{1}{}{%
-        {{hash=87b2e79f8f2ab0a4040e84b52fbe2710}{%
-           family={Ishwaran},
-           familyi={I\bibinitperiod},
-           given={Hemant},
-           giveni={H\bibinitperiod}}}%
-      }
-      \list{publisher}{2}{%
-        {The Institute of Mathematical Statistics}%
-        {the Bernoulli Society}%
-      }
-      \strng{namehash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{fullhash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{bibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{authorbibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{authornamehash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{authorfullhash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Electronic Journal of Statistics}
-      \field{title}{Variable importance in binary regression trees and forests}
-      \field{volume}{1}
-      \field{year}{2007}
-      \field{pages}{519\bibrangedash 537}
-      \range{pages}{19}
-    \endentry
     \entry{friedman2001elements}{book}{}
       \name{author}{3}{}{%
         {{hash=971cf69058b64a94326dea0f2a8bbcce}{%
@@ -1718,8 +1687,8 @@
       \strng{authorbibnamehash}{568e7b5149c552567af3c9b520d96bb3}
       \strng{authornamehash}{568e7b5149c552567af3c9b520d96bb3}
       \strng{authorfullhash}{568e7b5149c552567af3c9b520d96bb3}
-      \field{sortinit}{5}
-      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{number}{10}
@@ -1746,8 +1715,8 @@
       \strng{authorbibnamehash}{90ac875d50e1b3141df05b073fe2f329}
       \strng{authornamehash}{90ac875d50e1b3141df05b073fe2f329}
       \strng{authorfullhash}{90ac875d50e1b3141df05b073fe2f329}
-      \field{sortinit}{6}
-      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{sortinit}{3}
+      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{R Package Version}
@@ -1755,6 +1724,37 @@
       \field{title}{randomForestSRC: Fast unified random forests for survival, regression, and classification (RF-SRC)}
       \field{volume}{2}
       \field{year}{2019}
+    \endentry
+    \entry{ishwaran2007variable}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=87b2e79f8f2ab0a4040e84b52fbe2710}{%
+           family={Ishwaran},
+           familyi={I\bibinitperiod},
+           given={Hemant},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {The Institute of Mathematical Statistics}%
+        {the Bernoulli Society}%
+      }
+      \strng{namehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{fullhash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{bibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{authorbibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{authornamehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{authorfullhash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \field{sortinit}{4}
+      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electronic Journal of Statistics}
+      \field{title}{Variable importance in binary regression trees and forests}
+      \field{volume}{1}
+      \field{year}{2007}
+      \field{pages}{519\bibrangedash 537}
+      \range{pages}{19}
     \endentry
     \entry{breiman2001random}{article}{}
       \name{author}{1}{}{%
@@ -1773,8 +1773,8 @@
       \strng{authorbibnamehash}{132b7100417675d55d5d4d8b244f7a34}
       \strng{authornamehash}{132b7100417675d55d5d4d8b244f7a34}
       \strng{authorfullhash}{132b7100417675d55d5d4d8b244f7a34}
-      \field{sortinit}{6}
-      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \field{sortinit}{4}
+      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Machine learning}

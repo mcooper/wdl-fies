@@ -50,7 +50,7 @@
 \renewcommand{\thesection}{S\arabic{section}}
 
 \section{Overview of the FIES}
-We use raw microdata released by the FAO from 75 countries from different world regions and income categories (See Fig. \ref{fig:fies_countries}.
+We use raw microdata released by the FAO from 75 countries from different world regions and income categories (See Fig. \ref{fig:fies_countries}).
 
 \begin{figure}[H]
   \centering
@@ -65,18 +65,18 @@ The severity of each item and the respondent’s level of food insecurity can be
 
 After separately estimating the Rasch model for each country, FAO develops a global reference scale for the severity of each of the eight questions by iteratively harmonizing the severity values in each country. These global reference points are calibrated against other surveys that ask questions similar to those in the FIES, such as the HFSSM and the ELCSA.
 
-Based on the global reference scale, two thresholds are set based on questions 1 and 8: whether the respondent is worried they would not have enough food to eat because of a lack of resources, and whether there was a time when they went without eating for a whole day because of a lack of money or other resources.
+Based on the global reference scale, two thresholds are set based on questions 1 and 8, corresponding to moderate and severe food insecurity, respectively.
 
 
 \begin{enumerate}
-	\item During the last 12 MONTHS, was there a time when you were worried you would not have enough food to eat because of a lack of money or other resources?
-	\item Still thinking about the last 12 MONTHS, was there a time when you were unable to eat healthy and nutritious food because of a lack of money or other resources?
+	\item During the last 12 months, was there a time when you were worried you would not have enough food to eat because of a lack of money or other resources?
+	\item Still thinking about the last 12 months, was there a time when you were unable to eat healthy and nutritious food because of a lack of money or other resources?
 	\item Was there a time when you ate only a few kinds of foods because of a lack of money or other resources?
 	\item Was there a time when you had to skip a meal because there was not enough money or other resources to get food?
-	\item Still thinking about the last 12 MONTHS, was there a time when you ate less than you thought you should because of a lack of money or other resources?
+	\item Still thinking about the last 12 months, was there a time when you ate less than you thought you should because of a lack of money or other resources?
 	\item Was there a time when your household ran out of food because of a lack of money or other resources?
 	\item Was there a time when you were hungry but did not eat because there was not enough money or other resources for food?
-	\item During the last 12 MONTHS, was there a time when you went without eating for a whole day because of a lack of money or other resources?
+	\item During the last 12 months, was there a time when you went without eating for a whole day because of a lack of money or other resources?
   \label{itm:fies}
 \end{enumerate}
 
@@ -91,24 +91,24 @@ For each subnational area, $a$, the rate of change (ROC) is calculated between e
   \label{eqn:a}
 \end{equation}
 
-Each ROC is weighted so as to give proportionally more weight to recent years.  For a dataset with observations for 2010 to 2017, that would be:
+Each ROC is weighted so as to give proportionally more weight to recent years.  For a dataset with observations for 2010 to 2019, that would be:
 
 \begin{equation}
-  W_y = \frac{y - 2010}{\sum_{y=2010}^{2017} y - 2010}
+  W_y = \frac{y - 2010}{\sum_{y=2010}^{2019} y - 2010}
   \label{eqn:b}
 \end{equation}
 
 The annualized rate of change (AROC) is calculated as:
 
 \begin{equation}
-  \text{AROC}_{a} = \text{logit} \left( \sum_{y=2010}^{2017} W_y \times \text{AROC}_{a, y} \right)
+  \text{AROC}_{a} = \text{logit} \left( \sum_{y=2010}^{2019} W_y \times \text{AROC}_{a, y} \right)
   \label{eqn:c}
 \end{equation}
 
 Finally, the projections, Proj, for each year up to 2030 are given by:
 
 \begin{equation}
-  \text{Proj}_{a,y} = \text{logit}^{-1} ( \text{logit} ( p_{a,2017} ) + AROC_{a} \times ( y - 2017 ) )
+  \text{Proj}_{a,y} = \text{logit}^{-1} ( \text{logit} ( p_{a,2019} ) + AROC_{a} \times ( y - 2019 ) )
   \label{eqn:d}
 \end{equation}
 
@@ -254,60 +254,37 @@ We used data from Weiss et al. to estimate the mortality (deaths per 100,000 pop
 
 \pagebreak
 \section{Description, Implementation and Validation of the Random Forest Regression Model}
-The RF regression is a machine learning method based on the creation of a large number of decision trees. By taking an ensemble of decision tree models, random forests introduce more variance and balance out the bias that is common to methods based on single decision trees \citep{friedman2001elements}.  For each of the decision trees in a random forest model, observations are selected at random with replacement, a method known as bootstrap aggregating, or bagging, and features are also selected at random.
+The random forest regression is a machine learning method based on the creation of a large number of decision trees.  For each of the decision trees in a random forest model, observations are selected at random with replacement, a method known as bootstrap aggregating, or bagging, and features are also selected at random.  For the implementation we use the R-package \texttt{randomForestSRC} by Ishwaran and Kogalur \citep{ishwaran2019randomforestsrc}.
 
-For the implementation we use the R-package \texttt{randomForestSRC} by Ishwaran and Kogalur \citep{ishwaran2019randomforestsrc}. Specifically, we apply the functions \texttt{tune.rfsrc()} to find the optimal combination of hyperparamters and the function \texttt{rfsrc()} to perform the RF regression models. After predicting rates of moderate-to-severe and severe food insecurity, we plot the modeled vs. observed rates and calculated the MSE and ${R}^2$ (See Fig. \ref{fig:rf_in-sample} and Fig. \ref{fig:rf_out-sample}) for both models. Additionally, we use the function \texttt{vimp()} to gain insights into the development of the error rates with increasing numbers of trees (See Fig. \ref{fig:rf_error}) and the importance of individual variables (See Fig. \ref{fig:rf_vimp}).
-
-%STEP-BY-STEP: LOGIT TRANSFORM, TUNE, MODEL, PREDICT, VALIDATE
 Because the outcome variables in our models, the rate of moderate or severe food insecurity, are a bounded outcome, we first used a logistic transformation to extend the range from $[0,1]$ to $(-\infty, \infty)$.  Then, after estimating the model, we used the inverse logit to convert the unbounded model predictions to a rate between 0 and 1.
 
-To ensure that predicted rates are bounded by 0 and 1 we conduct a logit transformation of the dependent variable and inverse logit transformation of the predictions. 
-%MAYBE STATE THIS SOMEWHERE ELSE, NOT SURE WHERE
+To determine the best hyperparameters to model both moderate ands severe food insecurity, we use leave-one-out cross validation at the country level.  This involves running a separate model for each country, where we train a model on the remaining data from all of the other countries, and use that model to predict values for the country that was left out.  Then, across the predicted values for all countries, we evaluate the mean average error (MAE) and $R^2$ of the differences between observed rates of food insecurity and predictions from the cross validation models.
+
+We evaluate models across a grid of hyperparameters, with combinations of: between 1 to 13 variables randomly selected as candidates for splitting a node (\texttt{mtry}), between 1 and 20 terminal node sizes (\texttt{nodesize}), and with a maximum tree depth (\texttt{depth}) between 1 to 13 nodes, as well as without any maximum tree depth.  For each model in cross validation, we used 1000 trees (\texttt{ntree}).  Due to the large size of the hyperparameter space, we sampled sets of hyperparameters randomly, eventually sampling about 50\% of all combinations of hyperparamters.  We found that the optimal model for moderate food insecurity had 16 average terminal nodes, 2 variables selected as candidates for splitting a node, and no maximum tree depth; the optimal model for severe food insecurity also had 2 variables selected as candidates for splitting a node and no maximum tree depth, but with only 14 average terminal.
+
+After fitting models with cross validation, we evaluated the models performance and graphed a comparison between the observed and predicted values based on instances where individual countries were left out (See Fig. \ref{fig:rf_out-sample}), as well as for a model trained on the entire dataset, which can only be evaluated on in-sample data (See Fig. \ref{fig:rf_in-sample}).  Finally, Figure \ref{fig:mod-error} shows the model error converging and the number of trees increases.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{img/model/error_rf.png}
-  \caption{Error Rate of the RF regression model. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
-  \label{fig:rf_error}
+  \includegraphics[width=\linewidth]{img/out-sample_rf.pdf}
+  \caption{Out-of-sample fit of the random forest regression model, where predictions for each country are based on a model that did not include that country in the training data. Panel (A) shows the model for moderate food insecurity and panel (B) shows the model for severe food insecurity.}
+  \label{fig:rf_out-sample}
 \end{figure}
 
-%HERE A FEW SENTENCES ON THE NUMBER OF TREES WITH LINK TO NEXT PARAGRAPH
-
-In addition to the parameter that describes the number of trees to be created, two other important hyperparameters must be tuned. In the function \texttt{tune.rfsrc()} these parameters are called \texttt{mtry} and \texttt{nodesize}. \texttt{mtry} describes the number of variables randomly selected as candidates for splitting a node and \texttt{nodesize} describes the average number of observations in a leaf node. The optimal pair of hyperparamters is found by trying different combinations and choosing the one with the smallest out-of-bag (OOB) error.
-
-%EXPLAIN THE OOB ERROR HERE?
-
-The function \texttt{tune.rfsrc()} does exactly that and returns optimal values for \texttt{mtry} and \texttt{nodesize}. We applied this function on both, the moderate-to-severe and the severe model. For the moderate-to-severe model the optimal combination is \texttt{mtry} = 12 and \texttt{nodesize} = 1 and for the severe model we found \texttt{mtry} = 10 and \texttt{nodesize} = 2 to be optimal.
-
-%STATE FUNCTION ARGUMENTS HERE?
-
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{img/model/in-sample_rf.png}
-  \caption{In-Sample Fit of the RF regression model. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
+  \includegraphics[width=\linewidth]{img/in-sample_rf.pdf}
+  \caption{In-sample fit of the random forest regression model, where one model was trained on the entire dataset. Panel (A) shows the model for moderate food insecurity and panel (B) shows the model for severe food insecurity.}
   \label{fig:rf_in-sample}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{img/model/out-sample_rf.png}
-  \caption{Out-Of-Sample Fit of the RF regression model with 75\% training set and 25\% test set. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
-  \label{fig:rf_out-sample}
+  \includegraphics[width=\linewidth]{img/Error_Over_Training.pdf}
+  \caption{Error rate of the random forest regression model as the number of trees in the model increases. Panel (A) shows the model for moderate food insecurity, and panel (B) shows the model for severe food insecurity.}
+  \label{fig:mod-error}
 \end{figure}
 
-%HERE EVERYTHING ON THE MODEL, NOT SURE HOW DETAILED
-%For modeling the rates of moderate-to-severe and severe food insecurity we use the function \texttt{rfsrc()}. We specify 
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\linewidth]{img/VIMP.pdf}
-  \caption{Variable Importance of the RF regression model. Panel (A) shows the Moderate-to-Severe model and Panel (B) shows the Severe model.}
-  \label{fig:rf_vimp}
-\end{figure}
-
-%https://kogalur.github.io/randomForestSRC/theory.html#section4.2
-Lastly we asses the importance of individual variables. This is based on the Breiman-Culter permutation variable importance information \citep{breiman2001random}.  This involved comparing the prediction error on the OOB data to the prediction error of OOB cases where the x-variable $x$ is randomly permutated.  The importance of an individual variable is thus the mean difference between the perturbed and unperturbed error rate, across all trees. 
-%MORE INFORMATION HERE
 \end{document}
 
 \printbibliography

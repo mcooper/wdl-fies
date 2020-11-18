@@ -1,4 +1,4 @@
-# setwd('~/wdl-fies');library(ProjectTemplate);load.project()
+setwd('~/wdl-fies');library(ProjectTemplate);load.project()
 setwd('~/wdl-fies/docs/img')
 #setwd('C:/Users/bmuel/Desktop/GitHub/wdl-fies/docs/img')
 
@@ -83,8 +83,8 @@ mod.res <- ggplot(moddat) +
   xlim(0, 1) + ylim(0, 1) +
   labs(caption=paste0('Mean Average Error: ',  round(mae.mod, 4),
                       '\nR-Squared: ', round(r2.mod, 4)),
-       x='Observed Rates Of Moderat-to-Severe Food Insecurity',
-       y='Modeled Rates Of Moderat-to-Severe Food Insecurity'); mod.res
+       x='Observed Moderate Food Insecurity',
+       y='Modeled Moderate Food Insecurity'); mod.res
 
 sev.res <- ggplot(moddat) + 
   geom_point(aes(x=fies.sev, y=fies.sev.pred), alpha = 0.3) +
@@ -92,11 +92,11 @@ sev.res <- ggplot(moddat) +
   xlim(0, 1) + ylim(0, 1) +
   labs(caption=paste0('Mean Average Error: ',  round(mae.sev, 4),
                       '\nR-Squared: ', round(r2.sev, 4)),
-       x='Observed Rates Of Severe Food Insecurity',
-       y='Modeled Rates Of Severe Food Insecurity')	; sev.res
+       x='Observed Severe Food Insecurity',
+       y='Modeled Severe Food Insecurity')	; sev.res
 
 grd <- plot_grid(mod.res, sev.res, align='h',labels='AUTO')
-ggsave(grd, filename='docs/img/in-sample_rf.png', width=14, height=7)
+ggsave(grd, filename='in-sample_rf.pdf', width=7, height=3.75)
 
 #########################################
 # Out of Sample Residuals
@@ -113,8 +113,8 @@ mod.res <- ggplot(moddat) +
   xlim(0, 1) + ylim(0, 1) +
   labs(caption=paste0('Mean Average Error: ',  round(mae.mod, 4),
                       '\nR-Squared: ', round(r2.mod, 4)),
-       x='Observed Rates Of Moderat-to-Severe Food Insecurity',
-       y='Modeled Rates Of Moderat-to-Severe Food Insecurity'); mod.res
+       x='Observed Moderate Food Insecurity',
+       y='Modeled Moderate Food Insecurity'); mod.res
 
 sev.res <- ggplot(moddat) + 
   geom_point(aes(x=fies.sev, y=fies.sev.pred.cv), alpha = 0.3) +
@@ -122,9 +122,10 @@ sev.res <- ggplot(moddat) +
   xlim(0, 1) + ylim(0, 1) +
   labs(caption=paste0('Mean Average Error: ',  round(mae.sev, 4),
                       '\nR-Squared: ', round(r2.sev, 4)),
-       x='Observed Rates Of Severe Food Insecurity',
-       y='Modeled Rates Of Severe Food Insecurity')	; sev.res
+       x='Observed Severe Food Insecurity',
+       y='Modeled Severe Food Insecurity')	; sev.res
 
 grd <- plot_grid(mod.res, sev.res, align='h',labels='AUTO')
-ggsave(grd, filename='docs/img/in-sample_rf.png', width=14, height=7)
+ggsave(grd, filename='out-sample_rf.pdf', width=7, height=3.75)
+
 

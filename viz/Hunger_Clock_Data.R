@@ -29,5 +29,5 @@ sel <- preddat %>%
 gdl <- gdl %>%
   filter(GDLCODE %in% sel$GDLCODE)
 
-write.csv(sel, 'figures/HC_2020-10-28_data.csv', row.names=F) #update date
+write.csv(sel, 'figures/HC_2020-11-18_data.csv', row.names=F) #update date
 write_sf(gdl, 'figures/HC_2020-10-28_polys.geojson', driver='GeoJSON')
