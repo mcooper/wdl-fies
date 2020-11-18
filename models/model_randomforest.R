@@ -4,8 +4,6 @@
 # modeled for 2020, 2025, and 2030
 #######################################################
 
-set.seed(100)
-
 setwd('~/wdl-fies'); library(ProjectTemplate); load.project()
 
 # read in data
@@ -28,21 +26,15 @@ moddat <- moddat %>%
   mutate(fies.mod.logit = logit(fies.mod),
          fies.sev.logit = logit(fies.sev))
 
-prm <- expand.grid(list(node=c(1:10, 12, 14, 16, 20, 25, 100),
-                        mtry=c(6:1),
-                        depth=c(1:7, -1)))
-
-prm2 <- expand.grid(list(node=c(1:10, 12, 14, 15, 16, 17, 18, 19, 20, 25, 100),
-                        mtry=c(13:1),
-                        depth=c(1:13, -1)))
-
-prm$sev.mae <- NA
-prm$mod.mae <- NA
-
-prm <- bind_rows(prm, prm2[!paste(prm2$node, prm2$depth, prm2$mtry, sep='-') %in% paste(prm$node, prm$depth, prm$mtry, sep='-'), ])
-
+prm <- expand.grid(list(node=c(1:10, 12, 14, 16, 18, 20),
+                        mtry=c(12:1),
+                        depth=c(1:12, -1)))
 prm$ix <- 1:nrow(prm)
 
+prm$sev.rsq <- NA
+prm$mod.rsq <- NA
+prm$sev.mae <- NA
+prm$mod.mae <- NA
 
 #############################################
 #Run model under 10-fold cross validation
@@ -98,9 +90,9 @@ system('~/telegram.sh "Done Running Random Forests"')
 # Re-run cross validation for best hyperparameters
 #################################################
 i <- mod.prm$ix
-for (s in 1:10){
-  ix <- moddat$ISO3 %in% iso3s[samp != s]
-  
+for (iso3 in unique(moddat$ISO3)){
+  ix <- moddat$ISO3 != iso3
+    
   mtry <- prm$mtry[i]
   node <- prm$node[i]
   if(prm$depth[i] < 0){
@@ -121,8 +113,8 @@ for (s in 1:10){
 }
 
 i <- sev.prm$ix
-for (s in 1:10){
-  ix <- moddat$ISO3 %in% iso3s[samp != s]
+for (iso3 in unique(moddat$ISO3)){
+  ix <- moddat$ISO3 != iso3
   
   mtry <- prm$mtry[i]
   node <- prm$node[i]
@@ -140,7 +132,7 @@ for (s in 1:10){
                   nodesize = node,
                   depth = depth)
     
-  moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(rf.mod, moddat[!ix,])$predicted)
+  moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(rf.sev, moddat[!ix,])$predicted)
 }
 
 
@@ -163,6 +155,9 @@ rf.sev <- rfsrc(formula = as.formula(paste("fies.sev.logit",
                 mtry = sev.prm$mtry,
                 nodesize = sev.prm$node,
                 depth = sev.prm$depth)
+
+moddat$fies.mod.logit <- NULL
+moddat$fies.sev.logit <- NULL
 
 # predictions
 moddat$fies.sev.pred <- inv.logit(as.numeric(predict(rf.sev, moddat)$predicted))
