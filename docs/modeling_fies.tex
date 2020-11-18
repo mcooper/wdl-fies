@@ -28,7 +28,7 @@
 
 \begin{document}
 
-\title{A Global Picture of Hunger}
+\title{Monitoring and Projecting Global Hunger}
 
 \author[1,2,*]{Matthew Cooper}
 \author[2,3]{Benjamin Müller}
@@ -67,7 +67,7 @@ Since 2014, in partnership with Gallup World Poll, the FAO administered the FIES
 
 \section{Results}
 \subsection{Food Insecurity over Time}
-Globally, in the year 2020, we estimate that 820 million people are above the threshold for severe food insecurity, and 2.5 billion people are above the threshold for moderate food insecurity (See Fig. \ref{fig:timeseries}). These numbers are higher than the estimates in the 2020 FAO State of Food Insecurity report, which reports about 746 million severely food insecure people and 2 billion people experiencing at least moderate food insecurity in 2019 \ref{sofi2020}. 
+Globally, in the year 2020, we estimate that 820 million people are above the threshold for severe food insecurity, and 2.5 billion people are above the threshold for moderate food insecurity (See Fig. \ref{fig:timeseries}). These numbers are higher than the estimates in the 2020 FAO State of Food Insecurity report, which reports about 746 million severely food insecure people and 2 billion people experiencing at least moderate food insecurity in 2019 \citep{sofi2020}. 
 
 Under realistic scenario assumptions, we find divergent trends in the number of moderate and severely food insecure people around the world, with the number of people at least moderately food insecure increasing and the number of people severely food insecure declining.  However, for both indicators, these changes are very slight: in 2030, the number of moderately food insecure people will have increased by 2.2\% since 2010, and the number of severely food insecure people will have decreased by 7.0\%.  The increases in moderate food insecurity have been in lower and lower-middle income countries, while the increases in severe food insecurity are entirely from lower income countries.  For both the moderate and severe food insecurity thresholds, COVID-19 has had a clearly discernible impact, particularly in middle-income countries.
 
@@ -105,13 +105,13 @@ The experience of at least moderate food insecurity is quite common in many part
 \subsection{Important Predictors of Food Insecurity}
 Overall, our model was able to predict food insecurity with high accuracy in the countries for which training data was available ($R^2 = 0.950$ and $R^2 = 0.940$ for moderate and severe food insecurity, respectively), and excluding entire countries from the training data to evaluate out-of-country model error still showed overall good results ($R^2 = 0.792$ and $R^2 = 0.746$ for moderate and severe food insecurity, respectively).  The relative importance of different variables as predictors of food insecurity can be assessed by examining the loss in forecast accuracy resulting from the exclusion of particular covariates.
 
-For severe food insecurity, the most important variable for predicting food security levels is the Poverty Headcount Index, followed by the rate of stunting.  For predicting the rate of people with at least moderate food insecurity, GDP per capita is the most important, followed closely by the Poverty Headcount Index.  For the rate of severe food insecurity, the country's Gini coefficient was more important compared to moderate food insecurity.  Across both indicators, economic variables were the most relevant predictors.
+For severe food insecurity, the most important variable for predicting food security levels is the Poverty Headcount Index (See Fig. \ref{fig:vimp}, followed by the rate of stunting.  For predicting the rate of people with at least moderate food insecurity, GDP per capita is the most important, followed closely by the Poverty Headcount Index.  For the rate of severe food insecurity, the country's Gini coefficient was more important compared to moderate food insecurity.  Across both indicators, economic variables were the most relevant predictors.
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{img/VIMP.pdf}
   \caption{Importance of each variable in predicting the percent of a population over thresholds for moderate and severe food insecurity.  This is determined by the increase in the error when the variable is permuted before fitting the model.}
-  \label{fig:map}
+  \label{fig:vimp}
 \end{figure}
 
 The results of this analysis can be further explored in more detail on the \href{https://worldhunger.io}{World Hunger Clock}, including statistics for each subnational administrative area.
@@ -183,8 +183,6 @@ When performing cross validation, it is typical to select observations at random
 After fitting the models, we examine the importance of the individual covariates in explaining rates of moderate and severe food insecurity. We use a common method of permuting each individual variable and re-running the regressions, and then determining the difference in Mean Average Error (MAE) between the regression \citep{ishwaran2007variable, breiman2001random}.  This metric can provide some interpretability to model predictions.
 
 The Supplementary Materials provide a detailed description of the data processing for the covariates, as well as implementation and validation of the random forest models.
-
-\section
 
 \printbibliography
 
