@@ -146,18 +146,19 @@ regnoleg <- ggplot(regdat) +
   guides(fill=FALSE) + 
   labs(fill='')
 
-plot_grid(ratelines,
+plot_grid(ratelines, 
           plot_grid(regnoleg,
-                    plot_grid(pltleg, 
-                              regleg, 
+                    plot_grid(regleg,
+                              pltleg, 
+                              #regleg, 
                               ncol=1, 
                               rel_heights=c(1, 4)),
                     ncol=2,
-                    rel_widths=c(1, 1.5)),
+                    rel_widths=c(1, 1.25)),
           ncol=1,
-          rel_heights=c(2.5, 1))
+          rel_heights=c(2.75, 1))
 
-ggsave('Rates.pdf', width=7, height=5)
+ggsave('Rates.pdf', width=5, height=3.25)
 #####################
 # totals time series
 ###############
@@ -206,4 +207,4 @@ lines <- ggplot(totals) +
 
 plot_grid(plot_grid(stack, lines, align='v', nrow=2, labels='AUTO'), 
           reg, ncol=1, rel_heights=c(5, 1))
-ggsave('TimeSeries.pdf', width=7, height=7)
+ggsave('TimeSeries.pdf', width=5, height=5)
