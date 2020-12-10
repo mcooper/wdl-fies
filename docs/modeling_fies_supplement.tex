@@ -129,7 +129,7 @@ We project population by combining historical subnational data from the Subnatio
 \pagebreak
 \subsection{Urbanization Rates}
 
-We draw our historical and future estimates of urbanization entirely from the spatially explicit scenarios of urban population by Jones and O'Neill \citep{Jones2016}, which provide a series of urbanization rate projections which are consistent with the Shared Socioeconomic Pathways.  As with our other covariates, we use projections consistent with SSP2, the middle-of-the-road scenario. 
+We draw our historical and future estimates of urbanization entirely from the spatially explicit scenarios of urban population by Jones and O'Neill \citep{Jones2016}, which provide a series of urbanization rate projections which are consistent with the Shared Socioeconomic Pathways (SSPs).  As with our other covariates, we use projections consistent with SSP2, the middle-of-the-road scenario. 
 
 \begin{figure}[H]
   \centering
@@ -141,7 +141,7 @@ We draw our historical and future estimates of urbanization entirely from the sp
 \subsection{Wasting}
 To estimate the prevalence of wasting for each administrative area in our dataset, we use data from the Local Burden of Disease project.  For the years 2010 to 2017, we simply use the mean rate of wasting in each administrative area from the dataset.  Higher-income countries that are not included in the dataset are assumed to have zero wasting.  We then project wasting for the years 2018-2030 using the AROC method, which the Local Burden of Disease group similarly use to estimate wasting for the year 2025 \citep{Local2020}.
 
-To account for the effects of the coronavirus pandemic on global rates of wasting, we assume that long-term trends in rates of wasting would hold steady, after they increase globally by 14.3\% in 2020, based on estimates published in \textit{The Lancet} \citep{headey2020impacts}.  We model this impact as uniform across all countries where wasting occurs.  We project the rate of wasting in each administrative area in 2021 as being the average of (a) the rate of change in 2020 accounting for the pandemic shock and (b) the predicted rate of change for 2022 obtained ignoring the pandemic.
+To account for the effects of the COVID-19 pandemic on global rates of wasting, we assume that long-term trends in rates of wasting would hold steady, after they increase globally by 14.3\% in 2020, based on estimates published in \textit{The Lancet} \citep{headey2020impacts}.  We model this impact as uniform across all countries where wasting occurs.  We project the rate of wasting in each administrative area in 2021 as being the average of (a) the rate of change in 2020 accounting for the pandemic shock and (b) the predicted rate of change for 2022 obtained ignoring the pandemic.
 
 \begin{figure}[H]
   \centering
@@ -151,7 +151,7 @@ To account for the effects of the coronavirus pandemic on global rates of wastin
 
 \pagebreak
 \subsection{Stunting}
-We model stunting, sourced from the Local Burden of Disease dataset, using the same methodology employed for wasting. We also assume a 14.3\% increase in prevalence for the year 2020 \citep{headey2020impacts}, as is done for wasting, although stunting is a long-term consequence of malnutrition and is not likely to be observable in a population with the same lags as wasting would be. We use stunting in our modeling framework as a proxy for chronic conditions of hunger, which are probably exacerbated by the coronavirus pandemic. 
+We model stunting, sourced from the Local Burden of Disease dataset, using the same methodology employed for wasting. We also assume a 14.3\% increase in prevalence for the year 2020 \citep{headey2020impacts}, as is done for wasting, although stunting is a long-term consequence of malnutrition and is not likely to be observable in a population with the same lags as wasting would be. We use stunting in our modeling framework as a proxy for chronic conditions of hunger, which are probably exacerbated by the COVID-19 pandemic. 
 
 \begin{figure}[H]
   \centering
@@ -163,9 +163,9 @@ We model stunting, sourced from the Local Burden of Disease dataset, using the s
 \subsection{GDP Per Capita}
 We estimate global subnational GDP per capita using historic subnational estimates of Gross National Income (GNI) from the Subnational Human Development Database \cite{Smits2019} and forecasts of national GDP within the SSP framework from Dellink et al. \cite{Dellink2017}.  We first use data from the World Bank to estimate the mean country-level ratio of GNI to GDP and adjust the subnational estimates of GNI according to that country-specific ratio.  We then calculate each subnational area's share of country GDP, and then use the AROC method to estimate each subnational area's share of total country GDP.  Based on these trajectories in each subnational areas share of total country GDP, we estimate what each subnational area's share of GDP will be for each year from 2019 to 2030.  We divide that share of GDP by the population of the administrative area, which we had previously estimated.  Thus, national GDP totals are consistent with the projections of Dellink et al., but are disaggregated according to the historic patters of GDP share in the Subnational Human Development Database.
 
-Finally, we used estimates of country-level changes in GDP growth for the years 2020 and 2021 to account for the impact of the coronavirus \citep{prospects2020}.  We then model GDP as resuming its previous growth trajectory based on previously-estimated growth rates from 2022-2030, but growing from an estimate for 2021 that includes the coronavirus shock.
+Finally, we used estimates of country-level changes in GDP growth for the years 2020 and 2021 to account for the impact of the COVID-19 pandemic \citep{prospects2020}.  We then model GDP as resuming its previous growth trajectory based on previously-estimated growth rates from 2022-2030, but growing from an estimate for 2021 that includes the pandemic shock.
 
-We measure global subnational GDP per capita using historic subnational estimates of Gross National Income (GNI) from the Subnational Human Development Database \citep{Smits2019} and forecasts of national GDP within the SSP framework form Dellink et al. \citep{Dellink2017}. We source data on the mean country-level ratio of GNI to GDP from the World Bank and adjust the subnational estimates of GNI according to the ratio for each country in our sample. We calculate the share of national GDP for each subnational region, and use the AROC method to project each subnational area’s share of total country GDP up to 2030. National GDP totals are consistent with the projections of Dellink et al., but are disaggregated according to the historic patterns of subnational GDP shares sourced from the Subnational Human Development Database. We use nowcasts and forecasts of country-level changes in GDP growth for the years 2020 and 2021 to account for the impact of the coronavirus \citep{prospects2020}. After the shock created by the COVID pandemic, GDP is assumed to resuming its previous growth trajectory for the period 2022-2030.
+We measure global subnational GDP per capita using historic subnational estimates of Gross National Income (GNI) from the Subnational Human Development Database \citep{Smits2019} and forecasts of national GDP within the SSP framework form Dellink et al. \citep{Dellink2017}. We source data on the mean country-level ratio of GNI to GDP from the World Bank and adjust the subnational estimates of GNI according to the ratio for each country in our sample. We calculate the share of national GDP for each subnational region, and use the AROC method to project each subnational area’s share of total country GDP up to 2030. National GDP totals are consistent with the projections of Dellink et al., but are disaggregated according to the historic patterns of subnational GDP shares sourced from the Subnational Human Development Database. We use nowcasts and forecasts of country-level changes in GDP growth for the years 2020 and 2021 to account for the impact of the COVID-19 pandemic \citep{prospects2020}. After the shock created by the pandemic, GDP is assumed to resuming its previous growth trajectory for the period 2022-2030.
 
 \begin{figure}[H]
   \centering
@@ -197,7 +197,7 @@ We use data on historical levels and projections of national income inequality f
 
 \pagebreak
 \subsection{Poverty Headcount Index}
-We used historical and projected data on the Poverty Headcount Index (using the standard threshold of \$1.90 a day) from the World Poverty Clock by the World Data Lab, which in turn uses Povcal data sourced from the World Bank \citep{Cuaresma2018}. These data are the version corresponding to the update in summer 2020 and include the expected impact of the COVID pandemic on global poverty dynamics. Using parameterized Lorenz curves in combination with mean income/consumption and population projections, poverty rates are projected. 
+We used historical and projected data on the Poverty Headcount Index (using the standard threshold of \$1.90 a day) from the World Poverty Clock by the World Data Lab, which in turn uses Povcal data sourced from the World Bank \citep{Cuaresma2018}. These data are the version corresponding to the update in summer 2020 and include the expected impact of the COVID-19 pandemic on global poverty dynamics. Using parameterized Lorenz curves in combination with mean income/consumption and population projections, poverty rates are projected. 
 
 \begin{figure}[H]
   \centering
@@ -207,7 +207,7 @@ We used historical and projected data on the Poverty Headcount Index (using the 
 
 \pagebreak
 \subsection{Water Scarcity}
-We use data for the water scarcity index (WSI) developed by \citep{greve2018global}. The index represents the ratio of the decadal averages in water demand to water supply, based on population projections consistent with SSP2 and water availability projections from global hydrological and general circulation models.  Based on this index, we estimate the share of people living in areas with less than 1000m\textsuperscript{3} of water available per capita per year. The WSI has been used already to build the water scarcity clock.
+We use data for the Water Scarcity Index (WSI) developed by \citep{greve2018global}. The index represents the ratio of the decadal averages in water demand to water supply, based on population projections consistent with SSP2 and water availability projections from global hydrological and general circulation models.  Based on this index, we estimate the share of people living in areas with less than 1000m\textsuperscript{3} of water available per capita per year. The WSI has been used already to build the Water Scarcity Clock.
 
 \begin{figure}[H]
   \centering
@@ -258,7 +258,7 @@ The random forest regression is a machine learning method based on the creation 
 
 Because the outcome variables in our models, the rate of moderate or severe food insecurity, are a bounded outcome, we first used a logistic transformation to extend the range from $[0,1]$ to $(-\infty, \infty)$.  Then, after estimating the model, we used the inverse logit to convert the unbounded model predictions to a rate between 0 and 1.
 
-To determine the best hyperparameters to model both moderate ands severe food insecurity, we use leave-one-out cross validation at the country level.  This involves running a separate model for each country, where we train a model on the remaining data from all of the other countries, and use that model to predict values for the country that was left out.  Then, across the predicted values for all countries, we evaluate the mean average error (MAE) and $R^2$ of the differences between observed rates of food insecurity and predictions from the cross validation models.
+To determine the best hyperparameters to model both moderate and severe food insecurity, we use leave-one-out cross validation at the country level.  This involves running a separate model for each country, where we train a model on the remaining data from all of the other countries, and use that model to predict values for the country that was left out.  Then, across the predicted values for all countries, we evaluate the mean average error (MAE) and $R^2$ of the differences between observed rates of food insecurity and predictions from the cross validation models.
 
 We evaluate models across a grid of hyperparameters, with combinations of: between 1 to 13 variables randomly selected as candidates for splitting a node (\texttt{mtry}), between 1 and 20 terminal node sizes (\texttt{nodesize}), and with a maximum tree depth (\texttt{depth}) between 1 to 13 nodes, as well as without any maximum tree depth.  For each model in cross validation, we used 1000 trees (\texttt{ntree}).  Due to the large size of the hyperparameter space, we sampled sets of hyperparameters randomly, eventually sampling about 50\% of all combinations of hyperparamters.  We found that the optimal model for moderate food insecurity had 16 average terminal nodes, 2 variables selected as candidates for splitting a node, and no maximum tree depth; the optimal model for severe food insecurity also had 2 variables selected as candidates for splitting a node and no maximum tree depth, but with only 14 average terminal.
 
@@ -285,6 +285,6 @@ After fitting models with cross validation, we evaluated the models performance 
   \label{fig:mod-error}
 \end{figure}
 
-\end{document}
-
 \printbibliography
+
+\end{document}
