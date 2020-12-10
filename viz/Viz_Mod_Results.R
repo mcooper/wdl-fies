@@ -73,7 +73,9 @@ reg <- ggplot(regdat) +
 #also change regions in preddat
 preddat <- merge(preddat, st_drop_geometry(regdat)) %>%
   select(-region) %>%
-  rename(region = "region_wb")
+  rename(region = "region_wb") %>%
+  mutate(region = factor(region, levels=rev(c("High Income", "Upper-Middle Income",
+                                          "Lower-Middle Income", "Low Income"))))
 
 ###############################################
 # Rates over time, not just raw number

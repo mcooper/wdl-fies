@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.6)  18 NOV 2020 16:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.6)  18 NOV 2020 17:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1123,23 +1123,20 @@ Package biblatex Info: Reference segment=0 on input line 29.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Reference `sofi2020' on page 2 undefined on input line 70.
-
 [2]
-<img/TimeSeries.pdf, id=90, 505.89pt x 505.89pt>
+<img/TimeSeries.pdf, id=91, 505.89pt x 505.89pt>
 File: img/TimeSeries.pdf Graphic file (type pdf)
 <use img/TimeSeries.pdf>
 Package pdftex.def Info: img/TimeSeries.pdf  used on input line 76.
 (pdftex.def)             Requested size: 416.83289pt x 416.83948pt.
  [3]
-<img/Rates.pdf, id=98, 505.89pt x 361.35pt>
+<img/Rates.pdf, id=99, 505.89pt x 361.35pt>
 File: img/Rates.pdf Graphic file (type pdf)
 <use img/Rates.pdf>
 Package pdftex.def Info: img/Rates.pdf  used on input line 85.
 (pdftex.def)             Requested size: 416.83289pt x 297.7425pt.
  [4 <./img/TimeSeries.pdf>] [5 <./img/Rates.pdf>]
-<img/FullMap.pdf, id=121, 722.7pt x 269.005pt>
+<img/FullMap.pdf, id=122, 722.7pt x 269.005pt>
 File: img/FullMap.pdf Graphic file (type pdf)
 <use img/FullMap.pdf>
 Package pdftex.def Info: img/FullMap.pdf  used on input line 99.
@@ -1152,35 +1149,23 @@ Overfull \hbox (58.32637pt too wide) in paragraph at lines 99--100
 [6
 
  <./img/FullMap.pdf>]
-<img/VIMP.pdf, id=135, 505.89pt x 271.0125pt>
+
+LaTeX Warning: Reference `fig:vimp' on page 7 undefined on input line 108.
+
+<img/VIMP.pdf, id=136, 505.89pt x 271.0125pt>
 File: img/VIMP.pdf Graphic file (type pdf)
 <use img/VIMP.pdf>
 Package pdftex.def Info: img/VIMP.pdf  used on input line 112.
 (pdftex.def)             Requested size: 416.83289pt x 223.30685pt.
- [7
+[7
 
- <./img/VIMP.pdf>] [8] [9]
-Runaway argument?
-{
-! Paragraph ended before \@sect was complete.
-<to be read again> 
-                   \par 
-l.188 
-      
-? 
-! Too many }'s.
-\@xdblarg #1#2->#1[{#2}
-                       ]{#2}
-l.188 
-      
-? 
-[10] [11] [12]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 191.
+ <./img/VIMP.pdf>] [8] [9] [10] [11] [12]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 189.
  [13]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 191.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 189.
  (./modeling_fies.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 191.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 191.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 189.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 189.
 Package rerunfilecheck Info: File `modeling_fies.out' has not changed.
 (rerunfilecheck)             Checksum: 4435D674D597D3FDBC1A5CB450D5D943;587.
 
@@ -1193,7 +1178,7 @@ LaTeX Warning: There were multiply-defined labels.
 Package logreq Info: Writing requests to 'modeling_fies.run.xml'.
 \openout1 = `modeling_fies.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 191.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 189.
  ) 
 Here is how much of TeX's memory you used:
  16485 strings out of 483107
@@ -1215,10 +1200,10 @@ s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
 s/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on modeling_fies.pdf (13 pages, 6294995 bytes).
+Output written on modeling_fies.pdf (13 pages, 6295153 bytes).
 PDF statistics:
- 329 PDF objects out of 1000 (max. 8388607)
- 288 compressed objects within 3 object streams
+ 330 PDF objects out of 1000 (max. 8388607)
+ 289 compressed objects within 3 object streams
  70 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
