@@ -49,7 +49,7 @@ ggplot(df) +
   coord_flip() + 
   facet_grid(. ~ mod) + 
   theme_bw() + 
-  labs(x='', y='Increase in Model Error When Variable is Permuted')
+  labs(x='', y='Increase in Model Error When Variable is Permutated')
 ggsave('VIMP.pdf', width=7, height=3.75)
 
 ################################
