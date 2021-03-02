@@ -5,6 +5,9 @@ setwd('~/wdl-fies'); library(ProjectTemplate); load.project()
 ########################
 
 sel <- preddat %>%
+  select(ISO3, YEAR, GDLCODE, fies.mod.pred) %>%
+  merge(covars %>%
+          select(ISO3, YEAR, GDLCODE, stunting, urban_perc, population)) %>%
   select(ISO3, YEAR, GDLCODE, stunting, urban_perc, fies.mod.pred, population) %>%
   filter(YEAR %in% c(2020, 2025, 2030)) %>%
   merge(u5.population, all.x=T, all.y=F) %>%
@@ -29,5 +32,5 @@ sel <- preddat %>%
 gdl <- gdl %>%
   filter(GDLCODE %in% sel$GDLCODE)
 
-write.csv(sel, 'figures/HC_2020-11-18_data.csv', row.names=F) #update date
-write_sf(gdl, 'figures/HC_2020-10-28_polys.geojson', driver='GeoJSON')
+write.csv(sel, paste0('figures/HC_', substr(Sys.time(), 1, 10), '_data.csv'), row.names=F) #update date
+write_sf(gdl, paste0('figures/HC_', substr(Sys.time(), 1, 10), '_polys.geojson', driver='GeoJSON')
