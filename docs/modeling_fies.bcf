@@ -66,7 +66,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>labeldateparts</bcf:key>
-      <bcf:value>0</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="multivalued">
       <bcf:key>labeldatespec</bcf:key>
@@ -163,7 +163,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortingtemplatename</bcf:key>
-      <bcf:value>none</bcf:value>
+      <bcf:value>nyt</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortsets</bcf:key>
@@ -171,11 +171,11 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquelist</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>true</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>full</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -412,7 +412,8 @@
     <bcf:option datatype="boolean">doi</bcf:option>
     <bcf:option datatype="boolean">eprint</bcf:option>
     <bcf:option datatype="boolean">related</bcf:option>
-    <bcf:option datatype="boolean">subentry</bcf:option>
+    <bcf:option datatype="boolean">dashed</bcf:option>
+    <bcf:option datatype="boolean">mergedate</bcf:option>
     <bcf:option datatype="integer">mincrossrefs</bcf:option>
     <bcf:option datatype="integer">minxrefs</bcf:option>
     <bcf:option datatype="integer">maxnames</bcf:option>
@@ -493,7 +494,7 @@
     <bcf:option datatype="boolean">doi</bcf:option>
     <bcf:option datatype="boolean">eprint</bcf:option>
     <bcf:option datatype="boolean">related</bcf:option>
-    <bcf:option datatype="boolean">subentry</bcf:option>
+    <bcf:option datatype="boolean">mergedate</bcf:option>
     <bcf:option datatype="xml">labelalphatemplate</bcf:option>
     <bcf:option datatype="xml">translit</bcf:option>
     <bcf:option datatype="xml">sortexclusion</bcf:option>
@@ -579,7 +580,7 @@
     <bcf:option datatype="boolean" backendout="1">doi</bcf:option>
     <bcf:option datatype="boolean" backendout="1">eprint</bcf:option>
     <bcf:option datatype="boolean" backendout="1">related</bcf:option>
-    <bcf:option datatype="boolean" backendout="1">subentry</bcf:option>
+    <bcf:option datatype="boolean" backendout="1">mergedate</bcf:option>
     <bcf:option datatype="integer" backendin="maxcitenames,maxbibnames,maxsortnames">maxnames</bcf:option>
     <bcf:option datatype="integer" backendin="mincitenames,minbibnames,minsortnames">minnames</bcf:option>
     <bcf:option datatype="integer" backendout="1">maxbibnames</bcf:option>
@@ -2196,53 +2197,76 @@
     <bcf:citekey order="11">wambogo2018validity</bcf:citekey>
     <bcf:citekey order="11">smith2017world</bcf:citekey>
     <bcf:citekey order="12">Cafiero2018</bcf:citekey>
-    <bcf:citekey order="13">sofi2020</bcf:citekey>
-    <bcf:citekey order="14">sofi2020</bcf:citekey>
-    <bcf:citekey order="15">sofi2020</bcf:citekey>
-    <bcf:citekey order="16">bethlehem2009applied</bcf:citekey>
-    <bcf:citekey order="17">Tatem2017</bcf:citekey>
-    <bcf:citekey order="18">Jones2016</bcf:citekey>
-    <bcf:citekey order="19">dhsall</bcf:citekey>
-    <bcf:citekey order="20">oneill2014new</bcf:citekey>
-    <bcf:citekey order="21">van2011representative</bcf:citekey>
-    <bcf:citekey order="22">warszawski2014inter</bcf:citekey>
-    <bcf:citekey order="23">prospects2020</bcf:citekey>
-    <bcf:citekey order="24">headey2020impacts</bcf:citekey>
-    <bcf:citekey order="25">Cuaresma2018</bcf:citekey>
-    <bcf:citekey order="26">Jones2016</bcf:citekey>
-    <bcf:citekey order="27">Local2020</bcf:citekey>
-    <bcf:citekey order="28">Local2020</bcf:citekey>
-    <bcf:citekey order="29">Smits2019</bcf:citekey>
-    <bcf:citekey order="29">KC2017</bcf:citekey>
-    <bcf:citekey order="30">Smits2019</bcf:citekey>
-    <bcf:citekey order="30">Dellink2017</bcf:citekey>
-    <bcf:citekey order="31">Rao2019a</bcf:citekey>
-    <bcf:citekey order="32">Cuaresma2018</bcf:citekey>
-    <bcf:citekey order="33">greve2018global</bcf:citekey>
-    <bcf:citekey order="34">abatzoglou2018terraclimate</bcf:citekey>
+    <bcf:citekey order="13">bethlehem2009applied</bcf:citekey>
+    <bcf:citekey order="14">Tatem2017</bcf:citekey>
+    <bcf:citekey order="15">Jones2016</bcf:citekey>
+    <bcf:citekey order="16">dhsall</bcf:citekey>
+    <bcf:citekey order="17">oneill2014new</bcf:citekey>
+    <bcf:citekey order="18">van2011representative</bcf:citekey>
+    <bcf:citekey order="19">warszawski2014inter</bcf:citekey>
+    <bcf:citekey order="20">prospects2020</bcf:citekey>
+    <bcf:citekey order="21">headey2020impacts</bcf:citekey>
+    <bcf:citekey order="22">Cuaresma2018</bcf:citekey>
+    <bcf:citekey order="23">Jones2016</bcf:citekey>
+    <bcf:citekey order="24">Local2020</bcf:citekey>
+    <bcf:citekey order="25">Local2020</bcf:citekey>
+    <bcf:citekey order="26">Smits2019</bcf:citekey>
+    <bcf:citekey order="27">KC2017</bcf:citekey>
+    <bcf:citekey order="28">Smits2019</bcf:citekey>
+    <bcf:citekey order="29">Dellink2017</bcf:citekey>
+    <bcf:citekey order="30">Rao2019a</bcf:citekey>
+    <bcf:citekey order="31">Cuaresma2018</bcf:citekey>
+    <bcf:citekey order="32">greve2018global</bcf:citekey>
+    <bcf:citekey order="33">abatzoglou2018terraclimate</bcf:citekey>
     <bcf:citekey order="34">warszawski2014inter</bcf:citekey>
     <bcf:citekey order="35">USGS1996</bcf:citekey>
-    <bcf:citekey order="35">Riley1999</bcf:citekey>
-    <bcf:citekey order="36">abatzoglou2018terraclimate</bcf:citekey>
-    <bcf:citekey order="36">warszawski2014inter</bcf:citekey>
-    <bcf:citekey order="37">Weiss2019</bcf:citekey>
-    <bcf:citekey order="38">hastie2009elements</bcf:citekey>
-    <bcf:citekey order="39">friedman2001elements</bcf:citekey>
-    <bcf:citekey order="40">ishwaran2019randomforestsrc</bcf:citekey>
-    <bcf:citekey order="41">ishwaran2007variable</bcf:citekey>
-    <bcf:citekey order="41">breiman2001random</bcf:citekey>
+    <bcf:citekey order="36">Riley1999</bcf:citekey>
+    <bcf:citekey order="37">abatzoglou2018terraclimate</bcf:citekey>
+    <bcf:citekey order="38">warszawski2014inter</bcf:citekey>
+    <bcf:citekey order="39">Weiss2019</bcf:citekey>
+    <bcf:citekey order="40">hastie2009elements</bcf:citekey>
+    <bcf:citekey order="41">friedman2001elements</bcf:citekey>
+    <bcf:citekey order="42">ishwaran2019randomforestsrc</bcf:citekey>
+    <bcf:citekey order="43">ishwaran2007variable</bcf:citekey>
+    <bcf:citekey order="43">breiman2001random</bcf:citekey>
+    <bcf:citekey order="44">sofi2020</bcf:citekey>
+    <bcf:citekey order="45">sofi2020</bcf:citekey>
+    <bcf:citekey order="46">sofi2020</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
-  <bcf:sortingtemplate name="none">
+  <bcf:sortingtemplate name="nyt">
     <bcf:sort order="1">
-      <bcf:sortitem order="1">citeorder</bcf:sortitem>
+      <bcf:sortitem order="1">presort</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="2" final="1">
+      <bcf:sortitem order="1">sortkey</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="3">
+      <bcf:sortitem order="1">sortname</bcf:sortitem>
+      <bcf:sortitem order="2">author</bcf:sortitem>
+      <bcf:sortitem order="3">editor</bcf:sortitem>
+      <bcf:sortitem order="4">translator</bcf:sortitem>
+      <bcf:sortitem order="5">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="6">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="4">
+      <bcf:sortitem order="1">sortyear</bcf:sortitem>
+      <bcf:sortitem order="2">year</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="5">
+      <bcf:sortitem order="1">sorttitle</bcf:sortitem>
+      <bcf:sortitem order="2">title</bcf:sortitem>
+    </bcf:sort>
+    <bcf:sort order="6">
+      <bcf:sortitem order="1">volume</bcf:sortitem>
+      <bcf:sortitem literal="1" order="2">0</bcf:sortitem>
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
   <bcf:datalist section="0"
-                name="none/global//global/global"
+                name="nyt/global//global/global"
                 type="entry"
-                sortingtemplatename="none"
+                sortingtemplatename="nyt"
                 sortingnamekeytemplatename="global"
                 labelprefix=""
                 uniquenametemplatename="global"
