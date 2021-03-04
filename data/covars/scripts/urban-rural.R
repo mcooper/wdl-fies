@@ -178,8 +178,9 @@ rates <- ref_past %>%
   mutate(admin_share = modelFuture(admin_share)) %>%
   group_by(ISO3, YEAR) %>%
   mutate(admin_shares_total = sum(admin_share)) %>%
-  ungroup(admin_share = admin_share/admin_shares_total) %>%
-  dplyr::select(ISO3, GDLCODE, YEAR, admin_share)
+  ungroup %>%
+  mutate(admin_share = admin_share/admin_shares_total) %>%
+  dplyr::select(ISO3, GDLCODE, YEAR, admin_share, admin_shares_total)
 
 #Now extrapolate these rates to the future
 fut <-merge(rates, new_ref_fut) %>%
