@@ -1,30 +1,29 @@
 \documentclass[titlepage]{article}
 
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage[a4paper, margin=1.25in]{geometry}
-\usepackage{breakcites}
-\usepackage{subcaption}
 \usepackage{float}
-\usepackage{textcomp}
-\usepackage{amsmath}
-\usepackage{textgreek}
-\usepackage{authblk}
-\usepackage{rotating}
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{pdflscape}
-\usepackage{lineno}
 \usepackage[
-  style=numeric,
-  citestyle=numeric-comp,
+  colorlinks=true,
+  citecolor=blue
+]{hyperref}
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{authblk}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{makecell}
+\usepackage[
+  style=authoryear,
+  citestyle=authoryear,
   backend=biber,
   doi=true,
   natbib=true,
-  sorting=none
+  sorting=nyt %name, year, title
 ]{biblatex}
 
 \addbibresource{library.bib}
+
+%set up alignment in \makecell
+%\renewcommand{\cellalign/theadalign}{cl}
 
 \begin{document}
 
@@ -47,9 +46,9 @@
 \affil[8]{The Brookings Institution}
 \affil[*]{Corresponding Author: mcooper@hsph.harvard.edu}
 
-\maketitle
+%\maketitle
 \begin{abstract}
-Using microdata from 75 countries collected by FAO through the Gallup World Poll for the Voices of the Hungry project, we modeled levels of food security at the subnational level from 2010 to 2030 to create the World Hunger Clock (https://worldhunger.io).  This is the first global picture of food security at a subnational level based on the Food Insecurity Experience Scale, the indicator for the Sustainable Development Goal of "Zero Hunger" that is most indicative of the individual's lived experience of food insecurity and hunger.  We find significant heterogeneity in food security around the world, ranging from less than 4\% of the population being at least moderately food insecure in some high-income countries to parts of the developing world where over half the population is severely food insecure.  Examining global temporal trends and accounting for the effects of the COVID-19 pandemic, we find that rates of severe food insecurity are declining steadily yet slowly, with larger observed and forecasted gains in lower and lower-middle income countries, resulting in global decreases in the total number of severely food insecure people.  However, the total number of moderately food insecure people has been increasing and, after recovering from the shock of the COVID-19 pandemic, we predict it will continue to increase through the end of the 2020s.  Overall, we conclude that global gains have been incremental, and current trends in development and demographic change will still leave a large share of the world's population still experiencing hunger by 2030.  \end{abstract}
+This paper presents the first global picture of food security at a subnational level based on the Food Insecurity Experience Scale, the indicator for the Sustainable Development Goal of ``Zero Hunger" that is most indicative of the individual's lived experience of food insecurity and hunger.  Using microdata from 75 countries and filling gaps using machine learning, we find significant heterogeneity in levels of food insecurity around the world.  Examining global temporal trends and accounting for the effects of the COVID-19 pandemic, we find that rates of severe food insecurity are declining, resulting in global decreases in the total number of severely food insecure people.  However, the total number of moderately food insecure people has been increasing and, after recovering from the shock of the COVID-19 pandemic, we predict it will continue to increase through the end of the 2020s.  Overall, we conclude that current trends in development and demographic change will still leave a large share of the world's population still experiencing hunger by 2030.  \end{abstract}
 
 \section{Main}
 Food security is a critical component of human flourishing and its importance as a global policy objective is reflected in the second Sustainable Development Goal (SDG 2), ``Zero Hunger." One of the indicators to track progress on the first target of this goal, to ensure access by everyone to safe, nutritious and sufficient food (SDG2.1), is the prevalence of moderate and severe food insecurity in the population based on the Food Insecurity Experience Scale, or FIES. The FIES was developed by FAO in 2013 as a global extension of pioneering work started in the US in the 1990's to develop a metric of food insecurity based on data gathered by interviewing the people who experience hunger and conditions that produce hunger. Other indicators of food insecurity, such as FAO's more commonly used estimate of undernourishment, are based on macro models of the mean and distribution of calories available per capita in a population, developed on the basis of infrequent and heterogeneous data on food production and consumption. These do not directly capture the actual lived exposure of individuals to food shortages. 
@@ -89,18 +88,18 @@ Finally, we adjust several variables to account for the effects of the COVID-19 
 		\toprule
     Name & Source & Scale \\
 		\midrule
-    Urban Percentage & \citep{Jones2016} & Subnational \\
-    Stunting & \citep{Local2020} & Subnational \\
-    Wasting & \citep{Local2020} & Subnational \\
-    Mean Years of Schooling & \citep{Smits2019, KC2017} & Subnational\\
-    GDP Per Capita & \citep{Smits2019, Dellink2017} & Subnational \\
-    Gini Coefficient & \citep{Rao2019a} & National\\
-    Poverty Headcount Index & \citep{Cuaresma2018} & National \\
-    Water Scarcity & \citep{greve2018global} & Subnational \\
-    Mean Annual Precipitation &  \cite{abatzoglou2018terraclimate, warszawski2014inter} & Subnational \\
-    Topographic Ruggedness &  \cite{USGS1996, Riley1999} & Subnational \\
-    Mean Temperature &  \cite{abatzoglou2018terraclimate, warszawski2014inter} & Subnational \\
-    Malaria (\textit{P. falciparum}) Mortality Rate &  \cite{Weiss2019} & Subnational \\
+    Urban Percentage & \cite{Jones2016} & Subnational \\ [1cm]
+    Stunting & \cite{Local2020} & Subnational \\ [1cm]
+    Wasting & \cite{Local2020} & Subnational \\ [1cm]
+    Mean Years of Schooling & \makecell[tl]{\cite{Smits2019} \\ \cite{KC2017}} & Subnational\\ [1cm]
+    GDP Per Capita & \makecell[tl]{\cite{Smits2019} \\ \cite{Dellink2017}} & Subnational \\ [1cm]
+    Gini Coefficient & \cite{Rao2019a} & National\\ [1cm]
+    Poverty Headcount Index & \cite{Cuaresma2018} & National \\ [1cm]
+    Water Scarcity & \cite{greve2018global} & Subnational \\ [1cm]
+    Mean Annual Precipitation & \makecell[tl]{\cite{abatzoglou2018terraclimate} \\ \cite{warszawski2014inter}} & Subnational \\ [1cm]
+    Topographic Ruggedness &  \makecell[tl]{\cite{USGS1996} \\ \cite{Riley1999}} & Subnational \\ [1cm]
+    Mean Temperature &  \makecell[tl]{\cite{abatzoglou2018terraclimate} \\ \cite{warszawski2014inter}} & Subnational \\ [1cm]
+    \makecell[tl]{Malaria (\textit{P. falciparum}) \\ Mortality Rate} & \cite{Weiss2019} & Subnational \\
 		\bottomrule
 	\end{tabular}
 	\caption{Covariates Included in the Analysis}
@@ -127,7 +126,7 @@ Under realistic scenario assumptions, we find divergent trends in the number of 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{img/TimeSeries.pdf}
+  \includegraphics[width=\linewidth]{TimeSeries.pdf}
   \caption{Number of people over the thresholds for moderate and severe food insecurity, by World Bank income groups as of 2020.  Panel (A) shows the number of food insecure people with region totals stacked, to show global trends and totals over time.  Panel (B) shows regional totals compared against each other over time.}
   \label{fig:timeseries}
 \end{figure}
@@ -136,7 +135,7 @@ Examining the rate of food insecurity in a population, rather than the total num
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{img/Rates.pdf}
+  \includegraphics[width=\linewidth]{Rates.pdf}
   \caption{Percentage of the population over the threshold for moderate and severe food insecurity, by World Bank income groups as of 2020.}
   \label{fig:rates}
 \end{figure}
@@ -150,7 +149,7 @@ The experience of at least moderate food insecurity is quite common in many part
 \begin{landscape}
 \begin{figure}[h]
   \centering
-  \includegraphics{img/FullMap.pdf}
+  \includegraphics[width=\linewidth]{FullMap.pdf}
   \caption{Spatial distribution of moderate and severe food insecurity for the years 2010, 2020, and 2030.}
   \label{fig:map}
 \end{figure}
@@ -163,7 +162,7 @@ For severe food insecurity, the most important variable for predicting food secu
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\linewidth]{img/VIMP.pdf}
+  \includegraphics[width=\linewidth]{VIMP.pdf}
   \caption{Importance of each variable in predicting the percent of a population over thresholds for moderate and severe food insecurity.  This is determined by the increase in the error when the variable is permuted before fitting the model.}
   \label{fig:vimp}
 \end{figure}

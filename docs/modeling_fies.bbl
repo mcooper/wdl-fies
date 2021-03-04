@@ -18,66 +18,580 @@
 
 
 \refsection{0}
-  \datalist[entry]{none/global//global/global}
-    \entry{Puffer1973}{book}{}
-      \name{author}{2}{}{%
-        {{hash=cd574b3968bf2b860fbcb00b01b6912c}{%
-           family={Puffer},
+  \datalist[entry]{nyt/global//global/global}
+    \entry{abatzoglou2018terraclimate}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=ba5565cef991bdaf6f1f52542c553e60}{%
+           family={Abatzoglou},
+           familyi={A\bibinitperiod},
+           given={John\bibnamedelima T},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=32de1e6a963e5788334b1128a888accc}{%
+           family={Dobrowski},
+           familyi={D\bibinitperiod},
+           given={Solomon\bibnamedelima Z},
+           giveni={S\bibinitperiod\bibinitdelim Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c201e2768fc723c9bc2c9fe36be04e53}{%
+           family={Parks},
            familyi={P\bibinitperiod},
-           given={Ruth\bibnamedelima R.},
-           giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{hash=c44af345c95d57a502cda3c6746ff909}{%
-           family={Serrano},
-           familyi={S\bibinitperiod},
-           given={Carlos\bibnamedelima V.},
-           giveni={C\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Washington, DC}%
+           given={Sean\bibnamedelima A},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a8b124884325681ef877d0433eff2137}{%
+           family={Hegewisch},
+           familyi={H\bibinitperiod},
+           given={Katherine\bibnamedelima C},
+           giveni={K\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
-        {World Heath Organization}%
+        {Nature Publishing Group}%
       }
-      \strng{namehash}{caeaa590cfa4f54edbf6244c1a1542f0}
-      \strng{fullhash}{caeaa590cfa4f54edbf6244c1a1542f0}
-      \strng{bibnamehash}{caeaa590cfa4f54edbf6244c1a1542f0}
-      \strng{authorbibnamehash}{caeaa590cfa4f54edbf6244c1a1542f0}
-      \strng{authornamehash}{caeaa590cfa4f54edbf6244c1a1542f0}
-      \strng{authorfullhash}{caeaa590cfa4f54edbf6244c1a1542f0}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \strng{namehash}{3ba03a2557b394a9623405b89c0b865f}
+      \strng{fullhash}{ac5beccca31dde13140a7e80ae3e3956}
+      \strng{bibnamehash}{3ba03a2557b394a9623405b89c0b865f}
+      \strng{authorbibnamehash}{3ba03a2557b394a9623405b89c0b865f}
+      \strng{authornamehash}{3ba03a2557b394a9623405b89c0b865f}
+      \strng{authorfullhash}{ac5beccca31dde13140a7e80ae3e3956}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{{Patterns of Mortality in Childhood}}
-      \field{year}{1973}
+      \field{journaltitle}{Scientific data}
+      \field{title}{TerraClimate, a high-resolution global dataset of monthly climate and climatic water balance from 1958--2015}
+      \field{volume}{5}
+      \field{year}{2018}
+      \field{pages}{170191}
+      \range{pages}{1}
+    \endentry
+    \entry{Ballard2013}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=48e9d54f50813c18148eda59b75bae74}{%
+           family={Ballard},
+           familyi={B\bibinitperiod},
+           given={T},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5fda126273d2edaf9406d26a9a3f0272}{%
+           family={Kepple},
+           familyi={K\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c5481301434a9bf880bb2644503ae4f4}{%
+           family={Cafiero},
+           familyi={C\bibinitperiod},
+           given={C},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{fullhash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{bibnamehash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{authorbibnamehash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{authornamehash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \strng{authorfullhash}{f9c424a2394ea041e32b4432fb1f4c59}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0263-2241}
+      \field{journaltitle}{Technical Paper}
+      \field{title}{{The food insecurity experience scale: development of a global standard for monitoring hunger worldwide}}
+      \field{year}{2013}
+      \verb{doi}
+      \verb 10.1016/j.measurement.2017.10.065
+      \endverb
+    \endentry
+    \entry{bethlehem2009applied}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6e188e5ee88c538d01ea77035def44f0}{%
+           family={Bethlehem},
+           familyi={B\bibinitperiod},
+           given={Jelke},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {John Wiley \& Sons}%
+      }
+      \strng{namehash}{6e188e5ee88c538d01ea77035def44f0}
+      \strng{fullhash}{6e188e5ee88c538d01ea77035def44f0}
+      \strng{bibnamehash}{6e188e5ee88c538d01ea77035def44f0}
+      \strng{authorbibnamehash}{6e188e5ee88c538d01ea77035def44f0}
+      \strng{authornamehash}{6e188e5ee88c538d01ea77035def44f0}
+      \strng{authorfullhash}{6e188e5ee88c538d01ea77035def44f0}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Applied survey methods: A statistical perspective}
+      \field{volume}{558}
+      \field{year}{2009}
+    \endentry
+    \entry{breiman2001random}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=132b7100417675d55d5d4d8b244f7a34}{%
+           family={Breiman},
+           familyi={B\bibinitperiod},
+           given={Leo},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{fullhash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{bibnamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authorbibnamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authornamehash}{132b7100417675d55d5d4d8b244f7a34}
+      \strng{authorfullhash}{132b7100417675d55d5d4d8b244f7a34}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Machine learning}
+      \field{number}{1}
+      \field{title}{Random forests}
+      \field{volume}{45}
+      \field{year}{2001}
+      \field{pages}{5\bibrangedash 32}
+      \range{pages}{28}
+    \endentry
+    \entry{Cafiero2018}{article}{}
+      \name{author}{3}{}{%
+        {{un=2,uniquepart=given,hash=96e6fe476a19cc032a16f6986fe75c25}{%
+           family={Cafiero},
+           familyi={C\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod},
+           givenun=2}}%
+        {{un=0,uniquepart=base,hash=538758880e27d823c9071b10fc4278ca}{%
+           family={Viviani},
+           familyi={V\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1ed969c60d00822f370a6b367c5ea64b}{%
+           family={Nord},
+           familyi={N\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{fullhash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{bibnamehash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{authorbibnamehash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{authornamehash}{a66ff446803e9645294a3a7bc0030daf}
+      \strng{authorfullhash}{a66ff446803e9645294a3a7bc0030daf}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{02632241}
+      \field{journaltitle}{Measurement: Journal of the International Measurement Confederation}
+      \field{title}{{Food security measurement in a global context: The food insecurity experience scale}}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1016/j.measurement.2017.10.065
+      \endverb
+      \keyw{Food security measurement,Rasch model,Scale equating,Sustainable development goals}
+    \endentry
+    \entry{Coates2007}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=f496c7c7a34af52d33582dc6a5d6368c}{%
+           family={Coates},
+           familyi={C\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5b4c9a0a7a5be61a3fbd2eacbf50357b}{%
+           family={Swindale},
+           familyi={S\bibinitperiod},
+           given={a},
+           giveni={a\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8da383892b0459e95c2a6b7feaf061cb}{%
+           family={Bilinsky},
+           familyi={B\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{fullhash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{bibnamehash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{authorbibnamehash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{authornamehash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \strng{authorfullhash}{ddd47e766b6e1ea33ed73ff938e828f1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780874216561}
+      \field{issn}{0717-6163}
+      \field{journaltitle}{Washington, DC: Food and Nutrition Technical {\ldots}}
+      \field{number}{August}
+      \field{title}{{Household Food Insecurity Access Scale (HFIAS) for measurement of food access: indicator guide}}
+      \field{year}{2007}
+      \field{pages}{Version 3}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1007/s13398-014-0173-7.2
+      \endverb
+      \keyw{Food and Nutrition Technical Assistance III Projec}
+    \endentry
+    \entry{Cuaresma2018}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=310977675c3c65c9af8531a21dc40050}{%
+           family={Cuaresma},
+           familyi={C\bibinitperiod},
+           given={Jes{ú}s\bibnamedelima Crespo},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c084bfc585ee17f34f8a34b65afe88cf}{%
+           family={Fengler},
+           familyi={F\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d4087ba8f3c339b292f6d02128ab8272}{%
+           family={Kharas},
+           familyi={K\bibinitperiod},
+           given={Homi},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=68039391f4bc1c6cf7f3850e453f9b8c}{%
+           family={Bekhtiar},
+           familyi={B\bibinitperiod},
+           given={Karim},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e8d6e3a5abb0204ba3d6f70388a0c0b6}{%
+           family={Brottrager},
+           familyi={B\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=74051e9b4936603abd8e93b5d30bade6}{%
+           family={Hofer},
+           familyi={H\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{b385f0807a89a2d1e4e46a67b04de51e}
+      \strng{fullhash}{bbea96212d57f12155e7f24a912f27ef}
+      \strng{bibnamehash}{b385f0807a89a2d1e4e46a67b04de51e}
+      \strng{authorbibnamehash}{b385f0807a89a2d1e4e46a67b04de51e}
+      \strng{authornamehash}{b385f0807a89a2d1e4e46a67b04de51e}
+      \strng{authorfullhash}{bbea96212d57f12155e7f24a912f27ef}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Palgrave Communications}
+      \field{number}{1}
+      \field{title}{Will the Sustainable Development Goals be fulfilled? Assessing present and future global poverty}
+      \field{volume}{4}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 8}
+      \range{pages}{8}
+    \endentry
+    \entry{Dellink2017}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=e02fa3bbe60064a37acedb9dd7420998}{%
+           family={Dellink},
+           familyi={D\bibinitperiod},
+           given={Rob},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3285e0335085b7a878c5da1c5b582dc0}{%
+           family={Chateau},
+           familyi={C\bibinitperiod},
+           given={Jean},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9619748f3aa52ff29859c407d84461f1}{%
+           family={Lanzi},
+           familyi={L\bibinitperiod},
+           given={Elisa},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=df8ebbb86f7ea16337308721bd3733af}{%
+           family={Magn{é}},
+           familyi={M\bibinitperiod},
+           given={Bertrand},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{93cd26ae53e78113edda02df27f3c71e}
+      \strng{fullhash}{1b95d68452b7bd3ce8efb8e7a2cc3658}
+      \strng{bibnamehash}{93cd26ae53e78113edda02df27f3c71e}
+      \strng{authorbibnamehash}{93cd26ae53e78113edda02df27f3c71e}
+      \strng{authornamehash}{93cd26ae53e78113edda02df27f3c71e}
+      \strng{authorfullhash}{1b95d68452b7bd3ce8efb8e7a2cc3658}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{09593780}
+      \field{journaltitle}{Global Environmental Change}
+      \field{title}{{Long-term economic growth projections in the Shared Socioeconomic Pathways}}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1016/j.gloenvcha.2015.06.004
+      \endverb
+      \keyw{Baselines,Climate change,Convergence,Economic growth}
+    \endentry
+    \entry{sofi2020}{misc}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=4807e0aebe86c17f559853f35515b533}{%
+           family={FAO},
+           familyi={F\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=3c0067fadb951fbb8da3ec89314eded7}{%
+           family={IFAD},
+           familyi={I\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=d13783605ea066c4fee77fe8192de83a}{%
+           family={UNICEF},
+           familyi={U\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=8af5c2278136b36a59c8185541581d4e}{%
+           family={WFP},
+           familyi={W\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=9ed1e9f759b27c20c0ee8a56113c84e3}{%
+           family={WHO},
+           familyi={W\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Rome}%
+      }
+      \list{publisher}{1}{%
+        {FAO}%
+      }
+      \strng{namehash}{f7a4e7b7fb0cb572697a09b1003fc1e6}
+      \strng{fullhash}{f210780a485b8cbce28c2b937fc94f6b}
+      \strng{bibnamehash}{f7a4e7b7fb0cb572697a09b1003fc1e6}
+      \strng{authorbibnamehash}{f7a4e7b7fb0cb572697a09b1003fc1e6}
+      \strng{authornamehash}{f7a4e7b7fb0cb572697a09b1003fc1e6}
+      \strng{authorfullhash}{f210780a485b8cbce28c2b937fc94f6b}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The State of Food Security and Nutrition in the World 2020. Transforming food systems for affordable healthy diets.}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.4060/ca9692en
+      \endverb
+    \endentry
+    \entry{friedman2001elements}{book}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=971cf69058b64a94326dea0f2a8bbcce}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={Jerome},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
+           family={Hastie},
+           familyi={H\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=88eea600247d798f8b2ce0b2dc614492}{%
+           family={Tibshirani},
+           familyi={T\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer series in statistics New York}%
+      }
+      \strng{namehash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{fullhash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{bibnamehash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{authorbibnamehash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{authornamehash}{568e7b5149c552567af3c9b520d96bb3}
+      \strng{authorfullhash}{568e7b5149c552567af3c9b520d96bb3}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{10}
+      \field{title}{The elements of statistical learning}
+      \field{volume}{1}
+      \field{year}{2001}
+    \endentry
+    \entry{prospects2020}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=48f493eb4a4e250a6a3f9491b7df3299}{%
+           family={{Global Economic Prospects}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{48f493eb4a4e250a6a3f9491b7df3299}
+      \strng{fullhash}{48f493eb4a4e250a6a3f9491b7df3299}
+      \strng{bibnamehash}{48f493eb4a4e250a6a3f9491b7df3299}
+      \strng{authorbibnamehash}{48f493eb4a4e250a6a3f9491b7df3299}
+      \strng{authornamehash}{48f493eb4a4e250a6a3f9491b7df3299}
+      \strng{authorfullhash}{48f493eb4a4e250a6a3f9491b7df3299}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{World Bank Group, Washington DC}
+      \field{title}{June 2020}
+      \field{year}{2020}
+    \endentry
+    \entry{greve2018global}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{un=0,uniquepart=base,hash=c7d0ba43697fb5ed9324d4b0d7e424fb}{%
+           family={Greve},
+           familyi={G\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2b32ad0cae15bf56a081c560ef64b815}{%
+           family={Kahil},
+           familyi={K\bibinitperiod},
+           given={Taher},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f83922bcf703ae3c8625d9763f070bc7}{%
+           family={Mochizuki},
+           familyi={M\bibinitperiod},
+           given={Junko},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3af7ca3a4ab4c4a075ce6931c27f8205}{%
+           family={Schinko},
+           familyi={S\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=721d9fcd0f2858918ccdd4ecabc0753b}{%
+           family={Satoh},
+           familyi={S\bibinitperiod},
+           given={Yusuke},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cb5e48b701d52ff7d73d92c18df6eeff}{%
+           family={Burek},
+           familyi={B\bibinitperiod},
+           given={P},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c63d4b532915c2df1ff0581efa885d8c}{%
+           family={Fischer},
+           familyi={F\bibinitperiod},
+           given={G},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2e65b430971fa50ae59996d2ed567cf4}{%
+           family={Tramberend},
+           familyi={T\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cfe18059ec66d16315e3157a8266ccf4}{%
+           family={Burtscher},
+           familyi={B\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=28b3e248bf4b7585847db0e8c6d34cb3}{%
+           family={Langan},
+           familyi={L\bibinitperiod},
+           given={S},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{d91597b61c160c8ead98f6303ea4d746}
+      \strng{fullhash}{e2fe996c886198b1269516f90ed90719}
+      \strng{bibnamehash}{d91597b61c160c8ead98f6303ea4d746}
+      \strng{authorbibnamehash}{d91597b61c160c8ead98f6303ea4d746}
+      \strng{authornamehash}{d91597b61c160c8ead98f6303ea4d746}
+      \strng{authorfullhash}{e2fe996c886198b1269516f90ed90719}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature Sustainability}
+      \field{number}{9}
+      \field{title}{Global assessment of water challenges under uncertainty in water scarcity projections}
+      \field{volume}{1}
+      \field{year}{2018}
+      \field{pages}{486\bibrangedash 494}
+      \range{pages}{9}
     \endentry
     \entry{Habicht1974}{article}{}
       \name{author}{5}{}{%
-        {{hash=fcab559fcefb6f1e97cc1e6c2b954cf8}{%
+        {{un=0,uniquepart=base,hash=fcab559fcefb6f1e97cc1e6c2b954cf8}{%
            family={Habicht},
            familyi={H\bibinitperiod},
            given={J\bibnamedelima P},
-           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=79e118f2ce9048a06bbaa1dbe0b979e6}{%
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=79e118f2ce9048a06bbaa1dbe0b979e6}{%
            family={Martorell},
            familyi={M\bibinitperiod},
            given={R},
-           giveni={R\bibinitperiod}}}%
-        {{hash=fe569b15684f5a640fdc269f3e39fb63}{%
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fe569b15684f5a640fdc269f3e39fb63}{%
            family={Yarbrough},
            familyi={Y\bibinitperiod},
            given={C},
-           giveni={C\bibinitperiod}}}%
-        {{hash=4d223bda67bd8503b31c9d1e0e01b67e}{%
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4d223bda67bd8503b31c9d1e0e01b67e}{%
            family={Malina},
            familyi={M\bibinitperiod},
            given={R\bibnamedelima M},
-           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=2489a276b030ffc141c4fa879e55a892}{%
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2489a276b030ffc141c4fa879e55a892}{%
            family={Klein},
            familyi={K\bibinitperiod},
            given={R\bibnamedelima E},
-           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{14839b121d300cf39e046fe956791abe}
       \strng{fullhash}{cff4bfc2fb7dd3b18beb0191fad4cbc2}
@@ -85,8 +599,10 @@
       \strng{authorbibnamehash}{14839b121d300cf39e046fe956791abe}
       \strng{authornamehash}{14839b121d300cf39e046fe956791abe}
       \strng{authorfullhash}{cff4bfc2fb7dd3b18beb0191fad4cbc2}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{01406736}
@@ -101,127 +617,26 @@
       \verb 10.1016/S0140-6736(74)92663-4
       \endverb
     \endentry
-    \entry{Perumal2018}{article}{}
-      \name{author}{3}{}{%
-        {{hash=bce0438cbfc46134fc0dac75280e08a3}{%
-           family={Perumal},
-           familyi={P\bibinitperiod},
-           given={Nandita},
-           giveni={N\bibinitperiod}}}%
-        {{hash=c07afe636bd876c271ed3197941c4482}{%
-           family={Bassani},
-           familyi={B\bibinitperiod},
-           given={Diego\bibnamedelima G},
-           giveni={D\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
-        {{hash=efabf2d86e9f7b4b615571825c1934f0}{%
-           family={Roth},
-           familyi={R\bibinitperiod},
-           given={Daniel\bibnamedelima E},
-           giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
-      }
-      \strng{namehash}{102bffc8430f7a139f387b1e6b743567}
-      \strng{fullhash}{102bffc8430f7a139f387b1e6b743567}
-      \strng{bibnamehash}{102bffc8430f7a139f387b1e6b743567}
-      \strng{authorbibnamehash}{102bffc8430f7a139f387b1e6b743567}
-      \strng{authornamehash}{102bffc8430f7a139f387b1e6b743567}
-      \strng{authorfullhash}{102bffc8430f7a139f387b1e6b743567}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{0022-3166}
-      \field{journaltitle}{The Journal of Nutrition}
-      \field{number}{3}
-      \field{title}{{Use and Misuse of Stunting as a Measure of Child Health}}
-      \field{volume}{148}
-      \field{year}{2018}
-      \field{pages}{311\bibrangedash 315}
-      \range{pages}{5}
-      \verb{doi}
-      \verb 10.1093/jn/nxx064
-      \endverb
-      \verb{urlraw}
-      \verb https://academic.oup.com/jn/article/148/3/311/4930811
-      \endverb
-      \verb{url}
-      \verb https://academic.oup.com/jn/article/148/3/311/4930811
-      \endverb
-    \endentry
-    \entry{Maxwell1992}{misc}{}
-      \name{author}{2}{}{%
-        {{hash=ec73fab536003ab85c63dea1f36725fc}{%
-           family={Maxwell},
-           familyi={M\bibinitperiod},
-           given={Simon},
-           giveni={S\bibinitperiod}}}%
-        {{hash=8d88a9ac43a0aab17cf6725bb31b1c23}{%
-           family={Frankenberger},
-           familyi={F\bibinitperiod},
-           given={Timothy\bibnamedelima R.},
-           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-      }
-      \strng{namehash}{4ab56accbf177105277a508fdb503dba}
-      \strng{fullhash}{4ab56accbf177105277a508fdb503dba}
-      \strng{bibnamehash}{4ab56accbf177105277a508fdb503dba}
-      \strng{authorbibnamehash}{4ab56accbf177105277a508fdb503dba}
-      \strng{authornamehash}{4ab56accbf177105277a508fdb503dba}
-      \strng{authorfullhash}{4ab56accbf177105277a508fdb503dba}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Ifad Unicef}
-      \field{isbn}{9280620215}
-      \field{issn}{0305750X}
-      \field{title}{{Household Food Security: Concepts, Indicators, Measurements: A technical review}}
-      \field{year}{1992}
-      \field{pages}{293}
-      \range{pages}{1}
-    \endentry
-    \entry{Sen1983}{book}{}
-      \name{author}{1}{}{%
-        {{hash=18688d43042a810cb6ae6bb19c167f1b}{%
-           family={Sen},
-           familyi={S\bibinitperiod},
-           given={Amartya},
-           giveni={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{18688d43042a810cb6ae6bb19c167f1b}
-      \strng{fullhash}{18688d43042a810cb6ae6bb19c167f1b}
-      \strng{bibnamehash}{18688d43042a810cb6ae6bb19c167f1b}
-      \strng{authorbibnamehash}{18688d43042a810cb6ae6bb19c167f1b}
-      \strng{authornamehash}{18688d43042a810cb6ae6bb19c167f1b}
-      \strng{authorfullhash}{18688d43042a810cb6ae6bb19c167f1b}
-      \field{sortinit}{4}
-      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Journal of Comparative Economics}
-      \field{isbn}{0198284632}
-      \field{issn}{01475967}
-      \field{title}{{Poverty and famine: An essay on entitlement and deprivation}}
-      \field{year}{1983}
-      \verb{doi}
-      \verb 10.1016/0147-5967(83)90075-6
-      \endverb
-    \endentry
     \entry{Haddad1994}{article}{}
       \name{author}{3}{}{%
-        {{hash=a19337d097995a682b9e14934a3ecc7b}{%
+        {{un=0,uniquepart=base,hash=a19337d097995a682b9e14934a3ecc7b}{%
            family={Haddad},
            familyi={H\bibinitperiod},
            given={Lawrence},
-           giveni={L\bibinitperiod}}}%
-        {{hash=cb8e89903ca3efe6b32c37cb7afbff34}{%
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cb8e89903ca3efe6b32c37cb7afbff34}{%
            family={Kennedy},
            familyi={K\bibinitperiod},
            given={Eileen},
-           giveni={E\bibinitperiod}}}%
-        {{hash=2cf6974f197996c2cc6e2a103f69506f}{%
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2cf6974f197996c2cc6e2a103f69506f}{%
            family={Sullivan},
            familyi={S\bibinitperiod},
            given={Joan},
-           giveni={J\bibinitperiod}}}%
+           giveni={J\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{f3e264e39a981052f9a8fc806f7143fe}
       \strng{fullhash}{f3e264e39a981052f9a8fc806f7143fe}
@@ -229,8 +644,10 @@
       \strng{authorbibnamehash}{f3e264e39a981052f9a8fc806f7143fe}
       \strng{authornamehash}{f3e264e39a981052f9a8fc806f7143fe}
       \strng{authorfullhash}{f3e264e39a981052f9a8fc806f7143fe}
-      \field{sortinit}{5}
-      \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{03069192}
@@ -246,59 +663,250 @@
       \endverb
       \keyw{food security,indicators,nutrition monitoring}
     \endentry
-    \entry{Maxwell1996}{article}{}
-      \name{author}{1}{}{%
-        {{hash=ec73fab536003ab85c63dea1f36725fc}{%
-           family={Maxwell},
-           familyi={M\bibinitperiod},
-           given={Simon},
-           giveni={S\bibinitperiod}}}%
+    \entry{hastie2009elements}{book}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
+           family={Hastie},
+           familyi={H\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=88eea600247d798f8b2ce0b2dc614492}{%
+           family={Tibshirani},
+           familyi={T\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=971cf69058b64a94326dea0f2a8bbcce}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={Jerome},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
       }
-      \strng{namehash}{ec73fab536003ab85c63dea1f36725fc}
-      \strng{fullhash}{ec73fab536003ab85c63dea1f36725fc}
-      \strng{bibnamehash}{ec73fab536003ab85c63dea1f36725fc}
-      \strng{authorbibnamehash}{ec73fab536003ab85c63dea1f36725fc}
-      \strng{authornamehash}{ec73fab536003ab85c63dea1f36725fc}
-      \strng{authorfullhash}{ec73fab536003ab85c63dea1f36725fc}
-      \field{sortinit}{6}
-      \field{sortinithash}{7851c86048328b027313775d8fbd2131}
+      \list{publisher}{1}{%
+        {Springer Science \& Business Media}%
+      }
+      \strng{namehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{fullhash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{bibnamehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{authorbibnamehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{authornamehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{authorfullhash}{7ca1bfe876d5e037b6aed69704221267}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{03069192}
-      \field{journaltitle}{Food Policy}
-      \field{number}{2}
-      \field{title}{{Food security: A post-modern perspective}}
-      \field{volume}{21}
-      \field{year}{1996}
-      \field{pages}{155\bibrangedash 170}
-      \range{pages}{16}
-      \verb{doi}
-      \verb 10.1016/0306-9192(95)00074-7
-      \endverb
-      \keyw{Food policy,Food security,Post-modernism}
+      \field{title}{The elements of statistical learning: data mining, inference, and prediction}
+      \field{year}{2009}
+    \endentry
+    \entry{headey2020impacts}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{10}{}{%
+        {{un=0,uniquepart=base,hash=32426d9763ddb1ab09f31694186f71a0}{%
+           family={Headey},
+           familyi={H\bibinitperiod},
+           given={Derek},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d053990b80b4f6d3724ed566690cdd8}{%
+           family={Heidkamp},
+           familyi={H\bibinitperiod},
+           given={Rebecca},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7f8d01dd57bb9b4ad72623057eb96a65}{%
+           family={Osendarp},
+           familyi={O\bibinitperiod},
+           given={Saskia},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3bc672d7669197f37ccce7caa9bd69f5}{%
+           family={Ruel},
+           familyi={R\bibinitperiod},
+           given={Marie},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ed75a9b59d84939272c2d22250af895a}{%
+           family={Scott},
+           familyi={S\bibinitperiod},
+           given={Nick},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=71255f83a700d3d837af4f199b6cb384}{%
+           family={Black},
+           familyi={B\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=94e303e9255d104084f6990a2079d3f7}{%
+           family={Shekar},
+           familyi={S\bibinitperiod},
+           given={Meera},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e3ef6d2976aaa94ca786687de58c6b23}{%
+           family={Bouis},
+           familyi={B\bibinitperiod},
+           given={Howarth},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3dd38ce1d9c31327577e9b57e6eaecda}{%
+           family={Flory},
+           familyi={F\bibinitperiod},
+           given={Augustin},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a19337d097995a682b9e14934a3ecc7b}{%
+           family={Haddad},
+           familyi={H\bibinitperiod},
+           given={Lawrence},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{bdfcf9ced9e0e0f91c5bd715b3550983}
+      \strng{fullhash}{068752563c67c670bd08d3cc2a787d51}
+      \strng{bibnamehash}{bdfcf9ced9e0e0f91c5bd715b3550983}
+      \strng{authorbibnamehash}{bdfcf9ced9e0e0f91c5bd715b3550983}
+      \strng{authornamehash}{bdfcf9ced9e0e0f91c5bd715b3550983}
+      \strng{authorfullhash}{068752563c67c670bd08d3cc2a787d51}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Lancet}
+      \field{number}{10250}
+      \field{title}{Impacts of COVID-19 on childhood malnutrition and nutrition-related mortality}
+      \field{volume}{396}
+      \field{year}{2020}
+      \field{pages}{519\bibrangedash 521}
+      \range{pages}{3}
+    \endentry
+    \entry{dhsall}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2057e75e999f24126c094cadbbe56cbc}{%
+           family={ICF},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ICF International}%
+      }
+      \strng{namehash}{2057e75e999f24126c094cadbbe56cbc}
+      \strng{fullhash}{2057e75e999f24126c094cadbbe56cbc}
+      \strng{bibnamehash}{2057e75e999f24126c094cadbbe56cbc}
+      \strng{authorbibnamehash}{2057e75e999f24126c094cadbbe56cbc}
+      \strng{authornamehash}{2057e75e999f24126c094cadbbe56cbc}
+      \strng{authorfullhash}{2057e75e999f24126c094cadbbe56cbc}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Demographic and Health Surveys}
+      \field{year}{2017}
+    \endentry
+    \entry{ishwaran2019randomforestsrc}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=01ac834cae76b7edc44968f1597d75a4}{%
+           family={Ishwaran},
+           familyi={I\bibinitperiod},
+           given={H},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=860c16b1b29b20683f0b9f286683ea71}{%
+           family={Kogalur},
+           familyi={K\bibinitperiod},
+           given={UB},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{fullhash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{bibnamehash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{authorbibnamehash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{authornamehash}{90ac875d50e1b3141df05b073fe2f329}
+      \strng{authorfullhash}{90ac875d50e1b3141df05b073fe2f329}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{R Package Version}
+      \field{number}{1}
+      \field{title}{randomForestSRC: Fast unified random forests for survival, regression, and classification (RF-SRC)}
+      \field{volume}{2}
+      \field{year}{2019}
+    \endentry
+    \entry{ishwaran2007variable}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{un=2,uniquepart=given,hash=87b2e79f8f2ab0a4040e84b52fbe2710}{%
+           family={Ishwaran},
+           familyi={I\bibinitperiod},
+           given={Hemant},
+           giveni={H\bibinitperiod},
+           givenun=2}}%
+      }
+      \list{publisher}{2}{%
+        {The Institute of Mathematical Statistics}%
+        {the Bernoulli Society}%
+      }
+      \strng{namehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{fullhash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{bibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{authorbibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{authornamehash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \strng{authorfullhash}{d5ed18c6858d0afbb29689256bccf9b0}
+      \field{sortinit}{I}
+      \field{sortinithash}{9417e9a1288a9371e2691d999083ed39}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electronic Journal of Statistics}
+      \field{title}{Variable importance in binary regression trees and forests}
+      \field{volume}{1}
+      \field{year}{2007}
+      \field{pages}{519\bibrangedash 537}
+      \range{pages}{19}
     \endentry
     \entry{Jones2013}{article}{}
       \name{author}{4}{}{%
-        {{hash=eab93dff5c95e659217875fe04418258}{%
+        {{un=1,uniquepart=given,hash=eab93dff5c95e659217875fe04418258}{%
            family={Jones},
            familyi={J\bibinitperiod},
            given={A.\bibnamedelimi D.},
-           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=74f96d483364a4563db79695079d2e12}{%
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=74f96d483364a4563db79695079d2e12}{%
            family={Ngure},
            familyi={N\bibinitperiod},
            given={F.\bibnamedelimi M.},
-           giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=9a299d6184fb11212f8301ac7fc56795}{%
+           giveni={F\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9a299d6184fb11212f8301ac7fc56795}{%
            family={Pelto},
            familyi={P\bibinitperiod},
            given={G.},
-           giveni={G\bibinitperiod}}}%
-        {{hash=9a7e09d3ce3d1a9e3ee6673c96d39be2}{%
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9a7e09d3ce3d1a9e3ee6673c96d39be2}{%
            family={Young},
            familyi={Y\bibinitperiod},
            given={S.\bibnamedelimi L.},
-           giveni={S\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+           giveni={S\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{69b0107a55cebf22c19a98b067a71805}
       \strng{fullhash}{264166f5b31402f5a57e54d7491a3c47}
@@ -306,8 +914,10 @@
       \strng{authorbibnamehash}{69b0107a55cebf22c19a98b067a71805}
       \strng{authornamehash}{69b0107a55cebf22c19a98b067a71805}
       \strng{authorfullhash}{264166f5b31402f5a57e54d7491a3c47}
-      \field{sortinit}{7}
-      \field{sortinithash}{f615fb9c6fba11c6f962fb3fd599810e}
+      \field{sortinit}{J}
+      \field{sortinithash}{c45040a764d616897e7f5b30174d7b92}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{9780857939388}
@@ -329,13 +939,86 @@
       \verb http://advances.nutrition.org/cgi/doi/10.3945/an.113.004119
       \endverb
     \endentry
+    \entry{Jones2016}{article}{}
+      \name{author}{2}{}{%
+        {{un=1,uniquepart=given,hash=87d144c38891a773e81f111da8a1fd8a}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=c8da0db20383daaf57e4e66c327bc1bf}{%
+           family={O'Neill},
+           familyi={O\bibinitperiod},
+           given={B.\bibnamedelimi C.},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a57227e1edfab12a71b6754e73bd3315}
+      \strng{fullhash}{a57227e1edfab12a71b6754e73bd3315}
+      \strng{bibnamehash}{a57227e1edfab12a71b6754e73bd3315}
+      \strng{authorbibnamehash}{a57227e1edfab12a71b6754e73bd3315}
+      \strng{authornamehash}{a57227e1edfab12a71b6754e73bd3315}
+      \strng{authorfullhash}{a57227e1edfab12a71b6754e73bd3315}
+      \field{sortinit}{J}
+      \field{sortinithash}{c45040a764d616897e7f5b30174d7b92}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{17489326}
+      \field{journaltitle}{Environmental Research Letters}
+      \field{title}{{Spatially explicit global population scenarios consistent with the Shared Socioeconomic Pathways}}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1088/1748-9326/11/8/084003
+      \endverb
+      \keyw{Shared Socioeconomic Pathways,population projections,spatial population}
+    \endentry
+    \entry{KC2017}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=e755818a781b7493339c9049b498864e}{%
+           family={KC},
+           familyi={K\bibinitperiod},
+           given={Samir},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fc2d17565135fbf8c2ed924a74d9ffac}{%
+           family={Lutz},
+           familyi={L\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d611860f8353ca2f3dfda183da057845}
+      \strng{fullhash}{d611860f8353ca2f3dfda183da057845}
+      \strng{bibnamehash}{d611860f8353ca2f3dfda183da057845}
+      \strng{authorbibnamehash}{d611860f8353ca2f3dfda183da057845}
+      \strng{authornamehash}{d611860f8353ca2f3dfda183da057845}
+      \strng{authorfullhash}{d611860f8353ca2f3dfda183da057845}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{09593780}
+      \field{journaltitle}{Global Environmental Change}
+      \field{title}{{The human core of the shared socioeconomic pathways: Population scenarios by age, sex and level of education for all countries to 2100}}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.1016/j.gloenvcha.2014.06.004
+      \endverb
+      \keyw{Age structure,Country level,Education,Scenarios,Shared socioeconomic pathways,World population}
+    \endentry
     \entry{kennedy2005keynote}{article}{}
       \name{author}{1}{}{%
-        {{hash=cb8e89903ca3efe6b32c37cb7afbff34}{%
+        {{un=0,uniquepart=base,hash=cb8e89903ca3efe6b32c37cb7afbff34}{%
            family={Kennedy},
            familyi={K\bibinitperiod},
            given={Eileen},
-           giveni={E\bibinitperiod}}}%
+           giveni={E\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{cb8e89903ca3efe6b32c37cb7afbff34}
       \strng{fullhash}{cb8e89903ca3efe6b32c37cb7afbff34}
@@ -343,145 +1026,417 @@
       \strng{authorbibnamehash}{cb8e89903ca3efe6b32c37cb7afbff34}
       \strng{authornamehash}{cb8e89903ca3efe6b32c37cb7afbff34}
       \strng{authorfullhash}{cb8e89903ca3efe6b32c37cb7afbff34}
-      \field{sortinit}{8}
-      \field{sortinithash}{1b24cab5087933ef0826a7cd3b99e994}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Rome: FAO}
       \field{title}{Keynote paper: Qualitative measures of food insecurity and hunger}
       \field{year}{2005}
     \endentry
-    \entry{Coates2007}{article}{}
-      \name{author}{3}{}{%
-        {{hash=f496c7c7a34af52d33582dc6a5d6368c}{%
-           family={Coates},
-           familyi={C\bibinitperiod},
-           given={J},
-           giveni={J\bibinitperiod}}}%
-        {{hash=5b4c9a0a7a5be61a3fbd2eacbf50357b}{%
-           family={Swindale},
-           familyi={S\bibinitperiod},
-           given={a},
-           giveni={a\bibinitperiod}}}%
-        {{hash=8da383892b0459e95c2a6b7feaf061cb}{%
-           family={Bilinsky},
-           familyi={B\bibinitperiod},
-           given={P},
-           giveni={P\bibinitperiod}}}%
+    \entry{Local2020}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f8beab740a9dc4e8df451e7b50c46654}{%
+           family={{LBD CGF Collaborators}},
+           familyi={L\bibinitperiod}}}%
       }
-      \strng{namehash}{ddd47e766b6e1ea33ed73ff938e828f1}
-      \strng{fullhash}{ddd47e766b6e1ea33ed73ff938e828f1}
-      \strng{bibnamehash}{ddd47e766b6e1ea33ed73ff938e828f1}
-      \strng{authorbibnamehash}{ddd47e766b6e1ea33ed73ff938e828f1}
-      \strng{authornamehash}{ddd47e766b6e1ea33ed73ff938e828f1}
-      \strng{authorfullhash}{ddd47e766b6e1ea33ed73ff938e828f1}
-      \field{sortinit}{9}
-      \field{sortinithash}{54047ffb55bdefa0694bbd554c1b11a0}
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{fullhash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{bibnamehash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{authorbibnamehash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{authornamehash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{authorfullhash}{f8beab740a9dc4e8df451e7b50c46654}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{isbn}{9780874216561}
-      \field{issn}{0717-6163}
-      \field{journaltitle}{Washington, DC: Food and Nutrition Technical {\ldots}}
-      \field{number}{August}
-      \field{title}{{Household Food Insecurity Access Scale (HFIAS) for measurement of food access: indicator guide}}
-      \field{year}{2007}
-      \field{pages}{Version 3}
-      \range{pages}{-1}
-      \verb{doi}
-      \verb 10.1007/s13398-014-0173-7.2
-      \endverb
-      \keyw{Food and Nutrition Technical Assistance III Projec}
+      \field{journaltitle}{Nature}
+      \field{number}{7789}
+      \field{title}{Mapping child growth failure across low-and middle-income countries}
+      \field{volume}{577}
+      \field{year}{2020}
+      \field{pages}{231}
+      \range{pages}{1}
     \endentry
-    \entry{Ballard2013}{article}{}
-      \name{author}{3}{}{%
-        {{hash=48e9d54f50813c18148eda59b75bae74}{%
-           family={Ballard},
-           familyi={B\bibinitperiod},
-           given={T},
-           giveni={T\bibinitperiod}}}%
-        {{hash=5fda126273d2edaf9406d26a9a3f0272}{%
-           family={Kepple},
+    \entry{Maxwell1996}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ec73fab536003ab85c63dea1f36725fc}{%
+           family={Maxwell},
+           familyi={M\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{fullhash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{bibnamehash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{authorbibnamehash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{authornamehash}{ec73fab536003ab85c63dea1f36725fc}
+      \strng{authorfullhash}{ec73fab536003ab85c63dea1f36725fc}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{03069192}
+      \field{journaltitle}{Food Policy}
+      \field{number}{2}
+      \field{title}{{Food security: A post-modern perspective}}
+      \field{volume}{21}
+      \field{year}{1996}
+      \field{pages}{155\bibrangedash 170}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1016/0306-9192(95)00074-7
+      \endverb
+      \keyw{Food policy,Food security,Post-modernism}
+    \endentry
+    \entry{Maxwell1992}{misc}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ec73fab536003ab85c63dea1f36725fc}{%
+           family={Maxwell},
+           familyi={M\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d88a9ac43a0aab17cf6725bb31b1c23}{%
+           family={Frankenberger},
+           familyi={F\bibinitperiod},
+           given={Timothy\bibnamedelima R.},
+           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4ab56accbf177105277a508fdb503dba}
+      \strng{fullhash}{4ab56accbf177105277a508fdb503dba}
+      \strng{bibnamehash}{4ab56accbf177105277a508fdb503dba}
+      \strng{authorbibnamehash}{4ab56accbf177105277a508fdb503dba}
+      \strng{authornamehash}{4ab56accbf177105277a508fdb503dba}
+      \strng{authorfullhash}{4ab56accbf177105277a508fdb503dba}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Ifad Unicef}
+      \field{isbn}{9280620215}
+      \field{issn}{0305750X}
+      \field{title}{{Household Food Security: Concepts, Indicators, Measurements: A technical review}}
+      \field{year}{1992}
+      \field{pages}{293}
+      \range{pages}{1}
+    \endentry
+    \entry{oneill2014new}{article}{}
+      \name{author}{8}{}{%
+        {{un=0,uniquepart=base,hash=1d55f3e2c29ee2fdf8d972c072b96756}{%
+           family={O’Neill},
+           familyi={O\bibinitperiod},
+           given={Brian\bibnamedelima C},
+           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bcdcace45890a4870c73c0056ce51931}{%
+           family={Kriegler},
            familyi={K\bibinitperiod},
-           given={A},
-           giveni={A\bibinitperiod}}}%
-        {{hash=c5481301434a9bf880bb2644503ae4f4}{%
-           family={Cafiero},
+           given={Elmar},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ef7fb7bd657b997bf4b6987b69b22e1f}{%
+           family={Riahi},
+           familyi={R\bibinitperiod},
+           given={Keywan},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=31e780c72a92abe373deb1ef69e7dc20}{%
+           family={Ebi},
+           familyi={E\bibinitperiod},
+           given={Kristie\bibnamedelima L},
+           giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ec89b13a4da1fc6c42c65ee9d049d05a}{%
+           family={Hallegatte},
+           familyi={H\bibinitperiod},
+           given={Stephane},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c567a1655e46b238943dba663c44a57f}{%
+           family={Carter},
            familyi={C\bibinitperiod},
-           given={C},
-           giveni={C\bibinitperiod}}}%
+           given={Timothy\bibnamedelima R},
+           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6e2818cd8e7a9f8ffd9edd57ffc3cc84}{%
+           family={Mathur},
+           familyi={M\bibinitperiod},
+           given={Ritu},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=740acd230506dda7b17acb6cc4f1ce63}{%
+           family={Vuuren},
+           familyi={V\bibinitperiod},
+           given={Detlef\bibnamedelima P},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0,
+           prefix={van},
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
       }
-      \strng{namehash}{f9c424a2394ea041e32b4432fb1f4c59}
-      \strng{fullhash}{f9c424a2394ea041e32b4432fb1f4c59}
-      \strng{bibnamehash}{f9c424a2394ea041e32b4432fb1f4c59}
-      \strng{authorbibnamehash}{f9c424a2394ea041e32b4432fb1f4c59}
-      \strng{authornamehash}{f9c424a2394ea041e32b4432fb1f4c59}
-      \strng{authorfullhash}{f9c424a2394ea041e32b4432fb1f4c59}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{59bf0f82d507b9c4b1d53e1a4fcaad08}
+      \strng{fullhash}{ac633452d9fcc742a5e3734fed55893f}
+      \strng{bibnamehash}{59bf0f82d507b9c4b1d53e1a4fcaad08}
+      \strng{authorbibnamehash}{59bf0f82d507b9c4b1d53e1a4fcaad08}
+      \strng{authornamehash}{59bf0f82d507b9c4b1d53e1a4fcaad08}
+      \strng{authorfullhash}{ac633452d9fcc742a5e3734fed55893f}
+      \field{sortinit}{O}
+      \field{sortinithash}{ff8d4eeb5101e3cf3809959b3592d942}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{0263-2241}
-      \field{journaltitle}{Technical Paper}
-      \field{title}{{The food insecurity experience scale: development of a global standard for monitoring hunger worldwide}}
-      \field{year}{2013}
+      \field{journaltitle}{Climatic change}
+      \field{number}{3}
+      \field{title}{A new scenario framework for climate change research: the concept of shared socioeconomic pathways}
+      \field{volume}{122}
+      \field{year}{2014}
+      \field{pages}{387\bibrangedash 400}
+      \range{pages}{14}
+    \endentry
+    \entry{Perumal2018}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=bce0438cbfc46134fc0dac75280e08a3}{%
+           family={Perumal},
+           familyi={P\bibinitperiod},
+           given={Nandita},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c07afe636bd876c271ed3197941c4482}{%
+           family={Bassani},
+           familyi={B\bibinitperiod},
+           given={Diego\bibnamedelima G},
+           giveni={D\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=efabf2d86e9f7b4b615571825c1934f0}{%
+           family={Roth},
+           familyi={R\bibinitperiod},
+           given={Daniel\bibnamedelima E},
+           giveni={D\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{fullhash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{bibnamehash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{authorbibnamehash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{authornamehash}{102bffc8430f7a139f387b1e6b743567}
+      \strng{authorfullhash}{102bffc8430f7a139f387b1e6b743567}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0022-3166}
+      \field{journaltitle}{The Journal of Nutrition}
+      \field{number}{3}
+      \field{title}{{Use and Misuse of Stunting as a Measure of Child Health}}
+      \field{volume}{148}
+      \field{year}{2018}
+      \field{pages}{311\bibrangedash 315}
+      \range{pages}{5}
       \verb{doi}
-      \verb 10.1016/j.measurement.2017.10.065
+      \verb 10.1093/jn/nxx064
+      \endverb
+      \verb{urlraw}
+      \verb https://academic.oup.com/jn/article/148/3/311/4930811
+      \endverb
+      \verb{url}
+      \verb https://academic.oup.com/jn/article/148/3/311/4930811
       \endverb
     \endentry
-    \entry{wambogo2018validity}{article}{}
-      \name{author}{4}{}{%
-        {{hash=5a8b41bf2deecda593c42b1663468cb3}{%
-           family={Wambogo},
-           familyi={W\bibinitperiod},
-           given={Edwina\bibnamedelima A},
-           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=3bd895c3147631164bd0110444ee4d76}{%
-           family={Ghattas},
-           familyi={G\bibinitperiod},
-           given={Hala},
-           giveni={H\bibinitperiod}}}%
-        {{hash=95284cd4b808bbad4880f64dc1a2fc7e}{%
-           family={Leonard},
-           familyi={L\bibinitperiod},
-           given={Kenneth\bibnamedelima L},
-           giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{hash=eac4a45e12f17745aebacd55f1635fb9}{%
-           family={Sahyoun},
+    \entry{Puffer1973}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=cd574b3968bf2b860fbcb00b01b6912c}{%
+           family={Puffer},
+           familyi={P\bibinitperiod},
+           given={Ruth\bibnamedelima R.},
+           giveni={R\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c44af345c95d57a502cda3c6746ff909}{%
+           family={Serrano},
            familyi={S\bibinitperiod},
-           given={Nadine\bibnamedelima R},
-           giveni={N\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+           given={Carlos\bibnamedelima V.},
+           giveni={C\bibinitperiod\bibinitdelim V\bibinitperiod},
+           givenun=0}}%
       }
-      \strng{namehash}{56f32a873901b969053525b7d7f9bcae}
-      \strng{fullhash}{cf47c9494d1c2caa0155c9787ce6d1da}
-      \strng{bibnamehash}{56f32a873901b969053525b7d7f9bcae}
-      \strng{authorbibnamehash}{56f32a873901b969053525b7d7f9bcae}
-      \strng{authornamehash}{56f32a873901b969053525b7d7f9bcae}
-      \strng{authorfullhash}{cf47c9494d1c2caa0155c9787ce6d1da}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \list{location}{1}{%
+        {Washington, DC}%
+      }
+      \list{publisher}{1}{%
+        {World Heath Organization}%
+      }
+      \strng{namehash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{fullhash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{bibnamehash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{authorbibnamehash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{authornamehash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \strng{authorfullhash}{caeaa590cfa4f54edbf6244c1a1542f0}
+      \field{sortinit}{P}
+      \field{sortinithash}{bb5b15f2db90f7aef79bb9e83defefcb}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Current Developments in Nutrition}
-      \field{title}{Validity of the Food Insecurity Experience Scale (FIES) for use in Sub-Saharan Africa (SSA) and characteristics of food insecure individuals}
-      \field{year}{2018}
+      \field{title}{{Patterns of Mortality in Childhood}}
+      \field{year}{1973}
+    \endentry
+    \entry{Rao2019a}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=66a4a289f6c815e99821c23e5006dbe9}{%
+           family={Rao},
+           familyi={R\bibinitperiod},
+           given={Narasimha\bibnamedelima D.},
+           giveni={N\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=215291cb0531feba57ec6725ea7eb246}{%
+           family={Sauer},
+           familyi={S\bibinitperiod},
+           given={Petra},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d650d895d0ba9477944e465811c4eaab}{%
+           family={Gidden},
+           familyi={G\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ef7fb7bd657b997bf4b6987b69b22e1f}{%
+           family={Riahi},
+           familyi={R\bibinitperiod},
+           given={Keywan},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7c4fc21444cfb7e23d4e888b39bc158b}
+      \strng{fullhash}{10267bf07d4ddb9459da3e35eae1bc37}
+      \strng{bibnamehash}{7c4fc21444cfb7e23d4e888b39bc158b}
+      \strng{authorbibnamehash}{7c4fc21444cfb7e23d4e888b39bc158b}
+      \strng{authornamehash}{7c4fc21444cfb7e23d4e888b39bc158b}
+      \strng{authorfullhash}{10267bf07d4ddb9459da3e35eae1bc37}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00163287}
+      \field{journaltitle}{Futures}
+      \field{title}{{Income inequality projections for the Shared Socioeconomic Pathways (SSPs)}}
+      \field{year}{2019}
+      \verb{doi}
+      \verb 10.1016/j.futures.2018.07.001
+      \endverb
+      \keyw{E,Gini,Income inequality,Projections,SSP,ducation inequality}
+    \endentry
+    \entry{Riley1999}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c0e05823a5b6273d0b1e146b7c5b9703}{%
+           family={Riley},
+           familyi={R\bibinitperiod},
+           given={S\bibnamedelima J},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a2e0afbe4af7978d7a1f99c6c1be43f7}{%
+           family={DeGloria},
+           familyi={D\bibinitperiod},
+           given={S\bibnamedelima D},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=728b623c41a39a7a2c162069bbb3177a}{%
+           family={Elliot},
+           familyi={E\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{776df935ff939656636ccb709bfa3443}
+      \strng{fullhash}{776df935ff939656636ccb709bfa3443}
+      \strng{bibnamehash}{776df935ff939656636ccb709bfa3443}
+      \strng{authorbibnamehash}{776df935ff939656636ccb709bfa3443}
+      \strng{authornamehash}{776df935ff939656636ccb709bfa3443}
+      \strng{authorfullhash}{776df935ff939656636ccb709bfa3443}
+      \field{sortinit}{R}
+      \field{sortinithash}{b9c68a358aea118dfa887b6e902414a7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Intermountain Journal of Sciences}
+      \field{title}{{A Terrain Ruggedness Index that Quantifies Topographic Heterogeneity}}
+      \field{year}{1999}
+      \verb{doi}
+      \verb citeulike-article-id:8858430
+      \endverb
+      \keyw{Montana,geographical information systems,habitat,ruggedness,terrain}
+    \endentry
+    \entry{Sen1983}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=18688d43042a810cb6ae6bb19c167f1b}{%
+           family={Sen},
+           familyi={S\bibinitperiod},
+           given={Amartya},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{fullhash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{bibnamehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{authorbibnamehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{authornamehash}{18688d43042a810cb6ae6bb19c167f1b}
+      \strng{authorfullhash}{18688d43042a810cb6ae6bb19c167f1b}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Journal of Comparative Economics}
+      \field{isbn}{0198284632}
+      \field{issn}{01475967}
+      \field{title}{{Poverty and famine: An essay on entitlement and deprivation}}
+      \field{year}{1983}
+      \verb{doi}
+      \verb 10.1016/0147-5967(83)90075-6
+      \endverb
     \endentry
     \entry{smith2017world}{article}{}
       \name{author}{3}{}{%
-        {{hash=a613be39bf29d58b7f437dbb16e527e2}{%
+        {{un=0,uniquepart=base,hash=a613be39bf29d58b7f437dbb16e527e2}{%
            family={Smith},
            familyi={S\bibinitperiod},
            given={Michael\bibnamedelima D},
-           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=780023fa9a6990cadfe4b114c1302fdf}{%
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=780023fa9a6990cadfe4b114c1302fdf}{%
            family={Rabbitt},
            familyi={R\bibinitperiod},
            given={Matthew\bibnamedelima P},
-           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=514e2313aeab1adb64ea3affd9eac3b5}{%
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=514e2313aeab1adb64ea3affd9eac3b5}{%
            family={Coleman-Jensen},
            familyi={C\bibinithyphendelim J\bibinitperiod},
            given={Alisha},
-           giveni={A\bibinitperiod}}}%
+           giveni={A\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {Elsevier}%
@@ -492,8 +1447,10 @@
       \strng{authorbibnamehash}{5763f2a572f2dbb6900ad7999eb3d5b9}
       \strng{authornamehash}{5763f2a572f2dbb6900ad7999eb3d5b9}
       \strng{authorfullhash}{5763f2a572f2dbb6900ad7999eb3d5b9}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{World Development}
@@ -503,115 +1460,51 @@
       \field{pages}{402\bibrangedash 412}
       \range{pages}{11}
     \endentry
-    \entry{Cafiero2018}{article}{}
-      \name{author}{3}{}{%
-        {{hash=96e6fe476a19cc032a16f6986fe75c25}{%
-           family={Cafiero},
-           familyi={C\bibinitperiod},
-           given={Carlo},
-           giveni={C\bibinitperiod}}}%
-        {{hash=538758880e27d823c9071b10fc4278ca}{%
-           family={Viviani},
-           familyi={V\bibinitperiod},
-           given={Sara},
-           giveni={S\bibinitperiod}}}%
-        {{hash=1ed969c60d00822f370a6b367c5ea64b}{%
-           family={Nord},
-           familyi={N\bibinitperiod},
-           given={Mark},
-           giveni={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{a66ff446803e9645294a3a7bc0030daf}
-      \strng{fullhash}{a66ff446803e9645294a3a7bc0030daf}
-      \strng{bibnamehash}{a66ff446803e9645294a3a7bc0030daf}
-      \strng{authorbibnamehash}{a66ff446803e9645294a3a7bc0030daf}
-      \strng{authornamehash}{a66ff446803e9645294a3a7bc0030daf}
-      \strng{authorfullhash}{a66ff446803e9645294a3a7bc0030daf}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{02632241}
-      \field{journaltitle}{Measurement: Journal of the International Measurement Confederation}
-      \field{title}{{Food security measurement in a global context: The food insecurity experience scale}}
-      \field{year}{2018}
-      \verb{doi}
-      \verb 10.1016/j.measurement.2017.10.065
-      \endverb
-      \keyw{Food security measurement,Rasch model,Scale equating,Sustainable development goals}
-    \endentry
-    \entry{sofi2020}{misc}{}
-      \name{author}{5}{}{%
-        {{hash=4807e0aebe86c17f559853f35515b533}{%
-           family={FAO},
-           familyi={F\bibinitperiod}}}%
-        {{hash=3c0067fadb951fbb8da3ec89314eded7}{%
-           family={IFAD},
-           familyi={I\bibinitperiod}}}%
-        {{hash=d13783605ea066c4fee77fe8192de83a}{%
-           family={UNICEF},
-           familyi={U\bibinitperiod}}}%
-        {{hash=8af5c2278136b36a59c8185541581d4e}{%
-           family={WFP},
-           familyi={W\bibinitperiod}}}%
-        {{hash=9ed1e9f759b27c20c0ee8a56113c84e3}{%
-           family={WHO},
-           familyi={W\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Rome}%
+    \entry{Smits2019}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=8951b02c5196d9f9d5e72e7e4b7bb2c5}{%
+           family={Smits},
+           familyi={S\bibinitperiod},
+           given={Jeroen},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7ce5145ba9304a805a7167f3931ca019}{%
+           family={Permanyer},
+           familyi={P\bibinitperiod},
+           given={I{ñ}aki},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
-        {FAO}%
+        {Nature Publishing Group}%
       }
-      \strng{namehash}{f7a4e7b7fb0cb572697a09b1003fc1e6}
-      \strng{fullhash}{f210780a485b8cbce28c2b937fc94f6b}
-      \strng{bibnamehash}{f7a4e7b7fb0cb572697a09b1003fc1e6}
-      \strng{authorbibnamehash}{f7a4e7b7fb0cb572697a09b1003fc1e6}
-      \strng{authornamehash}{f7a4e7b7fb0cb572697a09b1003fc1e6}
-      \strng{authorfullhash}{f210780a485b8cbce28c2b937fc94f6b}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \strng{namehash}{13011cee931b5d7ca0352899f985475d}
+      \strng{fullhash}{13011cee931b5d7ca0352899f985475d}
+      \strng{bibnamehash}{13011cee931b5d7ca0352899f985475d}
+      \strng{authorbibnamehash}{13011cee931b5d7ca0352899f985475d}
+      \strng{authornamehash}{13011cee931b5d7ca0352899f985475d}
+      \strng{authorfullhash}{13011cee931b5d7ca0352899f985475d}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{The State of Food Security and Nutrition in the World 2020. Transforming food systems for affordable healthy diets.}
-      \field{year}{2020}
-      \verb{doi}
-      \verb 10.4060/ca9692en
-      \endverb
-    \endentry
-    \entry{bethlehem2009applied}{book}{}
-      \name{author}{1}{}{%
-        {{hash=6e188e5ee88c538d01ea77035def44f0}{%
-           family={Bethlehem},
-           familyi={B\bibinitperiod},
-           given={Jelke},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {John Wiley \& Sons}%
-      }
-      \strng{namehash}{6e188e5ee88c538d01ea77035def44f0}
-      \strng{fullhash}{6e188e5ee88c538d01ea77035def44f0}
-      \strng{bibnamehash}{6e188e5ee88c538d01ea77035def44f0}
-      \strng{authorbibnamehash}{6e188e5ee88c538d01ea77035def44f0}
-      \strng{authornamehash}{6e188e5ee88c538d01ea77035def44f0}
-      \strng{authorfullhash}{6e188e5ee88c538d01ea77035def44f0}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Applied survey methods: A statistical perspective}
-      \field{volume}{558}
-      \field{year}{2009}
+      \field{journaltitle}{Scientific data}
+      \field{title}{The subnational human development database}
+      \field{volume}{6}
+      \field{year}{2019}
+      \field{pages}{190038}
+      \range{pages}{1}
     \endentry
     \entry{Tatem2017}{article}{}
       \name{author}{1}{}{%
-        {{hash=74438a101caea6ec34867c145dc30811}{%
+        {{un=0,uniquepart=base,hash=74438a101caea6ec34867c145dc30811}{%
            family={Tatem},
            familyi={T\bibinitperiod},
            given={Andrew\bibnamedelima J},
-           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{74438a101caea6ec34867c145dc30811}
       \strng{fullhash}{74438a101caea6ec34867c145dc30811}
@@ -619,8 +1512,10 @@
       \strng{authorbibnamehash}{74438a101caea6ec34867c145dc30811}
       \strng{authornamehash}{74438a101caea6ec34867c145dc30811}
       \strng{authorfullhash}{74438a101caea6ec34867c145dc30811}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{T}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2052-4463}
@@ -635,180 +1530,95 @@
       \endverb
       \keyw{com,nature,scientificdata}
     \endentry
-    \entry{Jones2016}{article}{}
-      \name{author}{2}{}{%
-        {{hash=87d144c38891a773e81f111da8a1fd8a}{%
-           family={Jones},
-           familyi={J\bibinitperiod},
-           given={B.},
-           giveni={B\bibinitperiod}}}%
-        {{hash=c8da0db20383daaf57e4e66c327bc1bf}{%
-           family={O'Neill},
-           familyi={O\bibinitperiod},
-           given={B.\bibnamedelimi C.},
-           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-      }
-      \strng{namehash}{a57227e1edfab12a71b6754e73bd3315}
-      \strng{fullhash}{a57227e1edfab12a71b6754e73bd3315}
-      \strng{bibnamehash}{a57227e1edfab12a71b6754e73bd3315}
-      \strng{authorbibnamehash}{a57227e1edfab12a71b6754e73bd3315}
-      \strng{authornamehash}{a57227e1edfab12a71b6754e73bd3315}
-      \strng{authorfullhash}{a57227e1edfab12a71b6754e73bd3315}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{17489326}
-      \field{journaltitle}{Environmental Research Letters}
-      \field{title}{{Spatially explicit global population scenarios consistent with the Shared Socioeconomic Pathways}}
-      \field{year}{2016}
-      \verb{doi}
-      \verb 10.1088/1748-9326/11/8/084003
-      \endverb
-      \keyw{Shared Socioeconomic Pathways,population projections,spatial population}
-    \endentry
-    \entry{dhsall}{misc}{}
+    \entry{USGS1996}{book}{}
       \name{author}{1}{}{%
-        {{hash=2057e75e999f24126c094cadbbe56cbc}{%
-           family={ICF},
-           familyi={I\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=c331da575c7eb6f801042d5153adc8a3}{%
+           family={{USGS}},
+           familyi={U\bibinitperiod}}}%
       }
-      \list{publisher}{1}{%
-        {ICF International}%
-      }
-      \strng{namehash}{2057e75e999f24126c094cadbbe56cbc}
-      \strng{fullhash}{2057e75e999f24126c094cadbbe56cbc}
-      \strng{bibnamehash}{2057e75e999f24126c094cadbbe56cbc}
-      \strng{authorbibnamehash}{2057e75e999f24126c094cadbbe56cbc}
-      \strng{authornamehash}{2057e75e999f24126c094cadbbe56cbc}
-      \strng{authorfullhash}{2057e75e999f24126c094cadbbe56cbc}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \strng{namehash}{c331da575c7eb6f801042d5153adc8a3}
+      \strng{fullhash}{c331da575c7eb6f801042d5153adc8a3}
+      \strng{bibnamehash}{c331da575c7eb6f801042d5153adc8a3}
+      \strng{authorbibnamehash}{c331da575c7eb6f801042d5153adc8a3}
+      \strng{authornamehash}{c331da575c7eb6f801042d5153adc8a3}
+      \strng{authorfullhash}{c331da575c7eb6f801042d5153adc8a3}
+      \field{sortinit}{U}
+      \field{sortinithash}{77a6935510e008adcf5b555e7b4f0711}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Demographic and Health Surveys}
-      \field{year}{2004-2017}
-    \endentry
-    \entry{oneill2014new}{article}{}
-      \name{author}{8}{}{%
-        {{hash=1d55f3e2c29ee2fdf8d972c072b96756}{%
-           family={O’Neill},
-           familyi={O\bibinitperiod},
-           given={Brian\bibnamedelima C},
-           giveni={B\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=bcdcace45890a4870c73c0056ce51931}{%
-           family={Kriegler},
-           familyi={K\bibinitperiod},
-           given={Elmar},
-           giveni={E\bibinitperiod}}}%
-        {{hash=ef7fb7bd657b997bf4b6987b69b22e1f}{%
-           family={Riahi},
-           familyi={R\bibinitperiod},
-           given={Keywan},
-           giveni={K\bibinitperiod}}}%
-        {{hash=31e780c72a92abe373deb1ef69e7dc20}{%
-           family={Ebi},
-           familyi={E\bibinitperiod},
-           given={Kristie\bibnamedelima L},
-           giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{hash=ec89b13a4da1fc6c42c65ee9d049d05a}{%
-           family={Hallegatte},
-           familyi={H\bibinitperiod},
-           given={Stephane},
-           giveni={S\bibinitperiod}}}%
-        {{hash=c567a1655e46b238943dba663c44a57f}{%
-           family={Carter},
-           familyi={C\bibinitperiod},
-           given={Timothy\bibnamedelima R},
-           giveni={T\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{hash=6e2818cd8e7a9f8ffd9edd57ffc3cc84}{%
-           family={Mathur},
-           familyi={M\bibinitperiod},
-           given={Ritu},
-           giveni={R\bibinitperiod}}}%
-        {{hash=740acd230506dda7b17acb6cc4f1ce63}{%
-           family={Vuuren},
-           familyi={V\bibinitperiod},
-           given={Detlef\bibnamedelima P},
-           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
-           prefix={van},
-           prefixi={v\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{59bf0f82d507b9c4b1d53e1a4fcaad08}
-      \strng{fullhash}{ac633452d9fcc742a5e3734fed55893f}
-      \strng{bibnamehash}{59bf0f82d507b9c4b1d53e1a4fcaad08}
-      \strng{authorbibnamehash}{59bf0f82d507b9c4b1d53e1a4fcaad08}
-      \strng{authornamehash}{59bf0f82d507b9c4b1d53e1a4fcaad08}
-      \strng{authorfullhash}{ac633452d9fcc742a5e3734fed55893f}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Climatic change}
-      \field{number}{3}
-      \field{title}{A new scenario framework for climate change research: the concept of shared socioeconomic pathways}
-      \field{volume}{122}
-      \field{year}{2014}
-      \field{pages}{387\bibrangedash 400}
-      \range{pages}{14}
+      \field{booktitle}{United States Geological Survery}
+      \field{title}{{Global 30 Arc-Second Elevation (GTOPO30)}}
+      \field{year}{1996}
+      \verb{doi}
+      \verb https://lta.cr.usgs.gov/GTOPO30
+      \endverb
     \endentry
     \entry{van2011representative}{article}{}
       \true{moreauthor}
       \true{morelabelname}
       \name{author}{10}{}{%
-        {{hash=1643263042252f452f2da462cfdc98e2}{%
+        {{un=0,uniquepart=base,hash=1643263042252f452f2da462cfdc98e2}{%
            family={Van\bibnamedelima Vuuren},
            familyi={V\bibinitperiod\bibinitdelim V\bibinitperiod},
            given={Detlef\bibnamedelima P},
-           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=9798996981982f9903ab35d3ca78162a}{%
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9798996981982f9903ab35d3ca78162a}{%
            family={Edmonds},
            familyi={E\bibinitperiod},
            given={Jae},
-           giveni={J\bibinitperiod}}}%
-        {{hash=a67e9479f87af2dd5a9ff95fd8fbd34f}{%
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a67e9479f87af2dd5a9ff95fd8fbd34f}{%
            family={Kainuma},
            familyi={K\bibinitperiod},
            given={Mikiko},
-           giveni={M\bibinitperiod}}}%
-        {{hash=ef7fb7bd657b997bf4b6987b69b22e1f}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ef7fb7bd657b997bf4b6987b69b22e1f}{%
            family={Riahi},
            familyi={R\bibinitperiod},
            given={Keywan},
-           giveni={K\bibinitperiod}}}%
-        {{hash=7c9fc8e4e29df25586145891c9efe2fc}{%
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7c9fc8e4e29df25586145891c9efe2fc}{%
            family={Thomson},
            familyi={T\bibinitperiod},
            given={Allison},
-           giveni={A\bibinitperiod}}}%
-        {{hash=00f8428983c0d2eb3be4e4359fbadf88}{%
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=00f8428983c0d2eb3be4e4359fbadf88}{%
            family={Hibbard},
            familyi={H\bibinitperiod},
            given={Kathy},
-           giveni={K\bibinitperiod}}}%
-        {{hash=cd0011ba511aefa6ed1d74131a9f6a85}{%
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cd0011ba511aefa6ed1d74131a9f6a85}{%
            family={Hurtt},
            familyi={H\bibinitperiod},
            given={George\bibnamedelima C},
-           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=b810c813d12e7c4e7d163ce4a99a3242}{%
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b810c813d12e7c4e7d163ce4a99a3242}{%
            family={Kram},
            familyi={K\bibinitperiod},
            given={Tom},
-           giveni={T\bibinitperiod}}}%
-        {{hash=b26b24389c2d2b52ba4207852443c3a6}{%
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b26b24389c2d2b52ba4207852443c3a6}{%
            family={Krey},
            familyi={K\bibinitperiod},
            given={Volker},
-           giveni={V\bibinitperiod}}}%
-        {{hash=375344bbb115d9bde8155e1874b98204}{%
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=375344bbb115d9bde8155e1874b98204}{%
            family={Lamarque},
            familyi={L\bibinitperiod},
            given={Jean-Francois},
-           giveni={J\bibinithyphendelim F\bibinitperiod}}}%
+           giveni={J\bibinithyphendelim F\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {Springer}%
@@ -819,8 +1629,10 @@
       \strng{authorbibnamehash}{172695a36a9d1c5154c0ae636d0fac93}
       \strng{authornamehash}{172695a36a9d1c5154c0ae636d0fac93}
       \strng{authorfullhash}{acd445284344424545d0455ddc249550}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{sortinit}{V}
+      \field{sortinithash}{02432525618c08e2b03cac47c19764af}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Climatic change}
@@ -831,38 +1643,87 @@
       \field{pages}{5}
       \range{pages}{1}
     \endentry
+    \entry{wambogo2018validity}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=5a8b41bf2deecda593c42b1663468cb3}{%
+           family={Wambogo},
+           familyi={W\bibinitperiod},
+           given={Edwina\bibnamedelima A},
+           giveni={E\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3bd895c3147631164bd0110444ee4d76}{%
+           family={Ghattas},
+           familyi={G\bibinitperiod},
+           given={Hala},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95284cd4b808bbad4880f64dc1a2fc7e}{%
+           family={Leonard},
+           familyi={L\bibinitperiod},
+           given={Kenneth\bibnamedelima L},
+           giveni={K\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eac4a45e12f17745aebacd55f1635fb9}{%
+           family={Sahyoun},
+           familyi={S\bibinitperiod},
+           given={Nadine\bibnamedelima R},
+           giveni={N\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{56f32a873901b969053525b7d7f9bcae}
+      \strng{fullhash}{cf47c9494d1c2caa0155c9787ce6d1da}
+      \strng{bibnamehash}{56f32a873901b969053525b7d7f9bcae}
+      \strng{authorbibnamehash}{56f32a873901b969053525b7d7f9bcae}
+      \strng{authornamehash}{56f32a873901b969053525b7d7f9bcae}
+      \strng{authorfullhash}{cf47c9494d1c2caa0155c9787ce6d1da}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Current Developments in Nutrition}
+      \field{title}{Validity of the Food Insecurity Experience Scale (FIES) for use in Sub-Saharan Africa (SSA) and characteristics of food insecure individuals}
+      \field{year}{2018}
+    \endentry
     \entry{warszawski2014inter}{article}{}
       \name{author}{6}{}{%
-        {{hash=15ad9ee62d0da64094ee2612c44a0a8c}{%
+        {{un=0,uniquepart=base,hash=15ad9ee62d0da64094ee2612c44a0a8c}{%
            family={Warszawski},
            familyi={W\bibinitperiod},
            given={Lila},
-           giveni={L\bibinitperiod}}}%
-        {{hash=05315ac79677cd23f2ebab5ab31ee4e0}{%
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=05315ac79677cd23f2ebab5ab31ee4e0}{%
            family={Frieler},
            familyi={F\bibinitperiod},
            given={Katja},
-           giveni={K\bibinitperiod}}}%
-        {{hash=fbf49f30a23091a45fac431500257bd3}{%
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fbf49f30a23091a45fac431500257bd3}{%
            family={Huber},
            familyi={H\bibinitperiod},
            given={Veronika},
-           giveni={V\bibinitperiod}}}%
-        {{hash=cd91083d20dd345693baa3f46d9b3e9e}{%
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cd91083d20dd345693baa3f46d9b3e9e}{%
            family={Piontek},
            familyi={P\bibinitperiod},
            given={Franziska},
-           giveni={F\bibinitperiod}}}%
-        {{hash=fbc9c517df39cc94a30d16ccb8f6ea80}{%
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fbc9c517df39cc94a30d16ccb8f6ea80}{%
            family={Serdeczny},
            familyi={S\bibinitperiod},
            given={Olivia},
-           giveni={O\bibinitperiod}}}%
-        {{hash=58453421c6611cb862826d04f949404d}{%
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=58453421c6611cb862826d04f949404d}{%
            family={Schewe},
            familyi={S\bibinitperiod},
            given={Jacob},
-           giveni={J\bibinitperiod}}}%
+           giveni={J\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {National Acad Sciences}%
@@ -873,8 +1734,10 @@
       \strng{authorbibnamehash}{29769b65640556c96c90fa9accf65d34}
       \strng{authornamehash}{29769b65640556c96c90fa9accf65d34}
       \strng{authorfullhash}{c865d82e3502316dee31b8013a514db9}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Proceedings of the National Academy of Sciences}
@@ -885,728 +1748,260 @@
       \field{pages}{3228\bibrangedash 3232}
       \range{pages}{5}
     \endentry
-    \entry{prospects2020}{article}{}
-      \name{author}{1}{}{%
-        {{hash=48f493eb4a4e250a6a3f9491b7df3299}{%
-           family={{Global Economic Prospects}},
-           familyi={G\bibinitperiod}}}%
-      }
-      \strng{namehash}{48f493eb4a4e250a6a3f9491b7df3299}
-      \strng{fullhash}{48f493eb4a4e250a6a3f9491b7df3299}
-      \strng{bibnamehash}{48f493eb4a4e250a6a3f9491b7df3299}
-      \strng{authorbibnamehash}{48f493eb4a4e250a6a3f9491b7df3299}
-      \strng{authornamehash}{48f493eb4a4e250a6a3f9491b7df3299}
-      \strng{authorfullhash}{48f493eb4a4e250a6a3f9491b7df3299}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{World Bank Group, Washington DC}
-      \field{title}{June 2020}
-      \field{year}{2020}
-    \endentry
-    \entry{headey2020impacts}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{10}{}{%
-        {{hash=32426d9763ddb1ab09f31694186f71a0}{%
-           family={Headey},
-           familyi={H\bibinitperiod},
-           given={Derek},
-           giveni={D\bibinitperiod}}}%
-        {{hash=8d053990b80b4f6d3724ed566690cdd8}{%
-           family={Heidkamp},
-           familyi={H\bibinitperiod},
-           given={Rebecca},
-           giveni={R\bibinitperiod}}}%
-        {{hash=7f8d01dd57bb9b4ad72623057eb96a65}{%
-           family={Osendarp},
-           familyi={O\bibinitperiod},
-           given={Saskia},
-           giveni={S\bibinitperiod}}}%
-        {{hash=3bc672d7669197f37ccce7caa9bd69f5}{%
-           family={Ruel},
-           familyi={R\bibinitperiod},
-           given={Marie},
-           giveni={M\bibinitperiod}}}%
-        {{hash=ed75a9b59d84939272c2d22250af895a}{%
-           family={Scott},
-           familyi={S\bibinitperiod},
-           given={Nick},
-           giveni={N\bibinitperiod}}}%
-        {{hash=71255f83a700d3d837af4f199b6cb384}{%
-           family={Black},
-           familyi={B\bibinitperiod},
-           given={Robert},
-           giveni={R\bibinitperiod}}}%
-        {{hash=94e303e9255d104084f6990a2079d3f7}{%
-           family={Shekar},
-           familyi={S\bibinitperiod},
-           given={Meera},
-           giveni={M\bibinitperiod}}}%
-        {{hash=e3ef6d2976aaa94ca786687de58c6b23}{%
-           family={Bouis},
-           familyi={B\bibinitperiod},
-           given={Howarth},
-           giveni={H\bibinitperiod}}}%
-        {{hash=3dd38ce1d9c31327577e9b57e6eaecda}{%
-           family={Flory},
-           familyi={F\bibinitperiod},
-           given={Augustin},
-           giveni={A\bibinitperiod}}}%
-        {{hash=a19337d097995a682b9e14934a3ecc7b}{%
-           family={Haddad},
-           familyi={H\bibinitperiod},
-           given={Lawrence},
-           giveni={L\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier}%
-      }
-      \strng{namehash}{bdfcf9ced9e0e0f91c5bd715b3550983}
-      \strng{fullhash}{068752563c67c670bd08d3cc2a787d51}
-      \strng{bibnamehash}{bdfcf9ced9e0e0f91c5bd715b3550983}
-      \strng{authorbibnamehash}{bdfcf9ced9e0e0f91c5bd715b3550983}
-      \strng{authornamehash}{bdfcf9ced9e0e0f91c5bd715b3550983}
-      \strng{authorfullhash}{068752563c67c670bd08d3cc2a787d51}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{The Lancet}
-      \field{number}{10250}
-      \field{title}{Impacts of COVID-19 on childhood malnutrition and nutrition-related mortality}
-      \field{volume}{396}
-      \field{year}{2020}
-      \field{pages}{519\bibrangedash 521}
-      \range{pages}{3}
-    \endentry
-    \entry{Cuaresma2018}{article}{}
-      \name{author}{6}{}{%
-        {{hash=310977675c3c65c9af8531a21dc40050}{%
-           family={Cuaresma},
-           familyi={C\bibinitperiod},
-           given={Jes{ú}s\bibnamedelima Crespo},
-           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=c084bfc585ee17f34f8a34b65afe88cf}{%
-           family={Fengler},
-           familyi={F\bibinitperiod},
-           given={Wolfgang},
-           giveni={W\bibinitperiod}}}%
-        {{hash=d4087ba8f3c339b292f6d02128ab8272}{%
-           family={Kharas},
-           familyi={K\bibinitperiod},
-           given={Homi},
-           giveni={H\bibinitperiod}}}%
-        {{hash=68039391f4bc1c6cf7f3850e453f9b8c}{%
-           family={Bekhtiar},
-           familyi={B\bibinitperiod},
-           given={Karim},
-           giveni={K\bibinitperiod}}}%
-        {{hash=e8d6e3a5abb0204ba3d6f70388a0c0b6}{%
-           family={Brottrager},
-           familyi={B\bibinitperiod},
-           given={Michael},
-           giveni={M\bibinitperiod}}}%
-        {{hash=74051e9b4936603abd8e93b5d30bade6}{%
-           family={Hofer},
-           familyi={H\bibinitperiod},
-           given={Martin},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Nature Publishing Group}%
-      }
-      \strng{namehash}{b385f0807a89a2d1e4e46a67b04de51e}
-      \strng{fullhash}{bbea96212d57f12155e7f24a912f27ef}
-      \strng{bibnamehash}{b385f0807a89a2d1e4e46a67b04de51e}
-      \strng{authorbibnamehash}{b385f0807a89a2d1e4e46a67b04de51e}
-      \strng{authornamehash}{b385f0807a89a2d1e4e46a67b04de51e}
-      \strng{authorfullhash}{bbea96212d57f12155e7f24a912f27ef}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Palgrave Communications}
-      \field{number}{1}
-      \field{title}{Will the Sustainable Development Goals be fulfilled? Assessing present and future global poverty}
-      \field{volume}{4}
-      \field{year}{2018}
-      \field{pages}{1\bibrangedash 8}
-      \range{pages}{8}
-    \endentry
-    \entry{Local2020}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{1}{}{%
-        {{hash=50189852339055f390173773239ac765}{%
-           family={Disease\bibnamedelimb Child\bibnamedelimb Growth\bibnamedelimb Failure\bibnamedelima Collaborators},
-           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim C\bibinitperiod},
-           given={Local\bibnamedelima Burden},
-           giveni={L\bibinitperiod\bibinitdelim B\bibinitperiod},
-           prefix={of},
-           prefixi={o\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Nature Publishing Group}%
-      }
-      \strng{namehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{fullhash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{bibnamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authorbibnamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authornamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authorfullhash}{5160cb2f22fd3f077822bf891085d602}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature}
-      \field{number}{7789}
-      \field{title}{Mapping child growth failure across low-and middle-income countries}
-      \field{volume}{577}
-      \field{year}{2020}
-      \field{pages}{231}
-      \range{pages}{1}
-    \endentry
-    \entry{Smits2019}{article}{}
-      \name{author}{2}{}{%
-        {{hash=8951b02c5196d9f9d5e72e7e4b7bb2c5}{%
-           family={Smits},
-           familyi={S\bibinitperiod},
-           given={Jeroen},
-           giveni={J\bibinitperiod}}}%
-        {{hash=7ce5145ba9304a805a7167f3931ca019}{%
-           family={Permanyer},
-           familyi={P\bibinitperiod},
-           given={I{ñ}aki},
-           giveni={I\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Nature Publishing Group}%
-      }
-      \strng{namehash}{13011cee931b5d7ca0352899f985475d}
-      \strng{fullhash}{13011cee931b5d7ca0352899f985475d}
-      \strng{bibnamehash}{13011cee931b5d7ca0352899f985475d}
-      \strng{authorbibnamehash}{13011cee931b5d7ca0352899f985475d}
-      \strng{authornamehash}{13011cee931b5d7ca0352899f985475d}
-      \strng{authorfullhash}{13011cee931b5d7ca0352899f985475d}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Scientific data}
-      \field{title}{The subnational human development database}
-      \field{volume}{6}
-      \field{year}{2019}
-      \field{pages}{190038}
-      \range{pages}{1}
-    \endentry
-    \entry{KC2017}{article}{}
-      \name{author}{2}{}{%
-        {{hash=e755818a781b7493339c9049b498864e}{%
-           family={KC},
-           familyi={K\bibinitperiod},
-           given={Samir},
-           giveni={S\bibinitperiod}}}%
-        {{hash=fc2d17565135fbf8c2ed924a74d9ffac}{%
-           family={Lutz},
-           familyi={L\bibinitperiod},
-           given={Wolfgang},
-           giveni={W\bibinitperiod}}}%
-      }
-      \strng{namehash}{d611860f8353ca2f3dfda183da057845}
-      \strng{fullhash}{d611860f8353ca2f3dfda183da057845}
-      \strng{bibnamehash}{d611860f8353ca2f3dfda183da057845}
-      \strng{authorbibnamehash}{d611860f8353ca2f3dfda183da057845}
-      \strng{authornamehash}{d611860f8353ca2f3dfda183da057845}
-      \strng{authorfullhash}{d611860f8353ca2f3dfda183da057845}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{09593780}
-      \field{journaltitle}{Global Environmental Change}
-      \field{title}{{The human core of the shared socioeconomic pathways: Population scenarios by age, sex and level of education for all countries to 2100}}
-      \field{year}{2017}
-      \verb{doi}
-      \verb 10.1016/j.gloenvcha.2014.06.004
-      \endverb
-      \keyw{Age structure,Country level,Education,Scenarios,Shared socioeconomic pathways,World population}
-    \endentry
-    \entry{Dellink2017}{article}{}
-      \name{author}{4}{}{%
-        {{hash=e02fa3bbe60064a37acedb9dd7420998}{%
-           family={Dellink},
-           familyi={D\bibinitperiod},
-           given={Rob},
-           giveni={R\bibinitperiod}}}%
-        {{hash=3285e0335085b7a878c5da1c5b582dc0}{%
-           family={Chateau},
-           familyi={C\bibinitperiod},
-           given={Jean},
-           giveni={J\bibinitperiod}}}%
-        {{hash=9619748f3aa52ff29859c407d84461f1}{%
-           family={Lanzi},
-           familyi={L\bibinitperiod},
-           given={Elisa},
-           giveni={E\bibinitperiod}}}%
-        {{hash=df8ebbb86f7ea16337308721bd3733af}{%
-           family={Magn{é}},
-           familyi={M\bibinitperiod},
-           given={Bertrand},
-           giveni={B\bibinitperiod}}}%
-      }
-      \strng{namehash}{93cd26ae53e78113edda02df27f3c71e}
-      \strng{fullhash}{1b95d68452b7bd3ce8efb8e7a2cc3658}
-      \strng{bibnamehash}{93cd26ae53e78113edda02df27f3c71e}
-      \strng{authorbibnamehash}{93cd26ae53e78113edda02df27f3c71e}
-      \strng{authornamehash}{93cd26ae53e78113edda02df27f3c71e}
-      \strng{authorfullhash}{1b95d68452b7bd3ce8efb8e7a2cc3658}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{09593780}
-      \field{journaltitle}{Global Environmental Change}
-      \field{title}{{Long-term economic growth projections in the Shared Socioeconomic Pathways}}
-      \field{year}{2017}
-      \verb{doi}
-      \verb 10.1016/j.gloenvcha.2015.06.004
-      \endverb
-      \keyw{Baselines,Climate change,Convergence,Economic growth}
-    \endentry
-    \entry{Rao2019a}{article}{}
-      \name{author}{4}{}{%
-        {{hash=66a4a289f6c815e99821c23e5006dbe9}{%
-           family={Rao},
-           familyi={R\bibinitperiod},
-           given={Narasimha\bibnamedelima D.},
-           giveni={N\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=215291cb0531feba57ec6725ea7eb246}{%
-           family={Sauer},
-           familyi={S\bibinitperiod},
-           given={Petra},
-           giveni={P\bibinitperiod}}}%
-        {{hash=d650d895d0ba9477944e465811c4eaab}{%
-           family={Gidden},
-           familyi={G\bibinitperiod},
-           given={Matthew},
-           giveni={M\bibinitperiod}}}%
-        {{hash=ef7fb7bd657b997bf4b6987b69b22e1f}{%
-           family={Riahi},
-           familyi={R\bibinitperiod},
-           given={Keywan},
-           giveni={K\bibinitperiod}}}%
-      }
-      \strng{namehash}{7c4fc21444cfb7e23d4e888b39bc158b}
-      \strng{fullhash}{10267bf07d4ddb9459da3e35eae1bc37}
-      \strng{bibnamehash}{7c4fc21444cfb7e23d4e888b39bc158b}
-      \strng{authorbibnamehash}{7c4fc21444cfb7e23d4e888b39bc158b}
-      \strng{authornamehash}{7c4fc21444cfb7e23d4e888b39bc158b}
-      \strng{authorfullhash}{10267bf07d4ddb9459da3e35eae1bc37}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{00163287}
-      \field{journaltitle}{Futures}
-      \field{title}{{Income inequality projections for the Shared Socioeconomic Pathways (SSPs)}}
-      \field{year}{2019}
-      \verb{doi}
-      \verb 10.1016/j.futures.2018.07.001
-      \endverb
-      \keyw{E,Gini,Income inequality,Projections,SSP,ducation inequality}
-    \endentry
-    \entry{greve2018global}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{10}{}{%
-        {{hash=c7d0ba43697fb5ed9324d4b0d7e424fb}{%
-           family={Greve},
-           familyi={G\bibinitperiod},
-           given={Peter},
-           giveni={P\bibinitperiod}}}%
-        {{hash=2b32ad0cae15bf56a081c560ef64b815}{%
-           family={Kahil},
-           familyi={K\bibinitperiod},
-           given={Taher},
-           giveni={T\bibinitperiod}}}%
-        {{hash=f83922bcf703ae3c8625d9763f070bc7}{%
-           family={Mochizuki},
-           familyi={M\bibinitperiod},
-           given={Junko},
-           giveni={J\bibinitperiod}}}%
-        {{hash=3af7ca3a4ab4c4a075ce6931c27f8205}{%
-           family={Schinko},
-           familyi={S\bibinitperiod},
-           given={Thomas},
-           giveni={T\bibinitperiod}}}%
-        {{hash=721d9fcd0f2858918ccdd4ecabc0753b}{%
-           family={Satoh},
-           familyi={S\bibinitperiod},
-           given={Yusuke},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=cb5e48b701d52ff7d73d92c18df6eeff}{%
-           family={Burek},
-           familyi={B\bibinitperiod},
-           given={P},
-           giveni={P\bibinitperiod}}}%
-        {{hash=c63d4b532915c2df1ff0581efa885d8c}{%
-           family={Fischer},
-           familyi={F\bibinitperiod},
-           given={G},
-           giveni={G\bibinitperiod}}}%
-        {{hash=2e65b430971fa50ae59996d2ed567cf4}{%
-           family={Tramberend},
-           familyi={T\bibinitperiod},
-           given={S},
-           giveni={S\bibinitperiod}}}%
-        {{hash=cfe18059ec66d16315e3157a8266ccf4}{%
-           family={Burtscher},
-           familyi={B\bibinitperiod},
-           given={R},
-           giveni={R\bibinitperiod}}}%
-        {{hash=28b3e248bf4b7585847db0e8c6d34cb3}{%
-           family={Langan},
-           familyi={L\bibinitperiod},
-           given={S},
-           giveni={S\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Nature Publishing Group}%
-      }
-      \strng{namehash}{d91597b61c160c8ead98f6303ea4d746}
-      \strng{fullhash}{e2fe996c886198b1269516f90ed90719}
-      \strng{bibnamehash}{d91597b61c160c8ead98f6303ea4d746}
-      \strng{authorbibnamehash}{d91597b61c160c8ead98f6303ea4d746}
-      \strng{authornamehash}{d91597b61c160c8ead98f6303ea4d746}
-      \strng{authorfullhash}{e2fe996c886198b1269516f90ed90719}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature Sustainability}
-      \field{number}{9}
-      \field{title}{Global assessment of water challenges under uncertainty in water scarcity projections}
-      \field{volume}{1}
-      \field{year}{2018}
-      \field{pages}{486\bibrangedash 494}
-      \range{pages}{9}
-    \endentry
-    \entry{abatzoglou2018terraclimate}{article}{}
-      \name{author}{4}{}{%
-        {{hash=ba5565cef991bdaf6f1f52542c553e60}{%
-           family={Abatzoglou},
-           familyi={A\bibinitperiod},
-           given={John\bibnamedelima T},
-           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
-        {{hash=32de1e6a963e5788334b1128a888accc}{%
-           family={Dobrowski},
-           familyi={D\bibinitperiod},
-           given={Solomon\bibnamedelima Z},
-           giveni={S\bibinitperiod\bibinitdelim Z\bibinitperiod}}}%
-        {{hash=c201e2768fc723c9bc2c9fe36be04e53}{%
-           family={Parks},
-           familyi={P\bibinitperiod},
-           given={Sean\bibnamedelima A},
-           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=a8b124884325681ef877d0433eff2137}{%
-           family={Hegewisch},
-           familyi={H\bibinitperiod},
-           given={Katherine\bibnamedelima C},
-           giveni={K\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Nature Publishing Group}%
-      }
-      \strng{namehash}{3ba03a2557b394a9623405b89c0b865f}
-      \strng{fullhash}{ac5beccca31dde13140a7e80ae3e3956}
-      \strng{bibnamehash}{3ba03a2557b394a9623405b89c0b865f}
-      \strng{authorbibnamehash}{3ba03a2557b394a9623405b89c0b865f}
-      \strng{authornamehash}{3ba03a2557b394a9623405b89c0b865f}
-      \strng{authorfullhash}{ac5beccca31dde13140a7e80ae3e3956}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Scientific data}
-      \field{title}{TerraClimate, a high-resolution global dataset of monthly climate and climatic water balance from 1958--2015}
-      \field{volume}{5}
-      \field{year}{2018}
-      \field{pages}{170191}
-      \range{pages}{1}
-    \endentry
-    \entry{USGS1996}{book}{}
-      \name{author}{1}{}{%
-        {{hash=c331da575c7eb6f801042d5153adc8a3}{%
-           family={{USGS}},
-           familyi={U\bibinitperiod}}}%
-      }
-      \strng{namehash}{c331da575c7eb6f801042d5153adc8a3}
-      \strng{fullhash}{c331da575c7eb6f801042d5153adc8a3}
-      \strng{bibnamehash}{c331da575c7eb6f801042d5153adc8a3}
-      \strng{authorbibnamehash}{c331da575c7eb6f801042d5153adc8a3}
-      \strng{authornamehash}{c331da575c7eb6f801042d5153adc8a3}
-      \strng{authorfullhash}{c331da575c7eb6f801042d5153adc8a3}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{United States Geological Survery}
-      \field{title}{{Global 30 Arc-Second Elevation (GTOPO30)}}
-      \field{year}{1996}
-      \verb{doi}
-      \verb https://lta.cr.usgs.gov/GTOPO30
-      \endverb
-    \endentry
-    \entry{Riley1999}{article}{}
-      \name{author}{3}{}{%
-        {{hash=c0e05823a5b6273d0b1e146b7c5b9703}{%
-           family={Riley},
-           familyi={R\bibinitperiod},
-           given={S\bibnamedelima J},
-           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=a2e0afbe4af7978d7a1f99c6c1be43f7}{%
-           family={DeGloria},
-           familyi={D\bibinitperiod},
-           given={S\bibnamedelima D},
-           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=728b623c41a39a7a2c162069bbb3177a}{%
-           family={Elliot},
-           familyi={E\bibinitperiod},
-           given={R},
-           giveni={R\bibinitperiod}}}%
-      }
-      \strng{namehash}{776df935ff939656636ccb709bfa3443}
-      \strng{fullhash}{776df935ff939656636ccb709bfa3443}
-      \strng{bibnamehash}{776df935ff939656636ccb709bfa3443}
-      \strng{authorbibnamehash}{776df935ff939656636ccb709bfa3443}
-      \strng{authornamehash}{776df935ff939656636ccb709bfa3443}
-      \strng{authorfullhash}{776df935ff939656636ccb709bfa3443}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Intermountain Journal of Sciences}
-      \field{title}{{A Terrain Ruggedness Index that Quantifies Topographic Heterogeneity}}
-      \field{year}{1999}
-      \verb{doi}
-      \verb citeulike-article-id:8858430
-      \endverb
-      \keyw{Montana,geographical information systems,habitat,ruggedness,terrain}
-    \endentry
     \entry{Weiss2019}{article}{}
       \name{author}{42}{}{%
-        {{hash=fc2fecf5f3e041a4417c8a9f9775bf73}{%
+        {{un=0,uniquepart=base,hash=fc2fecf5f3e041a4417c8a9f9775bf73}{%
            family={Weiss},
            familyi={W\bibinitperiod},
            given={Daniel\bibnamedelima J.},
-           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=8e64dc161511502e49054079d3df553d}{%
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8e64dc161511502e49054079d3df553d}{%
            family={Lucas},
            familyi={L\bibinitperiod},
            given={Tim\bibnamedelima C.D.},
-           giveni={T\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=d547349c58dcf09ea8606494150743cd}{%
+           giveni={T\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d547349c58dcf09ea8606494150743cd}{%
            family={Nguyen},
            familyi={N\bibinitperiod},
            given={Michele},
-           giveni={M\bibinitperiod}}}%
-        {{hash=9223cb667405cdc56281aeb5ebec9715}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9223cb667405cdc56281aeb5ebec9715}{%
            family={Nandi},
            familyi={N\bibinitperiod},
            given={Anita\bibnamedelima K.},
-           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=93bf42479e3df60492f2442ad04bc6b9}{%
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=93bf42479e3df60492f2442ad04bc6b9}{%
            family={Bisanzio},
            familyi={B\bibinitperiod},
            given={D.},
-           giveni={D\bibinitperiod}}}%
-        {{hash=2325c3674edbf26b89b85d6ff3774e11}{%
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2325c3674edbf26b89b85d6ff3774e11}{%
            family={Battle},
            familyi={B\bibinitperiod},
            given={Katherine\bibnamedelima E.},
-           giveni={K\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
-        {{hash=e6be610530ff26a55fefc297774e51c6}{%
+           giveni={K\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e6be610530ff26a55fefc297774e51c6}{%
            family={Cameron},
            familyi={C\bibinitperiod},
            given={Ewan},
-           giveni={E\bibinitperiod}}}%
-        {{hash=856145779224847d10f5080a8f077f3d}{%
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=856145779224847d10f5080a8f077f3d}{%
            family={Twohig},
            familyi={T\bibinitperiod},
            given={Katherine\bibnamedelima A.},
-           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=af50e74da8a631774e2b2187356a4f87}{%
+           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=af50e74da8a631774e2b2187356a4f87}{%
            family={Pfeffer},
            familyi={P\bibinitperiod},
            given={Daniel\bibnamedelima A.},
-           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=0cf91c6be161e050102279ff977a2de5}{%
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0cf91c6be161e050102279ff977a2de5}{%
            family={Rozier},
            familyi={R\bibinitperiod},
            given={Jennifer\bibnamedelima A.},
-           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=1871acc745f6aedc75cbd57d041fb102}{%
+           giveni={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1871acc745f6aedc75cbd57d041fb102}{%
            family={Gibson},
            familyi={G\bibinitperiod},
            given={Harry\bibnamedelima S.},
-           giveni={H\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{hash=d0f081b536744b87dbf2a226667ce475}{%
+           giveni={H\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d0f081b536744b87dbf2a226667ce475}{%
            family={Rao},
            familyi={R\bibinitperiod},
            given={Puja\bibnamedelima C.},
-           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-        {{hash=de988eb7f143aa69d630e582ea079e19}{%
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=de988eb7f143aa69d630e582ea079e19}{%
            family={Casey},
            familyi={C\bibinitperiod},
            given={Daniel},
-           giveni={D\bibinitperiod}}}%
-        {{hash=7b60e4e67014fb58a58e14840ddb0339}{%
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7b60e4e67014fb58a58e14840ddb0339}{%
            family={Bertozzi-Villa},
            familyi={B\bibinithyphendelim V\bibinitperiod},
            given={Amelia},
-           giveni={A\bibinitperiod}}}%
-        {{hash=6854a681c982233a35bae858278859c0}{%
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6854a681c982233a35bae858278859c0}{%
            family={Collins},
            familyi={C\bibinitperiod},
            given={Emma\bibnamedelima L.},
-           giveni={E\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{hash=50babead20523cd618f47f1e77f39b73}{%
+           giveni={E\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=50babead20523cd618f47f1e77f39b73}{%
            family={Dalrymple},
            familyi={D\bibinitperiod},
            given={Ursula},
-           giveni={U\bibinitperiod}}}%
-        {{hash=e932e3cc93dc0c45230c41022a5f0a56}{%
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e932e3cc93dc0c45230c41022a5f0a56}{%
            family={Gray},
            familyi={G\bibinitperiod},
            given={N.},
-           giveni={N\bibinitperiod}}}%
-        {{hash=26236d660547b6ba8ae7b9434d049e90}{%
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=26236d660547b6ba8ae7b9434d049e90}{%
            family={Harris},
            familyi={H\bibinitperiod},
            given={Joseph\bibnamedelima R.},
-           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
-        {{hash=6a0283dd128f107abc05824e0ce548fc}{%
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6a0283dd128f107abc05824e0ce548fc}{%
            family={Howes},
            familyi={H\bibinitperiod},
            given={Rosalind\bibnamedelima E.},
-           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
-        {{hash=d824d0b35d8e7b5c566025ad36ea9e80}{%
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d824d0b35d8e7b5c566025ad36ea9e80}{%
            family={Kang},
            familyi={K\bibinitperiod},
            given={Sun\bibnamedelima Yun},
-           giveni={S\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
-        {{hash=f09809f21e2db19c217f122f644d195a}{%
+           giveni={S\bibinitperiod\bibinitdelim Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f09809f21e2db19c217f122f644d195a}{%
            family={Keddie},
            familyi={K\bibinitperiod},
            given={Suzanne\bibnamedelima H.},
-           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-        {{hash=6077538c9382e3ef49474a76a5c93acc}{%
+           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6077538c9382e3ef49474a76a5c93acc}{%
            family={May},
            familyi={M\bibinitperiod},
            given={Daniel},
-           giveni={D\bibinitperiod}}}%
-        {{hash=afb7d8fb8ef2957bf3dfc0e152318d02}{%
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=afb7d8fb8ef2957bf3dfc0e152318d02}{%
            family={Rumisha},
            familyi={R\bibinitperiod},
            given={S.},
-           giveni={S\bibinitperiod}}}%
-        {{hash=a30d6f56249155dbb6215e026cba01b0}{%
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a30d6f56249155dbb6215e026cba01b0}{%
            family={Thorn},
            familyi={T\bibinitperiod},
            given={Michael\bibnamedelima P.},
-           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=630149131f23ed6820f74ee16ebad793}{%
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=630149131f23ed6820f74ee16ebad793}{%
            family={Barber},
            familyi={B\bibinitperiod},
            given={Ryan},
-           giveni={R\bibinitperiod}}}%
-        {{hash=963761624592fbfb26db6e7967b4fa53}{%
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=963761624592fbfb26db6e7967b4fa53}{%
            family={Fullman},
            familyi={F\bibinitperiod},
            given={N.},
-           giveni={N\bibinitperiod}}}%
-        {{hash=a9878f40db4572bad4549963473e7574}{%
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a9878f40db4572bad4549963473e7574}{%
            family={Huynh},
            familyi={H\bibinitperiod},
            given={Chantal\bibnamedelima K.},
-           giveni={C\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
-        {{hash=c92d8c8b5506b4ec9eee67b1beaf7798}{%
+           giveni={C\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c92d8c8b5506b4ec9eee67b1beaf7798}{%
            family={Kulikoff},
            familyi={K\bibinitperiod},
            given={Xie},
-           giveni={X\bibinitperiod}}}%
-        {{hash=bf0cb34fcbc7f0638d9becd937b4a64f}{%
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bf0cb34fcbc7f0638d9becd937b4a64f}{%
            family={Kutz},
            familyi={K\bibinitperiod},
            given={Michael\bibnamedelima J.},
-           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=95046a5f589ba5abfa9251a17ae8a6b4}{%
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95046a5f589ba5abfa9251a17ae8a6b4}{%
            family={Lopez},
            familyi={L\bibinitperiod},
            given={Alan\bibnamedelima D.},
-           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
-        {{hash=7fbdd3e15d582a275ec743751e8352b4}{%
+           giveni={A\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7fbdd3e15d582a275ec743751e8352b4}{%
            family={Mokdad},
            familyi={M\bibinitperiod},
            given={A.\bibnamedelimi H.},
-           giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
-        {{hash=8590261a2dec6e655ce669b321060f91}{%
+           giveni={A\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8590261a2dec6e655ce669b321060f91}{%
            family={Naghavi},
            familyi={N\bibinitperiod},
            given={Mohsen},
-           giveni={M\bibinitperiod}}}%
-        {{hash=089ee6f89a8c303cee53e3fa42239cc4}{%
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=089ee6f89a8c303cee53e3fa42239cc4}{%
            family={Nguyen},
            familyi={N\bibinitperiod},
            given={G.},
-           giveni={G\bibinitperiod}}}%
-        {{hash=24c01b11fa08879987f8fe05c8d996dd}{%
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=24c01b11fa08879987f8fe05c8d996dd}{%
            family={Shackelford},
            familyi={S\bibinitperiod},
            given={Katya\bibnamedelima Anne},
-           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-        {{hash=3c453a1d7d0c83a4d4d5dd5832e4829f}{%
+           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3c453a1d7d0c83a4d4d5dd5832e4829f}{%
            family={Vos},
            familyi={V\bibinitperiod},
            given={Theo},
-           giveni={T\bibinitperiod}}}%
-        {{hash=bc9387f7edb8fcb0bd7858c74c1d7e15}{%
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bc9387f7edb8fcb0bd7858c74c1d7e15}{%
            family={Wang},
            familyi={W\bibinitperiod},
            given={Haidong},
-           giveni={H\bibinitperiod}}}%
-        {{hash=8e6d2fb37e8e697bc7f7e2a4b78f4be1}{%
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8e6d2fb37e8e697bc7f7e2a4b78f4be1}{%
            family={Smith},
            familyi={S\bibinitperiod},
            given={David\bibnamedelima L.},
-           giveni={D\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{hash=069d2ecf50b9016589cbc2cb0111f694}{%
+           giveni={D\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=069d2ecf50b9016589cbc2cb0111f694}{%
            family={Lim},
            familyi={L\bibinitperiod},
            given={Stephen\bibnamedelima S.},
-           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-        {{hash=d39647fc6f5b8f85d041b0adbed9b52e}{%
+           giveni={S\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d39647fc6f5b8f85d041b0adbed9b52e}{%
            family={Murray},
            familyi={M\bibinitperiod},
            given={Christopher\bibnamedelima J.L.},
-           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=7c71c1700b24457b40c99a55ff3119e7}{%
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7c71c1700b24457b40c99a55ff3119e7}{%
            family={Bhatt},
            familyi={B\bibinitperiod},
            given={S.},
-           giveni={S\bibinitperiod}}}%
-        {{hash=fd610c8afe891528a8628d6ccb932fa8}{%
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fd610c8afe891528a8628d6ccb932fa8}{%
            family={Hay},
            familyi={H\bibinitperiod},
            given={Simon\bibnamedelima I.},
-           giveni={S\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
-        {{hash=774d5a9c28570ffc28052e5f6e82047a}{%
+           giveni={S\bibinitperiod\bibinitdelim I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=774d5a9c28570ffc28052e5f6e82047a}{%
            family={Gething},
            familyi={G\bibinitperiod},
            given={Peter\bibnamedelima W.},
-           giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+           giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{bfc7efcbb292670e0c45632e8a58baf7}
       \strng{fullhash}{5345015f8b5854639c2d508c64a3570f}
@@ -1614,8 +2009,10 @@
       \strng{authorbibnamehash}{bfc7efcbb292670e0c45632e8a58baf7}
       \strng{authornamehash}{bfc7efcbb292670e0c45632e8a58baf7}
       \strng{authorfullhash}{5345015f8b5854639c2d508c64a3570f}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1474547X}
@@ -1625,165 +2022,6 @@
       \verb{doi}
       \verb 10.1016/S0140-6736(19)31097-9
       \endverb
-    \endentry
-    \entry{hastie2009elements}{book}{}
-      \name{author}{3}{}{%
-        {{hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
-           family={Hastie},
-           familyi={H\bibinitperiod},
-           given={Trevor},
-           giveni={T\bibinitperiod}}}%
-        {{hash=88eea600247d798f8b2ce0b2dc614492}{%
-           family={Tibshirani},
-           familyi={T\bibinitperiod},
-           given={Robert},
-           giveni={R\bibinitperiod}}}%
-        {{hash=971cf69058b64a94326dea0f2a8bbcce}{%
-           family={Friedman},
-           familyi={F\bibinitperiod},
-           given={Jerome},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer Science \& Business Media}%
-      }
-      \strng{namehash}{7ca1bfe876d5e037b6aed69704221267}
-      \strng{fullhash}{7ca1bfe876d5e037b6aed69704221267}
-      \strng{bibnamehash}{7ca1bfe876d5e037b6aed69704221267}
-      \strng{authorbibnamehash}{7ca1bfe876d5e037b6aed69704221267}
-      \strng{authornamehash}{7ca1bfe876d5e037b6aed69704221267}
-      \strng{authorfullhash}{7ca1bfe876d5e037b6aed69704221267}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{The elements of statistical learning: data mining, inference, and prediction}
-      \field{year}{2009}
-    \endentry
-    \entry{friedman2001elements}{book}{}
-      \name{author}{3}{}{%
-        {{hash=971cf69058b64a94326dea0f2a8bbcce}{%
-           family={Friedman},
-           familyi={F\bibinitperiod},
-           given={Jerome},
-           giveni={J\bibinitperiod}}}%
-        {{hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
-           family={Hastie},
-           familyi={H\bibinitperiod},
-           given={Trevor},
-           giveni={T\bibinitperiod}}}%
-        {{hash=88eea600247d798f8b2ce0b2dc614492}{%
-           family={Tibshirani},
-           familyi={T\bibinitperiod},
-           given={Robert},
-           giveni={R\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer series in statistics New York}%
-      }
-      \strng{namehash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{fullhash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{bibnamehash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{authorbibnamehash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{authornamehash}{568e7b5149c552567af3c9b520d96bb3}
-      \strng{authorfullhash}{568e7b5149c552567af3c9b520d96bb3}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{number}{10}
-      \field{title}{The elements of statistical learning}
-      \field{volume}{1}
-      \field{year}{2001}
-    \endentry
-    \entry{ishwaran2019randomforestsrc}{article}{}
-      \name{author}{2}{}{%
-        {{hash=01ac834cae76b7edc44968f1597d75a4}{%
-           family={Ishwaran},
-           familyi={I\bibinitperiod},
-           given={H},
-           giveni={H\bibinitperiod}}}%
-        {{hash=860c16b1b29b20683f0b9f286683ea71}{%
-           family={Kogalur},
-           familyi={K\bibinitperiod},
-           given={UB},
-           giveni={U\bibinitperiod}}}%
-      }
-      \strng{namehash}{90ac875d50e1b3141df05b073fe2f329}
-      \strng{fullhash}{90ac875d50e1b3141df05b073fe2f329}
-      \strng{bibnamehash}{90ac875d50e1b3141df05b073fe2f329}
-      \strng{authorbibnamehash}{90ac875d50e1b3141df05b073fe2f329}
-      \strng{authornamehash}{90ac875d50e1b3141df05b073fe2f329}
-      \strng{authorfullhash}{90ac875d50e1b3141df05b073fe2f329}
-      \field{sortinit}{3}
-      \field{sortinithash}{a37a8ef248a93c322189792c34fc68c9}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{R Package Version}
-      \field{number}{1}
-      \field{title}{randomForestSRC: Fast unified random forests for survival, regression, and classification (RF-SRC)}
-      \field{volume}{2}
-      \field{year}{2019}
-    \endentry
-    \entry{ishwaran2007variable}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{1}{}{%
-        {{hash=87b2e79f8f2ab0a4040e84b52fbe2710}{%
-           family={Ishwaran},
-           familyi={I\bibinitperiod},
-           given={Hemant},
-           giveni={H\bibinitperiod}}}%
-      }
-      \list{publisher}{2}{%
-        {The Institute of Mathematical Statistics}%
-        {the Bernoulli Society}%
-      }
-      \strng{namehash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{fullhash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{bibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{authorbibnamehash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{authornamehash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \strng{authorfullhash}{d5ed18c6858d0afbb29689256bccf9b0}
-      \field{sortinit}{4}
-      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Electronic Journal of Statistics}
-      \field{title}{Variable importance in binary regression trees and forests}
-      \field{volume}{1}
-      \field{year}{2007}
-      \field{pages}{519\bibrangedash 537}
-      \range{pages}{19}
-    \endentry
-    \entry{breiman2001random}{article}{}
-      \name{author}{1}{}{%
-        {{hash=132b7100417675d55d5d4d8b244f7a34}{%
-           family={Breiman},
-           familyi={B\bibinitperiod},
-           given={Leo},
-           giveni={L\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{fullhash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{bibnamehash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{authorbibnamehash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{authornamehash}{132b7100417675d55d5d4d8b244f7a34}
-      \strng{authorfullhash}{132b7100417675d55d5d4d8b244f7a34}
-      \field{sortinit}{4}
-      \field{sortinithash}{e071e0bcb44634fab398d68ad04e69f4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Machine learning}
-      \field{number}{1}
-      \field{title}{Random forests}
-      \field{volume}{45}
-      \field{year}{2001}
-      \field{pages}{5\bibrangedash 32}
-      \range{pages}{28}
     \endentry
   \enddatalist
 \endrefsection

@@ -1,19 +1,17 @@
 [0] Config.pm:304> INFO - This is Biber 2.14 (beta)
 [0] Config.pm:307> INFO - Logfile is 'modeling_fies.blg'
-[64] biber:322> INFO - === Wed Nov 18, 2020, 14:11:01
-[78] Biber.pm:415> INFO - Reading 'modeling_fies.bcf'
-[137] Biber.pm:943> INFO - Found 40 citekeys in bib section 0
-[150] Biber.pm:4256> INFO - Processing section 0
-[151] Utils.pm:75> INFO - Globbing data source 'library.bib'
-[151] Utils.pm:91> INFO - Globbed data source 'library.bib' to library.bib
-[160] Biber.pm:4455> INFO - Looking for bibtex format file 'library.bib' for section 0
-[226] bibtex.pm:1653> INFO - LaTeX decoding ...
-[1792] bibtex.pm:1471> INFO - Found BibTeX data source 'library.bib'
-[1985] Utils.pm:293> WARN - year field '2004-2017' in entry 'dhsall' is not an integer - this will probably not sort properly.
-[2172] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[2172] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[2172] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
-[2172] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[2195] bbl.pm:652> INFO - Writing 'modeling_fies.bbl' with encoding 'UTF-8'
-[2229] bbl.pm:755> INFO - Output to modeling_fies.bbl
-[2229] Biber.pm:128> INFO - WARNINGS: 1
+[111] biber:322> INFO - === Thu Mar  4, 2021, 17:42:02
+[129] Biber.pm:415> INFO - Reading 'modeling_fies.bcf'
+[221] Biber.pm:943> INFO - Found 40 citekeys in bib section 0
+[245] Biber.pm:4256> INFO - Processing section 0
+[245] Utils.pm:75> INFO - Globbing data source 'library.bib'
+[246] Utils.pm:91> INFO - Globbed data source 'library.bib' to library.bib
+[262] Biber.pm:4455> INFO - Looking for bibtex format file 'library.bib' for section 0
+[355] bibtex.pm:1653> INFO - LaTeX decoding ...
+[3281] bibtex.pm:1471> INFO - Found BibTeX data source 'library.bib'
+[4042] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[4043] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[4043] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[4044] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[4122] bbl.pm:652> INFO - Writing 'modeling_fies.bbl' with encoding 'UTF-8'
+[4229] bbl.pm:755> INFO - Output to modeling_fies.bbl
