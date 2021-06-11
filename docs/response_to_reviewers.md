@@ -1,6 +1,6 @@
 ---
 created: 2021-06-10T10:04:08-0400
-modified: 2021-06-11T12:16:25-0400
+modified: 2021-06-11T16:36:24-0400
 title: Response to Reviewers
 header-includes:
  - \hypersetup{colorlinks=true}
@@ -28,9 +28,15 @@ Third, Random Forrest models suffer from training data bias. If the underlying t
 
 Fourth, the spatial nature of your modeling is confusing and not clear. Are metrics averaged at the sub-national scale (if so what level of analysis and for which country)? How is degree of urbanization quantified (e.g. are Worldpop pixels masked at some threshold?)? Is the Gallup representative at the national level? District-level? What controls are used to ensure that the Gallup data is a representative sample (Not even explained in the Supplemental Materials)? Your methodology (including how you address issues of spatial scale) needs to be more clearly described in the Main Text and the Supplemental Material before this paper can be considered for publication.
 
+**To add more clarity, we have changed the phrasing in most places from "subnational" to "administrative area", as this might improve some of the confusion around the spatial scale of our analysis.**
+
 https://userforum.dhsprogram.com/index.php?t=msg&th=7832&start=0&
 
 Fifth, I take issue with this being the first global food security paper at a sub-national level (Pg 12, ln 11). Niles et al. is another similar paper, that is near global, with a much more robust modeling framework. Additionally, FEWS-net and WFP provide these assessments regularly or real time. Specifically, you do not present any sub-national findings. What are they? Why is sub-national important and how do your results advance our understanding of food security over space and time? Surely there may be important nuances in the sub-national data (e.g. Does Nairobi look like Dhaka? Is your assumption that two households with similar characteristics, irrespective of geography, correct? Do your results show that this assumption is correct?).
+
+**When stating that this was the first global analysis, we meant that this was the first analysis using the FIES metric, and have ensured that anywhere we make that claim throught the paper, we add that important caveat.  We also believe that our use of the word "global" indicates that our analysis has estimated food insecurity in all countries or nearly all countries, which was not done by Niles et al (who only used 19 countires) and is not done by the FEWSNET reports (which only targets certain developing regions).  Thus, we believe that this claim is valid under our interpretation, and we believe future readers would interpret the word "global" the same way.  However, if you disagree, please let us know in a future review and we can change the language.**
+
+**Our lacking in interpretation of subnational findings was a real oversight, and we have added interpretation around that to the results and discussion sections.**
 
 Finally, and importantly, how are you defining 'urban'? (See Catteneo et al. 2021 for further details). This is not clear in your Supplementary Material or main text. You do not address the growing body of literature that clearly demonstrates important differences between 'rural' and 'urban' food security measurement and outcomes (see Blekking et al. 2020, Tuholske et al. 2020, Haysom & Tawodzera 2018, Cockx et al. 2018) that are extremely important for stakeholders and policy development (Battersby 2017) and poverty alleviation (Christiaensen et al. 2017).
 

@@ -59,6 +59,9 @@ summary(lm(fies.mod ~ dhs.stnt + ISO, data=comb))
 summary(lm(fies.sev ~ dhs.wast + ISO, data=comb))
 summary(lm(fies.mod ~ dhs.wast + ISO, data=comb))
 
+#These are significantly associated
+summary(lm(dhs.stnt ~ dhs.wast + ISO, data=comb))
+
 for (i in int){
   sel <- comb %>%
     filter(ISO == i)
