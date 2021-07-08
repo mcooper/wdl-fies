@@ -194,7 +194,7 @@ pas <- read.csv('~/wdl-fies/data/covars/rawdata/temp-precip-past.csv') %>%
 #Fill missing years, get slopes and predict values from linear trend
 all <- bind_rows(fut, pas) %>%
   arrange(GDLCODE, YEAR) %>%
-  complete(GDLCODE, YEAR=2010:2030) %>%
+  complete(GDLCODE, YEAR=2009:2030) %>%
   group_by(GDLCODE) %>%
   nest %>%
   mutate(pint=map(data, function(df) lm(precip~YEAR, data=df)$coefficients[1]),
@@ -206,9 +206,13 @@ all <- bind_rows(fut, pas) %>%
   mutate(ppred = pint + pcoef*YEAR,
          tpred = tint + tcoef*YEAR,
          precip = ifelse(is.na(precip), ppred, precip),
-         tave = ifelse(is.na(tave), tpred, tave))
+         tave = ifelse(is.na(tave), tpred, tave)) %>%
+  group_by(GDLCODE) %>%
+  mutate(tave_l=lag(tave),
+         precip_l=lag(precip)) %>%
+  filter(YEAR > 2009)
 
-write.csv(all %>% select(GDLCODE, YEAR, tave, precip),
+write.csv(all %>% select(GDLCODE, YEAR, tave, precip, tave_l, precip_l),
           '~/wdl-fies/data/covars/results/tave-precip.csv', row.names=F)
 
 # library(sf)
