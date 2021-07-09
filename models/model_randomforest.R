@@ -37,12 +37,17 @@ prm$sev.mae <- NA
 prm$mod.mae <- NA
 
 #############################################
-#Run model under 10-fold cross validation
+#Run model under cross validation
 #at the country level
 ##########################################
+rsq <- function(y, yhat){
+  1 - (sum((y - yhat)^2))/sum((y - mean(yhat))^2)
+}
+
 for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
   cat(round(sum(!is.na(prm$sev.rsq))/nrow(prm)*100, 2), 'percent done!\n')
   for (iso3 in unique(moddat$ISO3)){
+    print(iso3)
     ix <- moddat$ISO3 != iso3
     
     mtry <- prm$mtry[i]
@@ -73,8 +78,8 @@ for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
     moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(rf.sev, moddat[!ix,])$predicted)
     
   }
-  prm$sev.rsq[i] <- cor(moddat$fies.sev.pred.cv, moddat$fies.sev)^2
-  prm$mod.rsq[i] <- cor(moddat$fies.mod.pred.cv, moddat$fies.mod)^2
+  prm$sev.rsq[i] <- cor(moddat$fies.sev, moddat$fies.sev.pred.cv)^2
+  prm$mod.rsq[i] <- cor(moddat$fies.mod, moddat$fies.mod.pred.cv)^2
   prm$sev.mae[i] <- mean(abs(moddat$fies.sev.pred.cv - moddat$fies.sev))
   prm$mod.mae[i] <- mean(abs(moddat$fies.mod.pred.cv - moddat$fies.mod))
 }
