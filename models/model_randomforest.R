@@ -78,8 +78,8 @@ for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
     moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(rf.sev, moddat[!ix,])$predicted)
     
   }
-  prm$sev.rsq[i] <- cor(moddat$fies.sev, moddat$fies.sev.pred.cv)^2
-  prm$mod.rsq[i] <- cor(moddat$fies.mod, moddat$fies.mod.pred.cv)^2
+  prm$sev.rsq[i] <- rsq(moddat$fies.sev, moddat$fies.sev.pred.cv)
+  prm$mod.rsq[i] <- rsq(moddat$fies.mod, moddat$fies.mod.pred.cv)
   prm$sev.mae[i] <- mean(abs(moddat$fies.sev.pred.cv - moddat$fies.sev))
   prm$mod.mae[i] <- mean(abs(moddat$fies.mod.pred.cv - moddat$fies.mod))
 }
