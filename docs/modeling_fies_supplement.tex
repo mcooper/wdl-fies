@@ -285,6 +285,44 @@ After fitting models with cross validation, we evaluated the models performance 
   \label{fig:mod-error}
 \end{figure}
 
+\section{Comparison Modeling Approach: LASSO Regression}
+
+In addition to a random forest model, we also fit a similar model using LASSO (Least Absolute Shrinkage and Selection Operator) regression.  LASSO is a method of regression that penalizes the size of the coefficients to guard against overfitting, and is therefore more suitable for prediction applications \cite{hastie2009elements}.  Additionally, the LASSO method can shrink some coefficients to zero, providing an indication of which covariates are not useful. The LASSO method recasts multiple regression as a convex optimization, specifically:
+
+{\small
+	\begin{align*}
+		\text{minimize}_{\beta{_0},\beta} \bigg[ \frac{1}{2} \sum\limits_{i=1}^N \Big( y_i - \beta_0 - \sum\limits_{j}x_{ij}\beta_j \Big)^2 + \lambda \sum\limits_{j=1}^p|\beta_j|\bigg] \numberthis \label{eqn:LASSO}
+	\end{align*}
+}%
+
+Where $\beta_j$ is the parameter vector from the regression model [1], including both the $\beta$ and $\gamma$ parameters, and the tuning parameter $\lambda$ moderates the level of penalization and regularization.
+
+Examining the model diagnostics for the LASSO regression and comparing them to those for the random forest models, LASSO regression generally performs worse, especially at higher rates of food insecurity and for severe food insecurity.  This indicates that a model that can flexibly account for interactions between predictor variables, such as a random forest model, is necessary to more accurately predict food security outcomes.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/out-sample_lasso.pdf}
+  \caption{Out-of-sample fit of the LASSO regression model, where predictions for each country are based on a model that did not include that country in the training data. Panel (A) shows the model for moderate food insecurity and panel (B) shows the model for severe food insecurity.}
+  \label{fig:lasso_out-sample}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/in-sample_lasso.pdf}
+  \caption{In-sample fit of the LASSO regression model, where one model was trained on the entire dataset. Panel (A) shows the model for moderate food insecurity and panel (B) shows the model for severe food insecurity.}
+  \label{fig:lasso_in-sample}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{img/VIMP_Lasso.pdf}
+  \caption{Coefficients for LASSO regression.  Each coefficient shows the predicted change in the rate of Moderate/Severe food insecurity for a one standard deviation increase in the given variable.}
+  \label{fig:lasso_coefs}
+\end{figure}
+
+
+
+
 \printbibliography
 
 \end{document}

@@ -58,23 +58,24 @@ for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
       depth <- NULL
     }
     
-    rf.mod <- rfsrc(formula = as.formula(paste("fies.mod.logit", 
-                                               paste(vars, collapse = "+"), sep= "~")),
-                    data = moddat[ix, ],
-                    ntree = 1000, 
-                    mtry = mtry,
-                    nodesize = node,
-                    depth = depth)
-    
+    # rf.mod <- rfsrc(formula = as.formula(paste("fies.mod.logit", 
+    #                                            paste(vars, collapse = "+"), sep= "~")),
+    #                 data = moddat[ix, ],
+    #                 ntree = 1000, 
+    #                 mtry = mtry,
+    #                 nodesize = node,
+    #                 depth = depth)
+   
     rf.sev <- rfsrc(formula = as.formula(paste("fies.sev.logit", 
                                                paste(vars, collapse = "+"), sep= "~")),
                     data = moddat[ix, ],
                     ntree = 1000, 
                     mtry = mtry,
                     nodesize = node,
-                    depth = depth)
+                    depth = depth,
+                    seed=-10)
       
-    moddat$fies.mod.pred.cv[!ix] <- inv.logit(predict(rf.mod, moddat[!ix,])$predicted)
+    # moddat$fies.mod.pred.cv[!ix] <- inv.logit(predict(rf.mod, moddat[!ix,])$predicted)
     moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(rf.sev, moddat[!ix,])$predicted)
     
   }
@@ -86,8 +87,8 @@ for (i in sample(prm$ix[is.na(prm$sev.rsq)])){
 
 write.csv(prm, 'data/prm.csv', row.names=F)
 
-mod.prm <- prm[which.max(prm$mod.rsq), ]
-sev.prm <- prm[which.max(prm$sev.rsq), ]
+mod.prm <- prm[which.min(prm$mod.mae), ]
+sev.prm <- prm[which.min(prm$sev.mae), ]
 
 system('~/telegram.sh "Done Running Random Forests"')
 
@@ -129,16 +130,18 @@ for (iso3 in unique(moddat$ISO3)){
     depth <- NULL
   }
   
-  rf.sev <- rfsrc(formula = as.formula(paste("fies.mod.logit", 
+  rf.sev <- rfsrc(formula = as.formula(paste("fies.sev.logit", 
                                              paste(vars, collapse = "+"), sep= "~")),
                   data = moddat[ix, ],
                   ntree = 1000, 
                   mtry = mtry,
                   nodesize = node,
-                  depth = depth)
+                  depth = depth, 
+                  seed = -10)
     
   moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(rf.sev, moddat[!ix,])$predicted)
 }
+mean(abs(moddat$fies.sev.pred.cv - moddat$fies.sev))
 
 
 #########################################

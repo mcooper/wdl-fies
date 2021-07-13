@@ -46,8 +46,8 @@ for (iso3 in unique(moddat$ISO3)){
   moddat$fies.sev.pred.cv[!ix] <- inv.logit(predict(lasso.sev, mm[!ix,])[, 1])
 }
 
-sev.rsq <- cor(moddat$fies.sev, moddat$fies.sev.pred.cv)^2
-mod.rsq <- cor(moddat$fies.mod, moddat$fies.mod.pred.cv)^2
+sev.rsq <- rsq(moddat$fies.sev, moddat$fies.sev.pred.cv)
+mod.rsq <- rsq(moddat$fies.mod, moddat$fies.mod.pred.cv)
 sev.mae <- mean(abs(moddat$fies.sev.pred.cv - moddat$fies.sev))
 mod.mae <- mean(abs(moddat$fies.mod.pred.cv - moddat$fies.mod))
 

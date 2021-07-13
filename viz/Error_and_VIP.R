@@ -6,6 +6,10 @@ library(cowplot)
 library(gridGraphics)
 options(scipen=100)
 
+rsq <- function(y, yhat){
+  1 - (sum((y - yhat)^2))/sum((y - mean(yhat))^2)
+}
+
 ####################################
 # Variable Importance
 ###################################
@@ -15,12 +19,16 @@ vars <- names(moddat)[!names(moddat) %in% c('ISO3', 'GDLCODE', 'fies.mod.rur',
                                             'fies.mod.pred', 'fies.sev.pred',
                                             'urban', 'rural', 'fies.sev', 'fies.mod',
                                             'population', 'YEAR', 'rural_perc', 'region',
-                                            'fies.mod.logit', 'fies.sev.logit')]
+                                            'fies.mod.logit', 'fies.sev.logit', 
+                                            'fies.mod.pred.cv', 'fies.sev.pred.cv')]
 
 # change varaibles names
 vars_full <- c("Stunting", "Wasting", "Mean Years of Schooling", "Topographic Ruggedness",
-              "GDP Per Capita", "Gini Coefficient", "Malaria Mortality Rate", "Mean Annual Precipitation",
-              "Poverty Headcount Index", "Mean Temperature", "Urban Percentage", "Water Scarcity") #has to be in the same order as "vars"
+              "GDP Per Capita", "Gini Coefficient", "Malaria Mortality Rate",
+              "Total Annual Precipitation", 
+              "Poverty Headcount Index", "Mean Temperature", 
+              "Total Annual Precipitation\n(Previous Year)", "Mean Temperature\n(Previous Year)",
+              "Urban Percentage", "Water Scarcity") #has to be in the same order as "vars"
 
 v.mod <- vimp(rf.mod, importance='permute')
 v.sev <- vimp(rf.sev, importance='permute')
@@ -31,7 +39,7 @@ v.sev <- vimp(rf.sev, importance='permute')
 
 df <- data.frame(var=c(names(v.mod$importance), names(v.sev$importance)),
                  val=c(v.mod$importance, v.sev$importance),
-                 mod=rep(c('Moderate', 'Severe'), each=12),
+                 mod=rep(c('Moderate', 'Severe'), each=14),
                  lab=rep(vars_full, 2))
 
 df$lab <- factor(df$lab, levels=vars_full[order(v.sev$importance)])
@@ -74,8 +82,8 @@ ggsave('Error_Over_Training.pdf', width=7, height=3.75)
 mae.mod <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred))
 mae.sev <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred))
 
-r2.mod <- cor(moddat$fies.mod, moddat$fies.mod.pred)^2
-r2.sev <- cor(moddat$fies.sev, moddat$fies.sev.pred)^2
+r2.mod <- rsq(moddat$fies.mod, moddat$fies.mod.pred)
+r2.sev <- rsq(moddat$fies.sev, moddat$fies.sev.pred)
 
 mod.res <- ggplot(moddat) + 
   geom_point(aes(x=fies.mod, y=fies.mod.pred), alpha = 0.3) + 
@@ -104,8 +112,8 @@ ggsave(grd, filename='in-sample_rf.pdf', width=7, height=3.75)
 mae.mod <- mean(abs(moddat$fies.mod - moddat$fies.mod.pred.cv))
 mae.sev <- mean(abs(moddat$fies.sev - moddat$fies.sev.pred.cv))
 
-r2.mod <- cor(moddat$fies.mod, moddat$fies.mod.pred.cv)^2
-r2.sev <- cor(moddat$fies.sev, moddat$fies.sev.pred.cv)^2
+r2.mod <- rsq(moddat$fies.mod, moddat$fies.mod.pred.cv)
+r2.sev <- rsq(moddat$fies.sev, moddat$fies.sev.pred.cv)
 
 mod.res <- ggplot(moddat) + 
   geom_point(aes(x=fies.mod, y=fies.mod.pred.cv), alpha = 0.3) + 

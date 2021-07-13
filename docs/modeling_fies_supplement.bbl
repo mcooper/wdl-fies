@@ -154,26 +154,20 @@
       \keyw{Shared Socioeconomic Pathways,population projections,spatial population}
     \endentry
     \entry{Local2020}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
       \name{author}{1}{}{%
-        {{hash=50189852339055f390173773239ac765}{%
-           family={Disease\bibnamedelimb Child\bibnamedelimb Growth\bibnamedelimb Failure\bibnamedelima Collaborators},
-           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim C\bibinitperiod},
-           given={Local\bibnamedelima Burden},
-           giveni={L\bibinitperiod\bibinitdelim B\bibinitperiod},
-           prefix={of},
-           prefixi={o\bibinitperiod}}}%
+        {{hash=f8beab740a9dc4e8df451e7b50c46654}{%
+           family={{LBD CGF Collaborators}},
+           familyi={L\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
         {Nature Publishing Group}%
       }
-      \strng{namehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{fullhash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{bibnamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authorbibnamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authornamehash}{5160cb2f22fd3f077822bf891085d602}
-      \strng{authorfullhash}{5160cb2f22fd3f077822bf891085d602}
+      \strng{namehash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{fullhash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{bibnamehash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{authorbibnamehash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{authornamehash}{f8beab740a9dc4e8df451e7b50c46654}
+      \strng{authorfullhash}{f8beab740a9dc4e8df451e7b50c46654}
       \field{sortinit}{5}
       \field{sortinithash}{5dd416adbafacc8226114bc0202d5fdd}
       \field{labelnamesource}{author}
@@ -616,6 +610,42 @@
       \verb https://lta.cr.usgs.gov/GTOPO30
       \endverb
     \endentry
+    \entry{Riley1999}{article}{}
+      \name{author}{3}{}{%
+        {{hash=c0e05823a5b6273d0b1e146b7c5b9703}{%
+           family={Riley},
+           familyi={R\bibinitperiod},
+           given={S\bibnamedelima J},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=a2e0afbe4af7978d7a1f99c6c1be43f7}{%
+           family={DeGloria},
+           familyi={D\bibinitperiod},
+           given={S\bibnamedelima D},
+           giveni={S\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=728b623c41a39a7a2c162069bbb3177a}{%
+           family={Elliot},
+           familyi={E\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{776df935ff939656636ccb709bfa3443}
+      \strng{fullhash}{776df935ff939656636ccb709bfa3443}
+      \strng{bibnamehash}{776df935ff939656636ccb709bfa3443}
+      \strng{authorbibnamehash}{776df935ff939656636ccb709bfa3443}
+      \strng{authornamehash}{776df935ff939656636ccb709bfa3443}
+      \strng{authorfullhash}{776df935ff939656636ccb709bfa3443}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Intermountain Journal of Sciences}
+      \field{title}{{A Terrain Ruggedness Index that Quantifies Topographic Heterogeneity}}
+      \field{year}{1999}
+      \verb{doi}
+      \verb citeulike-article-id:8858430
+      \endverb
+      \keyw{Montana,geographical information systems,habitat,ruggedness,terrain}
+    \endentry
     \entry{Weiss2019}{article}{}
       \name{author}{42}{}{%
         {{hash=fc2fecf5f3e041a4417c8a9f9775bf73}{%
@@ -876,8 +906,41 @@
       \field{volume}{2}
       \field{year}{2019}
     \endentry
+    \entry{hastie2009elements}{book}{}
+      \name{author}{3}{}{%
+        {{hash=0cb8fe4210baa81c4b0e67913b4d2768}{%
+           family={Hastie},
+           familyi={H\bibinitperiod},
+           given={Trevor},
+           giveni={T\bibinitperiod}}}%
+        {{hash=88eea600247d798f8b2ce0b2dc614492}{%
+           family={Tibshirani},
+           familyi={T\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=971cf69058b64a94326dea0f2a8bbcce}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={Jerome},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Science \& Business Media}%
+      }
+      \strng{namehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{fullhash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{bibnamehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{authorbibnamehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{authornamehash}{7ca1bfe876d5e037b6aed69704221267}
+      \strng{authorfullhash}{7ca1bfe876d5e037b6aed69704221267}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The elements of statistical learning: data mining, inference, and prediction}
+      \field{year}{2009}
+    \endentry
   \enddatalist
-  \missing{Riely1999}
 \endrefsection
 \endinput
 

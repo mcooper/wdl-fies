@@ -2206,6 +2206,7 @@
     <bcf:citekey order="22">Riley1999</bcf:citekey>
     <bcf:citekey order="23">Weiss2019</bcf:citekey>
     <bcf:citekey order="24">ishwaran2019randomforestsrc</bcf:citekey>
+    <bcf:citekey order="25">hastie2009elements</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
@@ -2214,4 +2215,13 @@
     </bcf:sort>
   </bcf:sortingtemplate>
   <!-- DATALISTS -->
+  <bcf:datalist section="0"
+                name="none/global//global/global"
+                type="entry"
+                sortingtemplatename="none"
+                sortingnamekeytemplatename="global"
+                labelprefix=""
+                uniquenametemplatename="global"
+                labelalphanametemplatename="global">
+  </bcf:datalist>
 </bcf:controlfile>
