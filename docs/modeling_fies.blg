@@ -1,19 +1,27 @@
 [0] Config.pm:304> INFO - This is Biber 2.14 (beta)
 [0] Config.pm:307> INFO - Logfile is 'modeling_fies.blg'
-[77] biber:322> INFO - === Mon Jul 12, 2021, 20:10:26
-[92] Biber.pm:415> INFO - Reading 'modeling_fies.bcf'
-[160] Biber.pm:943> INFO - Found 40 citekeys in bib section 0
-[173] Biber.pm:4256> INFO - Processing section 0
-[173] Utils.pm:75> INFO - Globbing data source 'library.bib'
-[173] Utils.pm:91> INFO - Globbed data source 'library.bib' to library.bib
-[182] Biber.pm:4455> INFO - Looking for bibtex format file 'library.bib' for section 0
-[248] bibtex.pm:1653> INFO - LaTeX decoding ...
-[1920] bibtex.pm:1471> INFO - Found BibTeX data source 'library.bib'
-[2016] Utils.pm:293> WARN - Duplicate entry key: 'Leyk2019Sep' in file 'library.bib', skipping ...
-[2349] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[2349] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[2349] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[2349] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
-[2412] bbl.pm:652> INFO - Writing 'modeling_fies.bbl' with encoding 'UTF-8'
-[2468] bbl.pm:755> INFO - Output to modeling_fies.bbl
-[2468] Biber.pm:128> INFO - WARNINGS: 1
+[94] biber:322> INFO - === Fri Jul 16, 2021, 13:59:20
+[111] Biber.pm:415> INFO - Reading 'modeling_fies.bcf'
+[186] Biber.pm:943> INFO - Found 50 citekeys in bib section 0
+[201] Biber.pm:4256> INFO - Processing section 0
+[201] Utils.pm:75> INFO - Globbing data source 'library.bib'
+[201] Utils.pm:91> INFO - Globbed data source 'library.bib' to library.bib
+[212] Biber.pm:4455> INFO - Looking for bibtex format file 'library.bib' for section 0
+[285] bibtex.pm:1653> INFO - LaTeX decoding ...
+[2138] bibtex.pm:1471> INFO - Found BibTeX data source 'library.bib'
+[2323] Utils.pm:293> WARN - month field 'Aug' in entry 'Tuholske2019' is not an integer - this will probably not sort properly.
+[2329] Utils.pm:293> WARN - month field 'Oct' in entry 'Chen2020' is not an integer - this will probably not sort properly.
+[2349] Utils.pm:293> WARN - month field 'Sep' in entry 'Leyk2019Sep' is not an integer - this will probably not sort properly.
+[2520] Utils.pm:293> WARN - year field '\noop{2021}in press' in entry 'muller2021' is not an integer - this will probably not sort properly.
+[2550] Utils.pm:293> WARN - month field 'Sep' in entry 'Cooper2020' is not an integer - this will probably not sort properly.
+[2560] Utils.pm:293> WARN - month field 'Jan' in entry 'Shukla2021' is not an integer - this will probably not sort properly.
+[2567] Utils.pm:293> WARN - month field 'Jan' in entry 'Blekking2020' is not an integer - this will probably not sort properly.
+[2581] Utils.pm:293> WARN - month field 'Apr' in entry 'Tuholske2020' is not an integer - this will probably not sort properly.
+[2586] Utils.pm:293> WARN - month field 'Apr' in entry 'Voosen2020' is not an integer - this will probably not sort properly.
+[2726] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[2726] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[2726] Biber.pm:4084> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[2726] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[2776] bbl.pm:652> INFO - Writing 'modeling_fies.bbl' with encoding 'UTF-8'
+[2845] bbl.pm:755> INFO - Output to modeling_fies.bbl
+[2845] Biber.pm:128> INFO - WARNINGS: 9
